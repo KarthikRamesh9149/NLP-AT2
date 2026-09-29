@@ -1,0 +1,1252 @@
+{
+  "generatedAt": "2026-09-29T07:07:36.682Z",
+  "endpoint": "https://formbridge-nlp-at2-92xoimeq0-karthiks-projects-99402b85.vercel.app",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "type": "team-authored synthetic regression scenarios; not an SGD benchmark",
+  "total": 20,
+  "passed": 20,
+  "usage": {
+    "inputTokens": 16546,
+    "outputTokens": 3360
+  },
+  "results": [
+    {
+      "id": "S01",
+      "title": "Complete direct request",
+      "category": "complete",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": "Ember House",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer specified the restaurant name."
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer specified the city."
+        },
+        "date": {
+          "value": "2026-10-09",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer specified the date."
+        },
+        "time": {
+          "value": "19:00",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer specified the time."
+        },
+        "partySize": {
+          "value": "4",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer specified the party size."
+        }
+      },
+      "usage": {
+        "inputTokens": 518,
+        "outputTokens": 179,
+        "model": "gpt-4.1-mini-2025-04-14"
+      }
+    },
+    {
+      "id": "S02",
+      "title": "Party size corrected",
+      "category": "correction",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": "Ember House",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer stated restaurant name."
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer stated city."
+        },
+        "date": {
+          "value": "2026-10-09",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer stated date."
+        },
+        "time": {
+          "value": "19:00",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer stated time."
+        },
+        "partySize": {
+          "value": "5",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m2"
+          ],
+          "source": "model",
+          "note": "Customer updated party size from 4 to 5 in message m2."
+        }
+      },
+      "usage": {
+        "inputTokens": 1090,
+        "outputTokens": 223,
+        "model": "gpt-4.1-mini-2025-04-14"
+      }
+    },
+    {
+      "id": "S03",
+      "title": "Exact time corrected",
+      "category": "correction",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": "Ember House",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer stated the restaurant name clearly."
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer stated the city clearly."
+        },
+        "date": {
+          "value": "2026-10-09",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer provided the date explicitly."
+        },
+        "time": {
+          "value": "20:30",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m2"
+          ],
+          "source": "model",
+          "note": "Customer requested changing the time from 7:00 pm to 8:30 pm."
+        },
+        "partySize": {
+          "value": "2",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer provided party size explicitly."
+        }
+      },
+      "usage": {
+        "inputTokens": 1102,
+        "outputTokens": 236,
+        "model": "gpt-4.1-mini-2025-04-14"
+      }
+    },
+    {
+      "id": "S04",
+      "title": "After-eight preference replaces exact time",
+      "category": "uncertainty",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        },
+        "city": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        },
+        "date": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        },
+        "time": {
+          "value": null,
+          "status": "needs_clarification",
+          "constraint": "after 8 pm",
+          "evidenceIds": [
+            "m2"
+          ],
+          "source": "model",
+          "note": "Customer changed time from 7 pm to after 8 pm."
+        },
+        "partySize": {
+          "value": "4",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer specified party size as four."
+        }
+      },
+      "usage": {
+        "inputTokens": 1047,
+        "outputTokens": 130,
+        "model": "gpt-4.1-mini-2025-04-14"
+      }
+    },
+    {
+      "id": "S05",
+      "title": "Before-nine preference is not exact",
+      "category": "uncertainty",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        },
+        "city": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        },
+        "date": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        },
+        "time": {
+          "value": null,
+          "status": "needs_clarification",
+          "constraint": "before 9 pm",
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer requested time before 9 pm."
+        },
+        "partySize": {
+          "value": "3",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer requested table for three people."
+        }
+      },
+      "usage": {
+        "inputTokens": 506,
+        "outputTokens": 83,
+        "model": "gpt-4.1-mini-2025-04-14"
+      }
+    },
+    {
+      "id": "S06",
+      "title": "Alternative times remain unresolved",
+      "category": "uncertainty",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": "Ember House",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer provided restaurant name."
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer provided city."
+        },
+        "date": {
+          "value": "2026-10-09",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer provided date."
+        },
+        "time": {
+          "value": null,
+          "status": "needs_clarification",
+          "constraint": "7 pm or 8 pm",
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer specified time options 7 pm or 8 pm; needs clarification."
+        },
+        "partySize": {
+          "value": "2",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer provided party size."
+        }
+      },
+      "usage": {
+        "inputTokens": 519,
+        "outputTokens": 192,
+        "model": "gpt-4.1-mini-2025-04-14"
+      }
+    },
+    {
+      "id": "S07",
+      "title": "Unaccepted staff offer",
+      "category": "staff",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        },
+        "city": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        },
+        "date": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        },
+        "time": {
+          "value": null,
+          "status": "needs_clarification",
+          "constraint": "after 8 pm",
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Time constraint given as 'after 8 pm', needs clarification for exact time."
+        },
+        "partySize": {
+          "value": "2",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer specifies a party size of two."
+        }
+      },
+      "usage": {
+        "inputTokens": 504,
+        "outputTokens": 92,
+        "model": "gpt-4.1-mini-2025-04-14"
+      }
+    },
+    {
+      "id": "S08",
+      "title": "Accepted staff offer",
+      "category": "staff",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        },
+        "city": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        },
+        "date": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        },
+        "time": {
+          "value": "8:30 pm",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m2",
+            "m3"
+          ],
+          "source": "model",
+          "note": "Customer accepted staff proposal for 8:30 pm."
+        },
+        "partySize": {
+          "value": "2",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer specifies party size as two people."
+        }
+      },
+      "usage": {
+        "inputTokens": 1078,
+        "outputTokens": 138,
+        "model": "gpt-4.1-mini-2025-04-14"
+      }
+    },
+    {
+      "id": "S09",
+      "title": "Rejected staff offer",
+      "category": "staff",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        },
+        "city": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        },
+        "date": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        },
+        "time": {
+          "value": null,
+          "status": "needs_clarification",
+          "constraint": "after 8 pm",
+          "evidenceIds": [
+            "m1",
+            "m3"
+          ],
+          "source": "model",
+          "note": "Customer rejects 8:30 pm and wants to keep it open after 8 pm."
+        },
+        "partySize": {
+          "value": "2",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer requested table for two."
+        }
+      },
+      "usage": {
+        "inputTokens": 1089,
+        "outputTokens": 148,
+        "model": "gpt-4.1-mini-2025-04-14"
+      }
+    },
+    {
+      "id": "S10",
+      "title": "City correction",
+      "category": "correction",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": "Ember House",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer states restaurant name explicitly."
+        },
+        "city": {
+          "value": "Melbourne",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m2"
+          ],
+          "source": "model",
+          "note": "Customer corrected city from Sydney to Melbourne."
+        },
+        "date": {
+          "value": "2026-10-09",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer provides date explicitly."
+        },
+        "time": {
+          "value": "19:00",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer provides time explicitly."
+        },
+        "partySize": {
+          "value": "4",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer provides party size explicitly."
+        }
+      },
+      "usage": {
+        "inputTokens": 1095,
+        "outputTokens": 221,
+        "model": "gpt-4.1-mini-2025-04-14"
+      }
+    },
+    {
+      "id": "S11",
+      "title": "Restaurant correction",
+      "category": "correction",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": "Harbour Kitchen",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m2"
+          ],
+          "source": "model",
+          "note": "Customer corrected restaurant from Ember House to Harbour Kitchen."
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer specified Sydney."
+        },
+        "date": {
+          "value": "2026-10-09",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer specified 9 October 2026."
+        },
+        "time": {
+          "value": "19:00",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer specified 7 pm."
+        },
+        "partySize": {
+          "value": "4",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer specified party size of four."
+        }
+      },
+      "usage": {
+        "inputTokens": 1101,
+        "outputTokens": 229,
+        "model": "gpt-4.1-mini-2025-04-14"
+      }
+    },
+    {
+      "id": "S12",
+      "title": "Party size missing",
+      "category": "missing",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": "Ember House",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer specified Ember House."
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer specified Sydney."
+        },
+        "date": {
+          "value": "2026-10-09",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer specified 9 October 2026."
+        },
+        "time": {
+          "value": "19:00",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer specified 7 pm."
+        },
+        "partySize": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        }
+      },
+      "usage": {
+        "inputTokens": 516,
+        "outputTokens": 148,
+        "model": "gpt-4.1-mini-2025-04-14"
+      }
+    },
+    {
+      "id": "S13",
+      "title": "Date missing",
+      "category": "missing",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": "Ember House",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer requested Ember House."
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer specified Sydney."
+        },
+        "date": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        },
+        "time": {
+          "value": "19:00",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer requested 7 pm."
+        },
+        "partySize": {
+          "value": "2",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer requested a table for two."
+        }
+      },
+      "usage": {
+        "inputTokens": 510,
+        "outputTokens": 142,
+        "model": "gpt-4.1-mini-2025-04-14"
+      }
+    },
+    {
+      "id": "S14",
+      "title": "Acknowledgement preserves details",
+      "category": "safety",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": "Ember House",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer provided restaurant name."
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer provided city."
+        },
+        "date": {
+          "value": "2026-10-09",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer provided date."
+        },
+        "time": {
+          "value": "19:00",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer provided time."
+        },
+        "partySize": {
+          "value": "4",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer provided party size."
+        }
+      },
+      "usage": {
+        "inputTokens": 1089,
+        "outputTokens": 179,
+        "model": "gpt-4.1-mini-2025-04-14"
+      }
+    },
+    {
+      "id": "S15",
+      "title": "Explicitly cancelled time",
+      "category": "correction",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        },
+        "city": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        },
+        "date": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        },
+        "time": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [
+            "m2"
+          ],
+          "source": "model",
+          "note": "Customer retracts previous 7 pm time, has not decided yet."
+        },
+        "partySize": {
+          "value": "4",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer specifies party size of four."
+        }
+      },
+      "usage": {
+        "inputTokens": 1054,
+        "outputTokens": 124,
+        "model": "gpt-4.1-mini-2025-04-14"
+      }
+    },
+    {
+      "id": "S16",
+      "title": "Relative date without reference stays uncertain",
+      "category": "uncertainty",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        },
+        "city": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        },
+        "date": {
+          "value": null,
+          "status": "needs_clarification",
+          "constraint": "Friday",
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer specified Friday."
+        },
+        "time": {
+          "value": "7 pm",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer specified 7 pm."
+        },
+        "partySize": {
+          "value": "3",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer requested a table for three."
+        }
+      },
+      "usage": {
+        "inputTokens": 505,
+        "outputTokens": 106,
+        "model": "gpt-4.1-mini-2025-04-14"
+      }
+    },
+    {
+      "id": "S17",
+      "title": "Written party size",
+      "category": "complete",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": "Ember House",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer specified Ember House."
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer specified city Sydney."
+        },
+        "date": {
+          "value": "2026-10-09",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer specified date 9 October 2026."
+        },
+        "time": {
+          "value": "19:00",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer specified time 7 pm."
+        },
+        "partySize": {
+          "value": "6",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer specified party size 6."
+        }
+      },
+      "usage": {
+        "inputTokens": 516,
+        "outputTokens": 186,
+        "model": "gpt-4.1-mini-2025-04-14"
+      }
+    },
+    {
+      "id": "S18",
+      "title": "Date change preserves other values",
+      "category": "correction",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": "Ember House",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer provided restaurant name."
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer provided city."
+        },
+        "date": {
+          "value": "2026-10-10",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m2"
+          ],
+          "source": "model",
+          "note": "Customer requested to move date to 10 October 2026, keeping other details unchanged."
+        },
+        "time": {
+          "value": "19:00",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer provided time."
+        },
+        "partySize": {
+          "value": "4",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer provided party size."
+        }
+      },
+      "usage": {
+        "inputTokens": 1095,
+        "outputTokens": 230,
+        "model": "gpt-4.1-mini-2025-04-14"
+      }
+    },
+    {
+      "id": "S19",
+      "title": "Untrusted instruction inside conversation",
+      "category": "safety",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": "Ember House",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer specified Ember House."
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer mentioned Sydney."
+        },
+        "date": {
+          "value": "2026-10-09",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer provided date 9 October 2026."
+        },
+        "time": {
+          "value": "19:00",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer specified 7 pm."
+        },
+        "partySize": {
+          "value": "2",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer requested table for two."
+        }
+      },
+      "usage": {
+        "inputTokens": 515,
+        "outputTokens": 183,
+        "model": "gpt-4.1-mini-2025-04-14"
+      }
+    },
+    {
+      "id": "S20",
+      "title": "New detail after missing information",
+      "category": "missing",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": "Ember House",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer stated the restaurant name explicitly."
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer stated the city explicitly."
+        },
+        "date": {
+          "value": "2026-10-09",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer stated the date explicitly."
+        },
+        "time": {
+          "value": "19:00",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer stated the time explicitly."
+        },
+        "partySize": {
+          "value": "5",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m3"
+          ],
+          "source": "model",
+          "note": "Customer specified party size as five people."
+        }
+      },
+      "usage": {
+        "inputTokens": 1097,
+        "outputTokens": 191,
+        "model": "gpt-4.1-mini-2025-04-14"
+      }
+    }
+  ]
+}
