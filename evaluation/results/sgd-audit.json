@@ -1,0 +1,49 @@
+{
+  "source": "https://github.com/google-research-datasets/dstc8-schema-guided-dialogue",
+  "sourceCommit": "e852981ae34990f4358979625854259302feaa78",
+  "note": "Single-service restaurant reservation dialogues; test service differs from train service.",
+  "splits": {
+    "train": {
+      "service": "Restaurants_1",
+      "dialogueCount": 16142,
+      "singleServiceCount": 367,
+      "eligibleReservationDialogues": 367,
+      "reservationUserTurns": 1870,
+      "slotMap": {
+        "restaurantName": "restaurant_name",
+        "city": "city",
+        "date": "date",
+        "time": "time",
+        "partySize": "party_size"
+      }
+    },
+    "dev": {
+      "service": "Restaurants_2",
+      "dialogueCount": 2482,
+      "singleServiceCount": 73,
+      "eligibleReservationDialogues": 73,
+      "reservationUserTurns": 385,
+      "slotMap": {
+        "restaurantName": "restaurant_name",
+        "city": "location",
+        "date": "date",
+        "time": "time",
+        "partySize": "number_of_seats"
+      }
+    },
+    "test": {
+      "service": "Restaurants_2",
+      "dialogueCount": 4201,
+      "singleServiceCount": 73,
+      "eligibleReservationDialogues": 73,
+      "reservationUserTurns": 342,
+      "slotMap": {
+        "restaurantName": "restaurant_name",
+        "city": "location",
+        "date": "date",
+        "time": "time",
+        "partySize": "number_of_seats"
+      }
+    }
+  }
+}

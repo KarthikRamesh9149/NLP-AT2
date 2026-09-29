@@ -54,7 +54,7 @@ async function checkScenario(scenario: Scenario) {
     visible.push(message);
     if (message.speaker === 'staff') continue;
     const response = await fetch(`${endpoint}/api/analyze`, {
-      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      method: 'POST', headers: { 'Content-Type': 'application/json', ...(process.env.FORMBRIDGE_BYPASS_SECRET ? { 'x-vercel-protection-bypass': process.env.FORMBRIDGE_BYPASS_SECRET } : {}) },
       body: JSON.stringify({ mode: 'formbridge', messages: visible, brief, referenceDate: null }),
     });
     const result = (await response.json()) as ApiResult & { error?: string };
@@ -96,8 +96,9 @@ async function main() {
     results,
   };
   await mkdir('evaluation/results', { recursive: true });
-  await writeFile('evaluation/results/live-scenarios.json', JSON.stringify(report, null, 2) + '\n');
-  process.stdout.write(`\n${report.passed}/${report.total} passed. Saved evaluation/results/live-scenarios.json\n`);
+  const path = new URL(endpoint).hostname === 'localhost' ? 'evaluation/results/live-scenarios.json' : 'evaluation/results/live-scenarios-deployed.json';
+  await writeFile(path, JSON.stringify(report, null, 2) + '\n');
+  process.stdout.write(`\n${report.passed}/${report.total} passed. Saved ${path}\n`);
   if (report.passed !== report.total) process.exitCode = 1;
 }
 

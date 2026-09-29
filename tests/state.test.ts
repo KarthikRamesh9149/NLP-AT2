@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { applyProposals, createEmptyBrief } from '../lib/state';
+import { applyManualEdit, applyProposals, createEmptyBrief } from '../lib/state';
 
 describe('booking state', () => {
   it('supersedes a party size without changing the date', () => {
@@ -44,5 +44,12 @@ describe('booking state', () => {
       { id: 'm2', speaker: 'customer', text: 'Actually five people' },
     ]);
     expect(next.fields.partySize.value).toBeNull();
+  });
+
+  it('preserves a staff-reviewed field when a later model proposal disagrees', () => {
+    const reviewed = applyManualEdit(createEmptyBrief(), 'partySize', '6');
+    const next = applyProposals(reviewed, [{ field: 'partySize', operation: 'replace', value: '7', status: 'resolved', evidenceIds: ['m1'], note: '' }], [{ id: 'm1', speaker: 'customer', text: 'Actually seven people' }]);
+    expect(next.fields.partySize.value).toBe('6');
+    expect(next.fields.partySize.source).toBe('staff');
   });
 });

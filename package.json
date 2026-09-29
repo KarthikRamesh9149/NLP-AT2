@@ -2,6 +2,7 @@
   "name": "nlp-at2-formbridge",
   "version": "1.0.0",
   "private": true,
+  "packageManager": "pnpm@11.24.0",
   "type": "module",
   "scripts": {
     "dev": "next dev",

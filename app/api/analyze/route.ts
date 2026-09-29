@@ -5,6 +5,25 @@ import { createEmptyBrief, FIELD_KEYS, type Brief } from '@/lib/state';
 
 export const runtime = 'nodejs';
 export const maxDuration = 30;
+const MAX_BODY_BYTES = 48_000;
+const MAX_REQUESTS_PER_MINUTE = 60;
+const requests = new Map<string, { windowStart: number; count: number }>();
+
+function isRateLimited(request: Request): boolean {
+  if (process.env.NODE_ENV !== 'production') return false;
+  const address = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ?? 'unknown';
+  const now = Date.now();
+  const entry = requests.get(address);
+  if (!entry || now - entry.windowStart >= 60_000) {
+    if (requests.size > 2_000) {
+      for (const [key, previous] of requests) if (now - previous.windowStart >= 60_000) requests.delete(key);
+    }
+    requests.set(address, { windowStart: now, count: 1 });
+    return false;
+  }
+  entry.count += 1;
+  return entry.count > MAX_REQUESTS_PER_MINUTE;
+}
 
 const messageSchema = z.object({
   id: z.string().regex(/^[a-zA-Z0-9_-]{1,40}$/),
@@ -41,8 +60,15 @@ const requestSchema = z.object({
 });
 
 export async function POST(request: Request) {
+  if (isRateLimited(request)) return NextResponse.json({ error: 'Too many analysis requests. Please try again in a minute.' }, { status: 429, headers: { 'Retry-After': '60', 'Cache-Control': 'no-store' } });
+  const declaredLength = Number(request.headers.get('content-length') ?? 0);
+  if (declaredLength > MAX_BODY_BYTES) return NextResponse.json({ error: 'This conversation is too large.' }, { status: 413 });
   let body: unknown;
-  try { body = await request.json(); } catch { return NextResponse.json({ error: 'Invalid JSON request.' }, { status: 400 }); }
+  try {
+    const raw = await request.text();
+    if (Buffer.byteLength(raw, 'utf8') > MAX_BODY_BYTES) return NextResponse.json({ error: 'This conversation is too large.' }, { status: 413 });
+    body = JSON.parse(raw);
+  } catch { return NextResponse.json({ error: 'Invalid JSON request.' }, { status: 400 }); }
   const parsed = requestSchema.safeParse(body);
   if (!parsed.success) return NextResponse.json({ error: 'The conversation or brief is invalid.' }, { status: 400 });
   const { messages, mode, referenceDate } = parsed.data;

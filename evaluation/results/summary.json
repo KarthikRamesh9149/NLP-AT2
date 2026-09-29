@@ -1,0 +1,31 @@
+{
+  "synthetic": {
+    "total": 20,
+    "passed": 20,
+    "model": "gpt-4.1-mini-2025-04-14"
+  },
+  "sgd": {
+    "split": "test",
+    "service": "Restaurants_2",
+    "sampleSize": 20,
+    "scope": "Single-service ReserveRestaurant; final user-turn five-field state; strict value matching with basic normalisation; not full official SGD benchmark",
+    "selectionSeed": "formbridge-sgd-evaluation-v1",
+    "methods": {
+      "rules": {
+        "fieldAccuracy": 0.38,
+        "completeFormAccuracy": 0,
+        "meanLatencyMs": 10
+      },
+      "model": {
+        "fieldAccuracy": 0.92,
+        "completeFormAccuracy": 0.7,
+        "meanLatencyMs": 1444
+      },
+      "formbridge": {
+        "fieldAccuracy": 0.84,
+        "completeFormAccuracy": 0.35,
+        "meanLatencyMs": 7344
+      }
+    }
+  }
+}

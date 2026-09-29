@@ -38,8 +38,10 @@ function downloadBrief(brief: Brief, messages: Message[]) {
   const link = document.createElement('a');
   link.href = url;
   link.download = 'formbridge-booking-brief.json';
+  document.body.appendChild(link);
   link.click();
-  URL.revokeObjectURL(url);
+  link.remove();
+  window.setTimeout(() => URL.revokeObjectURL(url), 60_000);
 }
 
 export default function Workspace() {
@@ -57,6 +59,7 @@ export default function Workspace() {
   const [hydrated, setHydrated] = useState(false);
   const [pendingAnalysis, setPendingAnalysis] = useState(false);
   const composerRef = useRef<HTMLTextAreaElement>(null);
+  const modalRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setReferenceDate(today());
@@ -76,6 +79,22 @@ export default function Workspace() {
   useEffect(() => {
     if (hydrated) sessionStorage.setItem('formbridge-session', JSON.stringify({ messages, brief }));
   }, [messages, brief, hydrated]);
+
+  useEffect(() => {
+    if (!editingField) return;
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === 'Escape') { setEditingField(null); return; }
+      if (event.key !== 'Tab') return;
+      const focusable = [...(modalRef.current?.querySelectorAll<HTMLElement>('button, input') ?? [])];
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+    }
+    document.addEventListener('keydown', onKeyDown);
+    return () => document.removeEventListener('keydown', onKeyDown);
+  }, [editingField]);
 
   const resolvedCount = FIELD_KEYS.filter((field) => brief.fields[field].status === 'resolved' && !!brief.fields[field].value).length;
   const selectedEvidence = useMemo(() => new Set(selectedField ? brief.fields[selectedField].evidenceIds : []), [selectedField, brief]);
@@ -108,7 +127,8 @@ export default function Workspace() {
   async function addMessage() {
     const text = draft.trim();
     if (!text || busy || pendingAnalysis) return;
-    const message: Message = { id: `m_${Date.now()}`, speaker, text };
+    if (messages.length >= 30) { setError('This brief has reached the 30-message limit. Download it and start a new brief.'); return; }
+    const message: Message = { id: `m_${crypto.randomUUID()}`, speaker, text };
     const nextMessages = [...messages, message];
     setMessages(nextMessages);
     setDraft('');
@@ -126,6 +146,8 @@ export default function Workspace() {
     setMessages(demoMessages);
     setBrief(demoBrief);
     setSelectedField('time');
+    setDraft('');
+    setSpeaker('customer');
     setPendingAnalysis(false);
     setError(null);
     setNotice('Example loaded. Add a message to continue it.');
@@ -135,6 +157,8 @@ export default function Workspace() {
     setMessages([]);
     setBrief(createEmptyBrief());
     setSelectedField(null);
+    setDraft('');
+    setSpeaker('customer');
     setPendingAnalysis(false);
     setError(null);
     setNotice('New draft ready. Start with a customer message.');
@@ -241,7 +265,7 @@ export default function Workspace() {
                 <div className="speaker-switch" role="group" aria-label="Message speaker"><button type="button" className={speaker === 'customer' ? 'selected' : ''} onClick={() => setSpeaker('customer')}>Customer</button><button type="button" className={speaker === 'staff' ? 'selected' : ''} onClick={() => setSpeaker('staff')}>Staff</button></div>
                 <label className="sr-only" htmlFor="message-input">New message</label>
                 <textarea id="message-input" ref={composerRef} value={draft} onChange={(event) => setDraft(event.target.value)} placeholder={speaker === 'customer' ? 'e.g. Yes, 8:30 pm works for us.' : 'e.g. Would 8:30 pm suit you?'} rows={3} maxLength={1000} onKeyDown={(event) => { if (event.key === 'Enter' && (event.metaKey || event.ctrlKey)) { event.preventDefault(); addMessage(); } }} />
-                <div className="composer-footer"><span>⌘ / Ctrl + Enter to add</span><button className="button primary" type="button" onClick={addMessage} disabled={!draft.trim() || busy || pendingAnalysis}>{busy ? <LoaderCircle className="spin" size={16} /> : <Send size={15} />} {busy ? 'Analysing…' : speaker === 'customer' ? 'Add & analyse' : 'Add message'}</button></div>
+                <div className="composer-footer"><span>⌘ / Ctrl + Enter to add</span><button className="button primary" type="button" onClick={addMessage} disabled={!draft.trim() || busy || pendingAnalysis || messages.length >= 30}>{busy ? <LoaderCircle className="spin" size={16} /> : <Send size={15} />} {busy ? 'Analysing…' : speaker === 'customer' ? 'Add & analyse' : 'Add message'}</button></div>
               </div>
             </section>
 
@@ -278,7 +302,7 @@ export default function Workspace() {
         </div>
       </main>
 
-      {editingField && <div className="modal-backdrop" onMouseDown={(event) => { if (event.target === event.currentTarget) setEditingField(null); }}><div className="edit-modal" role="dialog" aria-modal="true" aria-labelledby="edit-title"><div className="modal-head"><span className="modal-icon"><FileCheck2 size={21} /></span><button type="button" className="icon-button" aria-label="Close editor" onClick={() => setEditingField(null)}><X size={19} /></button></div><h2 id="edit-title">Edit {fieldLabels[editingField].toLowerCase()}</h2><p>Manual changes are marked as staff reviewed and stay separate from model suggestions.</p><label htmlFor="field-edit">{fieldLabels[editingField]}</label><input id="field-edit" autoFocus value={editValue} onChange={(event) => setEditValue(event.target.value)} onKeyDown={(event) => { if (event.key === 'Enter') saveEdit(); }} maxLength={120} /><div className="modal-actions"><button type="button" className="button subtle" onClick={() => setEditingField(null)}>Cancel</button><button type="button" className="button primary" onClick={saveEdit}>Save staff edit <ArrowRight size={15} /></button></div></div></div>}
+      {editingField && <div className="modal-backdrop" onMouseDown={(event) => { if (event.target === event.currentTarget) setEditingField(null); }}><div className="edit-modal" ref={modalRef} role="dialog" aria-modal="true" aria-labelledby="edit-title"><div className="modal-head"><span className="modal-icon"><FileCheck2 size={21} /></span><button type="button" className="icon-button" aria-label="Close editor" onClick={() => setEditingField(null)}><X size={19} /></button></div><h2 id="edit-title">Edit {fieldLabels[editingField].toLowerCase()}</h2><p>Manual changes are marked as staff reviewed and stay separate from model suggestions.</p><label htmlFor="field-edit">{fieldLabels[editingField]}</label><input id="field-edit" autoFocus value={editValue} onChange={(event) => setEditValue(event.target.value)} onKeyDown={(event) => { if (event.key === 'Enter') saveEdit(); }} maxLength={120} /><div className="modal-actions"><button type="button" className="button subtle" onClick={() => setEditingField(null)}>Cancel</button><button type="button" className="button primary" onClick={saveEdit}>Save staff edit <ArrowRight size={15} /></button></div></div></div>}
     </div>
   );
 }
