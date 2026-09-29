@@ -35,4 +35,14 @@ describe('booking state', () => {
     ], [{ id: 'm1', speaker: 'customer', text: 'Table for five' }]);
     expect(next.fields.partySize.value).toBeNull();
   });
+
+  it('rejects a stale model update that does not cite the latest customer turn', () => {
+    const next = applyProposals(createEmptyBrief(), [
+      { field: 'partySize', operation: 'set', value: '4', status: 'resolved', evidenceIds: ['m1'], note: '' },
+    ], [
+      { id: 'm1', speaker: 'customer', text: 'Four people' },
+      { id: 'm2', speaker: 'customer', text: 'Actually five people' },
+    ]);
+    expect(next.fields.partySize.value).toBeNull();
+  });
 });

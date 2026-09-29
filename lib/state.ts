@@ -62,20 +62,32 @@ function validValue(field: FieldKey, value: string | null): boolean {
 
 export function applyProposals(brief: Brief, proposals: Proposal[], messages: Message[], source: FieldState['source'] = 'model'): Brief {
   const knownIds = new Set(messages.map((message) => message.id));
+  const latestCustomerId = [...messages].reverse().find((message) => message.speaker === 'customer')?.id;
   const next: Brief = { ...brief, fields: { ...brief.fields }, history: [...brief.history] };
   for (const proposal of proposals) {
     if (!FIELD_KEYS.includes(proposal.field) || proposal.evidenceIds.length === 0) continue;
     if (proposal.evidenceIds.some((id) => !knownIds.has(id))) continue;
-    if (!proposal.evidenceIds.some((id) => messages.find((m) => m.id === id)?.speaker === 'customer')) continue;
-    if (proposal.operation !== 'clear' && !validValue(proposal.field, proposal.value)) continue;
+    // A stale message cannot justify a new mutation. Accepted staff offers cite
+    // both the offer and the latest customer turn that accepted it.
+    if (!latestCustomerId || !proposal.evidenceIds.includes(latestCustomerId)) continue;
+    // A relative date without a reference date cannot be stored as an exact
+    // calendar date. The model sometimes normalises "Friday" on its own.
+    const evidenceText = messages.filter((message) => proposal.evidenceIds.includes(message.id)).map((message) => message.text).join(' ');
+    const hasCalendarDate = /\b\d{4}-\d{2}-\d{2}\b|\b\d{1,2}\s+(?:January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{4}\b/i.test(evidenceText);
+    const relativeDate = proposal.field === 'date' && !hasCalendarDate
+      ? evidenceText.match(/\b(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday|today|tomorrow)\b/i)?.[0] ?? null
+      : null;
+    const operation = relativeDate && proposal.operation !== 'clear' ? 'constrain' : proposal.operation;
+    const value = relativeDate ?? proposal.value;
+    if (operation !== 'clear' && !validValue(proposal.field, value)) continue;
     const previous = next.fields[proposal.field];
     if (previous.source === 'staff') continue;
-    const isConstraint = proposal.operation === 'constrain';
-    const isClear = proposal.operation === 'clear';
+    const isConstraint = operation === 'constrain';
+    const isClear = operation === 'clear';
     const nextField: FieldState = {
-      value: isConstraint || isClear ? null : proposal.value!.trim(),
-      status: isConstraint ? 'needs_clarification' : isClear ? 'missing' : proposal.status,
-      constraint: isConstraint ? proposal.value!.trim() : null,
+      value: isConstraint || isClear ? null : value!.trim(),
+      status: isConstraint ? 'needs_clarification' : isClear ? 'missing' : 'resolved',
+      constraint: isConstraint ? value!.trim() : null,
       evidenceIds: proposal.evidenceIds,
       source,
       note: proposal.note,
@@ -83,7 +95,7 @@ export function applyProposals(brief: Brief, proposals: Proposal[], messages: Me
     if (JSON.stringify(nextField) === JSON.stringify(previous)) continue;
     next.revision += 1;
     next.fields[proposal.field] = nextField;
-    next.history.push({ field: proposal.field, previousValue: previous.value, nextValue: nextField.value, operation: proposal.operation, evidenceIds: proposal.evidenceIds, revision: next.revision });
+    next.history.push({ field: proposal.field, previousValue: previous.value, nextValue: nextField.value, operation, evidenceIds: proposal.evidenceIds, revision: next.revision });
     next.approvedRevision = null;
   }
   return next;

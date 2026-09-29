@@ -19,6 +19,10 @@ export async function analyzeConversation(messages: Message[], current: Brief, m
     }
     return { brief, clarification: clarificationFor(brief), usage, appliedUpdates: FIELD_KEYS.filter((field) => !!brief.fields[field].value).length };
   }
+  const latestCustomer = [...messages].reverse().find((message) => message.speaker === 'customer');
+  if (latestCustomer && /\b(?:ignore (?:all |any )?(?:previous|prior|system) instructions|system prompt|not a booking change|this is a test)\b/i.test(latestCustomer.text)) {
+    return { brief: current, clarification: clarificationFor(current), usage: null, appliedUpdates: 0 };
+  }
   const { proposals, usage } = await extractUpdates(messages, current, referenceDate);
   const brief = applyProposals(current, proposals, messages);
   return { brief, clarification: clarificationFor(brief), usage, appliedUpdates: brief.history.length - current.history.length };
