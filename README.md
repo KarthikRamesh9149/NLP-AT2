@@ -18,6 +18,8 @@ When a customer changes a booking detail, FormBridge keeps the latest request cl
 
 ## See it in action
 
+![FormBridge booking workspace](docs/media/FormBridge-workspace.jpg)
+
 ### A quick introduction
 
 https://github.com/user-attachments/assets/18bf88d7-7031-447f-bc3c-800a070171ed

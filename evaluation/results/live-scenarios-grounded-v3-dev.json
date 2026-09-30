@@ -1,0 +1,1872 @@
+{
+  "generatedAt": "2026-09-30T22:45:39.297Z",
+  "endpoint": "http://localhost:3000",
+  "model": "gpt-6.1-sol",
+  "type": "team-authored synthetic regression scenarios; not an SGD benchmark",
+  "total": 30,
+  "passed": 30,
+  "usage": {
+    "inputTokens": 60972,
+    "outputTokens": 10408
+  },
+  "results": [
+    {
+      "id": "S01",
+      "title": "Complete direct request",
+      "category": "complete",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": "Ember House",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "date": {
+          "value": "9 October 2026",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "time": {
+          "value": "7 pm",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "partySize": {
+          "value": "4",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        }
+      },
+      "usage": {
+        "inputTokens": 1266,
+        "outputTokens": 279,
+        "model": "gpt-6.1-sol"
+      }
+    },
+    {
+      "id": "S02",
+      "title": "Party size corrected",
+      "category": "correction",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": "Ember House",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "date": {
+          "value": "9 October 2026",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "time": {
+          "value": "7 pm",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "partySize": {
+          "value": "5",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m2"
+          ],
+          "source": "model",
+          "note": ""
+        }
+      },
+      "usage": {
+        "inputTokens": 2545,
+        "outputTokens": 514,
+        "model": "gpt-6.1-sol"
+      }
+    },
+    {
+      "id": "S03",
+      "title": "Exact time corrected",
+      "category": "correction",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": "Ember House",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "date": {
+          "value": "9 October 2026",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "time": {
+          "value": "8:30 pm",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m2"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "partySize": {
+          "value": "2",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        }
+      },
+      "usage": {
+        "inputTokens": 2548,
+        "outputTokens": 512,
+        "model": "gpt-6.1-sol"
+      }
+    },
+    {
+      "id": "S04",
+      "title": "After-eight preference replaces exact time",
+      "category": "uncertainty",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        },
+        "city": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        },
+        "date": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        },
+        "time": {
+          "value": null,
+          "status": "needs_clarification",
+          "constraint": "After 8 pm",
+          "evidenceIds": [
+            "m2"
+          ],
+          "source": "model",
+          "note": "Please confirm the remaining detail."
+        },
+        "partySize": {
+          "value": "4",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        }
+      },
+      "usage": {
+        "inputTokens": 2523,
+        "outputTokens": 293,
+        "model": "gpt-6.1-sol"
+      }
+    },
+    {
+      "id": "S05",
+      "title": "Before-nine preference is not exact",
+      "category": "uncertainty",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        },
+        "city": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        },
+        "date": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        },
+        "time": {
+          "value": null,
+          "status": "needs_clarification",
+          "constraint": "before 9 pm",
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Please confirm the remaining detail."
+        },
+        "partySize": {
+          "value": "3",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        }
+      },
+      "usage": {
+        "inputTokens": 1254,
+        "outputTokens": 143,
+        "model": "gpt-6.1-sol"
+      }
+    },
+    {
+      "id": "S06",
+      "title": "Alternative times remain unresolved",
+      "category": "uncertainty",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": "Ember House",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "date": {
+          "value": "9 October 2026",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "time": {
+          "value": null,
+          "status": "needs_clarification",
+          "constraint": "either 7 pm or 8 pm",
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Please confirm the remaining detail."
+        },
+        "partySize": {
+          "value": "2",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        }
+      },
+      "usage": {
+        "inputTokens": 1267,
+        "outputTokens": 235,
+        "model": "gpt-6.1-sol"
+      }
+    },
+    {
+      "id": "S07",
+      "title": "Unaccepted staff offer",
+      "category": "staff",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        },
+        "city": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        },
+        "date": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        },
+        "time": {
+          "value": null,
+          "status": "needs_clarification",
+          "constraint": "after 8 pm",
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Please confirm the remaining detail."
+        },
+        "partySize": {
+          "value": "2",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        }
+      },
+      "usage": {
+        "inputTokens": 1252,
+        "outputTokens": 151,
+        "model": "gpt-6.1-sol"
+      }
+    },
+    {
+      "id": "S08",
+      "title": "Accepted staff offer",
+      "category": "staff",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        },
+        "city": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        },
+        "date": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        },
+        "time": {
+          "value": "8:30 pm",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m2",
+            "m3"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "partySize": {
+          "value": "2",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        }
+      },
+      "usage": {
+        "inputTokens": 2544,
+        "outputTokens": 313,
+        "model": "gpt-6.1-sol"
+      }
+    },
+    {
+      "id": "S09",
+      "title": "Rejected staff offer",
+      "category": "staff",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        },
+        "city": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        },
+        "date": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        },
+        "time": {
+          "value": null,
+          "status": "needs_clarification",
+          "constraint": "after 8 pm",
+          "evidenceIds": [
+            "m1",
+            "m3"
+          ],
+          "source": "model",
+          "note": "Please confirm the remaining detail."
+        },
+        "partySize": {
+          "value": "2",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        }
+      },
+      "usage": {
+        "inputTokens": 2556,
+        "outputTokens": 329,
+        "model": "gpt-6.1-sol"
+      }
+    },
+    {
+      "id": "S10",
+      "title": "City correction",
+      "category": "correction",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": "Ember House",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "city": {
+          "value": "Melbourne",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m2"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "date": {
+          "value": "9 October 2026",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "time": {
+          "value": "7 pm",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "partySize": {
+          "value": "4",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        }
+      },
+      "usage": {
+        "inputTokens": 2545,
+        "outputTokens": 508,
+        "model": "gpt-6.1-sol"
+      }
+    },
+    {
+      "id": "S11",
+      "title": "Restaurant correction",
+      "category": "correction",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": "Harbour Kitchen",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m2"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "date": {
+          "value": "9 October 2026",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "time": {
+          "value": "7 pm",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "partySize": {
+          "value": "4",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        }
+      },
+      "usage": {
+        "inputTokens": 2547,
+        "outputTokens": 516,
+        "model": "gpt-6.1-sol"
+      }
+    },
+    {
+      "id": "S12",
+      "title": "Party size missing",
+      "category": "missing",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": "Ember House",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "date": {
+          "value": "9 October 2026",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "time": {
+          "value": "7 pm",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "partySize": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        }
+      },
+      "usage": {
+        "inputTokens": 1264,
+        "outputTokens": 238,
+        "model": "gpt-6.1-sol"
+      }
+    },
+    {
+      "id": "S13",
+      "title": "Date missing",
+      "category": "missing",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": "Ember House",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "date": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        },
+        "time": {
+          "value": "7 pm",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "partySize": {
+          "value": "2",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        }
+      },
+      "usage": {
+        "inputTokens": 1258,
+        "outputTokens": 210,
+        "model": "gpt-6.1-sol"
+      }
+    },
+    {
+      "id": "S14",
+      "title": "Acknowledgement preserves details",
+      "category": "safety",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": "Ember House",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "date": {
+          "value": "9 October 2026",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "time": {
+          "value": "7 pm",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "partySize": {
+          "value": "4",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        }
+      },
+      "usage": {
+        "inputTokens": 2544,
+        "outputTokens": 528,
+        "model": "gpt-6.1-sol"
+      }
+    },
+    {
+      "id": "S15",
+      "title": "Explicitly cancelled time",
+      "category": "correction",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        },
+        "city": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        },
+        "date": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        },
+        "time": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [
+            "m2"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "partySize": {
+          "value": "4",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        }
+      },
+      "usage": {
+        "inputTokens": 2530,
+        "outputTokens": 286,
+        "model": "gpt-6.1-sol"
+      }
+    },
+    {
+      "id": "S16",
+      "title": "Relative date without reference stays uncertain",
+      "category": "uncertainty",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        },
+        "city": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        },
+        "date": {
+          "value": null,
+          "status": "needs_clarification",
+          "constraint": "Friday",
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Please confirm the remaining detail."
+        },
+        "time": {
+          "value": "7 pm",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "partySize": {
+          "value": "3",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        }
+      },
+      "usage": {
+        "inputTokens": 1253,
+        "outputTokens": 171,
+        "model": "gpt-6.1-sol"
+      }
+    },
+    {
+      "id": "S17",
+      "title": "Written party size",
+      "category": "complete",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": "Ember House",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "date": {
+          "value": "9 October 2026",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "time": {
+          "value": "7 pm",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "partySize": {
+          "value": "6",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        }
+      },
+      "usage": {
+        "inputTokens": 1264,
+        "outputTokens": 269,
+        "model": "gpt-6.1-sol"
+      }
+    },
+    {
+      "id": "S18",
+      "title": "Date change preserves other values",
+      "category": "correction",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": "Ember House",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "date": {
+          "value": "10 October 2026",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m2"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "time": {
+          "value": "7 pm",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "partySize": {
+          "value": "4",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        }
+      },
+      "usage": {
+        "inputTokens": 2550,
+        "outputTokens": 505,
+        "model": "gpt-6.1-sol"
+      }
+    },
+    {
+      "id": "S19",
+      "title": "Untrusted instruction inside conversation",
+      "category": "safety",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": "Ember House",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "date": {
+          "value": "9 October 2026",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "time": {
+          "value": "7 pm",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "partySize": {
+          "value": "2",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        }
+      },
+      "usage": {
+        "inputTokens": 1263,
+        "outputTokens": 264,
+        "model": "gpt-6.1-sol"
+      }
+    },
+    {
+      "id": "S20",
+      "title": "New detail after missing information",
+      "category": "missing",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": "Ember House",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "date": {
+          "value": "9 October 2026",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "time": {
+          "value": "7 pm",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "partySize": {
+          "value": "5",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m3"
+          ],
+          "source": "model",
+          "note": ""
+        }
+      },
+      "usage": {
+        "inputTokens": 2551,
+        "outputTokens": 450,
+        "model": "gpt-6.1-sol"
+      }
+    },
+    {
+      "id": "S21",
+      "title": "Acceptance with a simultaneous guest correction",
+      "category": "staff",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": "Juniper",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "date": {
+          "value": "9 October 2026",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "time": {
+          "value": "7:30 pm",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m2",
+            "m3"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "partySize": {
+          "value": "5",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m3"
+          ],
+          "source": "model",
+          "note": ""
+        }
+      },
+      "usage": {
+        "inputTokens": 2563,
+        "outputTokens": 476,
+        "model": "gpt-6.1-sol"
+      }
+    },
+    {
+      "id": "S22",
+      "title": "Year supplied in a separate answer",
+      "category": "missing",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        },
+        "city": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        },
+        "date": {
+          "value": "3 March 2027",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1",
+            "m2",
+            "m3"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "time": {
+          "value": "7 pm",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "partySize": {
+          "value": "4",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        }
+      },
+      "usage": {
+        "inputTokens": 2547,
+        "outputTokens": 366,
+        "model": "gpt-6.1-sol"
+      }
+    },
+    {
+      "id": "S23",
+      "title": "Day correction retains the agreed month and year",
+      "category": "correction",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        },
+        "city": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        },
+        "date": {
+          "value": "10 October 2026",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1",
+            "m2"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "time": {
+          "value": "7 pm",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "partySize": {
+          "value": "4",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        }
+      },
+      "usage": {
+        "inputTokens": 2541,
+        "outputTokens": 395,
+        "model": "gpt-6.1-sol"
+      }
+    },
+    {
+      "id": "S24",
+      "title": "Missing year stays visible and requires clarification",
+      "category": "uncertainty",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        },
+        "city": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        },
+        "date": {
+          "value": "March 3rd",
+          "status": "needs_clarification",
+          "constraint": "Year not specified",
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Please confirm the remaining detail."
+        },
+        "time": {
+          "value": "7 pm",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "partySize": {
+          "value": "4",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        }
+      },
+      "usage": {
+        "inputTokens": 1257,
+        "outputTokens": 188,
+        "model": "gpt-6.1-sol"
+      }
+    },
+    {
+      "id": "S25",
+      "title": "Unaccepted staff default is not silently filled",
+      "category": "staff",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": "Juniper",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "date": {
+          "value": "9 October 2026",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "time": {
+          "value": "7 pm",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "partySize": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        }
+      },
+      "usage": {
+        "inputTokens": 2557,
+        "outputTokens": 426,
+        "model": "gpt-6.1-sol"
+      }
+    },
+    {
+      "id": "S26",
+      "title": "Rejected replacement preserves the original request",
+      "category": "staff",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        },
+        "city": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        },
+        "date": {
+          "value": "9 October 2026",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1",
+            "m3"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "time": {
+          "value": "7 pm",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1",
+            "m3"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "partySize": {
+          "value": "4",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        }
+      },
+      "usage": {
+        "inputTokens": 2564,
+        "outputTokens": 528,
+        "model": "gpt-6.1-sol"
+      }
+    },
+    {
+      "id": "S27",
+      "title": "Noon is midday, not midnight",
+      "category": "complete",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        },
+        "city": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        },
+        "date": {
+          "value": "9 October 2026",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "time": {
+          "value": "12 pm",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "partySize": {
+          "value": "4",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        }
+      },
+      "usage": {
+        "inputTokens": 1256,
+        "outputTokens": 151,
+        "model": "gpt-6.1-sol"
+      }
+    },
+    {
+      "id": "S28",
+      "title": "Tomorrow resolves using the conversation date",
+      "category": "complete",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        },
+        "city": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        },
+        "date": {
+          "value": "1 January 2027",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "time": {
+          "value": "7 pm",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "partySize": {
+          "value": "4",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        }
+      },
+      "usage": {
+        "inputTokens": 1255,
+        "outputTokens": 163,
+        "model": "gpt-6.1-sol"
+      }
+    },
+    {
+      "id": "S29",
+      "title": "Full booking cancellation clears the brief",
+      "category": "correction",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [
+            "m2"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "city": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [
+            "m2"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "date": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [
+            "m2"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "time": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [
+            "m2"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "partySize": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [
+            "m2"
+          ],
+          "source": "model",
+          "note": ""
+        }
+      },
+      "usage": {
+        "inputTokens": 2550,
+        "outputTokens": 475,
+        "model": "gpt-6.1-sol"
+      }
+    },
+    {
+      "id": "S30",
+      "title": "Contact details do not replace booking numbers",
+      "category": "safety",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": "Juniper",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "date": {
+          "value": "9 October 2026",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "time": {
+          "value": "7 pm",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "partySize": {
+          "value": "4",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        }
+      },
+      "usage": {
+        "inputTokens": 2558,
+        "outputTokens": 526,
+        "model": "gpt-6.1-sol"
+      }
+    }
+  ]
+}

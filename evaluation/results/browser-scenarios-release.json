@@ -1,0 +1,884 @@
+{
+  "generatedAt": "2026-09-30T23:29:39.592Z",
+  "endpoint": "https://formbridge-nlp-at2.vercel.app/",
+  "type": "Live UI imports; quoted synthetic conversations; final visible field values and status checks",
+  "iterations": [
+    {
+      "id": "UI01",
+      "passed": true,
+      "actual": {
+        "city": {
+          "status": "Ready",
+          "value": "Sydney"
+        },
+        "date": {
+          "status": "Ready",
+          "value": "9 October 2026"
+        },
+        "partySize": {
+          "status": "Ready",
+          "value": "4 guests"
+        },
+        "restaurantName": {
+          "status": "Ready",
+          "value": "Juniper"
+        },
+        "time": {
+          "status": "Ready",
+          "value": "7 pm"
+        }
+      },
+      "expected": {
+        "restaurantName": {
+          "value": "Juniper",
+          "status": "Ready"
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "Ready"
+        },
+        "date": {
+          "value": "9 October 2026",
+          "status": "Ready"
+        },
+        "time": {
+          "value": "7 pm",
+          "status": "Ready"
+        },
+        "partySize": {
+          "value": "4 guests",
+          "status": "Ready"
+        }
+      }
+    },
+    {
+      "id": "UI02",
+      "passed": true,
+      "actual": {
+        "city": {
+          "status": "Ready",
+          "value": "Sydney"
+        },
+        "date": {
+          "status": "Ready",
+          "value": "9 October 2026"
+        },
+        "partySize": {
+          "status": "Ready",
+          "value": "5 guests"
+        },
+        "restaurantName": {
+          "status": "Ready",
+          "value": "Juniper"
+        },
+        "time": {
+          "status": "Ready",
+          "value": "7 pm"
+        }
+      },
+      "expected": {
+        "partySize": {
+          "value": "5 guests",
+          "status": "Ready"
+        },
+        "time": {
+          "value": "7 pm",
+          "status": "Ready"
+        }
+      }
+    },
+    {
+      "id": "UI03",
+      "passed": true,
+      "actual": {
+        "city": {
+          "status": "Needed",
+          "value": "Not provided"
+        },
+        "date": {
+          "status": "Needed",
+          "value": "Not provided"
+        },
+        "partySize": {
+          "status": "Ready",
+          "value": "2 guests"
+        },
+        "restaurantName": {
+          "status": "Needed",
+          "value": "Not provided"
+        },
+        "time": {
+          "status": "Ready",
+          "value": "8:30 pm"
+        }
+      },
+      "expected": {
+        "time": {
+          "value": "8:30 pm",
+          "status": "Ready"
+        },
+        "partySize": {
+          "value": "2 guests",
+          "status": "Ready"
+        }
+      }
+    },
+    {
+      "id": "UI04",
+      "passed": false,
+      "actual": {
+        "city": {
+          "status": "Needed",
+          "value": "Not provided"
+        },
+        "date": {
+          "status": "Needed",
+          "value": "Not provided"
+        },
+        "partySize": {
+          "status": "Needed",
+          "value": "Not provided"
+        },
+        "restaurantName": {
+          "status": "Needed",
+          "value": "Not provided"
+        },
+        "time": {
+          "status": "Needed",
+          "value": "Not provided"
+        }
+      },
+      "expected": {
+        "partySize": {
+          "value": "4 guests",
+          "status": "Ready"
+        },
+        "time": {
+          "value": "after 8 pm",
+          "status": "Ask customer"
+        }
+      }
+    },
+    {
+      "id": "UI04-retry",
+      "passed": false,
+      "actual": {
+        "city": {
+          "status": "Needed",
+          "value": "Not provided"
+        },
+        "date": {
+          "status": "Needed",
+          "value": "Not provided"
+        },
+        "partySize": {
+          "status": "Ready",
+          "value": "4 guests"
+        },
+        "restaurantName": {
+          "status": "Needed",
+          "value": "Not provided"
+        },
+        "time": {
+          "status": "Ask customer",
+          "value": "sometime after 8 pm"
+        }
+      },
+      "expected": {
+        "partySize": {
+          "value": "4 guests",
+          "status": "Ready"
+        },
+        "time": {
+          "value": "after 8 pm",
+          "status": "Ask customer"
+        }
+      }
+    },
+    {
+      "id": "UI05",
+      "passed": true,
+      "actual": {
+        "city": {
+          "status": "Needed",
+          "value": "Not provided"
+        },
+        "date": {
+          "status": "Needed",
+          "value": "Not provided"
+        },
+        "partySize": {
+          "status": "Ready",
+          "value": "3 guests"
+        },
+        "restaurantName": {
+          "status": "Needed",
+          "value": "Not provided"
+        },
+        "time": {
+          "status": "Ask customer",
+          "value": "before 9 pm"
+        }
+      },
+      "expected": {
+        "partySize": {
+          "value": "3 guests",
+          "status": "Ready"
+        },
+        "time": {
+          "value": "before 9 pm",
+          "status": "Ask customer"
+        }
+      }
+    },
+    {
+      "id": "UI06",
+      "expected": {
+        "time": {
+          "value": "7 pm or 8 pm",
+          "status": "Ask customer"
+        },
+        "partySize": {
+          "value": "2 guests",
+          "status": "Ready"
+        }
+      },
+      "passed": true,
+      "actual": {
+        "city": {
+          "status": "Ready",
+          "value": "Sydney"
+        },
+        "date": {
+          "status": "Ready",
+          "value": "9 October 2026"
+        },
+        "partySize": {
+          "status": "Ready",
+          "value": "2 guests"
+        },
+        "restaurantName": {
+          "status": "Ready",
+          "value": "Juniper"
+        },
+        "time": {
+          "status": "Ask customer",
+          "value": "either 7 pm or 8 pm"
+        }
+      }
+    },
+    {
+      "id": "UI07",
+      "expected": {
+        "time": {
+          "value": "after 8 pm",
+          "status": "Ask customer"
+        },
+        "partySize": {
+          "value": "2 guests",
+          "status": "Ready"
+        }
+      },
+      "passed": true,
+      "actual": {
+        "city": {
+          "status": "Needed",
+          "value": "Not provided"
+        },
+        "date": {
+          "status": "Needed",
+          "value": "Not provided"
+        },
+        "partySize": {
+          "status": "Ready",
+          "value": "2 guests"
+        },
+        "restaurantName": {
+          "status": "Needed",
+          "value": "Not provided"
+        },
+        "time": {
+          "status": "Ask customer",
+          "value": "after 8 pm"
+        }
+      }
+    },
+    {
+      "id": "UI08",
+      "expected": {
+        "time": {
+          "value": "8:30 pm",
+          "status": "Ready"
+        },
+        "partySize": {
+          "value": "2 guests",
+          "status": "Ready"
+        }
+      },
+      "passed": true,
+      "actual": {
+        "city": {
+          "status": "Needed",
+          "value": "Not provided"
+        },
+        "date": {
+          "status": "Needed",
+          "value": "Not provided"
+        },
+        "partySize": {
+          "status": "Ready",
+          "value": "2 guests"
+        },
+        "restaurantName": {
+          "status": "Needed",
+          "value": "Not provided"
+        },
+        "time": {
+          "status": "Ready",
+          "value": "8:30 pm"
+        }
+      }
+    },
+    {
+      "id": "UI09",
+      "expected": {
+        "time": {
+          "value": "after 8 pm",
+          "status": "Ask customer"
+        },
+        "partySize": {
+          "value": "2 guests",
+          "status": "Ready"
+        }
+      },
+      "passed": true,
+      "actual": {
+        "city": {
+          "status": "Needed",
+          "value": "Not provided"
+        },
+        "date": {
+          "status": "Needed",
+          "value": "Not provided"
+        },
+        "partySize": {
+          "status": "Ready",
+          "value": "2 guests"
+        },
+        "restaurantName": {
+          "status": "Needed",
+          "value": "Not provided"
+        },
+        "time": {
+          "status": "Ask customer",
+          "value": "after 8 pm"
+        }
+      }
+    },
+    {
+      "id": "UI10",
+      "expected": {
+        "city": {
+          "value": "Melbourne",
+          "status": "Ready"
+        },
+        "restaurantName": {
+          "value": "Juniper",
+          "status": "Ready"
+        }
+      },
+      "passed": true,
+      "actual": {
+        "city": {
+          "status": "Ready",
+          "value": "Melbourne"
+        },
+        "date": {
+          "status": "Ready",
+          "value": "9 October 2026"
+        },
+        "partySize": {
+          "status": "Ready",
+          "value": "4 guests"
+        },
+        "restaurantName": {
+          "status": "Ready",
+          "value": "Juniper"
+        },
+        "time": {
+          "status": "Ready",
+          "value": "7 pm"
+        }
+      }
+    },
+    {
+      "id": "UI11",
+      "expected": {
+        "restaurantName": {
+          "value": "Harbour Kitchen",
+          "status": "Ready"
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "Ready"
+        }
+      },
+      "passed": true,
+      "actual": {
+        "city": {
+          "status": "Ready",
+          "value": "Sydney"
+        },
+        "date": {
+          "status": "Ready",
+          "value": "9 October 2026"
+        },
+        "partySize": {
+          "status": "Ready",
+          "value": "4 guests"
+        },
+        "restaurantName": {
+          "status": "Ready",
+          "value": "Harbour Kitchen"
+        },
+        "time": {
+          "status": "Ready",
+          "value": "7 pm"
+        }
+      }
+    },
+    {
+      "id": "UI12",
+      "expected": {
+        "partySize": {
+          "value": "Not provided",
+          "status": "Needed"
+        },
+        "time": {
+          "value": "7 pm",
+          "status": "Ready"
+        }
+      },
+      "passed": true,
+      "actual": {
+        "city": {
+          "status": "Ready",
+          "value": "Sydney"
+        },
+        "date": {
+          "status": "Ready",
+          "value": "9 October 2026"
+        },
+        "partySize": {
+          "status": "Needed",
+          "value": "Not provided"
+        },
+        "restaurantName": {
+          "status": "Ready",
+          "value": "Juniper"
+        },
+        "time": {
+          "status": "Ready",
+          "value": "7 pm"
+        }
+      }
+    },
+    {
+      "id": "UI13",
+      "expected": {
+        "date": {
+          "value": "Not provided",
+          "status": "Needed"
+        },
+        "partySize": {
+          "value": "2 guests",
+          "status": "Ready"
+        }
+      },
+      "passed": true,
+      "actual": {
+        "city": {
+          "status": "Ready",
+          "value": "Sydney"
+        },
+        "date": {
+          "status": "Needed",
+          "value": "Not provided"
+        },
+        "partySize": {
+          "status": "Ready",
+          "value": "2 guests"
+        },
+        "restaurantName": {
+          "status": "Ready",
+          "value": "Juniper"
+        },
+        "time": {
+          "status": "Ready",
+          "value": "7 pm"
+        }
+      }
+    },
+    {
+      "id": "UI14",
+      "expected": {
+        "time": {
+          "value": "7 pm",
+          "status": "Ready"
+        },
+        "partySize": {
+          "value": "4 guests",
+          "status": "Ready"
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "Ready"
+        }
+      },
+      "passed": true,
+      "actual": {
+        "city": {
+          "status": "Ready",
+          "value": "Sydney"
+        },
+        "date": {
+          "status": "Ready",
+          "value": "9 October 2026"
+        },
+        "partySize": {
+          "status": "Ready",
+          "value": "4 guests"
+        },
+        "restaurantName": {
+          "status": "Ready",
+          "value": "Juniper"
+        },
+        "time": {
+          "status": "Ready",
+          "value": "7 pm"
+        }
+      }
+    },
+    {
+      "id": "UI15",
+      "expected": {
+        "time": {
+          "value": "Not provided",
+          "status": "Needed"
+        },
+        "partySize": {
+          "value": "4 guests",
+          "status": "Ready"
+        }
+      },
+      "passed": true,
+      "actual": {
+        "city": {
+          "status": "Needed",
+          "value": "Not provided"
+        },
+        "date": {
+          "status": "Needed",
+          "value": "Not provided"
+        },
+        "partySize": {
+          "status": "Ready",
+          "value": "4 guests"
+        },
+        "restaurantName": {
+          "status": "Needed",
+          "value": "Not provided"
+        },
+        "time": {
+          "status": "Needed",
+          "value": "Not provided"
+        }
+      }
+    },
+    {
+      "id": "UI16",
+      "expected": {
+        "date": {
+          "value": "Friday",
+          "status": "Ask customer"
+        },
+        "partySize": {
+          "value": "3 guests",
+          "status": "Ready"
+        },
+        "time": {
+          "value": "7 pm",
+          "status": "Ready"
+        }
+      },
+      "passed": true,
+      "actual": {
+        "city": {
+          "status": "Needed",
+          "value": "Not provided"
+        },
+        "date": {
+          "status": "Ask customer",
+          "value": "Friday"
+        },
+        "partySize": {
+          "status": "Ready",
+          "value": "3 guests"
+        },
+        "restaurantName": {
+          "status": "Needed",
+          "value": "Not provided"
+        },
+        "time": {
+          "status": "Ready",
+          "value": "7 pm"
+        }
+      }
+    },
+    {
+      "id": "UI17",
+      "expected": {
+        "partySize": {
+          "value": "6 guests",
+          "status": "Ready"
+        },
+        "restaurantName": {
+          "value": "Juniper",
+          "status": "Ready"
+        }
+      },
+      "passed": true,
+      "actual": {
+        "city": {
+          "status": "Ready",
+          "value": "Sydney"
+        },
+        "date": {
+          "status": "Ready",
+          "value": "9 October 2026"
+        },
+        "partySize": {
+          "status": "Ready",
+          "value": "6 guests"
+        },
+        "restaurantName": {
+          "status": "Ready",
+          "value": "Juniper"
+        },
+        "time": {
+          "status": "Ready",
+          "value": "7 pm"
+        }
+      }
+    },
+    {
+      "id": "UI18",
+      "expected": {
+        "date": {
+          "value": "10 October 2026",
+          "status": "Ready"
+        },
+        "time": {
+          "value": "7 pm",
+          "status": "Ready"
+        },
+        "partySize": {
+          "value": "4 guests",
+          "status": "Ready"
+        }
+      },
+      "passed": true,
+      "actual": {
+        "city": {
+          "status": "Ready",
+          "value": "Sydney"
+        },
+        "date": {
+          "status": "Ready",
+          "value": "10 October 2026"
+        },
+        "partySize": {
+          "status": "Ready",
+          "value": "4 guests"
+        },
+        "restaurantName": {
+          "status": "Ready",
+          "value": "Juniper"
+        },
+        "time": {
+          "status": "Ready",
+          "value": "7 pm"
+        }
+      }
+    },
+    {
+      "id": "UI19",
+      "expected": {
+        "partySize": {
+          "value": "2 guests",
+          "status": "Ready"
+        },
+        "time": {
+          "value": "7 pm",
+          "status": "Ready"
+        }
+      },
+      "passed": true,
+      "actual": {
+        "city": {
+          "status": "Ready",
+          "value": "Sydney"
+        },
+        "date": {
+          "status": "Ready",
+          "value": "9 October 2026"
+        },
+        "partySize": {
+          "status": "Ready",
+          "value": "2 guests"
+        },
+        "restaurantName": {
+          "status": "Ready",
+          "value": "Juniper"
+        },
+        "time": {
+          "status": "Ready",
+          "value": "7 pm"
+        }
+      }
+    },
+    {
+      "id": "UI20",
+      "expected": {
+        "partySize": {
+          "value": "5 guests",
+          "status": "Ready"
+        },
+        "restaurantName": {
+          "value": "Juniper",
+          "status": "Ready"
+        },
+        "time": {
+          "value": "7 pm",
+          "status": "Ready"
+        }
+      },
+      "passed": true,
+      "actual": {
+        "city": {
+          "status": "Ready",
+          "value": "Sydney"
+        },
+        "date": {
+          "status": "Ready",
+          "value": "9 October 2026"
+        },
+        "partySize": {
+          "status": "Ready",
+          "value": "5 guests"
+        },
+        "restaurantName": {
+          "status": "Ready",
+          "value": "Juniper"
+        },
+        "time": {
+          "status": "Ready",
+          "value": "7 pm"
+        }
+      }
+    },
+    {
+      "id": "UI04-final",
+      "expected": {
+        "partySize": {
+          "value": "4 guests",
+          "status": "Ready"
+        },
+        "time": {
+          "value": "after 8 pm",
+          "status": "Ask customer"
+        }
+      },
+      "passed": true,
+      "actual": {
+        "city": {
+          "status": "Needed",
+          "value": "Not provided"
+        },
+        "date": {
+          "status": "Needed",
+          "value": "Not provided"
+        },
+        "partySize": {
+          "status": "Ready",
+          "value": "4 guests"
+        },
+        "restaurantName": {
+          "status": "Needed",
+          "value": "Not provided"
+        },
+        "time": {
+          "status": "Ask customer",
+          "value": "sometime after 8 pm"
+        }
+      }
+    },
+    {
+      "id": "UI21",
+      "expected": {
+        "restaurantName": {
+          "value": "Juniper",
+          "status": "Ready"
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "Ready"
+        },
+        "date": {
+          "value": "9 October 2026",
+          "status": "Ready"
+        },
+        "time": {
+          "value": "7:30 pm",
+          "status": "Ready"
+        },
+        "partySize": {
+          "value": "5 guests",
+          "status": "Ready"
+        }
+      },
+      "passed": true,
+      "actual": {
+        "city": {
+          "status": "Ready",
+          "value": "Sydney"
+        },
+        "date": {
+          "status": "Ready",
+          "value": "9 October 2026"
+        },
+        "partySize": {
+          "status": "Ready",
+          "value": "5 guests"
+        },
+        "restaurantName": {
+          "status": "Ready",
+          "value": "Juniper"
+        },
+        "time": {
+          "status": "Ready",
+          "value": "7:30 pm"
+        }
+      }
+    }
+  ],
+  "summary": {
+    "uniqueCases": 21,
+    "passed": 21
+  },
+  "notes": [
+    "UI04 initial attempts were retained: one was interrupted by the production rate limit; a retry used an overly strict display-text equality. UI04-final passed with the intended contains check for an unresolved preference.",
+    "Scenarios used the public app during release iteration. Final extraction is also covered by the separate v6 production API suite.",
+    "This is browser QA, not a participant usability study."
+  ]
+}

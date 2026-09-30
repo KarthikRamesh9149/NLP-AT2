@@ -1,0 +1,3980 @@
+{
+  "generatedAt": "2026-09-30T22:38:21.980Z",
+  "source": "Google Schema-Guided Dialogue",
+  "split": "test",
+  "service": "Restaurants_2",
+  "selectionSeed": "formbridge-sgd-evaluation-v1",
+  "excludedIds": [],
+  "extractionVersion": "grounded-state-v2",
+  "codeFingerprint": "71abf29f01b47e7309e9242eead61290f6538f3322ba34917716d5627ae18015",
+  "sampleSize": 20,
+  "selectedIds": [
+    "1_00009",
+    "4_00027",
+    "4_00033",
+    "1_00021",
+    "4_00028",
+    "4_00045",
+    "4_00034",
+    "1_00029",
+    "4_00020",
+    "4_00032",
+    "1_00012",
+    "4_00053",
+    "4_00051",
+    "4_00042",
+    "4_00029",
+    "1_00003",
+    "4_00021",
+    "1_00015",
+    "1_00031",
+    "4_00047"
+  ],
+  "scope": "Single-service ReserveRestaurant; final user-turn five-field state; strict value matching with basic normalisation; not full official SGD benchmark",
+  "model": {
+    "baseline": "gpt-4.1-mini-2025-04-14",
+    "formbridge": "gpt-6-luna"
+  },
+  "summary": {
+    "formbridge": {
+      "dialogues": 20,
+      "attemptedDialogues": 20,
+      "failures": 0,
+      "fieldAccuracy": 0.92,
+      "completeFormAccuracy": 0.7,
+      "totalInputTokens": 183252,
+      "totalOutputTokens": 36908,
+      "meanLatencyMs": 23490
+    }
+  },
+  "results": [
+    {
+      "id": "1_00009",
+      "gold": {
+        "restaurantName": [
+          "La Hacienda",
+          "La Hacienda Mexican Restaurant"
+        ],
+        "city": [
+          "Cloverdale"
+        ],
+        "date": [
+          "March 1st"
+        ],
+        "time": [
+          "2 o\"clock in the afternoon",
+          "2 pm"
+        ],
+        "partySize": [
+          "2"
+        ]
+      },
+      "predictions": {
+        "formbridge": {
+          "completeFormExact": true,
+          "fields": {
+            "restaurantName": {
+              "gold": [
+                "La Hacienda",
+                "La Hacienda Mexican Restaurant"
+              ],
+              "predicted": "La Hacienda Mexican Restaurant",
+              "match": true
+            },
+            "city": {
+              "gold": [
+                "Cloverdale"
+              ],
+              "predicted": "Cloverdale",
+              "match": true
+            },
+            "date": {
+              "gold": [
+                "March 1st"
+              ],
+              "predicted": "March 1st",
+              "match": true
+            },
+            "time": {
+              "gold": [
+                "2 o\"clock in the afternoon",
+                "2 pm"
+              ],
+              "predicted": "2 pm",
+              "match": true
+            },
+            "partySize": {
+              "gold": [
+                "2"
+              ],
+              "predicted": "2",
+              "match": true
+            }
+          },
+          "brief": {
+            "fields": {
+              "restaurantName": {
+                "value": "La Hacienda Mexican Restaurant",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m6",
+                  "m7"
+                ],
+                "source": "model",
+                "note": ""
+              },
+              "city": {
+                "value": "Cloverdale",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m5",
+                  "m7"
+                ],
+                "source": "model",
+                "note": ""
+              },
+              "date": {
+                "value": "March 1st",
+                "status": "needs_clarification",
+                "constraint": "Year not specified",
+                "evidenceIds": [
+                  "m6",
+                  "m7"
+                ],
+                "source": "model",
+                "note": "Please confirm the remaining detail."
+              },
+              "time": {
+                "value": "2 pm",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m3",
+                  "m6",
+                  "m7"
+                ],
+                "source": "model",
+                "note": ""
+              },
+              "partySize": {
+                "value": "2",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m6",
+                  "m7"
+                ],
+                "source": "model",
+                "note": ""
+              }
+            },
+            "history": [
+              {
+                "field": "restaurantName",
+                "previousValue": null,
+                "nextValue": "La Hacienda",
+                "operation": "set",
+                "evidenceIds": [
+                  "m3"
+                ],
+                "revision": 1
+              },
+              {
+                "field": "time",
+                "previousValue": null,
+                "nextValue": "2 pm",
+                "operation": "set",
+                "evidenceIds": [
+                  "m3"
+                ],
+                "revision": 2
+              },
+              {
+                "field": "city",
+                "previousValue": null,
+                "nextValue": "Cloverdale",
+                "operation": "set",
+                "evidenceIds": [
+                  "m5"
+                ],
+                "revision": 3
+              },
+              {
+                "field": "restaurantName",
+                "previousValue": "La Hacienda",
+                "nextValue": "La Hacienda Mexican Restaurant",
+                "operation": "replace",
+                "evidenceIds": [
+                  "m6",
+                  "m7"
+                ],
+                "revision": 4
+              },
+              {
+                "field": "date",
+                "previousValue": null,
+                "nextValue": "March 1st",
+                "operation": "set",
+                "evidenceIds": [
+                  "m6",
+                  "m7"
+                ],
+                "revision": 5
+              },
+              {
+                "field": "partySize",
+                "previousValue": null,
+                "nextValue": "2",
+                "operation": "set",
+                "evidenceIds": [
+                  "m6",
+                  "m7"
+                ],
+                "revision": 6
+              }
+            ],
+            "revision": 6,
+            "approvedRevision": null
+          },
+          "usage": {
+            "inputTokens": 4973,
+            "outputTokens": 681,
+            "model": "gpt-6-luna"
+          },
+          "latencyMs": 9851
+        }
+      },
+      "errors": []
+    },
+    {
+      "id": "4_00027",
+      "gold": {
+        "restaurantName": [
+          "Sushi Kuu"
+        ],
+        "city": [
+          "Belmont"
+        ],
+        "date": [
+          "9th of March",
+          "March 9th"
+        ],
+        "time": [
+          "5:30 in the evening",
+          "5:30 pm"
+        ],
+        "partySize": [
+          "2"
+        ]
+      },
+      "predictions": {
+        "formbridge": {
+          "completeFormExact": false,
+          "fields": {
+            "restaurantName": {
+              "gold": [
+                "Sushi Kuu"
+              ],
+              "predicted": null,
+              "match": false
+            },
+            "city": {
+              "gold": [
+                "Belmont"
+              ],
+              "predicted": "Belmont",
+              "match": true
+            },
+            "date": {
+              "gold": [
+                "9th of March",
+                "March 9th"
+              ],
+              "predicted": "March 9th",
+              "match": true
+            },
+            "time": {
+              "gold": [
+                "5:30 in the evening",
+                "5:30 pm"
+              ],
+              "predicted": "5:30 pm",
+              "match": true
+            },
+            "partySize": {
+              "gold": [
+                "2"
+              ],
+              "predicted": "2",
+              "match": true
+            }
+          },
+          "brief": {
+            "fields": {
+              "restaurantName": {
+                "value": null,
+                "status": "needs_clarification",
+                "constraint": "Ramen restaurant",
+                "evidenceIds": [
+                  "m1"
+                ],
+                "source": "model",
+                "note": "Please confirm the remaining detail."
+              },
+              "city": {
+                "value": "Belmont",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m3"
+                ],
+                "source": "model",
+                "note": ""
+              },
+              "date": {
+                "value": "March 9th",
+                "status": "needs_clarification",
+                "constraint": "Year not specified",
+                "evidenceIds": [
+                  "m5",
+                  "m7"
+                ],
+                "source": "model",
+                "note": "Please confirm the remaining detail."
+              },
+              "time": {
+                "value": "5:30 pm",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m5",
+                  "m7"
+                ],
+                "source": "model",
+                "note": ""
+              },
+              "partySize": {
+                "value": "2",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m6",
+                  "m7"
+                ],
+                "source": "model",
+                "note": ""
+              }
+            },
+            "history": [
+              {
+                "field": "restaurantName",
+                "previousValue": null,
+                "nextValue": null,
+                "operation": "constrain",
+                "evidenceIds": [
+                  "m1"
+                ],
+                "revision": 1
+              },
+              {
+                "field": "city",
+                "previousValue": null,
+                "nextValue": "Belmont",
+                "operation": "set",
+                "evidenceIds": [
+                  "m3"
+                ],
+                "revision": 2
+              },
+              {
+                "field": "date",
+                "previousValue": null,
+                "nextValue": "March 9th",
+                "operation": "set",
+                "evidenceIds": [
+                  "m5"
+                ],
+                "revision": 3
+              },
+              {
+                "field": "time",
+                "previousValue": null,
+                "nextValue": "5:30 pm",
+                "operation": "set",
+                "evidenceIds": [
+                  "m5"
+                ],
+                "revision": 4
+              },
+              {
+                "field": "partySize",
+                "previousValue": null,
+                "nextValue": "2",
+                "operation": "set",
+                "evidenceIds": [
+                  "m6",
+                  "m7"
+                ],
+                "revision": 5
+              }
+            ],
+            "revision": 5,
+            "approvedRevision": null
+          },
+          "usage": {
+            "inputTokens": 6340,
+            "outputTokens": 1038,
+            "model": "gpt-6-luna"
+          },
+          "latencyMs": 12369
+        }
+      },
+      "errors": []
+    },
+    {
+      "id": "4_00033",
+      "gold": {
+        "restaurantName": [
+          "Bazille"
+        ],
+        "city": [
+          "Palo Alto"
+        ],
+        "date": [
+          "March 1st"
+        ],
+        "time": [
+          "12:30 in the afternoon",
+          "12:30 pm"
+        ],
+        "partySize": [
+          "1"
+        ]
+      },
+      "predictions": {
+        "formbridge": {
+          "completeFormExact": true,
+          "fields": {
+            "restaurantName": {
+              "gold": [
+                "Bazille"
+              ],
+              "predicted": "Bazille",
+              "match": true
+            },
+            "city": {
+              "gold": [
+                "Palo Alto"
+              ],
+              "predicted": "Palo Alto",
+              "match": true
+            },
+            "date": {
+              "gold": [
+                "March 1st"
+              ],
+              "predicted": "March 1st",
+              "match": true
+            },
+            "time": {
+              "gold": [
+                "12:30 in the afternoon",
+                "12:30 pm"
+              ],
+              "predicted": "12:30 pm",
+              "match": true
+            },
+            "partySize": {
+              "gold": [
+                "1"
+              ],
+              "predicted": "1",
+              "match": true
+            }
+          },
+          "brief": {
+            "fields": {
+              "restaurantName": {
+                "value": "Bazille",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m4",
+                  "m5"
+                ],
+                "source": "model",
+                "note": ""
+              },
+              "city": {
+                "value": "Palo Alto",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m1",
+                  "m8",
+                  "m9"
+                ],
+                "source": "model",
+                "note": ""
+              },
+              "date": {
+                "value": "March 1st",
+                "status": "needs_clarification",
+                "constraint": "Year not specified",
+                "evidenceIds": [
+                  "m8",
+                  "m9"
+                ],
+                "source": "model",
+                "note": "Please confirm the remaining detail."
+              },
+              "time": {
+                "value": "12:30 pm",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m7",
+                  "m8",
+                  "m9"
+                ],
+                "source": "model",
+                "note": ""
+              },
+              "partySize": {
+                "value": "1",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m5",
+                  "m8",
+                  "m9"
+                ],
+                "source": "model",
+                "note": ""
+              }
+            },
+            "history": [
+              {
+                "field": "city",
+                "previousValue": null,
+                "nextValue": "Palo Alto",
+                "operation": "set",
+                "evidenceIds": [
+                  "m1"
+                ],
+                "revision": 1
+              },
+              {
+                "field": "restaurantName",
+                "previousValue": null,
+                "nextValue": "Bazille",
+                "operation": "set",
+                "evidenceIds": [
+                  "m4",
+                  "m5"
+                ],
+                "revision": 2
+              },
+              {
+                "field": "partySize",
+                "previousValue": null,
+                "nextValue": "1",
+                "operation": "set",
+                "evidenceIds": [
+                  "m5"
+                ],
+                "revision": 3
+              },
+              {
+                "field": "time",
+                "previousValue": null,
+                "nextValue": "12:30 pm",
+                "operation": "set",
+                "evidenceIds": [
+                  "m7"
+                ],
+                "revision": 4
+              },
+              {
+                "field": "date",
+                "previousValue": null,
+                "nextValue": "March 1st",
+                "operation": "set",
+                "evidenceIds": [
+                  "m8",
+                  "m9"
+                ],
+                "revision": 5
+              }
+            ],
+            "revision": 5,
+            "approvedRevision": null
+          },
+          "usage": {
+            "inputTokens": 7850,
+            "outputTokens": 1646,
+            "model": "gpt-6-luna"
+          },
+          "latencyMs": 16872
+        }
+      },
+      "errors": []
+    },
+    {
+      "id": "1_00021",
+      "gold": {
+        "restaurantName": [
+          "La Briciola"
+        ],
+        "city": [
+          "SFO",
+          "San Francisco"
+        ],
+        "date": [
+          "March 1st"
+        ],
+        "time": [
+          "11:30 am"
+        ],
+        "partySize": [
+          "3"
+        ]
+      },
+      "predictions": {
+        "formbridge": {
+          "completeFormExact": true,
+          "fields": {
+            "restaurantName": {
+              "gold": [
+                "La Briciola"
+              ],
+              "predicted": "La Briciola",
+              "match": true
+            },
+            "city": {
+              "gold": [
+                "SFO",
+                "San Francisco"
+              ],
+              "predicted": "San Francisco",
+              "match": true
+            },
+            "date": {
+              "gold": [
+                "March 1st"
+              ],
+              "predicted": "March 1st",
+              "match": true
+            },
+            "time": {
+              "gold": [
+                "11:30 am"
+              ],
+              "predicted": "11:30 am",
+              "match": true
+            },
+            "partySize": {
+              "gold": [
+                "3"
+              ],
+              "predicted": "3",
+              "match": true
+            }
+          },
+          "brief": {
+            "fields": {
+              "restaurantName": {
+                "value": "La Briciola",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m1",
+                  "m8",
+                  "m9"
+                ],
+                "source": "model",
+                "note": ""
+              },
+              "city": {
+                "value": "San Francisco",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m3",
+                  "m6",
+                  "m7"
+                ],
+                "source": "model",
+                "note": ""
+              },
+              "date": {
+                "value": "March 1st",
+                "status": "needs_clarification",
+                "constraint": "Year not specified",
+                "evidenceIds": [
+                  "m8",
+                  "m9"
+                ],
+                "source": "model",
+                "note": "Please confirm the remaining detail."
+              },
+              "time": {
+                "value": "11:30 am",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m8",
+                  "m9"
+                ],
+                "source": "model",
+                "note": ""
+              },
+              "partySize": {
+                "value": "3",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m5",
+                  "m6",
+                  "m7"
+                ],
+                "source": "model",
+                "note": ""
+              }
+            },
+            "history": [
+              {
+                "field": "restaurantName",
+                "previousValue": null,
+                "nextValue": "La Briciola",
+                "operation": "set",
+                "evidenceIds": [
+                  "m1"
+                ],
+                "revision": 1
+              },
+              {
+                "field": "date",
+                "previousValue": null,
+                "nextValue": null,
+                "operation": "constrain",
+                "evidenceIds": [
+                  "m1"
+                ],
+                "revision": 2
+              },
+              {
+                "field": "time",
+                "previousValue": null,
+                "nextValue": null,
+                "operation": "constrain",
+                "evidenceIds": [
+                  "m1"
+                ],
+                "revision": 3
+              },
+              {
+                "field": "partySize",
+                "previousValue": null,
+                "nextValue": "1",
+                "operation": "set",
+                "evidenceIds": [
+                  "m1"
+                ],
+                "revision": 4
+              },
+              {
+                "field": "city",
+                "previousValue": null,
+                "nextValue": "SFO",
+                "operation": "set",
+                "evidenceIds": [
+                  "m3"
+                ],
+                "revision": 5
+              },
+              {
+                "field": "time",
+                "previousValue": null,
+                "nextValue": null,
+                "operation": "constrain",
+                "evidenceIds": [
+                  "m1",
+                  "m4",
+                  "m5"
+                ],
+                "revision": 6
+              },
+              {
+                "field": "partySize",
+                "previousValue": "1",
+                "nextValue": "3",
+                "operation": "replace",
+                "evidenceIds": [
+                  "m1",
+                  "m4",
+                  "m5"
+                ],
+                "revision": 7
+              },
+              {
+                "field": "city",
+                "previousValue": "SFO",
+                "nextValue": "San Francisco",
+                "operation": "replace",
+                "evidenceIds": [
+                  "m3",
+                  "m6",
+                  "m7"
+                ],
+                "revision": 8
+              },
+              {
+                "field": "date",
+                "previousValue": null,
+                "nextValue": "March 1st",
+                "operation": "set",
+                "evidenceIds": [
+                  "m8",
+                  "m9"
+                ],
+                "revision": 9
+              },
+              {
+                "field": "time",
+                "previousValue": null,
+                "nextValue": "11:30 am",
+                "operation": "set",
+                "evidenceIds": [
+                  "m8",
+                  "m9"
+                ],
+                "revision": 10
+              }
+            ],
+            "revision": 10,
+            "approvedRevision": null
+          },
+          "usage": {
+            "inputTokens": 7847,
+            "outputTokens": 2621,
+            "model": "gpt-6-luna"
+          },
+          "latencyMs": 27599
+        }
+      },
+      "errors": []
+    },
+    {
+      "id": "4_00028",
+      "gold": {
+        "restaurantName": [
+          "Speakeasy"
+        ],
+        "city": [
+          "Petaluma"
+        ],
+        "date": [
+          "March 1st"
+        ],
+        "time": [
+          "6:15 in the evening",
+          "6:15 pm"
+        ],
+        "partySize": [
+          "2"
+        ]
+      },
+      "predictions": {
+        "formbridge": {
+          "completeFormExact": false,
+          "fields": {
+            "restaurantName": {
+              "gold": [
+                "Speakeasy"
+              ],
+              "predicted": null,
+              "match": false
+            },
+            "city": {
+              "gold": [
+                "Petaluma"
+              ],
+              "predicted": "Petaluma",
+              "match": true
+            },
+            "date": {
+              "gold": [
+                "March 1st"
+              ],
+              "predicted": null,
+              "match": false
+            },
+            "time": {
+              "gold": [
+                "6:15 in the evening",
+                "6:15 pm"
+              ],
+              "predicted": "6:15 pm",
+              "match": true
+            },
+            "partySize": {
+              "gold": [
+                "2"
+              ],
+              "predicted": null,
+              "match": false
+            }
+          },
+          "brief": {
+            "fields": {
+              "restaurantName": {
+                "value": null,
+                "status": "missing",
+                "constraint": null,
+                "evidenceIds": [],
+                "source": null,
+                "note": ""
+              },
+              "city": {
+                "value": "Petaluma",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m1",
+                  "m10",
+                  "m11"
+                ],
+                "source": "model",
+                "note": ""
+              },
+              "date": {
+                "value": null,
+                "status": "missing",
+                "constraint": null,
+                "evidenceIds": [],
+                "source": null,
+                "note": ""
+              },
+              "time": {
+                "value": "6:15 pm",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m9",
+                  "m10",
+                  "m11"
+                ],
+                "source": "model",
+                "note": ""
+              },
+              "partySize": {
+                "value": null,
+                "status": "missing",
+                "constraint": null,
+                "evidenceIds": [],
+                "source": null,
+                "note": ""
+              }
+            },
+            "history": [
+              {
+                "field": "city",
+                "previousValue": null,
+                "nextValue": "Petaluma",
+                "operation": "set",
+                "evidenceIds": [
+                  "m1"
+                ],
+                "revision": 1
+              },
+              {
+                "field": "time",
+                "previousValue": null,
+                "nextValue": "6:15 pm",
+                "operation": "set",
+                "evidenceIds": [
+                  "m9"
+                ],
+                "revision": 2
+              }
+            ],
+            "revision": 2,
+            "approvedRevision": null
+          },
+          "usage": {
+            "inputTokens": 9107,
+            "outputTokens": 1661,
+            "model": "gpt-6-luna"
+          },
+          "latencyMs": 18567
+        }
+      },
+      "errors": []
+    },
+    {
+      "id": "4_00045",
+      "gold": {
+        "restaurantName": [
+          "China Garden Restaurant"
+        ],
+        "city": [
+          "San Jose"
+        ],
+        "date": [
+          "March 1st"
+        ],
+        "time": [
+          "6 in the evening",
+          "6 pm"
+        ],
+        "partySize": [
+          "2"
+        ]
+      },
+      "predictions": {
+        "formbridge": {
+          "completeFormExact": false,
+          "fields": {
+            "restaurantName": {
+              "gold": [
+                "China Garden Restaurant"
+              ],
+              "predicted": "China Garden Restaurant in San Jose",
+              "match": false
+            },
+            "city": {
+              "gold": [
+                "San Jose"
+              ],
+              "predicted": "San Jose",
+              "match": true
+            },
+            "date": {
+              "gold": [
+                "March 1st"
+              ],
+              "predicted": "March 1st",
+              "match": true
+            },
+            "time": {
+              "gold": [
+                "6 in the evening",
+                "6 pm"
+              ],
+              "predicted": "6 pm",
+              "match": true
+            },
+            "partySize": {
+              "gold": [
+                "2"
+              ],
+              "predicted": "2",
+              "match": true
+            }
+          },
+          "brief": {
+            "fields": {
+              "restaurantName": {
+                "value": "China Garden Restaurant in San Jose",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m4",
+                  "m5"
+                ],
+                "source": "model",
+                "note": ""
+              },
+              "city": {
+                "value": "San Jose",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m3"
+                ],
+                "source": "model",
+                "note": ""
+              },
+              "date": {
+                "value": "March 1st",
+                "status": "needs_clarification",
+                "constraint": "Year not specified",
+                "evidenceIds": [
+                  "m10",
+                  "m11",
+                  "m14",
+                  "m15"
+                ],
+                "source": "model",
+                "note": "Please confirm the remaining detail."
+              },
+              "time": {
+                "value": "6 pm",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m13"
+                ],
+                "source": "model",
+                "note": ""
+              },
+              "partySize": {
+                "value": "2",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m13"
+                ],
+                "source": "model",
+                "note": ""
+              }
+            },
+            "history": [
+              {
+                "field": "city",
+                "previousValue": null,
+                "nextValue": "San Jose",
+                "operation": "set",
+                "evidenceIds": [
+                  "m3"
+                ],
+                "revision": 1
+              },
+              {
+                "field": "restaurantName",
+                "previousValue": null,
+                "nextValue": "China Garden Restaurant in San Jose",
+                "operation": "set",
+                "evidenceIds": [
+                  "m4",
+                  "m5"
+                ],
+                "revision": 2
+              },
+              {
+                "field": "partySize",
+                "previousValue": null,
+                "nextValue": "1",
+                "operation": "set",
+                "evidenceIds": [
+                  "m7"
+                ],
+                "revision": 3
+              },
+              {
+                "field": "time",
+                "previousValue": null,
+                "nextValue": "5:45 pm",
+                "operation": "set",
+                "evidenceIds": [
+                  "m9"
+                ],
+                "revision": 4
+              },
+              {
+                "field": "date",
+                "previousValue": null,
+                "nextValue": "March 1st",
+                "operation": "set",
+                "evidenceIds": [
+                  "m10",
+                  "m11"
+                ],
+                "revision": 5
+              },
+              {
+                "field": "time",
+                "previousValue": "5:45 pm",
+                "nextValue": "6 pm",
+                "operation": "replace",
+                "evidenceIds": [
+                  "m13"
+                ],
+                "revision": 6
+              },
+              {
+                "field": "partySize",
+                "previousValue": "1",
+                "nextValue": "2",
+                "operation": "replace",
+                "evidenceIds": [
+                  "m13"
+                ],
+                "revision": 7
+              }
+            ],
+            "revision": 7,
+            "approvedRevision": null
+          },
+          "usage": {
+            "inputTokens": 10859,
+            "outputTokens": 1952,
+            "model": "gpt-6-luna"
+          },
+          "latencyMs": 24153
+        }
+      },
+      "errors": []
+    },
+    {
+      "id": "4_00034",
+      "gold": {
+        "restaurantName": [
+          "Mimi's Cafe"
+        ],
+        "city": [
+          "San Jose"
+        ],
+        "date": [
+          "March 1st"
+        ],
+        "time": [
+          "11:30 am",
+          "half past 11 in the morning"
+        ],
+        "partySize": [
+          "2"
+        ]
+      },
+      "predictions": {
+        "formbridge": {
+          "completeFormExact": true,
+          "fields": {
+            "restaurantName": {
+              "gold": [
+                "Mimi's Cafe"
+              ],
+              "predicted": "Mimi's Cafe",
+              "match": true
+            },
+            "city": {
+              "gold": [
+                "San Jose"
+              ],
+              "predicted": "San Jose",
+              "match": true
+            },
+            "date": {
+              "gold": [
+                "March 1st"
+              ],
+              "predicted": "March 1st",
+              "match": true
+            },
+            "time": {
+              "gold": [
+                "11:30 am",
+                "half past 11 in the morning"
+              ],
+              "predicted": "11:30 am",
+              "match": true
+            },
+            "partySize": {
+              "gold": [
+                "2"
+              ],
+              "predicted": "2",
+              "match": true
+            }
+          },
+          "brief": {
+            "fields": {
+              "restaurantName": {
+                "value": "Mimi's Cafe",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m10",
+                  "m11"
+                ],
+                "source": "model",
+                "note": ""
+              },
+              "city": {
+                "value": "San Jose",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m10",
+                  "m11"
+                ],
+                "source": "model",
+                "note": ""
+              },
+              "date": {
+                "value": "March 1st",
+                "status": "needs_clarification",
+                "constraint": "Year not specified",
+                "evidenceIds": [
+                  "m12",
+                  "m13"
+                ],
+                "source": "model",
+                "note": "Please confirm the remaining detail."
+              },
+              "time": {
+                "value": "11:30 am",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m11",
+                  "m13"
+                ],
+                "source": "model",
+                "note": ""
+              },
+              "partySize": {
+                "value": "2",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m12",
+                  "m13"
+                ],
+                "source": "model",
+                "note": ""
+              }
+            },
+            "history": [
+              {
+                "field": "city",
+                "previousValue": null,
+                "nextValue": "San Jose",
+                "operation": "set",
+                "evidenceIds": [
+                  "m3"
+                ],
+                "revision": 1
+              },
+              {
+                "field": "restaurantName",
+                "previousValue": null,
+                "nextValue": "Mimi's Cafe",
+                "operation": "set",
+                "evidenceIds": [
+                  "m10",
+                  "m11"
+                ],
+                "revision": 2
+              },
+              {
+                "field": "time",
+                "previousValue": null,
+                "nextValue": "11:30 am",
+                "operation": "set",
+                "evidenceIds": [
+                  "m11"
+                ],
+                "revision": 3
+              },
+              {
+                "field": "date",
+                "previousValue": null,
+                "nextValue": "March 1st",
+                "operation": "set",
+                "evidenceIds": [
+                  "m12",
+                  "m13"
+                ],
+                "revision": 4
+              },
+              {
+                "field": "partySize",
+                "previousValue": null,
+                "nextValue": "2",
+                "operation": "set",
+                "evidenceIds": [
+                  "m12",
+                  "m13"
+                ],
+                "revision": 5
+              }
+            ],
+            "revision": 5,
+            "approvedRevision": null
+          },
+          "usage": {
+            "inputTokens": 10879,
+            "outputTokens": 1658,
+            "model": "gpt-6-luna"
+          },
+          "latencyMs": 21827
+        }
+      },
+      "errors": []
+    },
+    {
+      "id": "1_00029",
+      "gold": {
+        "restaurantName": [
+          "Lotus",
+          "Lotus Thai Bistro"
+        ],
+        "city": [
+          "Palo Alto"
+        ],
+        "date": [
+          "3rd of this month",
+          "March 3rd"
+        ],
+        "time": [
+          "11 am",
+          "eleven am"
+        ],
+        "partySize": [
+          "2"
+        ]
+      },
+      "predictions": {
+        "formbridge": {
+          "completeFormExact": true,
+          "fields": {
+            "restaurantName": {
+              "gold": [
+                "Lotus",
+                "Lotus Thai Bistro"
+              ],
+              "predicted": "Lotus Thai Bistro",
+              "match": true
+            },
+            "city": {
+              "gold": [
+                "Palo Alto"
+              ],
+              "predicted": "Palo Alto",
+              "match": true
+            },
+            "date": {
+              "gold": [
+                "3rd of this month",
+                "March 3rd"
+              ],
+              "predicted": "March 3rd",
+              "match": true
+            },
+            "time": {
+              "gold": [
+                "11 am",
+                "eleven am"
+              ],
+              "predicted": "11 am",
+              "match": true
+            },
+            "partySize": {
+              "gold": [
+                "2"
+              ],
+              "predicted": "2",
+              "match": true
+            }
+          },
+          "brief": {
+            "fields": {
+              "restaurantName": {
+                "value": "Lotus Thai Bistro",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m4",
+                  "m5"
+                ],
+                "source": "model",
+                "note": ""
+              },
+              "city": {
+                "value": "Palo Alto",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m1",
+                  "m5"
+                ],
+                "source": "model",
+                "note": ""
+              },
+              "date": {
+                "value": "March 3rd",
+                "status": "needs_clarification",
+                "constraint": "Year not specified",
+                "evidenceIds": [
+                  "m4",
+                  "m5"
+                ],
+                "source": "model",
+                "note": "Please confirm the remaining detail."
+              },
+              "time": {
+                "value": "11 am",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m4",
+                  "m5"
+                ],
+                "source": "model",
+                "note": ""
+              },
+              "partySize": {
+                "value": "2",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m4",
+                  "m5"
+                ],
+                "source": "model",
+                "note": ""
+              }
+            },
+            "history": [
+              {
+                "field": "city",
+                "previousValue": null,
+                "nextValue": "Palo Alto",
+                "operation": "set",
+                "evidenceIds": [
+                  "m1"
+                ],
+                "revision": 1
+              },
+              {
+                "field": "date",
+                "previousValue": null,
+                "nextValue": null,
+                "operation": "constrain",
+                "evidenceIds": [
+                  "m1"
+                ],
+                "revision": 2
+              },
+              {
+                "field": "time",
+                "previousValue": null,
+                "nextValue": null,
+                "operation": "constrain",
+                "evidenceIds": [
+                  "m1"
+                ],
+                "revision": 3
+              },
+              {
+                "field": "restaurantName",
+                "previousValue": null,
+                "nextValue": "Lotus",
+                "operation": "set",
+                "evidenceIds": [
+                  "m3"
+                ],
+                "revision": 4
+              },
+              {
+                "field": "restaurantName",
+                "previousValue": "Lotus",
+                "nextValue": "Lotus Thai Bistro",
+                "operation": "replace",
+                "evidenceIds": [
+                  "m4",
+                  "m5"
+                ],
+                "revision": 5
+              },
+              {
+                "field": "date",
+                "previousValue": null,
+                "nextValue": "March 3rd",
+                "operation": "set",
+                "evidenceIds": [
+                  "m4",
+                  "m5"
+                ],
+                "revision": 6
+              },
+              {
+                "field": "time",
+                "previousValue": null,
+                "nextValue": "11 am",
+                "operation": "set",
+                "evidenceIds": [
+                  "m1",
+                  "m4",
+                  "m5"
+                ],
+                "revision": 7
+              },
+              {
+                "field": "partySize",
+                "previousValue": null,
+                "nextValue": "2",
+                "operation": "set",
+                "evidenceIds": [
+                  "m4",
+                  "m5"
+                ],
+                "revision": 8
+              }
+            ],
+            "revision": 8,
+            "approvedRevision": null
+          },
+          "usage": {
+            "inputTokens": 5215,
+            "outputTokens": 992,
+            "model": "gpt-6-luna"
+          },
+          "latencyMs": 13432
+        }
+      },
+      "errors": []
+    },
+    {
+      "id": "4_00020",
+      "gold": {
+        "restaurantName": [
+          "71 Saint Peter"
+        ],
+        "city": [
+          "San Jose"
+        ],
+        "date": [
+          "March 5th",
+          "Tuesday next week"
+        ],
+        "time": [
+          "12 in the afternoon",
+          "12 pm"
+        ],
+        "partySize": [
+          "1"
+        ]
+      },
+      "predictions": {
+        "formbridge": {
+          "completeFormExact": false,
+          "fields": {
+            "restaurantName": {
+              "gold": [
+                "71 Saint Peter"
+              ],
+              "predicted": null,
+              "match": false
+            },
+            "city": {
+              "gold": [
+                "San Jose"
+              ],
+              "predicted": "San Jose",
+              "match": true
+            },
+            "date": {
+              "gold": [
+                "March 5th",
+                "Tuesday next week"
+              ],
+              "predicted": "March 5th",
+              "match": true
+            },
+            "time": {
+              "gold": [
+                "12 in the afternoon",
+                "12 pm"
+              ],
+              "predicted": "12 pm",
+              "match": true
+            },
+            "partySize": {
+              "gold": [
+                "1"
+              ],
+              "predicted": "1",
+              "match": true
+            }
+          },
+          "brief": {
+            "fields": {
+              "restaurantName": {
+                "value": null,
+                "status": "missing",
+                "constraint": null,
+                "evidenceIds": [],
+                "source": null,
+                "note": ""
+              },
+              "city": {
+                "value": "San Jose",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m3"
+                ],
+                "source": "model",
+                "note": ""
+              },
+              "date": {
+                "value": "March 5th",
+                "status": "needs_clarification",
+                "constraint": "Year not specified",
+                "evidenceIds": [
+                  "m9",
+                  "m10",
+                  "m11"
+                ],
+                "source": "model",
+                "note": "Please confirm the remaining detail."
+              },
+              "time": {
+                "value": "12 pm",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m7"
+                ],
+                "source": "model",
+                "note": ""
+              },
+              "partySize": {
+                "value": "1",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m5"
+                ],
+                "source": "model",
+                "note": ""
+              }
+            },
+            "history": [
+              {
+                "field": "city",
+                "previousValue": null,
+                "nextValue": "San Jose",
+                "operation": "set",
+                "evidenceIds": [
+                  "m3"
+                ],
+                "revision": 1
+              },
+              {
+                "field": "date",
+                "previousValue": null,
+                "nextValue": null,
+                "operation": "constrain",
+                "evidenceIds": [
+                  "m5"
+                ],
+                "revision": 2
+              },
+              {
+                "field": "partySize",
+                "previousValue": null,
+                "nextValue": "1",
+                "operation": "set",
+                "evidenceIds": [
+                  "m5"
+                ],
+                "revision": 3
+              },
+              {
+                "field": "time",
+                "previousValue": null,
+                "nextValue": "12 pm",
+                "operation": "set",
+                "evidenceIds": [
+                  "m7"
+                ],
+                "revision": 4
+              },
+              {
+                "field": "date",
+                "previousValue": null,
+                "nextValue": null,
+                "operation": "constrain",
+                "evidenceIds": [
+                  "m5",
+                  "m8",
+                  "m9"
+                ],
+                "revision": 5
+              },
+              {
+                "field": "date",
+                "previousValue": null,
+                "nextValue": "March 5th",
+                "operation": "set",
+                "evidenceIds": [
+                  "m9",
+                  "m10",
+                  "m11"
+                ],
+                "revision": 6
+              }
+            ],
+            "revision": 6,
+            "approvedRevision": null
+          },
+          "usage": {
+            "inputTokens": 9276,
+            "outputTokens": 2098,
+            "model": "gpt-6-luna"
+          },
+          "latencyMs": 21739
+        }
+      },
+      "errors": []
+    },
+    {
+      "id": "4_00032",
+      "gold": {
+        "restaurantName": [
+          "Doppio Zero"
+        ],
+        "city": [
+          "Cupertino"
+        ],
+        "date": [
+          "March 1st"
+        ],
+        "time": [
+          "11:15 am",
+          "morning 11:15"
+        ],
+        "partySize": [
+          "3"
+        ]
+      },
+      "predictions": {
+        "formbridge": {
+          "completeFormExact": true,
+          "fields": {
+            "restaurantName": {
+              "gold": [
+                "Doppio Zero"
+              ],
+              "predicted": "Doppio Zero",
+              "match": true
+            },
+            "city": {
+              "gold": [
+                "Cupertino"
+              ],
+              "predicted": "Cupertino",
+              "match": true
+            },
+            "date": {
+              "gold": [
+                "March 1st"
+              ],
+              "predicted": "March 1st",
+              "match": true
+            },
+            "time": {
+              "gold": [
+                "11:15 am",
+                "morning 11:15"
+              ],
+              "predicted": "11:15 am",
+              "match": true
+            },
+            "partySize": {
+              "gold": [
+                "3"
+              ],
+              "predicted": "3",
+              "match": true
+            }
+          },
+          "brief": {
+            "fields": {
+              "restaurantName": {
+                "value": "Doppio Zero",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m4",
+                  "m7"
+                ],
+                "source": "model",
+                "note": ""
+              },
+              "city": {
+                "value": "Cupertino",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m3"
+                ],
+                "source": "model",
+                "note": ""
+              },
+              "date": {
+                "value": "March 1st",
+                "status": "needs_clarification",
+                "constraint": "Year not specified",
+                "evidenceIds": [
+                  "m12",
+                  "m13"
+                ],
+                "source": "model",
+                "note": "Please confirm the remaining detail."
+              },
+              "time": {
+                "value": "11:15 am",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m11",
+                  "m12",
+                  "m13"
+                ],
+                "source": "model",
+                "note": ""
+              },
+              "partySize": {
+                "value": "3",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m11"
+                ],
+                "source": "model",
+                "note": ""
+              }
+            },
+            "history": [
+              {
+                "field": "city",
+                "previousValue": null,
+                "nextValue": "Cupertino",
+                "operation": "set",
+                "evidenceIds": [
+                  "m3"
+                ],
+                "revision": 1
+              },
+              {
+                "field": "restaurantName",
+                "previousValue": null,
+                "nextValue": "Doppio Zero",
+                "operation": "set",
+                "evidenceIds": [
+                  "m4",
+                  "m7"
+                ],
+                "revision": 2
+              },
+              {
+                "field": "partySize",
+                "previousValue": null,
+                "nextValue": "4",
+                "operation": "set",
+                "evidenceIds": [
+                  "m9"
+                ],
+                "revision": 3
+              },
+              {
+                "field": "time",
+                "previousValue": null,
+                "nextValue": "11:15 am",
+                "operation": "set",
+                "evidenceIds": [
+                  "m11"
+                ],
+                "revision": 4
+              },
+              {
+                "field": "partySize",
+                "previousValue": "4",
+                "nextValue": "3",
+                "operation": "replace",
+                "evidenceIds": [
+                  "m11"
+                ],
+                "revision": 5
+              },
+              {
+                "field": "date",
+                "previousValue": null,
+                "nextValue": "March 1st",
+                "operation": "set",
+                "evidenceIds": [
+                  "m12",
+                  "m13"
+                ],
+                "revision": 6
+              }
+            ],
+            "revision": 6,
+            "approvedRevision": null
+          },
+          "usage": {
+            "inputTokens": 10736,
+            "outputTokens": 2662,
+            "model": "gpt-6-luna"
+          },
+          "latencyMs": 35842
+        }
+      },
+      "errors": []
+    },
+    {
+      "id": "1_00012",
+      "gold": {
+        "restaurantName": [
+          "Ming's",
+          "Ming's Diner"
+        ],
+        "city": [
+          "San Francisco"
+        ],
+        "date": [
+          "March 5th",
+          "next Tuesday"
+        ],
+        "time": [
+          "6:30 pm"
+        ],
+        "partySize": [
+          "3"
+        ]
+      },
+      "predictions": {
+        "formbridge": {
+          "completeFormExact": true,
+          "fields": {
+            "restaurantName": {
+              "gold": [
+                "Ming's",
+                "Ming's Diner"
+              ],
+              "predicted": "Ming's Diner",
+              "match": true
+            },
+            "city": {
+              "gold": [
+                "San Francisco"
+              ],
+              "predicted": "San Francisco",
+              "match": true
+            },
+            "date": {
+              "gold": [
+                "March 5th",
+                "next Tuesday"
+              ],
+              "predicted": "March 5th",
+              "match": true
+            },
+            "time": {
+              "gold": [
+                "6:30 pm"
+              ],
+              "predicted": "6:30 pm",
+              "match": true
+            },
+            "partySize": {
+              "gold": [
+                "3"
+              ],
+              "predicted": "3",
+              "match": true
+            }
+          },
+          "brief": {
+            "fields": {
+              "restaurantName": {
+                "value": "Ming's Diner",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m8",
+                  "m9"
+                ],
+                "source": "model",
+                "note": ""
+              },
+              "city": {
+                "value": "San Francisco",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m1"
+                ],
+                "source": "model",
+                "note": ""
+              },
+              "date": {
+                "value": "March 5th",
+                "status": "needs_clarification",
+                "constraint": "Year not specified",
+                "evidenceIds": [
+                  "m6",
+                  "m9"
+                ],
+                "source": "model",
+                "note": "Please confirm the remaining detail."
+              },
+              "time": {
+                "value": "6:30 pm",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m3"
+                ],
+                "source": "model",
+                "note": ""
+              },
+              "partySize": {
+                "value": "3",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m7",
+                  "m9"
+                ],
+                "source": "model",
+                "note": ""
+              }
+            },
+            "history": [
+              {
+                "field": "city",
+                "previousValue": null,
+                "nextValue": "San Francisco",
+                "operation": "set",
+                "evidenceIds": [
+                  "m1"
+                ],
+                "revision": 1
+              },
+              {
+                "field": "date",
+                "previousValue": null,
+                "nextValue": null,
+                "operation": "constrain",
+                "evidenceIds": [
+                  "m1"
+                ],
+                "revision": 2
+              },
+              {
+                "field": "partySize",
+                "previousValue": null,
+                "nextValue": "4",
+                "operation": "set",
+                "evidenceIds": [
+                  "m1"
+                ],
+                "revision": 3
+              },
+              {
+                "field": "time",
+                "previousValue": null,
+                "nextValue": "6:30 pm",
+                "operation": "set",
+                "evidenceIds": [
+                  "m3"
+                ],
+                "revision": 4
+              },
+              {
+                "field": "restaurantName",
+                "previousValue": null,
+                "nextValue": "Aq",
+                "operation": "set",
+                "evidenceIds": [
+                  "m5"
+                ],
+                "revision": 5
+              },
+              {
+                "field": "restaurantName",
+                "previousValue": "Aq",
+                "nextValue": "Ming's",
+                "operation": "replace",
+                "evidenceIds": [
+                  "m7"
+                ],
+                "revision": 6
+              },
+              {
+                "field": "partySize",
+                "previousValue": "4",
+                "nextValue": "3",
+                "operation": "replace",
+                "evidenceIds": [
+                  "m7"
+                ],
+                "revision": 7
+              },
+              {
+                "field": "restaurantName",
+                "previousValue": "Ming's",
+                "nextValue": "Ming's Diner",
+                "operation": "replace",
+                "evidenceIds": [
+                  "m7",
+                  "m8",
+                  "m9"
+                ],
+                "revision": 8
+              },
+              {
+                "field": "date",
+                "previousValue": null,
+                "nextValue": "March 5th",
+                "operation": "set",
+                "evidenceIds": [
+                  "m6",
+                  "m9"
+                ],
+                "revision": 9
+              }
+            ],
+            "revision": 9,
+            "approvedRevision": null
+          },
+          "usage": {
+            "inputTokens": 8230,
+            "outputTokens": 1362,
+            "model": "gpt-6-luna"
+          },
+          "latencyMs": 18334
+        }
+      },
+      "errors": []
+    },
+    {
+      "id": "4_00053",
+      "gold": {
+        "restaurantName": [
+          "The Bureau 510"
+        ],
+        "city": [
+          "Emeryville"
+        ],
+        "date": [
+          "March 10th"
+        ],
+        "time": [
+          "12 pm"
+        ],
+        "partySize": [
+          "1"
+        ]
+      },
+      "predictions": {
+        "formbridge": {
+          "completeFormExact": true,
+          "fields": {
+            "restaurantName": {
+              "gold": [
+                "The Bureau 510"
+              ],
+              "predicted": "The Bureau 510",
+              "match": true
+            },
+            "city": {
+              "gold": [
+                "Emeryville"
+              ],
+              "predicted": "Emeryville",
+              "match": true
+            },
+            "date": {
+              "gold": [
+                "March 10th"
+              ],
+              "predicted": "March 10th",
+              "match": true
+            },
+            "time": {
+              "gold": [
+                "12 pm"
+              ],
+              "predicted": "12 pm",
+              "match": true
+            },
+            "partySize": {
+              "gold": [
+                "1"
+              ],
+              "predicted": "1",
+              "match": true
+            }
+          },
+          "brief": {
+            "fields": {
+              "restaurantName": {
+                "value": "The Bureau 510",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m4",
+                  "m5"
+                ],
+                "source": "model",
+                "note": ""
+              },
+              "city": {
+                "value": "Emeryville",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m3"
+                ],
+                "source": "model",
+                "note": ""
+              },
+              "date": {
+                "value": "March 10th",
+                "status": "needs_clarification",
+                "constraint": "Year not specified",
+                "evidenceIds": [
+                  "m5",
+                  "m7"
+                ],
+                "source": "model",
+                "note": "Please confirm the remaining detail."
+              },
+              "time": {
+                "value": "12 pm",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m8",
+                  "m9"
+                ],
+                "source": "model",
+                "note": ""
+              },
+              "partySize": {
+                "value": "1",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m5",
+                  "m7"
+                ],
+                "source": "model",
+                "note": ""
+              }
+            },
+            "history": [
+              {
+                "field": "city",
+                "previousValue": null,
+                "nextValue": "Emeryville",
+                "operation": "set",
+                "evidenceIds": [
+                  "m3"
+                ],
+                "revision": 1
+              },
+              {
+                "field": "restaurantName",
+                "previousValue": null,
+                "nextValue": "The Bureau 510",
+                "operation": "set",
+                "evidenceIds": [
+                  "m4",
+                  "m5"
+                ],
+                "revision": 2
+              },
+              {
+                "field": "date",
+                "previousValue": null,
+                "nextValue": "March 10th",
+                "operation": "set",
+                "evidenceIds": [
+                  "m5"
+                ],
+                "revision": 3
+              },
+              {
+                "field": "time",
+                "previousValue": null,
+                "nextValue": "11:45 am",
+                "operation": "set",
+                "evidenceIds": [
+                  "m5"
+                ],
+                "revision": 4
+              },
+              {
+                "field": "partySize",
+                "previousValue": null,
+                "nextValue": "1",
+                "operation": "set",
+                "evidenceIds": [
+                  "m5"
+                ],
+                "revision": 5
+              },
+              {
+                "field": "time",
+                "previousValue": "11:45 am",
+                "nextValue": "12 pm",
+                "operation": "replace",
+                "evidenceIds": [
+                  "m8",
+                  "m9"
+                ],
+                "revision": 6
+              }
+            ],
+            "revision": 6,
+            "approvedRevision": null
+          },
+          "usage": {
+            "inputTokens": 8059,
+            "outputTokens": 1878,
+            "model": "gpt-6-luna"
+          },
+          "latencyMs": 20981
+        }
+      },
+      "errors": []
+    },
+    {
+      "id": "4_00051",
+      "gold": {
+        "restaurantName": [
+          "8 Immortals Restaurant"
+        ],
+        "city": [
+          "San Francisco"
+        ],
+        "date": [
+          "March 5th"
+        ],
+        "time": [
+          "12:30 pm"
+        ],
+        "partySize": [
+          "2"
+        ]
+      },
+      "predictions": {
+        "formbridge": {
+          "completeFormExact": true,
+          "fields": {
+            "restaurantName": {
+              "gold": [
+                "8 Immortals Restaurant"
+              ],
+              "predicted": "8 Immortals Restaurant",
+              "match": true
+            },
+            "city": {
+              "gold": [
+                "San Francisco"
+              ],
+              "predicted": "San Francisco",
+              "match": true
+            },
+            "date": {
+              "gold": [
+                "March 5th"
+              ],
+              "predicted": "March 5th",
+              "match": true
+            },
+            "time": {
+              "gold": [
+                "12:30 pm"
+              ],
+              "predicted": "12:30 pm",
+              "match": true
+            },
+            "partySize": {
+              "gold": [
+                "2"
+              ],
+              "predicted": "2",
+              "match": true
+            }
+          },
+          "brief": {
+            "fields": {
+              "restaurantName": {
+                "value": "8 Immortals Restaurant",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m4",
+                  "m5"
+                ],
+                "source": "model",
+                "note": ""
+              },
+              "city": {
+                "value": "San Francisco",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m3"
+                ],
+                "source": "model",
+                "note": ""
+              },
+              "date": {
+                "value": "March 5th",
+                "status": "needs_clarification",
+                "constraint": "Year not specified",
+                "evidenceIds": [
+                  "m7"
+                ],
+                "source": "model",
+                "note": "Please confirm the remaining detail."
+              },
+              "time": {
+                "value": "12:30 pm",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m9"
+                ],
+                "source": "model",
+                "note": ""
+              },
+              "partySize": {
+                "value": "2",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m10",
+                  "m11"
+                ],
+                "source": "model",
+                "note": ""
+              }
+            },
+            "history": [
+              {
+                "field": "city",
+                "previousValue": null,
+                "nextValue": "San Francisco",
+                "operation": "set",
+                "evidenceIds": [
+                  "m3"
+                ],
+                "revision": 1
+              },
+              {
+                "field": "restaurantName",
+                "previousValue": null,
+                "nextValue": "8 Immortals Restaurant",
+                "operation": "set",
+                "evidenceIds": [
+                  "m4",
+                  "m5"
+                ],
+                "revision": 2
+              },
+              {
+                "field": "date",
+                "previousValue": null,
+                "nextValue": "March 5th",
+                "operation": "set",
+                "evidenceIds": [
+                  "m7"
+                ],
+                "revision": 3
+              },
+              {
+                "field": "time",
+                "previousValue": null,
+                "nextValue": "12:30 pm",
+                "operation": "set",
+                "evidenceIds": [
+                  "m9"
+                ],
+                "revision": 4
+              },
+              {
+                "field": "partySize",
+                "previousValue": null,
+                "nextValue": "2",
+                "operation": "set",
+                "evidenceIds": [
+                  "m10",
+                  "m11"
+                ],
+                "revision": 5
+              }
+            ],
+            "revision": 5,
+            "approvedRevision": null
+          },
+          "usage": {
+            "inputTokens": 9216,
+            "outputTokens": 1468,
+            "model": "gpt-6-luna"
+          },
+          "latencyMs": 19538
+        }
+      },
+      "errors": []
+    },
+    {
+      "id": "4_00042",
+      "gold": {
+        "restaurantName": [
+          "Opa Authentic Greek Cuisine Walnut Creek"
+        ],
+        "city": [
+          "Walnut Creek"
+        ],
+        "date": [
+          "3rd of March",
+          "March 3rd"
+        ],
+        "time": [
+          "19:15",
+          "7:15 pm"
+        ],
+        "partySize": [
+          "2"
+        ]
+      },
+      "predictions": {
+        "formbridge": {
+          "completeFormExact": false,
+          "fields": {
+            "restaurantName": {
+              "gold": [
+                "Opa Authentic Greek Cuisine Walnut Creek"
+              ],
+              "predicted": null,
+              "match": false
+            },
+            "city": {
+              "gold": [
+                "Walnut Creek"
+              ],
+              "predicted": "Walnut Creek",
+              "match": true
+            },
+            "date": {
+              "gold": [
+                "3rd of March",
+                "March 3rd"
+              ],
+              "predicted": "March 3rd",
+              "match": true
+            },
+            "time": {
+              "gold": [
+                "19:15",
+                "7:15 pm"
+              ],
+              "predicted": "7:15 pm",
+              "match": true
+            },
+            "partySize": {
+              "gold": [
+                "2"
+              ],
+              "predicted": "2",
+              "match": true
+            }
+          },
+          "brief": {
+            "fields": {
+              "restaurantName": {
+                "value": null,
+                "status": "missing",
+                "constraint": null,
+                "evidenceIds": [],
+                "source": null,
+                "note": ""
+              },
+              "city": {
+                "value": "Walnut Creek",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m5"
+                ],
+                "source": "model",
+                "note": ""
+              },
+              "date": {
+                "value": "March 3rd",
+                "status": "needs_clarification",
+                "constraint": "Year not specified",
+                "evidenceIds": [
+                  "m11"
+                ],
+                "source": "model",
+                "note": "Please confirm the remaining detail."
+              },
+              "time": {
+                "value": "7:15 pm",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m11"
+                ],
+                "source": "model",
+                "note": ""
+              },
+              "partySize": {
+                "value": "2",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m12",
+                  "m13"
+                ],
+                "source": "model",
+                "note": ""
+              }
+            },
+            "history": [
+              {
+                "field": "city",
+                "previousValue": null,
+                "nextValue": "Walnut Creek",
+                "operation": "set",
+                "evidenceIds": [
+                  "m5"
+                ],
+                "revision": 1
+              },
+              {
+                "field": "date",
+                "previousValue": null,
+                "nextValue": "March 3rd",
+                "operation": "set",
+                "evidenceIds": [
+                  "m11"
+                ],
+                "revision": 2
+              },
+              {
+                "field": "time",
+                "previousValue": null,
+                "nextValue": "7:15 pm",
+                "operation": "set",
+                "evidenceIds": [
+                  "m11"
+                ],
+                "revision": 3
+              },
+              {
+                "field": "partySize",
+                "previousValue": null,
+                "nextValue": "2",
+                "operation": "set",
+                "evidenceIds": [
+                  "m12",
+                  "m13"
+                ],
+                "revision": 4
+              }
+            ],
+            "revision": 4,
+            "approvedRevision": null
+          },
+          "usage": {
+            "inputTokens": 10702,
+            "outputTokens": 1887,
+            "model": "gpt-6-luna"
+          },
+          "latencyMs": 25401
+        }
+      },
+      "errors": []
+    },
+    {
+      "id": "4_00029",
+      "gold": {
+        "restaurantName": [
+          "25 Lusk"
+        ],
+        "city": [
+          "SF",
+          "San Francisco"
+        ],
+        "date": [
+          "March 1st"
+        ],
+        "time": [
+          "7:30 pm",
+          "evening 7:30"
+        ],
+        "partySize": [
+          "2"
+        ]
+      },
+      "predictions": {
+        "formbridge": {
+          "completeFormExact": true,
+          "fields": {
+            "restaurantName": {
+              "gold": [
+                "25 Lusk"
+              ],
+              "predicted": "25 Lusk",
+              "match": true
+            },
+            "city": {
+              "gold": [
+                "SF",
+                "San Francisco"
+              ],
+              "predicted": "San Francisco",
+              "match": true
+            },
+            "date": {
+              "gold": [
+                "March 1st"
+              ],
+              "predicted": "March 1st",
+              "match": true
+            },
+            "time": {
+              "gold": [
+                "7:30 pm",
+                "evening 7:30"
+              ],
+              "predicted": "7:30 pm",
+              "match": true
+            },
+            "partySize": {
+              "gold": [
+                "2"
+              ],
+              "predicted": "2",
+              "match": true
+            }
+          },
+          "brief": {
+            "fields": {
+              "restaurantName": {
+                "value": "25 Lusk",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m6",
+                  "m7"
+                ],
+                "source": "model",
+                "note": ""
+              },
+              "city": {
+                "value": "San Francisco",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m6",
+                  "m7"
+                ],
+                "source": "model",
+                "note": ""
+              },
+              "date": {
+                "value": "March 1st",
+                "status": "needs_clarification",
+                "constraint": "Year not specified",
+                "evidenceIds": [
+                  "m10",
+                  "m11"
+                ],
+                "source": "model",
+                "note": "Please confirm the remaining detail."
+              },
+              "time": {
+                "value": "7:30 pm",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m9",
+                  "m10",
+                  "m11"
+                ],
+                "source": "model",
+                "note": ""
+              },
+              "partySize": {
+                "value": "2",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m10",
+                  "m11"
+                ],
+                "source": "model",
+                "note": ""
+              }
+            },
+            "history": [
+              {
+                "field": "city",
+                "previousValue": null,
+                "nextValue": "Fairfax",
+                "operation": "set",
+                "evidenceIds": [
+                  "m3"
+                ],
+                "revision": 1
+              },
+              {
+                "field": "city",
+                "previousValue": "Fairfax",
+                "nextValue": "SF",
+                "operation": "replace",
+                "evidenceIds": [
+                  "m5"
+                ],
+                "revision": 2
+              },
+              {
+                "field": "restaurantName",
+                "previousValue": null,
+                "nextValue": "25 Lusk",
+                "operation": "set",
+                "evidenceIds": [
+                  "m6",
+                  "m7"
+                ],
+                "revision": 3
+              },
+              {
+                "field": "city",
+                "previousValue": "SF",
+                "nextValue": "San Francisco",
+                "operation": "replace",
+                "evidenceIds": [
+                  "m5",
+                  "m6",
+                  "m7"
+                ],
+                "revision": 4
+              },
+              {
+                "field": "time",
+                "previousValue": null,
+                "nextValue": null,
+                "operation": "constrain",
+                "evidenceIds": [
+                  "m9"
+                ],
+                "revision": 5
+              },
+              {
+                "field": "date",
+                "previousValue": null,
+                "nextValue": "March 1st",
+                "operation": "set",
+                "evidenceIds": [
+                  "m10",
+                  "m11"
+                ],
+                "revision": 6
+              },
+              {
+                "field": "time",
+                "previousValue": null,
+                "nextValue": "7:30 pm",
+                "operation": "set",
+                "evidenceIds": [
+                  "m9",
+                  "m10",
+                  "m11"
+                ],
+                "revision": 7
+              },
+              {
+                "field": "partySize",
+                "previousValue": null,
+                "nextValue": "2",
+                "operation": "set",
+                "evidenceIds": [
+                  "m10",
+                  "m11"
+                ],
+                "revision": 8
+              }
+            ],
+            "revision": 8,
+            "approvedRevision": null
+          },
+          "usage": {
+            "inputTokens": 9071,
+            "outputTokens": 1593,
+            "model": "gpt-6-luna"
+          },
+          "latencyMs": 45580
+        }
+      },
+      "errors": []
+    },
+    {
+      "id": "1_00003",
+      "gold": {
+        "restaurantName": [
+          "Little Hunan"
+        ],
+        "city": [
+          "San Jose"
+        ],
+        "date": [
+          "March 1st"
+        ],
+        "time": [
+          "5 pm"
+        ],
+        "partySize": [
+          "2"
+        ]
+      },
+      "predictions": {
+        "formbridge": {
+          "completeFormExact": true,
+          "fields": {
+            "restaurantName": {
+              "gold": [
+                "Little Hunan"
+              ],
+              "predicted": "Little Hunan",
+              "match": true
+            },
+            "city": {
+              "gold": [
+                "San Jose"
+              ],
+              "predicted": "San Jose",
+              "match": true
+            },
+            "date": {
+              "gold": [
+                "March 1st"
+              ],
+              "predicted": "March 1st",
+              "match": true
+            },
+            "time": {
+              "gold": [
+                "5 pm"
+              ],
+              "predicted": "5 pm",
+              "match": true
+            },
+            "partySize": {
+              "gold": [
+                "2"
+              ],
+              "predicted": "2",
+              "match": true
+            }
+          },
+          "brief": {
+            "fields": {
+              "restaurantName": {
+                "value": "Little Hunan",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m5"
+                ],
+                "source": "model",
+                "note": ""
+              },
+              "city": {
+                "value": "San Jose",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m3"
+                ],
+                "source": "model",
+                "note": ""
+              },
+              "date": {
+                "value": "March 1st",
+                "status": "needs_clarification",
+                "constraint": "Year not specified",
+                "evidenceIds": [
+                  "m12",
+                  "m13"
+                ],
+                "source": "model",
+                "note": "Please confirm the remaining detail."
+              },
+              "time": {
+                "value": "5 pm",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m12",
+                  "m13"
+                ],
+                "source": "model",
+                "note": ""
+              },
+              "partySize": {
+                "value": "2",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m12",
+                  "m13"
+                ],
+                "source": "model",
+                "note": ""
+              }
+            },
+            "history": [
+              {
+                "field": "city",
+                "previousValue": null,
+                "nextValue": "San Jose",
+                "operation": "set",
+                "evidenceIds": [
+                  "m3"
+                ],
+                "revision": 1
+              },
+              {
+                "field": "time",
+                "previousValue": null,
+                "nextValue": null,
+                "operation": "constrain",
+                "evidenceIds": [
+                  "m3"
+                ],
+                "revision": 2
+              },
+              {
+                "field": "restaurantName",
+                "previousValue": null,
+                "nextValue": "Little Hunan",
+                "operation": "set",
+                "evidenceIds": [
+                  "m5"
+                ],
+                "revision": 3
+              },
+              {
+                "field": "time",
+                "previousValue": null,
+                "nextValue": "5:15 pm",
+                "operation": "set",
+                "evidenceIds": [
+                  "m9"
+                ],
+                "revision": 4
+              },
+              {
+                "field": "time",
+                "previousValue": "5:15 pm",
+                "nextValue": "5 pm",
+                "operation": "replace",
+                "evidenceIds": [
+                  "m12",
+                  "m13"
+                ],
+                "revision": 5
+              },
+              {
+                "field": "date",
+                "previousValue": null,
+                "nextValue": "March 1st",
+                "operation": "set",
+                "evidenceIds": [
+                  "m12",
+                  "m13"
+                ],
+                "revision": 6
+              },
+              {
+                "field": "partySize",
+                "previousValue": null,
+                "nextValue": "2",
+                "operation": "set",
+                "evidenceIds": [
+                  "m12",
+                  "m13"
+                ],
+                "revision": 7
+              }
+            ],
+            "revision": 7,
+            "approvedRevision": null
+          },
+          "usage": {
+            "inputTokens": 14394,
+            "outputTokens": 3973,
+            "model": "gpt-6-luna"
+          },
+          "latencyMs": 45252
+        }
+      },
+      "errors": []
+    },
+    {
+      "id": "4_00021",
+      "gold": {
+        "restaurantName": [
+          "Morimoto Napa"
+        ],
+        "city": [
+          "Napa"
+        ],
+        "date": [
+          "March 3rd",
+          "the 3rd"
+        ],
+        "time": [
+          "4:45 pm",
+          "evening 4:45"
+        ],
+        "partySize": [
+          "2"
+        ]
+      },
+      "predictions": {
+        "formbridge": {
+          "completeFormExact": true,
+          "fields": {
+            "restaurantName": {
+              "gold": [
+                "Morimoto Napa"
+              ],
+              "predicted": "Morimoto Napa",
+              "match": true
+            },
+            "city": {
+              "gold": [
+                "Napa"
+              ],
+              "predicted": "Napa",
+              "match": true
+            },
+            "date": {
+              "gold": [
+                "March 3rd",
+                "the 3rd"
+              ],
+              "predicted": "March 3rd",
+              "match": true
+            },
+            "time": {
+              "gold": [
+                "4:45 pm",
+                "evening 4:45"
+              ],
+              "predicted": "4:45 pm",
+              "match": true
+            },
+            "partySize": {
+              "gold": [
+                "2"
+              ],
+              "predicted": "2",
+              "match": true
+            }
+          },
+          "brief": {
+            "fields": {
+              "restaurantName": {
+                "value": "Morimoto Napa",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m18",
+                  "m19"
+                ],
+                "source": "model",
+                "note": ""
+              },
+              "city": {
+                "value": "Napa",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m3"
+                ],
+                "source": "model",
+                "note": ""
+              },
+              "date": {
+                "value": "March 3rd",
+                "status": "needs_clarification",
+                "constraint": "Year not specified",
+                "evidenceIds": [
+                  "m18",
+                  "m19"
+                ],
+                "source": "model",
+                "note": "Please confirm the remaining detail."
+              },
+              "time": {
+                "value": "4:45 pm",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m18",
+                  "m19"
+                ],
+                "source": "model",
+                "note": ""
+              },
+              "partySize": {
+                "value": "2",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m18",
+                  "m19"
+                ],
+                "source": "model",
+                "note": ""
+              }
+            },
+            "history": [
+              {
+                "field": "city",
+                "previousValue": null,
+                "nextValue": "Napa",
+                "operation": "set",
+                "evidenceIds": [
+                  "m3"
+                ],
+                "revision": 1
+              },
+              {
+                "field": "restaurantName",
+                "previousValue": null,
+                "nextValue": "Morimoto Napa",
+                "operation": "set",
+                "evidenceIds": [
+                  "m14",
+                  "m15"
+                ],
+                "revision": 2
+              },
+              {
+                "field": "date",
+                "previousValue": null,
+                "nextValue": null,
+                "operation": "constrain",
+                "evidenceIds": [
+                  "m15"
+                ],
+                "revision": 3
+              },
+              {
+                "field": "time",
+                "previousValue": null,
+                "nextValue": null,
+                "operation": "constrain",
+                "evidenceIds": [
+                  "m17"
+                ],
+                "revision": 4
+              },
+              {
+                "field": "date",
+                "previousValue": null,
+                "nextValue": "March 3rd",
+                "operation": "set",
+                "evidenceIds": [
+                  "m18",
+                  "m19"
+                ],
+                "revision": 5
+              },
+              {
+                "field": "time",
+                "previousValue": null,
+                "nextValue": "4:45 pm",
+                "operation": "set",
+                "evidenceIds": [
+                  "m17",
+                  "m18",
+                  "m19"
+                ],
+                "revision": 6
+              },
+              {
+                "field": "partySize",
+                "previousValue": null,
+                "nextValue": "2",
+                "operation": "set",
+                "evidenceIds": [
+                  "m18",
+                  "m19"
+                ],
+                "revision": 7
+              }
+            ],
+            "revision": 7,
+            "approvedRevision": null
+          },
+          "usage": {
+            "inputTokens": 15352,
+            "outputTokens": 2460,
+            "model": "gpt-6-luna"
+          },
+          "latencyMs": 29805
+        }
+      },
+      "errors": []
+    },
+    {
+      "id": "1_00015",
+      "gold": {
+        "restaurantName": [
+          "Chianti Cucina"
+        ],
+        "city": [
+          "Novato"
+        ],
+        "date": [
+          "March 1st"
+        ],
+        "time": [
+          "5 pm"
+        ],
+        "partySize": [
+          "2"
+        ]
+      },
+      "predictions": {
+        "formbridge": {
+          "completeFormExact": true,
+          "fields": {
+            "restaurantName": {
+              "gold": [
+                "Chianti Cucina"
+              ],
+              "predicted": "Chianti Cucina",
+              "match": true
+            },
+            "city": {
+              "gold": [
+                "Novato"
+              ],
+              "predicted": "Novato",
+              "match": true
+            },
+            "date": {
+              "gold": [
+                "March 1st"
+              ],
+              "predicted": "March 1st",
+              "match": true
+            },
+            "time": {
+              "gold": [
+                "5 pm"
+              ],
+              "predicted": "5 pm",
+              "match": true
+            },
+            "partySize": {
+              "gold": [
+                "2"
+              ],
+              "predicted": "2",
+              "match": true
+            }
+          },
+          "brief": {
+            "fields": {
+              "restaurantName": {
+                "value": "Chianti Cucina",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m3"
+                ],
+                "source": "model",
+                "note": ""
+              },
+              "city": {
+                "value": "Novato",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m3"
+                ],
+                "source": "model",
+                "note": ""
+              },
+              "date": {
+                "value": "March 1st",
+                "status": "needs_clarification",
+                "constraint": "Year not specified",
+                "evidenceIds": [
+                  "m8",
+                  "m9"
+                ],
+                "source": "model",
+                "note": "Please confirm the remaining detail."
+              },
+              "time": {
+                "value": "5 pm",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m8",
+                  "m9"
+                ],
+                "source": "model",
+                "note": ""
+              },
+              "partySize": {
+                "value": "2",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m8",
+                  "m9"
+                ],
+                "source": "model",
+                "note": ""
+              }
+            },
+            "history": [
+              {
+                "field": "restaurantName",
+                "previousValue": null,
+                "nextValue": "Chianti Cucina",
+                "operation": "set",
+                "evidenceIds": [
+                  "m3"
+                ],
+                "revision": 1
+              },
+              {
+                "field": "city",
+                "previousValue": null,
+                "nextValue": "Novato",
+                "operation": "set",
+                "evidenceIds": [
+                  "m3"
+                ],
+                "revision": 2
+              },
+              {
+                "field": "time",
+                "previousValue": null,
+                "nextValue": "4:45 pm",
+                "operation": "set",
+                "evidenceIds": [
+                  "m5"
+                ],
+                "revision": 3
+              },
+              {
+                "field": "date",
+                "previousValue": null,
+                "nextValue": "March 1st",
+                "operation": "set",
+                "evidenceIds": [
+                  "m6",
+                  "m7"
+                ],
+                "revision": 4
+              },
+              {
+                "field": "partySize",
+                "previousValue": null,
+                "nextValue": "2",
+                "operation": "set",
+                "evidenceIds": [
+                  "m6",
+                  "m7"
+                ],
+                "revision": 5
+              },
+              {
+                "field": "time",
+                "previousValue": "4:45 pm",
+                "nextValue": "5 pm",
+                "operation": "replace",
+                "evidenceIds": [
+                  "m8",
+                  "m9"
+                ],
+                "revision": 6
+              }
+            ],
+            "revision": 6,
+            "approvedRevision": null
+          },
+          "usage": {
+            "inputTokens": 7862,
+            "outputTokens": 2255,
+            "model": "gpt-6-luna"
+          },
+          "latencyMs": 25590
+        }
+      },
+      "errors": []
+    },
+    {
+      "id": "1_00031",
+      "gold": {
+        "restaurantName": [
+          "Schroeder's"
+        ],
+        "city": [
+          "San Francisco"
+        ],
+        "date": [
+          "14th of March",
+          "March 14th"
+        ],
+        "time": [
+          "1:30 pm"
+        ],
+        "partySize": [
+          "2"
+        ]
+      },
+      "predictions": {
+        "formbridge": {
+          "completeFormExact": true,
+          "fields": {
+            "restaurantName": {
+              "gold": [
+                "Schroeder's"
+              ],
+              "predicted": "Schroeder's",
+              "match": true
+            },
+            "city": {
+              "gold": [
+                "San Francisco"
+              ],
+              "predicted": "San Francisco",
+              "match": true
+            },
+            "date": {
+              "gold": [
+                "14th of March",
+                "March 14th"
+              ],
+              "predicted": "March 14th",
+              "match": true
+            },
+            "time": {
+              "gold": [
+                "1:30 pm"
+              ],
+              "predicted": "1:30 pm",
+              "match": true
+            },
+            "partySize": {
+              "gold": [
+                "2"
+              ],
+              "predicted": "2",
+              "match": true
+            }
+          },
+          "brief": {
+            "fields": {
+              "restaurantName": {
+                "value": "Schroeder's",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m3"
+                ],
+                "source": "model",
+                "note": ""
+              },
+              "city": {
+                "value": "San Francisco",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m5"
+                ],
+                "source": "model",
+                "note": ""
+              },
+              "date": {
+                "value": "March 14th",
+                "status": "needs_clarification",
+                "constraint": "Year not specified",
+                "evidenceIds": [
+                  "m1",
+                  "m6"
+                ],
+                "source": "model",
+                "note": "Please confirm the remaining detail."
+              },
+              "time": {
+                "value": "1:30 pm",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m1",
+                  "m6",
+                  "m7"
+                ],
+                "source": "model",
+                "note": ""
+              },
+              "partySize": {
+                "value": "2",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m5",
+                  "m6",
+                  "m7"
+                ],
+                "source": "model",
+                "note": ""
+              }
+            },
+            "history": [
+              {
+                "field": "date",
+                "previousValue": null,
+                "nextValue": "March 14th",
+                "operation": "set",
+                "evidenceIds": [
+                  "m1"
+                ],
+                "revision": 1
+              },
+              {
+                "field": "time",
+                "previousValue": null,
+                "nextValue": "1:30 pm",
+                "operation": "set",
+                "evidenceIds": [
+                  "m1"
+                ],
+                "revision": 2
+              },
+              {
+                "field": "restaurantName",
+                "previousValue": null,
+                "nextValue": "Schroeder's",
+                "operation": "set",
+                "evidenceIds": [
+                  "m3"
+                ],
+                "revision": 3
+              },
+              {
+                "field": "city",
+                "previousValue": null,
+                "nextValue": "San Francisco",
+                "operation": "set",
+                "evidenceIds": [
+                  "m5"
+                ],
+                "revision": 4
+              },
+              {
+                "field": "partySize",
+                "previousValue": null,
+                "nextValue": "2",
+                "operation": "set",
+                "evidenceIds": [
+                  "m5"
+                ],
+                "revision": 5
+              }
+            ],
+            "revision": 5,
+            "approvedRevision": null
+          },
+          "usage": {
+            "inputTokens": 6375,
+            "outputTokens": 1296,
+            "model": "gpt-6-luna"
+          },
+          "latencyMs": 15650
+        }
+      },
+      "errors": []
+    },
+    {
+      "id": "4_00047",
+      "gold": {
+        "restaurantName": [
+          "2g Japanese Brasserie"
+        ],
+        "city": [
+          "SF",
+          "San Francisco"
+        ],
+        "date": [
+          "March 1st"
+        ],
+        "time": [
+          "7:45 pm"
+        ],
+        "partySize": [
+          "2"
+        ]
+      },
+      "predictions": {
+        "formbridge": {
+          "completeFormExact": false,
+          "fields": {
+            "restaurantName": {
+              "gold": [
+                "2g Japanese Brasserie"
+              ],
+              "predicted": null,
+              "match": false
+            },
+            "city": {
+              "gold": [
+                "SF",
+                "San Francisco"
+              ],
+              "predicted": "SF",
+              "match": true
+            },
+            "date": {
+              "gold": [
+                "March 1st"
+              ],
+              "predicted": "March 1st",
+              "match": true
+            },
+            "time": {
+              "gold": [
+                "7:45 pm"
+              ],
+              "predicted": "7:45 pm",
+              "match": true
+            },
+            "partySize": {
+              "gold": [
+                "2"
+              ],
+              "predicted": "2",
+              "match": true
+            }
+          },
+          "brief": {
+            "fields": {
+              "restaurantName": {
+                "value": null,
+                "status": "missing",
+                "constraint": null,
+                "evidenceIds": [],
+                "source": null,
+                "note": ""
+              },
+              "city": {
+                "value": "SF",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m1"
+                ],
+                "source": "model",
+                "note": ""
+              },
+              "date": {
+                "value": "March 1st",
+                "status": "needs_clarification",
+                "constraint": "Year not specified",
+                "evidenceIds": [
+                  "m10",
+                  "m11"
+                ],
+                "source": "model",
+                "note": "Please confirm the remaining detail."
+              },
+              "time": {
+                "value": "7:45 pm",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m9"
+                ],
+                "source": "model",
+                "note": ""
+              },
+              "partySize": {
+                "value": "2",
+                "status": "resolved",
+                "constraint": null,
+                "evidenceIds": [
+                  "m10",
+                  "m11"
+                ],
+                "source": "model",
+                "note": ""
+              }
+            },
+            "history": [
+              {
+                "field": "city",
+                "previousValue": null,
+                "nextValue": "SF",
+                "operation": "set",
+                "evidenceIds": [
+                  "m1"
+                ],
+                "revision": 1
+              },
+              {
+                "field": "time",
+                "previousValue": null,
+                "nextValue": "7:45 pm",
+                "operation": "set",
+                "evidenceIds": [
+                  "m9"
+                ],
+                "revision": 2
+              },
+              {
+                "field": "date",
+                "previousValue": null,
+                "nextValue": "March 1st",
+                "operation": "set",
+                "evidenceIds": [
+                  "m10",
+                  "m11"
+                ],
+                "revision": 3
+              },
+              {
+                "field": "partySize",
+                "previousValue": null,
+                "nextValue": "2",
+                "operation": "set",
+                "evidenceIds": [
+                  "m10",
+                  "m11"
+                ],
+                "revision": 4
+              }
+            ],
+            "revision": 4,
+            "approvedRevision": null
+          },
+          "usage": {
+            "inputTokens": 10909,
+            "outputTokens": 1727,
+            "model": "gpt-6-luna"
+          },
+          "latencyMs": 21411
+        }
+      },
+      "errors": []
+    }
+  ]
+}
