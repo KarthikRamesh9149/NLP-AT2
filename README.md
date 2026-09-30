@@ -20,12 +20,19 @@ A customer says “four people at seven”, then changes it to “five, sometime
 
 ## Watch FormBridge
 
-| Launch film | Product walkthrough |
-| --- | --- |
-| [![Play the FormBridge launch film](docs/media/FormBridge-launch-poster.png)](docs/media/FormBridge-launch.mp4) | [![Play the FormBridge product walkthrough](docs/media/FormBridge-walkthrough-poster.png)](docs/media/FormBridge-walkthrough.mp4) |
-| [Watch the launch film](docs/media/FormBridge-launch.mp4) · 49 seconds | [Watch the walkthrough](docs/media/FormBridge-walkthrough.mp4) · 1 minute 54 seconds |
+### FormBridge in under a minute
 
-The films use edited captures from the [live app](https://formbridge-nlp-at2.vercel.app/) with a synthetic booking conversation. The narration is generated with OpenAI text to speech. The [scene script and transcript](docs/media/film-scenes.json) document what is shown and said. The films illustrate one use case; they do not present evaluation results.
+Watch a changing booking enquiry become an evidence-linked, human-reviewed brief.
+
+https://github.com/user-attachments/assets/18bf88d7-7031-447f-bc3c-800a070171ed
+
+### A two-minute product walkthrough
+
+Follow one synthetic enquiry through extraction, correction, clarification, acceptance, and staff approval.
+
+https://github.com/user-attachments/assets/3d43b8a2-d011-4e47-aeac-9c11354216b4
+
+The films use edited captures from the [live app](https://formbridge-nlp-at2.vercel.app/) with a synthetic booking conversation. The narration is generated with OpenAI text to speech. The [scene script and transcript](docs/media/film-scenes.json) document what is shown and said. The [launch MP4](docs/media/FormBridge-launch.mp4) and [walkthrough MP4](docs/media/FormBridge-walkthrough.mp4) are also kept in the repository. The films illustrate one use case; they do not present evaluation results.
 
 ## The booking journey
 
