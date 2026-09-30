@@ -59,7 +59,7 @@ function composedDateSupported(value: string, evidence: Evidence[], messages: Me
 
 // Explicit cancellation outranks a repeated older prediction. Later stated
 // values can reopen a detail, but small talk cannot revive cancelled evidence.
-export function withExplicitClears(state: GroundedState, messages: Message[]): GroundedState {
+export function withExplicitClears(state: GroundedState, messages: Message[], reference: string | null = null): GroundedState {
   const next = { ...state };
   for (let index = 0; index < messages.length; index++) {
     const message = messages[index];
@@ -70,7 +70,7 @@ export function withExplicitClears(state: GroundedState, messages: Message[]): G
     const keys: FieldKey[] = whole ? [...FIELD_KEYS] : time ? ['time'] : [];
     for (const key of keys) {
       const candidate = state[key];
-      const laterValue = candidate.value && candidate.evidence.some((e) => messages.findIndex((m) => m.id === e.id) > index && containsValue(key, candidate.value!, e.quote, null));
+      const laterValue = candidate.value && candidate.evidence.some((e) => messages.findIndex((m) => m.id === e.id) > index && containsValue(key, candidate.value!, e.quote, reference));
       if (laterValue) continue;
       next[key] = { value: null, status: 'missing', constraint: null, evidence: [{ id: message.id, quote: message.text, kind: 'context' }] };
     }

@@ -43,6 +43,13 @@ describe('grounded conversation state', () => {
     messages[1].text = 'Forget 7 pm, change the time to 8 pm instead.';
     expect(withExplicitClears(state, messages).time.value).toBe('7 pm');
   });
+  it('allows a newly stated relative date after an earlier cancellation', () => {
+    const messages: Message[] = [{ id: 'm1', speaker: 'customer', text: 'Cancel the whole booking request' }, { id: 'm2', speaker: 'customer', text: 'Start again for tomorrow' }];
+    const state = snapshot({ date: field('2 October 2026', 'm2', 'tomorrow') });
+    expect(withExplicitClears(state, messages, '2026-10-01').date.value).toBe('2 October 2026');
+    state.date = field('9 October 2026', 'm1', 'Cancel the whole booking request');
+    expect(withExplicitClears(state, messages, '2026-10-01').date.value).toBeNull();
+  });
   it('recovers an earlier agreed field after an unrelated latest message', () => {
     const messages: Message[] = [{ id: 'm1', speaker: 'customer', text: 'Four people on 9 October 2026' }, { id: 'm2', speaker: 'customer', text: 'Thanks' }];
     const brief = reconcileGroundedState(createEmptyBrief(), snapshot({ partySize: field('4', 'm1', 'Four people'), date: field('9 October 2026', 'm1', '9 October 2026') }), messages, null);
