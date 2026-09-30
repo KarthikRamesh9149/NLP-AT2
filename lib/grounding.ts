@@ -57,6 +57,27 @@ function composedDateSupported(value: string, evidence: Evidence[], messages: Me
   return candidate.day === day && (!candidate.year || candidate.year === year);
 }
 
+// Explicit cancellation outranks a repeated older prediction. Later stated
+// values can reopen a detail, but small talk cannot revive cancelled evidence.
+export function withExplicitClears(state: GroundedState, messages: Message[]): GroundedState {
+  const next = { ...state };
+  for (let index = 0; index < messages.length; index++) {
+    const message = messages[index];
+    if (message.speaker !== 'customer') continue;
+    const text = cleanText(message.text);
+    const whole = /\b(?:cancel|forget|remove|clear)\s+(?:the\s+|my\s+|this\s+)?(?:whole\s+|entire\s+)?(?:booking|reservation)(?:\s+request)?\b/.test(text) && !/\b(?:instead|change|reschedule|move)\b/.test(text);
+    const time = /\b(?:forget|remove|clear|cancel)\b/.test(text) && /\btime\b/.test(text) && /\b(?:not decided|undecided|not sure|haven't decided|have not decided)\b/.test(text) && !/\b(?:instead|or|after|before|between)\b/.test(text);
+    const keys: FieldKey[] = whole ? [...FIELD_KEYS] : time ? ['time'] : [];
+    for (const key of keys) {
+      const candidate = state[key];
+      const laterValue = candidate.value && candidate.evidence.some((e) => messages.findIndex((m) => m.id === e.id) > index && containsValue(key, candidate.value!, e.quote, null));
+      if (laterValue) continue;
+      next[key] = { value: null, status: 'missing', constraint: null, evidence: [{ id: message.id, quote: message.text, kind: 'context' }] };
+    }
+  }
+  return next;
+}
+
 // Report only fixable inconsistencies. A repair is bounded to one model call;
 // valid uncertainty never becomes an instruction to manufacture an answer.
 export function validationFeedback(state: GroundedState, messages: Message[], reference: string | null): string[] {

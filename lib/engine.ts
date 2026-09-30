@@ -1,4 +1,4 @@
-import { reconcileGroundedState, validationFeedback } from './grounding';
+import { reconcileGroundedState, validationFeedback, withExplicitClears, type GroundedState } from './grounding';
 import { extractFullState, extractGroundedState, type ApiUsage } from './ai';
 import { clarificationFor, createEmptyBrief, FIELD_KEYS, type Brief, type Message } from './state';
 import { runRules } from './rules';
@@ -25,12 +25,12 @@ export async function analyzeConversation(messages: Message[], current: Brief, m
   messages = messages.filter((message) => !/\b(?:ignore (?:all |any )?(?:previous|prior|system) instructions|not a booking change)\b/i.test(message.text));
   if (!messages.some((message) => message.speaker === 'customer')) return { brief: current, clarification: clarificationFor(current), usage: null, appliedUpdates: 0 };
   const initial = await extractGroundedState(messages, referenceDate);
-  let state = initial.state; let usage = initial.usage; let warning: string | undefined;
+  let state: GroundedState = withExplicitClears(initial.state, messages); let usage = initial.usage; let warning: string | undefined;
   const issues = validationFeedback(state, messages, referenceDate);
   if (issues.length) {
     try {
       const repair = await extractGroundedState(messages, referenceDate, issues.join('\n'));
-      state = repair.state;
+      state = withExplicitClears(repair.state, messages);
       usage = { inputTokens: usage.inputTokens + repair.usage.inputTokens, outputTokens: usage.outputTokens + repair.usage.outputTokens, model: `${usage.model} + ${repair.usage.model}` };
     } catch {
       // The first response is still subject to every evidence check. A failed

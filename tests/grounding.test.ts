@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { isAcceptance, reconcileGroundedState, validationFeedback, type GroundedField, type GroundedState } from '../lib/grounding';
+import { isAcceptance, reconcileGroundedState, validationFeedback, withExplicitClears, type GroundedField, type GroundedState } from '../lib/grounding';
 import { applyManualEdit, approveBrief, createEmptyBrief, FIELD_KEYS, type Message } from '../lib/state';
 import { calendarDate, clockTime, relativeDate, validIsoDate } from '../lib/temporal';
 
@@ -32,6 +32,16 @@ describe('grounded conversation state', () => {
     expect(reconcileGroundedState(createEmptyBrief(), snapshot({ time: candidate }), messages, null).fields.time.value).toBe('8 pm');
     candidate.evidence[1].quote = 'No, do not book that'; messages[1].text = 'No, do not book that';
     expect(reconcileGroundedState(createEmptyBrief(), snapshot({ time: candidate }), messages, null).fields.time.value).toBeNull();
+  });
+  it('clears an explicitly cancelled detail even when the model repeats an older value', () => {
+    const messages: Message[] = [{ id: 'm1', speaker: 'customer', text: 'For four at 7 pm' }, { id: 'm2', speaker: 'customer', text: 'Forget the 7 pm time. I have not decided on a time yet.' }];
+    const state = snapshot({ time: field('7 pm', 'm1', '7 pm'), partySize: field('4', 'm1', 'four') });
+    const cleared = withExplicitClears(state, messages);
+    expect(cleared.time.status).toBe('missing');
+    expect(cleared.time.evidence[0].id).toBe('m2');
+    expect(cleared.partySize.value).toBe('4');
+    messages[1].text = 'Forget 7 pm, change the time to 8 pm instead.';
+    expect(withExplicitClears(state, messages).time.value).toBe('7 pm');
   });
   it('recovers an earlier agreed field after an unrelated latest message', () => {
     const messages: Message[] = [{ id: 'm1', speaker: 'customer', text: 'Four people on 9 October 2026' }, { id: 'm2', speaker: 'customer', text: 'Thanks' }];
