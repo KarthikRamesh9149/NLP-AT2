@@ -16,7 +16,7 @@ function exportBrief(brief: Brief, messages: Message[], format: 'text' | 'json')
   const content = format === 'json' ? JSON.stringify({ title: 'FormBridge booking brief', status: approved ? 'approved_by_staff' : 'draft_not_a_reservation', fields: brief.fields, messages, changes: brief.history, exportedAt: new Date().toISOString() }, null, 2)
     : [`FORMBRIDGE · BOOKING BRIEF`, approved ? 'Reviewed by staff' : 'Draft · review required', '', ...FIELD_KEYS.map((k) => `${fieldLabels[k]}: ${brief.fields[k].value ?? brief.fields[k].constraint ?? 'Not provided'}${brief.fields[k].status !== 'resolved' ? ' (needs confirmation)' : ''}`), '', 'This brief does not reserve a table.', '', 'CONVERSATION', ...messages.map((m) => `${m.speaker === 'customer' ? 'Customer' : 'Staff'}: ${m.text}`)].join('\n');
   const url = URL.createObjectURL(new Blob([content], { type: format === 'json' ? 'application/json' : 'text/plain;charset=utf-8' }));
-  const a = document.createElement('a'); a.href = url; a.download = `formbridge-booking-brief.${format === 'json' ? 'json' : 'txt'}`; a.click(); window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+  const a = document.createElement('a'); a.href = url; a.download = `formbridge-booking-brief.${format === 'json' ? 'json' : 'txt'}`; document.body.appendChild(a); a.click(); a.remove(); window.setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 
 export default function Workspace() {
@@ -62,8 +62,9 @@ export default function Workspace() {
     const timer = window.setTimeout(() => controller.abort(), 35_000);
     try {
       const response = await fetch('/api/analyze', { method: 'POST', headers: { 'Content-Type': 'application/json' }, signal: controller.signal, body: JSON.stringify({ messages: nextMessages, brief: current, mode: 'formbridge', referenceDate: date || null }) });
-      const result = await response.json();
-      if (!response.ok) throw new Error(result.error || 'This update could not be completed. Retry in a moment.');
+      const result = await response.json().catch(() => null);
+      if (!response.ok) throw new Error(response.status === 429 ? 'Too many updates in a short time. Your draft is kept. Please retry in a minute.' : typeof result?.error === 'string' ? result.error : 'This update could not be completed. Your draft is kept. Retry in a moment.');
+      if (!result) throw new Error('The update was incomplete. Your previous brief is kept. Please retry.');
       const parsed = briefSchema.safeParse(result.brief);
       if (!parsed.success) throw new Error('The update was incomplete. Your previous brief is kept. Please retry.');
       if (requestRef.current.id !== id) return;

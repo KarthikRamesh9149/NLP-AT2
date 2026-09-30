@@ -20,10 +20,10 @@ export async function analyzeConversation(messages: Message[], current: Brief, m
     }
     return { brief, clarification: clarificationFor(brief), usage, appliedUpdates: FIELD_KEYS.filter((field) => !!brief.fields[field].value).length };
   }
-  const latestCustomer = [...messages].reverse().find((message) => message.speaker === 'customer');
-  if (latestCustomer && /\b(?:ignore (?:all |any )?(?:previous|prior|system) instructions|not a booking change)\b/i.test(latestCustomer.text)) {
-    return { brief: current, clarification: clarificationFor(current), usage: null, appliedUpdates: 0 };
-  }
+  // Discard instruction attempts without discarding the real conversation
+  // surrounding them. This works for both pasted transcripts and live updates.
+  messages = messages.filter((message) => !/\b(?:ignore (?:all |any )?(?:previous|prior|system) instructions|not a booking change)\b/i.test(message.text));
+  if (!messages.some((message) => message.speaker === 'customer')) return { brief: current, clarification: clarificationFor(current), usage: null, appliedUpdates: 0 };
   const initial = await extractGroundedState(messages, referenceDate);
   let state = initial.state; let usage = initial.usage; let warning: string | undefined;
   const issues = validationFeedback(state, messages, referenceDate);

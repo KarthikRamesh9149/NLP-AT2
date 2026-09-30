@@ -6,6 +6,9 @@ interface ApiResult { brief: Brief; usage?: { inputTokens: number; outputTokens:
 const endpoint = process.env.FORMBRIDGE_URL ?? 'http://localhost:3000';
 const tag = process.argv.find((x) => x.startsWith('--tag='))?.slice(6) ?? new Date().toISOString().replace(/[:.]/g, '-');
 if (!/^[a-zA-Z0-9_-]+$/.test(tag)) throw new Error('Invalid run tag.');
+const concurrency = Number(process.argv.find((x) => x.startsWith('--concurrency='))?.slice(14) ?? 3);
+const pace = Number(process.argv.find((x) => x.startsWith('--pace='))?.slice(7) ?? 0);
+if (!Number.isInteger(concurrency) || concurrency < 1 || concurrency > 3 || !Number.isFinite(pace) || pace < 0 || pace > 5000) throw new Error('Use concurrency 1–3 and pace 0–5000 ms.');
 const selectedIds = new Set(process.argv.slice(2).filter((x) => !x.startsWith('--')));
 const chosen = selectedIds.size ? scenarios.filter((scenario) => selectedIds.has(scenario.id)) : scenarios;
 
@@ -55,6 +58,7 @@ async function checkScenario(scenario: Scenario) {
   for (const message of scenario.messages) {
     visible.push(message);
     if (message.speaker === 'staff') continue;
+    if (pace) await new Promise((resolve) => setTimeout(resolve, pace));
     const response = await fetch(`${endpoint}/api/analyze`, {
       method: 'POST', headers: { 'Content-Type': 'application/json', ...(process.env.FORMBRIDGE_BYPASS_SECRET ? { 'x-vercel-protection-bypass': process.env.FORMBRIDGE_BYPASS_SECRET } : {}) },
       body: JSON.stringify({ mode: 'formbridge', messages: visible, brief, referenceDate: scenario.referenceDate ?? null }),
@@ -83,8 +87,8 @@ async function main() {
   if (!chosen.length) throw new Error('No matching scenario IDs.');
   const results: Awaited<ReturnType<typeof checkScenario>>[] = [];
   // A few concurrent conversations keep the run practical without flooding the API.
-  for (let i = 0; i < chosen.length; i += 3) {
-    const batch = await Promise.all(chosen.slice(i, i + 3).map(checkScenario));
+  for (let i = 0; i < chosen.length; i += concurrency) {
+    const batch = await Promise.all(chosen.slice(i, i + concurrency).map(checkScenario));
     for (const result of batch) {
       results.push(result);
       process.stdout.write(`${result.passed ? 'PASS' : 'FAIL'} ${result.id} ${result.title}${result.errors.length ? ` — ${result.errors.join('; ')}` : ''}\n`);
