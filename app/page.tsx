@@ -204,7 +204,6 @@ export default function Workspace() {
         <div className="side-divider" />
         <div className="nav-section-label">WORKSPACE</div>
         <a className="nav-item active" href="/"><MessageSquareText size={18} strokeWidth={1.8} /> Booking desk <span className="nav-dot" /></a>
-        <a className="nav-item" href="/evaluation"><History size={18} strokeWidth={1.8} /> Evaluation <ChevronRight size={15} className="nav-chevron" /></a>
         <div className="sidebar-spacer" />
         <div className="sidebar-note">
           <span className="sidebar-note-icon"><ShieldCheck size={18} /></span>
@@ -217,7 +216,7 @@ export default function Workspace() {
       <main className="main-area">
         <header className="topbar">
           <div className="topbar-breadcrumb"><span>Workspace</span><ChevronRight size={14} /><strong>Booking desk</strong></div>
-          <div className="topbar-right"><a className="topbar-eval" href="/evaluation">Evaluation <ArrowRight size={13} /></a><span className="demo-badge"><span /> DEMO ENVIRONMENT</span><span className="topbar-avatar" aria-label="Staff workspace">FB</span></div>
+          <div className="topbar-right"><span className="demo-badge"><span /> DEMO ENVIRONMENT</span><span className="topbar-avatar" aria-label="Staff workspace">FB</span></div>
         </header>
 
         <div className="content-wrap">

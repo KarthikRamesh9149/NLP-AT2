@@ -24,7 +24,6 @@ Open <http://localhost:3000>. The app stores the current draft in browser tab se
 2. Add a staff message: `Would 8:30 pm suit you?` The brief should remain unresolved.
 3. Add a customer message: `Yes, that works for us.` The time should resolve to 8:30 pm and link to both messages.
 4. Click a field to inspect evidence, edit a field as staff, approve the five-field brief, and download its JSON.
-5. Visit `/evaluation` to compare three approaches on the same synthetic conversation.
 
 The five fields are restaurant, city, date, exact time, and party size. The state manager applies model-proposed updates only when they cite the latest customer turn, refer to known message IDs, and pass field checks. A relative weekday without a calendar date remains a clarification. Staff edits cannot be silently overwritten by a later model proposal. Evidence checks verify structure and recency; they do not prove every sentence semantically supports the value. Human review remains necessary.
 
@@ -55,7 +54,6 @@ Generated result files live in `evaluation/results/`. Each records its scope and
 ## Technical layout
 
 - `app/page.tsx`: review workspace and browser-only draft session.
-- `app/evaluation/page.tsx`: interactive comparison.
 - `app/api/analyze/route.ts`: validated server endpoint.
 - `lib/ai.ts`: OpenAI structured extraction, with `store: false`.
 - `lib/rules.ts`: deterministic baseline.
