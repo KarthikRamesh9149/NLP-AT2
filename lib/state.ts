@@ -1,3 +1,4 @@
+import { calendarDate, clockTime } from './temporal';
 export const FIELD_KEYS = ['restaurantName', 'city', 'date', 'time', 'partySize'] as const;
 export type FieldKey = (typeof FIELD_KEYS)[number];
 export type FieldStatus = 'missing' | 'resolved' | 'needs_clarification';
@@ -102,12 +103,24 @@ export function applyProposals(brief: Brief, proposals: Proposal[], messages: Me
 }
 
 export function applyManualEdit(brief: Brief, field: FieldKey, value: string): Brief {
-  if (!validValue(field, value)) throw new Error(`Enter a valid ${field} value.`);
-  const cleaned = value.trim();
+  let cleaned = value.trim();
+  if (!validValue(field, cleaned)) throw new Error(field === 'partySize' ? 'Enter a number of guests between 1 and 30.' : 'Enter a detail of up to 120 characters.');
+  let status: FieldStatus = 'resolved'; let constraint: string | null = null;
+  if (field === 'date') {
+    const date = calendarDate(cleaned);
+    if (!date) throw new Error('Enter a valid calendar date, such as 9 October 2026.');
+    cleaned = date.value;
+    if (!date.year) { status = 'needs_clarification'; constraint = 'Year not specified'; }
+  }
+  if (field === 'time') {
+    const time = clockTime(cleaned);
+    if (!time) throw new Error('Enter an exact time with am or pm, such as 7:30 pm.');
+    cleaned = time;
+  }
   const revision = brief.revision + 1;
   return {
     ...brief,
-    fields: { ...brief.fields, [field]: { value: cleaned, status: 'resolved', constraint: null, evidenceIds: [], source: 'staff', note: 'Reviewed by staff' } },
+    fields: { ...brief.fields, [field]: { value: cleaned, status, constraint, evidenceIds: [], source: 'staff', note: 'Reviewed by staff' } },
     revision,
     approvedRevision: null,
     history: [...brief.history, { field, previousValue: brief.fields[field].value, nextValue: cleaned, operation: 'manual', evidenceIds: [], revision }],
@@ -129,6 +142,8 @@ export function clarificationFor(brief: Brief): string | null {
   };
   const field = FIELD_KEYS.find((key) => brief.fields[key].status === 'needs_clarification') ?? FIELD_KEYS.find((key) => brief.fields[key].status === 'missing');
   if (!field) return null;
+  if (field === 'date' && brief.fields.date.value && brief.fields.date.constraint === 'Year not specified') return `Which year do you mean for ${brief.fields.date.value}?`;
+  if (field === 'date' && brief.fields.date.constraint) return `What exact date do you mean by ${brief.fields.date.constraint}?`;
   if (field === 'time' && brief.fields.time.constraint) return `What exact time would you prefer (${brief.fields.time.constraint})?`;
   return prompts[field];
 }

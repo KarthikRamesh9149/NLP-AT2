@@ -29,12 +29,12 @@ https://github.com/user-attachments/assets/3d43b8a2-d011-4e47-aeac-9c11354216b4
 ## Use your own enquiry
 
 1. [Open FormBridge](https://formbridge-nlp-at2.vercel.app/). A new visit starts with an empty brief.
-2. Enter a customer message about a restaurant booking. Add staff replies and further customer messages as the conversation develops.
+2. Paste your conversation, or enter a customer message about a restaurant booking. Add staff replies and further customer messages as the conversation develops.
 3. Review the restaurant, city, date, time, and party size in the booking brief. Select a detail to see the messages behind it.
 4. Ask the suggested follow-up question when a detail is missing or uncertain. You can also edit a detail yourself.
 5. Approve and download the brief when it is ready to hand off.
 
-Select **Load example** if you want to explore a prepared conversation first. You can start over at any time with **New brief**.
+Select **Try an example** if you want to explore a prepared conversation first. You can start over at any time with **New brief**.
 
 **Approving a brief does not make a reservation.** FormBridge prepares information for a person to review; it does not check availability or contact a restaurant.
 

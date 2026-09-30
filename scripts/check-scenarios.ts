@@ -4,7 +4,9 @@ import { createEmptyBrief, type Brief, type FieldKey, type Message } from '../li
 
 interface ApiResult { brief: Brief; usage?: { inputTokens: number; outputTokens: number; model: string } | null }
 const endpoint = process.env.FORMBRIDGE_URL ?? 'http://localhost:3000';
-const selectedIds = new Set(process.argv.slice(2));
+const tag = process.argv.find((x) => x.startsWith('--tag='))?.slice(6) ?? new Date().toISOString().replace(/[:.]/g, '-');
+if (!/^[a-zA-Z0-9_-]+$/.test(tag)) throw new Error('Invalid run tag.');
+const selectedIds = new Set(process.argv.slice(2).filter((x) => !x.startsWith('--')));
 const chosen = selectedIds.size ? scenarios.filter((scenario) => selectedIds.has(scenario.id)) : scenarios;
 
 function normalise(value: string | null | undefined, field: FieldKey): string {
@@ -55,7 +57,7 @@ async function checkScenario(scenario: Scenario) {
     if (message.speaker === 'staff') continue;
     const response = await fetch(`${endpoint}/api/analyze`, {
       method: 'POST', headers: { 'Content-Type': 'application/json', ...(process.env.FORMBRIDGE_BYPASS_SECRET ? { 'x-vercel-protection-bypass': process.env.FORMBRIDGE_BYPASS_SECRET } : {}) },
-      body: JSON.stringify({ mode: 'formbridge', messages: visible, brief, referenceDate: null }),
+      body: JSON.stringify({ mode: 'formbridge', messages: visible, brief, referenceDate: scenario.referenceDate ?? null }),
     });
     const result = (await response.json()) as ApiResult & { error?: string };
     if (!response.ok) { errors.push(`HTTP ${response.status}: ${result.error ?? 'unknown error'}`); break; }
@@ -96,8 +98,8 @@ async function main() {
     results,
   };
   await mkdir('evaluation/results', { recursive: true });
-  const path = new URL(endpoint).hostname === 'localhost' ? 'evaluation/results/live-scenarios.json' : 'evaluation/results/live-scenarios-deployed.json';
-  await writeFile(path, JSON.stringify(report, null, 2) + '\n');
+  const path = new URL(endpoint).hostname === 'localhost' ? `evaluation/results/live-scenarios-${tag}.json` : `evaluation/results/live-scenarios-deployed-${tag}.json`;
+  await writeFile(path, JSON.stringify(report, null, 2) + '\n', { flag: 'wx' });
   process.stdout.write(`\n${report.passed}/${report.total} passed. Saved ${path}\n`);
   if (report.passed !== report.total) process.exitCode = 1;
 }

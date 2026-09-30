@@ -1,0 +1,9 @@
+# Grounded state v5 verification
+
+V4 was tested with its source frozen: original sample 95/100 strict fields, 17/20 complete; its new validation sample 89/100, 13/20 complete. Both strict and canonical FormBridge scores agreed. These runs remain unchanged.
+
+The subsequent case review makes both samples development/regression evidence for V5. The errors showed missing acceptance variants, venue names with appended city phrases, and a missed unchanged date/time after a revised staff summary. V5 adds a semantic role (`value`, `acceptance`, `context`) to each quoted source, retains deterministic source/ordering/value checks and rejects refusal quotes incorrectly labelled acceptance. The venue prompt separates actual name tokens from a location introduced by 'in'. A single bounded recheck examines unresolved date/time against earlier confirmation summaries. No restaurant names, dialogue IDs, gold values or dataset defaults are added to extraction.
+
+V5 verification uses the original strict scorer plus the separately documented canonical scorer. Original 20 and V4's former validation 20 are regression sets; do not describe them as unseen V5 evidence. A new 20-dialogue sample from the official development split excludes all 10 development dialogues previously inspected in this session and uses seed `formbridge-unseen-development-2026-10-01-v5`. This is a held-out development sample, not the official SGD test benchmark. The selection manifest is written before predictions. Source fingerprints and failed-attempt denominators remain required.
+
+The API uses Luna for primary extraction and Sol for one validation-directed recheck. The application still requires human review and fully resolved fields for approval; value agreement with a partial date label is not proof of a ready reservation. Thirty constructed scenarios and browser review are independent behavioural checks, not a user study.

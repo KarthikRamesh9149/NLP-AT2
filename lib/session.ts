@@ -1,16 +1,21 @@
 import { demoBrief, demoMessages } from './demo';
+import { briefSchema, messageSchema } from './contracts';
+import { validIsoDate } from './temporal';
 import type { Brief, Message } from './state';
 
 export const SESSION_KEY = 'formbridge-session-v2';
 export const LEGACY_SESSION_KEY = 'formbridge-session';
 
-export interface SavedSession { messages: Message[]; brief: Brief }
+export interface SavedSession { messages: Message[]; brief: Brief; referenceDate?: string; pendingAnalysis?: boolean }
 
 function parseSession(raw: string | null): SavedSession | null {
   if (!raw) return null;
   try {
     const session = JSON.parse(raw) as SavedSession;
-    return Array.isArray(session.messages) && session.brief?.fields?.time ? session : null;
+    if (!Array.isArray(session.messages) || session.messages.length > 30 || session.messages.some((m) => !messageSchema.safeParse(m).success) || new Set(session.messages.map((m) => m.id)).size !== session.messages.length || !briefSchema.safeParse(session.brief).success) return null;
+    if (session.referenceDate !== undefined && !validIsoDate(session.referenceDate)) return null;
+    if (session.pendingAnalysis !== undefined && typeof session.pendingAnalysis !== 'boolean') return null;
+    return session;
   } catch {
     return null;
   }

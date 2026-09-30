@@ -6,6 +6,7 @@ export interface Scenario {
   title: string;
   messages: Message[];
   expected: Partial<Record<FieldKey, ExpectedField>>;
+  referenceDate?: string;
   category: 'complete' | 'correction' | 'uncertainty' | 'staff' | 'missing' | 'safety';
 }
 
@@ -95,7 +96,7 @@ export const scenarios: Scenario[] = [
   {
     id: 'S16', title: 'Relative date without reference stays uncertain', category: 'uncertainty',
     messages: [c('m1', 'A table for three on Friday at 7 pm.')],
-    expected: { date: uncertain('Friday'), partySize: resolved('3'), time: resolved('7 pm') },
+    expected: { date: { ...uncertain('Friday'), value: 'Friday' }, partySize: resolved('3'), time: resolved('7 pm') },
   },
   {
     id: 'S17', title: 'Written party size', category: 'complete',
@@ -117,4 +118,15 @@ export const scenarios: Scenario[] = [
     messages: [c('m1', 'At Ember House in Sydney on 9 October 2026 at 7 pm.'), s('m2', 'How many guests?'), c('m3', 'Five people, please.')],
     expected: { partySize: resolved('5'), restaurantName: resolved('Ember House'), time: resolved('7 pm') },
   },
+
+  { id: 'S21', title: 'Acceptance with a simultaneous guest correction', category: 'staff', messages: [c('m1', 'Four at Juniper in Sydney on 9 October 2026, after 7 pm.'), s('m2', 'Would 7:30 pm suit you?'), c('m3', 'Perfect, and make that five people.')], expected: { time: resolved('7:30 pm'), partySize: resolved('5') } },
+  { id: 'S22', title: 'Year supplied in a separate answer', category: 'missing', messages: [c('m1', 'A table for four on March 3rd at 7 pm.'), s('m2', 'Which year do you mean?'), c('m3', '2027, please.')], expected: { date: resolved('3 March 2027'), partySize: resolved('4') } },
+  { id: 'S23', title: 'Day correction retains the agreed month and year', category: 'correction', messages: [c('m1', 'A table for four on 9 October 2026 at 7 pm.'), c('m2', 'Actually, the 10th. Everything else stays the same.')], expected: { date: resolved('10 October 2026'), partySize: resolved('4'), time: resolved('7 pm') } },
+  { id: 'S24', title: 'Missing year stays visible and requires clarification', category: 'uncertainty', messages: [c('m1', 'A table on 3rd of March at 7 pm for four.')], expected: { date: { value: 'March 3rd', status: 'needs_clarification', constraint: 'Year not specified' } } },
+  { id: 'S25', title: 'Unaccepted staff default is not silently filled', category: 'staff', messages: [c('m1', 'Juniper in Sydney on 9 October 2026 at 7 pm.'), s('m2', 'Shall I make it for two guests?'), c('m3', 'What kind of food do they serve?')], expected: { partySize: missing, restaurantName: resolved('Juniper') } },
+  { id: 'S26', title: 'Rejected replacement preserves the original request', category: 'staff', messages: [c('m1', 'A table for four on 9 October 2026 at 7 pm.'), s('m2', 'Would 8 pm on 10 October 2026 work instead?'), c('m3', 'No, please keep my original date and time.')], expected: { date: resolved('9 October 2026'), time: resolved('7 pm'), partySize: resolved('4') } },
+  { id: 'S27', title: 'Noon is midday, not midnight', category: 'complete', messages: [c('m1', 'A table for four at noon on 9 October 2026.')], expected: { time: resolved('12 pm') } },
+  { id: 'S28', title: 'Tomorrow resolves using the conversation date', category: 'complete', referenceDate: '2026-12-31', messages: [c('m1', 'Four people tomorrow at 7 pm.')], expected: { date: resolved('1 January 2027'), partySize: resolved('4') } },
+  { id: 'S29', title: 'Full booking cancellation clears the brief', category: 'correction', messages: [c('m1', 'A table for four at Juniper in Sydney on 9 October 2026 at 7 pm.'), c('m2', 'Please cancel the whole booking request. Remove all its details.')], expected: { restaurantName: missing, city: missing, date: missing, time: missing, partySize: missing } },
+  { id: 'S30', title: 'Contact details do not replace booking numbers', category: 'safety', messages: [c('m1', 'A table for four at Juniper in Sydney on 9 October 2026 at 7 pm.'), c('m2', 'My phone number is 0412 345 678 and my address is 8 Smith Street.')], expected: { partySize: resolved('4'), time: resolved('7 pm'), city: resolved('Sydney') } },
 ];

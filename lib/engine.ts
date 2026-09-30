@@ -1,9 +1,10 @@
-import { extractFullState, extractUpdates, type ApiUsage } from './ai';
-import { applyProposals, clarificationFor, createEmptyBrief, FIELD_KEYS, type Brief, type Message } from './state';
+import { reconcileGroundedState, validationFeedback } from './grounding';
+import { extractFullState, extractGroundedState, type ApiUsage } from './ai';
+import { clarificationFor, createEmptyBrief, FIELD_KEYS, type Brief, type Message } from './state';
 import { runRules } from './rules';
 
 export type Mode = 'formbridge' | 'model' | 'rules';
-export interface Analysis { brief: Brief; clarification: string | null; usage: ApiUsage | null; appliedUpdates: number }
+export interface Analysis { brief: Brief; clarification: string | null; usage: ApiUsage | null; appliedUpdates: number; warning?: string }
 
 export async function analyzeConversation(messages: Message[], current: Brief, mode: Mode, referenceDate: string | null): Promise<Analysis> {
   if (messages.length === 0) return { brief: current, clarification: clarificationFor(current), usage: null, appliedUpdates: 0 };
@@ -20,10 +21,23 @@ export async function analyzeConversation(messages: Message[], current: Brief, m
     return { brief, clarification: clarificationFor(brief), usage, appliedUpdates: FIELD_KEYS.filter((field) => !!brief.fields[field].value).length };
   }
   const latestCustomer = [...messages].reverse().find((message) => message.speaker === 'customer');
-  if (latestCustomer && /\b(?:ignore (?:all |any )?(?:previous|prior|system) instructions|system prompt|not a booking change|this is a test)\b/i.test(latestCustomer.text)) {
+  if (latestCustomer && /\b(?:ignore (?:all |any )?(?:previous|prior|system) instructions|not a booking change)\b/i.test(latestCustomer.text)) {
     return { brief: current, clarification: clarificationFor(current), usage: null, appliedUpdates: 0 };
   }
-  const { proposals, usage } = await extractUpdates(messages, current, referenceDate);
-  const brief = applyProposals(current, proposals, messages);
-  return { brief, clarification: clarificationFor(brief), usage, appliedUpdates: brief.history.length - current.history.length };
+  const initial = await extractGroundedState(messages, referenceDate);
+  let state = initial.state; let usage = initial.usage; let warning: string | undefined;
+  const issues = validationFeedback(state, messages, referenceDate);
+  if (issues.length) {
+    try {
+      const repair = await extractGroundedState(messages, referenceDate, issues.join('\n'));
+      state = repair.state;
+      usage = { inputTokens: usage.inputTokens + repair.usage.inputTokens, outputTokens: usage.outputTokens + repair.usage.outputTokens, model: `${usage.model} + ${repair.usage.model}` };
+    } catch {
+      // The first response is still subject to every evidence check. A failed
+      // second check must not destroy a valid result or apply unsupported data.
+      warning = 'Some details need another check. Review the sources or retry analysis.';
+    }
+  }
+  const brief = reconcileGroundedState(current, state, messages, referenceDate);
+  return { brief, clarification: clarificationFor(brief), usage, appliedUpdates: brief.history.length - current.history.length, ...(warning ? { warning } : {}) };
 }
