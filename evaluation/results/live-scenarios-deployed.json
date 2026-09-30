@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-09-29T07:11:52.556Z",
+  "generatedAt": "2026-09-30T07:40:53.428Z",
   "endpoint": "https://formbridge-nlp-at2.vercel.app",
   "model": "gpt-4.1-mini-2025-04-14",
   "type": "team-authored synthetic regression scenarios; not an SGD benchmark",
   "total": 20,
   "passed": 20,
   "usage": {
-    "inputTokens": 16578,
-    "outputTokens": 3400
+    "inputTokens": 16559,
+    "outputTokens": 3357
   },
   "results": [
     {
@@ -35,7 +35,7 @@
             "m1"
           ],
           "source": "model",
-          "note": "Customer requested Sydney."
+          "note": "Customer specified city as Sydney."
         },
         "date": {
           "value": "2026-10-09",
@@ -45,7 +45,7 @@
             "m1"
           ],
           "source": "model",
-          "note": "Customer requested 9 October 2026."
+          "note": "Customer specified 9 October 2026."
         },
         "time": {
           "value": "19:00",
@@ -55,7 +55,7 @@
             "m1"
           ],
           "source": "model",
-          "note": "Customer requested 7 pm."
+          "note": "Customer specified 7 pm."
         },
         "partySize": {
           "value": "4",
@@ -65,12 +65,12 @@
             "m1"
           ],
           "source": "model",
-          "note": "Customer requested four people."
+          "note": "Customer specified four people."
         }
       },
       "usage": {
         "inputTokens": 518,
-        "outputTokens": 181,
+        "outputTokens": 183,
         "model": "gpt-4.1-mini-2025-04-14"
       }
     },
@@ -89,7 +89,7 @@
             "m1"
           ],
           "source": "model",
-          "note": "Customer stated restaurant name."
+          "note": "Customer stated restaurant name explicitly."
         },
         "city": {
           "value": "Sydney",
@@ -99,7 +99,7 @@
             "m1"
           ],
           "source": "model",
-          "note": "Customer stated city."
+          "note": "Customer stated city explicitly."
         },
         "date": {
           "value": "2026-10-09",
@@ -109,7 +109,7 @@
             "m1"
           ],
           "source": "model",
-          "note": "Customer stated date."
+          "note": "Customer stated date explicitly."
         },
         "time": {
           "value": "19:00",
@@ -119,7 +119,7 @@
             "m1"
           ],
           "source": "model",
-          "note": "Customer stated time."
+          "note": "Customer stated time explicitly."
         },
         "partySize": {
           "value": "5",
@@ -129,12 +129,12 @@
             "m2"
           ],
           "source": "model",
-          "note": "Customer changed party size from four to five."
+          "note": "Customer updated party size from four to five."
         }
       },
       "usage": {
-        "inputTokens": 1090,
-        "outputTokens": 217,
+        "inputTokens": 1095,
+        "outputTokens": 222,
         "model": "gpt-4.1-mini-2025-04-14"
       }
     },
@@ -153,7 +153,7 @@
             "m1"
           ],
           "source": "model",
-          "note": "Customer specified restaurant name."
+          "note": "Customer specifies Ember House."
         },
         "city": {
           "value": "Sydney",
@@ -163,7 +163,7 @@
             "m1"
           ],
           "source": "model",
-          "note": "Customer specified city."
+          "note": "Customer specifies Sydney."
         },
         "date": {
           "value": "2026-10-09",
@@ -173,7 +173,7 @@
             "m1"
           ],
           "source": "model",
-          "note": "Customer specified date."
+          "note": "Customer specifies 9 October 2026."
         },
         "time": {
           "value": "20:30",
@@ -183,7 +183,7 @@
             "m2"
           ],
           "source": "model",
-          "note": "Customer changed time from 7 pm to 8:30 pm."
+          "note": "Customer changes time from 7 pm to 8:30 pm."
         },
         "partySize": {
           "value": "2",
@@ -193,12 +193,12 @@
             "m1"
           ],
           "source": "model",
-          "note": "Customer specified party size."
+          "note": "Customer specifies two people."
         }
       },
       "usage": {
-        "inputTokens": 1093,
-        "outputTokens": 223,
+        "inputTokens": 1100,
+        "outputTokens": 230,
         "model": "gpt-4.1-mini-2025-04-14"
       }
     },
@@ -241,7 +241,7 @@
             "m2"
           ],
           "source": "model",
-          "note": "Customer changed time preference from 7 pm to after 8 pm."
+          "note": "Customer changed time from 7 pm to sometime after 8 pm."
         },
         "partySize": {
           "value": "4",
@@ -251,12 +251,12 @@
             "m1"
           ],
           "source": "model",
-          "note": "Customer stated party size as four."
+          "note": "Customer requested table for four."
         }
       },
       "usage": {
-        "inputTokens": 1047,
-        "outputTokens": 131,
+        "inputTokens": 1048,
+        "outputTokens": 132,
         "model": "gpt-4.1-mini-2025-04-14"
       }
     },
@@ -299,7 +299,7 @@
             "m1"
           ],
           "source": "model",
-          "note": "Customer requests time before 9 pm, exact time unspecified."
+          "note": "Customer wants a time before 9 pm, exact time not specified."
         },
         "partySize": {
           "value": "3",
@@ -309,12 +309,12 @@
             "m1"
           ],
           "source": "model",
-          "note": "Customer requests table for three people."
+          "note": "Customer requests a table for three people."
         }
       },
       "usage": {
         "inputTokens": 506,
-        "outputTokens": 87,
+        "outputTokens": 90,
         "model": "gpt-4.1-mini-2025-04-14"
       }
     },
@@ -333,7 +333,7 @@
             "m1"
           ],
           "source": "model",
-          "note": "Customer provided restaurant name."
+          "note": "Set restaurant name from customer's statement."
         },
         "city": {
           "value": "Sydney",
@@ -343,7 +343,7 @@
             "m1"
           ],
           "source": "model",
-          "note": "Customer provided city."
+          "note": "Set city from customer's statement."
         },
         "date": {
           "value": "2026-10-09",
@@ -353,17 +353,17 @@
             "m1"
           ],
           "source": "model",
-          "note": "Customer provided date."
+          "note": "Set date from customer's statement."
         },
         "time": {
           "value": null,
           "status": "needs_clarification",
-          "constraint": "7 pm or 8 pm",
+          "constraint": "19:00 or 20:00",
           "evidenceIds": [
             "m1"
           ],
           "source": "model",
-          "note": "Customer provided two possible times."
+          "note": "Customer provided two possible times 7 pm or 8 pm."
         },
         "partySize": {
           "value": "2",
@@ -373,12 +373,12 @@
             "m1"
           ],
           "source": "model",
-          "note": "Customer provided party size."
+          "note": "Set party size from customer's statement."
         }
       },
       "usage": {
         "inputTokens": 519,
-        "outputTokens": 183,
+        "outputTokens": 200,
         "model": "gpt-4.1-mini-2025-04-14"
       }
     },
@@ -421,7 +421,7 @@
             "m1"
           ],
           "source": "model",
-          "note": "Customer requested a table after 8 pm; time range constraint added."
+          "note": "Customer requested time after 8 pm, needs clarification for exact time."
         },
         "partySize": {
           "value": "2",
@@ -431,12 +431,12 @@
             "m1"
           ],
           "source": "model",
-          "note": "Customer stated party size as two people."
+          "note": "Customer requested table for two."
         }
       },
       "usage": {
         "inputTokens": 504,
-        "outputTokens": 90,
+        "outputTokens": 88,
         "model": "gpt-4.1-mini-2025-04-14"
       }
     },
@@ -480,7 +480,7 @@
             "m3"
           ],
           "source": "model",
-          "note": "Customer accepted staff's proposed time of 8:30 pm."
+          "note": "Staff suggested 8:30 pm and customer accepted."
         },
         "partySize": {
           "value": "2",
@@ -494,7 +494,7 @@
         }
       },
       "usage": {
-        "inputTokens": 1077,
+        "inputTokens": 1079,
         "outputTokens": 139,
         "model": "gpt-4.1-mini-2025-04-14"
       }
@@ -539,7 +539,7 @@
             "m3"
           ],
           "source": "model",
-          "note": "Customer rejects proposed 8:30 pm and requests to keep time open after 8 pm."
+          "note": "Customer rejects 8:30 pm suggestion, insists on time after 8 pm."
         },
         "partySize": {
           "value": "2",
@@ -549,12 +549,12 @@
             "m1"
           ],
           "source": "model",
-          "note": "Customer specifies party size as two people."
+          "note": "Customer requests a table for two."
         }
       },
       "usage": {
-        "inputTokens": 1094,
-        "outputTokens": 154,
+        "inputTokens": 1089,
+        "outputTokens": 147,
         "model": "gpt-4.1-mini-2025-04-14"
       }
     },
@@ -573,7 +573,7 @@
             "m1"
           ],
           "source": "model",
-          "note": "Customer specified restaurant name."
+          "note": "Customer specified Ember House"
         },
         "city": {
           "value": "Melbourne",
@@ -583,7 +583,7 @@
             "m2"
           ],
           "source": "model",
-          "note": "Customer corrected city from Sydney to Melbourne in message m2."
+          "note": "Customer corrected city from Sydney to Melbourne"
         },
         "date": {
           "value": "2026-10-09",
@@ -593,7 +593,7 @@
             "m1"
           ],
           "source": "model",
-          "note": "Customer specified date."
+          "note": "Customer specified 9 October 2026"
         },
         "time": {
           "value": "19:00",
@@ -603,7 +603,7 @@
             "m1"
           ],
           "source": "model",
-          "note": "Customer specified time."
+          "note": "Customer specified 7 pm"
         },
         "partySize": {
           "value": "4",
@@ -613,12 +613,12 @@
             "m1"
           ],
           "source": "model",
-          "note": "Customer specified party size."
+          "note": "Customer specified party size of four"
         }
       },
       "usage": {
-        "inputTokens": 1090,
-        "outputTokens": 220,
+        "inputTokens": 1098,
+        "outputTokens": 219,
         "model": "gpt-4.1-mini-2025-04-14"
       }
     },
@@ -634,7 +634,6 @@
           "status": "resolved",
           "constraint": null,
           "evidenceIds": [
-            "m1",
             "m2"
           ],
           "source": "model",
@@ -648,7 +647,7 @@
             "m1"
           ],
           "source": "model",
-          "note": "Customer requested Sydney."
+          "note": "Customer specified Sydney."
         },
         "date": {
           "value": "2026-10-09",
@@ -658,7 +657,7 @@
             "m1"
           ],
           "source": "model",
-          "note": "Customer requested date 9 October 2026."
+          "note": "Customer specified 9 October 2026."
         },
         "time": {
           "value": "19:00",
@@ -668,7 +667,7 @@
             "m1"
           ],
           "source": "model",
-          "note": "Customer requested time 7 pm."
+          "note": "Customer specified 7 pm."
         },
         "partySize": {
           "value": "4",
@@ -678,80 +677,18 @@
             "m1"
           ],
           "source": "model",
-          "note": "Customer requested party size 4."
+          "note": "Customer specified party size 4."
         }
       },
       "usage": {
-        "inputTokens": 1103,
-        "outputTokens": 234,
+        "inputTokens": 1101,
+        "outputTokens": 229,
         "model": "gpt-4.1-mini-2025-04-14"
       }
     },
     {
       "id": "S12",
       "title": "Party size missing",
-      "category": "missing",
-      "passed": true,
-      "errors": [],
-      "fields": {
-        "restaurantName": {
-          "value": "Ember House",
-          "status": "resolved",
-          "constraint": null,
-          "evidenceIds": [
-            "m1"
-          ],
-          "source": "model",
-          "note": "Customer stated the restaurant name."
-        },
-        "city": {
-          "value": "Sydney",
-          "status": "resolved",
-          "constraint": null,
-          "evidenceIds": [
-            "m1"
-          ],
-          "source": "model",
-          "note": "Customer stated the city."
-        },
-        "date": {
-          "value": "2026-10-09",
-          "status": "resolved",
-          "constraint": null,
-          "evidenceIds": [
-            "m1"
-          ],
-          "source": "model",
-          "note": "Customer stated the date."
-        },
-        "time": {
-          "value": "19:00",
-          "status": "resolved",
-          "constraint": null,
-          "evidenceIds": [
-            "m1"
-          ],
-          "source": "model",
-          "note": "Customer stated the time."
-        },
-        "partySize": {
-          "value": null,
-          "status": "missing",
-          "constraint": null,
-          "evidenceIds": [],
-          "source": null,
-          "note": ""
-        }
-      },
-      "usage": {
-        "inputTokens": 516,
-        "outputTokens": 145,
-        "model": "gpt-4.1-mini-2025-04-14"
-      }
-    },
-    {
-      "id": "S13",
-      "title": "Date missing",
       "category": "missing",
       "passed": true,
       "errors": [],
@@ -774,7 +711,69 @@
             "m1"
           ],
           "source": "model",
-          "note": "Customer requested Sydney."
+          "note": "Customer specified Sydney."
+        },
+        "date": {
+          "value": "2026-10-09",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer specified 9 October 2026."
+        },
+        "time": {
+          "value": "19:00",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer requested 7 pm."
+        },
+        "partySize": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        }
+      },
+      "usage": {
+        "inputTokens": 516,
+        "outputTokens": 148,
+        "model": "gpt-4.1-mini-2025-04-14"
+      }
+    },
+    {
+      "id": "S13",
+      "title": "Date missing",
+      "category": "missing",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": "Ember House",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer specified Ember House."
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Customer specified Sydney."
         },
         "date": {
           "value": null,
@@ -826,7 +825,7 @@
             "m1"
           ],
           "source": "model",
-          "note": "Customer specified restaurant in message m1."
+          "note": "Customer explicitly stated Ember House."
         },
         "city": {
           "value": "Sydney",
@@ -836,7 +835,7 @@
             "m1"
           ],
           "source": "model",
-          "note": "Customer specified city in message m1."
+          "note": "Customer explicitly stated Sydney."
         },
         "date": {
           "value": "2026-10-09",
@@ -846,7 +845,7 @@
             "m1"
           ],
           "source": "model",
-          "note": "Customer specified date in message m1."
+          "note": "Customer explicitly stated 9 October 2026."
         },
         "time": {
           "value": "19:00",
@@ -856,7 +855,7 @@
             "m1"
           ],
           "source": "model",
-          "note": "Customer specified time in message m1."
+          "note": "Customer explicitly stated 7 pm."
         },
         "partySize": {
           "value": "4",
@@ -866,12 +865,12 @@
             "m1"
           ],
           "source": "model",
-          "note": "Customer specified party size in message m1."
+          "note": "Customer explicitly stated four."
         }
       },
       "usage": {
-        "inputTokens": 1108,
-        "outputTokens": 198,
+        "inputTokens": 1100,
+        "outputTokens": 190,
         "model": "gpt-4.1-mini-2025-04-14"
       }
     },
@@ -914,7 +913,7 @@
             "m2"
           ],
           "source": "model",
-          "note": "Customer cancelled the 7 pm time, undecided now."
+          "note": "Customer retracted previously specified time of 7 pm."
         },
         "partySize": {
           "value": "4",
@@ -924,11 +923,11 @@
             "m1"
           ],
           "source": "model",
-          "note": "Customer requested a table for four."
+          "note": "Customer specifies party size of four."
         }
       },
       "usage": {
-        "inputTokens": 1055,
+        "inputTokens": 1056,
         "outputTokens": 123,
         "model": "gpt-4.1-mini-2025-04-14"
       }
@@ -964,7 +963,7 @@
             "m1"
           ],
           "source": "model",
-          "note": "Customer specifies date as Friday."
+          "note": "Customer specifies Friday."
         },
         "time": {
           "value": "7 pm",
@@ -974,7 +973,7 @@
             "m1"
           ],
           "source": "model",
-          "note": "Customer specifies time as 7 pm."
+          "note": "Customer specifies 7 pm."
         },
         "partySize": {
           "value": "3",
@@ -984,12 +983,12 @@
             "m1"
           ],
           "source": "model",
-          "note": "Customer specifies party size as three."
+          "note": "Customer requests table for three."
         }
       },
       "usage": {
         "inputTokens": 505,
-        "outputTokens": 110,
+        "outputTokens": 105,
         "model": "gpt-4.1-mini-2025-04-14"
       }
     },
@@ -1008,7 +1007,7 @@
             "m1"
           ],
           "source": "model",
-          "note": "Customer specified Ember House as the restaurant."
+          "note": "Customer specified restaurant name."
         },
         "city": {
           "value": "Sydney",
@@ -1018,7 +1017,7 @@
             "m1"
           ],
           "source": "model",
-          "note": "Customer specified Sydney as the city."
+          "note": "Customer specified city."
         },
         "date": {
           "value": "2026-10-09",
@@ -1028,7 +1027,7 @@
             "m1"
           ],
           "source": "model",
-          "note": "Customer requested date 9 October 2026."
+          "note": "Customer specified date in spoken format translated to ISO."
         },
         "time": {
           "value": "19:00",
@@ -1038,7 +1037,7 @@
             "m1"
           ],
           "source": "model",
-          "note": "Customer requested time 7 pm."
+          "note": "Customer specified time."
         },
         "partySize": {
           "value": "6",
@@ -1048,12 +1047,12 @@
             "m1"
           ],
           "source": "model",
-          "note": "Customer requested a table for six people."
+          "note": "Customer specified party size."
         }
       },
       "usage": {
         "inputTokens": 516,
-        "outputTokens": 192,
+        "outputTokens": 180,
         "model": "gpt-4.1-mini-2025-04-14"
       }
     },
@@ -1072,7 +1071,7 @@
             "m1"
           ],
           "source": "model",
-          "note": "Customer explicitly states Ember House."
+          "note": "Customer provided restaurant name."
         },
         "city": {
           "value": "Sydney",
@@ -1082,7 +1081,7 @@
             "m1"
           ],
           "source": "model",
-          "note": "Customer explicitly states Sydney."
+          "note": "Customer provided city."
         },
         "date": {
           "value": "2026-10-10",
@@ -1092,7 +1091,7 @@
             "m2"
           ],
           "source": "model",
-          "note": "Customer changes date to 10 October 2026, all else remains the same."
+          "note": "Customer changed the date from 9 October to 10 October 2026, keeping other details the same."
         },
         "time": {
           "value": "19:00",
@@ -1102,7 +1101,7 @@
             "m1"
           ],
           "source": "model",
-          "note": "Customer explicitly states 7 pm."
+          "note": "Customer provided time."
         },
         "partySize": {
           "value": "4",
@@ -1112,12 +1111,12 @@
             "m1"
           ],
           "source": "model",
-          "note": "Customer explicitly states four."
+          "note": "Customer provided party size."
         }
       },
       "usage": {
-        "inputTokens": 1106,
-        "outputTokens": 240,
+        "inputTokens": 1095,
+        "outputTokens": 234,
         "model": "gpt-4.1-mini-2025-04-14"
       }
     },
@@ -1136,7 +1135,7 @@
             "m1"
           ],
           "source": "model",
-          "note": "Customer specified Ember House as restaurant."
+          "note": "Customer stated restaurant name."
         },
         "city": {
           "value": "Sydney",
@@ -1146,7 +1145,7 @@
             "m1"
           ],
           "source": "model",
-          "note": "Customer specified Sydney as city."
+          "note": "Customer stated city."
         },
         "date": {
           "value": "2026-10-09",
@@ -1156,7 +1155,7 @@
             "m1"
           ],
           "source": "model",
-          "note": "Customer specified 9 October 2026 as date."
+          "note": "Customer stated date."
         },
         "time": {
           "value": "19:00",
@@ -1166,7 +1165,7 @@
             "m1"
           ],
           "source": "model",
-          "note": "Customer specified 7 pm as time."
+          "note": "Customer stated time."
         },
         "partySize": {
           "value": "2",
@@ -1176,12 +1175,12 @@
             "m1"
           ],
           "source": "model",
-          "note": "Customer specified party size of two."
+          "note": "Customer stated party size."
         }
       },
       "usage": {
         "inputTokens": 515,
-        "outputTokens": 191,
+        "outputTokens": 174,
         "model": "gpt-4.1-mini-2025-04-14"
       }
     },
@@ -1200,7 +1199,7 @@
             "m1"
           ],
           "source": "model",
-          "note": "Customer stated reservation at Ember House."
+          "note": "Customer specified restaurant name."
         },
         "city": {
           "value": "Sydney",
@@ -1210,7 +1209,7 @@
             "m1"
           ],
           "source": "model",
-          "note": "Customer stated reservation in Sydney."
+          "note": "Customer specified city."
         },
         "date": {
           "value": "2026-10-09",
@@ -1220,7 +1219,7 @@
             "m1"
           ],
           "source": "model",
-          "note": "Customer stated reservation date as 9 October 2026."
+          "note": "Customer specified date."
         },
         "time": {
           "value": "19:00",
@@ -1230,7 +1229,7 @@
             "m1"
           ],
           "source": "model",
-          "note": "Customer stated reservation time at 7 pm."
+          "note": "Customer specified time."
         },
         "partySize": {
           "value": "5",
@@ -1240,12 +1239,12 @@
             "m3"
           ],
           "source": "model",
-          "note": "Customer specified party size as five people."
+          "note": "Customer specified party size as five."
         }
       },
       "usage": {
-        "inputTokens": 1106,
-        "outputTokens": 200,
+        "inputTokens": 1089,
+        "outputTokens": 182,
         "model": "gpt-4.1-mini-2025-04-14"
       }
     }
