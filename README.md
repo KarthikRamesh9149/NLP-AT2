@@ -39,7 +39,7 @@ pnpm scenario:live
 
 `scenario:live` calls the running app endpoint for 20 team-authored synthetic conversations and saves every result to `evaluation/results/live-scenarios.json`. It requires an OpenAI key for contextual cases. The scenario set is a regression test, not a sample of real restaurant traffic. The saved output records the pinned model and token usage. The test runner compares equivalent clock formats, such as 19:00 and 7 pm, as equal.
 
-For a protected Vercel preview, set `FORMBRIDGE_URL` to its deployment URL and `FORMBRIDGE_BYPASS_SECRET` to a Vercel automation bypass secret in your local shell. The runner sends the secret as a header; never commit or print it. The saved report records the URL but never the bypass secret.
+For the public deployment, set `FORMBRIDGE_URL=https://formbridge-nlp-at2.vercel.app` before running `pnpm scenario:live`. The saved report records the URL and field-level outcomes. If a future deployment is protected, the runner also accepts `FORMBRIDGE_BYPASS_SECRET` and sends it as a header; never commit or print that secret.
 
 For the [Google Schema-Guided Dialogue dataset](https://github.com/google-research-datasets/dstc8-schema-guided-dialogue), clone the official repository outside this Git repository and run:
 
@@ -64,8 +64,14 @@ Generated result files live in `evaluation/results/`. Each records its scope and
 - `evaluation/scenarios.ts`: synthetic regression cases.
 - `scripts/`: live scenario runner, SGD audit, and comparison runner.
 
-The OpenAI API key belongs in Vercel's server environment variables for deployment. Protect the deployment and limit API use before sharing a live link. `store: false` requests no stored Responses object; provider processing and retention policies still apply. Do not log or enter real customer details in this coursework demo.
+## Public deployment and API limit
+
+The production site is <https://formbridge-nlp-at2.vercel.app>. Vercel Authentication is disabled so visitors can open it without signing in. The OpenAI API key is a server-only Vercel environment variable and must never be exposed in browser code or Git.
+
+The Vercel Firewall has an enabled production rule named **Limit FormBridge analysis**: match the exact path `/api/analyze` and rate limit by IP to **40 requests per 60 seconds**, returning HTTP 429 after the limit. This rule is Vercel project configuration, not repository code; recreate and publish it when deploying this repository to a different Vercel project. The route also validates input size and shape and has a best-effort in-process limit of 60 requests per minute per apparent IP. The firewall is the effective shared limit across serverless instances. A per-IP limit does not cap total usage across many IPs, so monitor OpenAI usage when sharing the demo publicly.
+
+`store: false` requests no stored Responses object; provider processing and retention policies still apply. Do not log or enter real customer details in this coursework demo.
 
 ## Known limits
 
-The app is a human-reviewed brief, not a booking system. It does not verify restaurant availability, location, or opening hours. A model can still propose an unsupported value with a real but irrelevant message ID; the structural guard cannot prove semantic support. The in-process API throttling is only a best-effort safeguard across serverless instances, so protected Vercel access and provider spending controls remain important. Relative dates without an unambiguous calendar date are deliberately held for clarification. The rule baseline supports common explicit English patterns, not every phrasing or language.
+The app is a human-reviewed brief, not a booking system. It does not verify restaurant availability, location, or opening hours. A model can still propose an unsupported value with a real but irrelevant message ID; the structural guard cannot prove semantic support. The in-process API throttling is only a best-effort safeguard across serverless instances; the production firewall rule provides the shared per-IP limit. Relative dates without an unambiguous calendar date are deliberately held for clarification. The rule baseline supports common explicit English patterns, not every phrasing or language.
