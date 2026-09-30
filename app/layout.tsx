@@ -9,8 +9,8 @@ import '@fontsource/ibm-plex-mono/400.css';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'FormBridge — Booking briefs with evidence',
-  description: 'Review changing restaurant booking enquiries as clear, evidence-linked briefs.',
+  title: 'FormBridge — Restaurant booking briefs',
+  description: 'Turn changing restaurant booking conversations into clear briefs ready for staff review.',
   robots: { index: false, follow: false },
 };
 

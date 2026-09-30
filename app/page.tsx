@@ -7,6 +7,7 @@ import {
   Sparkles, X,
 } from 'lucide-react';
 import { demoBrief, demoMessages } from '@/lib/demo';
+import { LEGACY_SESSION_KEY, restoreSession, SESSION_KEY } from '@/lib/session';
 import { applyManualEdit, approveBrief, clarificationFor, createEmptyBrief, FIELD_KEYS, type Brief, type FieldKey, type Message, type Speaker } from '@/lib/state';
 
 const fieldLabels: Record<FieldKey, string> = {
@@ -45,12 +46,12 @@ function downloadBrief(brief: Brief, messages: Message[]) {
 }
 
 export default function Workspace() {
-  const [messages, setMessages] = useState<Message[]>(demoMessages);
-  const [brief, setBrief] = useState<Brief>(demoBrief);
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [brief, setBrief] = useState<Brief>(createEmptyBrief);
   const [speaker, setSpeaker] = useState<Speaker>('customer');
   const [draft, setDraft] = useState('');
   const [referenceDate, setReferenceDate] = useState('');
-  const [selectedField, setSelectedField] = useState<FieldKey | null>('time');
+  const [selectedField, setSelectedField] = useState<FieldKey | null>(null);
   const [editingField, setEditingField] = useState<FieldKey | null>(null);
   const [editValue, setEditValue] = useState('');
   const [busy, setBusy] = useState(false);
@@ -64,20 +65,17 @@ export default function Workspace() {
   useEffect(() => {
     setReferenceDate(today());
     try {
-      const saved = sessionStorage.getItem('formbridge-session');
-      if (saved) {
-        const session = JSON.parse(saved) as { messages: Message[]; brief: Brief };
-        if (Array.isArray(session.messages) && session.brief?.fields?.time) {
-          setMessages(session.messages);
-          setBrief(session.brief);
-        }
+      const session = restoreSession(sessionStorage.getItem(SESSION_KEY), sessionStorage.getItem(LEGACY_SESSION_KEY));
+      if (session) {
+        setMessages(session.messages);
+        setBrief(session.brief);
       }
-    } catch { /* A damaged browser session starts from the example. */ }
+    } catch { /* A damaged browser session starts with an empty brief. */ }
     setHydrated(true);
   }, []);
 
   useEffect(() => {
-    if (hydrated) sessionStorage.setItem('formbridge-session', JSON.stringify({ messages, brief }));
+    if (hydrated) sessionStorage.setItem(SESSION_KEY, JSON.stringify({ messages, brief }));
   }, [messages, brief, hydrated]);
 
   useEffect(() => {
@@ -210,21 +208,21 @@ export default function Workspace() {
           <strong>Human confirmed</strong>
           <p>FormBridge prepares a brief for review. It never books a table.</p>
         </div>
-        <div className="sidebar-footer"><span className="online-dot" /> Demo workspace <span>v1.0</span></div>
+        <div className="sidebar-footer"><span className="online-dot" /> Booking workspace <span>Ready</span></div>
       </aside>
 
       <main className="main-area">
         <header className="topbar">
           <div className="topbar-breadcrumb"><span>Workspace</span><ChevronRight size={14} /><strong>Booking desk</strong></div>
-          <div className="topbar-right"><span className="demo-badge"><span /> DEMO ENVIRONMENT</span><span className="topbar-avatar" aria-label="Staff workspace">FB</span></div>
+          <div className="topbar-right"><span className="workspace-badge"><span /> RESTAURANT BRIEFS</span><span className="topbar-avatar" aria-label="Staff workspace">FB</span></div>
         </header>
 
         <div className="content-wrap">
           <section className="page-heading">
             <div>
               <div className="page-overline"><span className="overline-line" /> RESTAURANT ENQUIRY</div>
-              <h1>Every detail, accounted for.</h1>
-              <p>Turn a changing conversation into a booking brief you can actually trust.</p>
+              <h1>Keep every booking detail clear.</h1>
+              <p>Add an enquiry, track changes, and review each detail before handoff.</p>
             </div>
             <div className="heading-actions">
               <button className="button subtle" onClick={loadDemo} type="button"><RotateCcw size={15} /> Load example</button>
@@ -234,7 +232,7 @@ export default function Workspace() {
 
           <section className="progress-strip" aria-label="Booking completeness">
             <div className="progress-icon"><FileCheck2 size={20} strokeWidth={1.8} /></div>
-            <div className="progress-copy"><strong>{isApproved ? 'Brief approved' : `${resolvedCount} of 5 details resolved`}</strong><span>{isApproved ? 'Ready for staff handoff' : clarification ? 'One more answer brings this brief closer to handoff.' : 'All details ready for review.'}</span></div>
+            <div className="progress-copy"><strong>{isApproved ? 'Brief approved' : `${resolvedCount} of 5 details resolved`}</strong><span>{isApproved ? 'Ready for staff handoff' : messages.length === 0 ? 'Add a customer message to begin the brief.' : clarification ? 'One more answer brings this brief closer to handoff.' : 'All details ready for review.'}</span></div>
             <div className="progress-visual" aria-hidden="true">{FIELD_KEYS.map((key) => <span key={key} className={brief.fields[key].status === 'resolved' ? 'done' : ''} />)}</div>
             <span className="progress-fraction">{resolvedCount}/5</span>
           </section>
@@ -253,14 +251,14 @@ export default function Workspace() {
                   <article id={`message-${message.id}`} key={message.id} className={`message-row ${message.speaker} ${selectedEvidence.has(message.id) ? 'evidence-active' : ''}`}>
                     <div className={`message-avatar ${message.speaker}`}>{message.speaker === 'customer' ? 'C' : 'S'}</div>
                     <div className="message-main">
-                      <div className="message-meta"><strong>{message.speaker === 'customer' ? 'Customer' : 'Staff'}</strong><span>MESSAGE {String(index + 1).padStart(2, '0')}</span>{selectedEvidence.has(message.id) && <em><Link2 size={11} /> EVIDENCE</em>}</div>
+                      <div className="message-meta"><strong>{message.speaker === 'customer' ? 'Customer' : 'Staff'}</strong><span>MESSAGE {String(index + 1).padStart(2, '0')}</span>{selectedEvidence.has(message.id) && <em><Link2 size={11} /> SOURCE</em>}</div>
                       <p className="message-text">{message.text}</p>
                     </div>
                   </article>
                 ))}
               </div>
               <div className="composer">
-                <div className="composer-head"><span>Add to conversation</span><span className="composer-hint">Text only · No live reservation</span></div>
+                <div className="composer-head"><span>Add to conversation</span><span className="composer-hint">Text is analysed with OpenAI · No reservation is made</span></div>
                 <div className="speaker-switch" role="group" aria-label="Message speaker"><button type="button" className={speaker === 'customer' ? 'selected' : ''} onClick={() => setSpeaker('customer')}>Customer</button><button type="button" className={speaker === 'staff' ? 'selected' : ''} onClick={() => setSpeaker('staff')}>Staff</button></div>
                 <label className="sr-only" htmlFor="message-input">New message</label>
                 <textarea id="message-input" ref={composerRef} value={draft} onChange={(event) => setDraft(event.target.value)} placeholder={speaker === 'customer' ? 'e.g. Yes, 8:30 pm works for us.' : 'e.g. Would 8:30 pm suit you?'} rows={3} maxLength={1000} onKeyDown={(event) => { if (event.key === 'Enter' && (event.metaKey || event.ctrlKey)) { event.preventDefault(); addMessage(); } }} />
@@ -269,7 +267,7 @@ export default function Workspace() {
             </section>
 
             <section className="panel brief-panel" aria-labelledby="brief-title">
-              <div className="panel-heading brief-heading"><div className="panel-title-group"><div className="panel-kicker">CURRENT UNDERSTANDING</div><h2 id="brief-title">Booking brief</h2><p>Each detail stays linked to its source.</p></div><span className="brief-icon"><Sparkles size={20} strokeWidth={1.7} /></span></div>
+              <div className="panel-heading brief-heading"><div className="panel-title-group"><div className="panel-kicker">BOOKING DETAILS</div><h2 id="brief-title">Booking brief</h2><p>Each detail links back to the conversation.</p></div><span className="brief-icon"><Sparkles size={20} strokeWidth={1.7} /></span></div>
               <div className="brief-fields">
                 {FIELD_KEYS.map((field) => {
                   const item = brief.fields[field];
@@ -282,7 +280,7 @@ export default function Workspace() {
                       <span className="field-footline">{item.source === 'staff' ? 'Reviewed by staff' : item.evidenceIds.length ? <><Link2 size={12} /> Linked to {item.evidenceIds.map((id) => `message ${messages.findIndex((m) => m.id === id) + 1}`).join(' + ')}</> : fieldHints[field]}<ChevronRight size={14} className={selected ? 'rotate' : ''} /></span>
                     </button>
                     <button type="button" className="edit-button" onClick={() => startEdit(field)} aria-label={`Edit ${fieldLabels[field]}`}>Edit</button>
-                    {selected && <div className="field-evidence"><div className="evidence-title">SOURCE OF THIS DETAIL</div>{item.source === 'staff' ? <p>Manually set by staff. Review against the conversation before handoff.</p> : item.evidenceIds.length ? item.evidenceIds.map((id) => { const message = messages.find((m) => m.id === id); return <button className="evidence-link" type="button" key={id} onClick={() => focusMessage(id)}><span>{message?.speaker === 'staff' ? 'STAFF' : 'CUSTOMER'}</span><q>{message?.text ?? 'Message unavailable'}</q><ArrowRight size={14} /></button>; }) : <p>No source message has been linked yet.</p>}</div>}
+                    {selected && <div className="field-evidence"><div className="evidence-title">SOURCE MESSAGE</div>{item.source === 'staff' ? <p>Entered by staff. Review it against the conversation before handoff.</p> : item.evidenceIds.length ? item.evidenceIds.map((id) => { const message = messages.find((m) => m.id === id); return <button className="evidence-link" type="button" key={id} onClick={() => focusMessage(id)}><span>{message?.speaker === 'staff' ? 'STAFF' : 'CUSTOMER'}</span><q>{message?.text ?? 'Message unavailable'}</q><ArrowRight size={14} /></button>; }) : <p>No message has been linked yet.</p>}</div>}
                   </div>;
                 })}
               </div>
@@ -293,15 +291,14 @@ export default function Workspace() {
           </div>
 
           <section className="below-grid">
-            <div className="change-card"><div className="section-heading"><div><div className="panel-kicker">AUDIT TRAIL</div><h2>What changed</h2></div><History size={19} /></div><div className="change-list">{brief.history.length === 0 ? <p className="empty-note">Changes will appear here as the conversation develops.</p> : [...brief.history].reverse().slice(0, 4).map((change) => <div className="change-item" key={change.revision}><span className="change-track" /><div><strong>{fieldLabels[change.field]}</strong><p>{change.previousValue ? <><s>{change.previousValue}</s><ArrowRight size={13} /></> : null}{change.nextValue ?? (change.operation === 'constrain' ? 'Exact value cleared; preference retained' : 'Cleared')}</p></div><span className="change-revision">#{String(change.revision).padStart(2, '0')}</span></div>)}</div></div>
-            <div className="practice-card"><div className="practice-top"><span className="practice-icon"><Link2 size={20} /></span><span>WHY FORMBridge</span></div><h2>Clarity travels with the answer.</h2><p>Corrections supersede old values. Uncertainty remains visible. Every extracted detail can be traced back to the conversation.</p><div className="practice-footer"><span>Built for review, not automatic booking</span><ArrowRight size={17} /></div></div>
+            <div className="change-card"><div className="section-heading"><div><div className="panel-kicker">RECENT UPDATES</div><h2>What changed</h2></div><History size={19} /></div><div className="change-list">{brief.history.length === 0 ? <p className="empty-note">Changes will appear here as the conversation develops.</p> : [...brief.history].reverse().slice(0, 4).map((change) => <div className="change-item" key={change.revision}><span className="change-track" /><div><strong>{fieldLabels[change.field]}</strong><p>{change.previousValue ? <><s>{change.previousValue}</s><ArrowRight size={13} /></> : null}{change.nextValue ?? (change.operation === 'constrain' ? 'Exact time not set; preference saved' : 'Cleared')}</p></div><span className="change-revision">#{String(change.revision).padStart(2, '0')}</span></div>)}</div></div>
           </section>
 
-          <footer className="page-footer"><span>FormBridge · NLP AT2 project</span><span>Use synthetic examples only. Do not enter real customer details.</span></footer>
+          <footer className="page-footer"><span>FormBridge</span><span>Your draft stays in this browser tab. Avoid sensitive personal information.</span></footer>
         </div>
       </main>
 
-      {editingField && <div className="modal-backdrop" onMouseDown={(event) => { if (event.target === event.currentTarget) setEditingField(null); }}><div className="edit-modal" ref={modalRef} role="dialog" aria-modal="true" aria-labelledby="edit-title"><div className="modal-head"><span className="modal-icon"><FileCheck2 size={21} /></span><button type="button" className="icon-button" aria-label="Close editor" onClick={() => setEditingField(null)}><X size={19} /></button></div><h2 id="edit-title">Edit {fieldLabels[editingField].toLowerCase()}</h2><p>Manual changes are marked as staff reviewed and stay separate from model suggestions.</p><label htmlFor="field-edit">{fieldLabels[editingField]}</label><input id="field-edit" autoFocus value={editValue} onChange={(event) => setEditValue(event.target.value)} onKeyDown={(event) => { if (event.key === 'Enter') saveEdit(); }} maxLength={120} /><div className="modal-actions"><button type="button" className="button subtle" onClick={() => setEditingField(null)}>Cancel</button><button type="button" className="button primary" onClick={saveEdit}>Save staff edit <ArrowRight size={15} /></button></div></div></div>}
+      {editingField && <div className="modal-backdrop" onMouseDown={(event) => { if (event.target === event.currentTarget) setEditingField(null); }}><div className="edit-modal" ref={modalRef} role="dialog" aria-modal="true" aria-labelledby="edit-title"><div className="modal-head"><span className="modal-icon"><FileCheck2 size={21} /></span><button type="button" className="icon-button" aria-label="Close editor" onClick={() => setEditingField(null)}><X size={19} /></button></div><h2 id="edit-title">Edit {fieldLabels[editingField].toLowerCase()}</h2><p>Your change will be marked as a staff edit. Review it before handoff.</p><label htmlFor="field-edit">{fieldLabels[editingField]}</label><input id="field-edit" autoFocus value={editValue} onChange={(event) => setEditValue(event.target.value)} onKeyDown={(event) => { if (event.key === 'Enter') saveEdit(); }} maxLength={120} /><div className="modal-actions"><button type="button" className="button subtle" onClick={() => setEditingField(null)}>Cancel</button><button type="button" className="button primary" onClick={saveEdit}>Save staff edit <ArrowRight size={15} /></button></div></div></div>}
     </div>
   );
 }
