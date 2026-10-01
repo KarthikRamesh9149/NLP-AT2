@@ -1,0 +1,389 @@
+{
+  "generatedAt": "2026-10-01T01:51:42.320Z",
+  "applicationCommit": "f0caeced81a9a8a0ab6573c3bd95dc4871dfdbe2",
+  "productionUrl": "https://formbridge-nlp-at2.vercel.app/",
+  "deployment": "dpl_EaHQeoV3yTCEoUuJvJ7MWcdi5zpE",
+  "githubActions": {
+    "run": 36802885286,
+    "conclusion": "success"
+  },
+  "changes": [
+    "Larger source quotes, field labels, status labels and controls",
+    "Matching restaurant serif headings across the hero and workspace",
+    "Balanced desktop conversation column with bounded transcript scrolling",
+    "Compact wide-screen slip with full-width source expansion",
+    "Custom ceramic glaze, woven linen, folded napkin and olive sprig illustration",
+    "Manual edits disabled during initial workspace restoration"
+  ],
+  "local": {
+    "emptyWidths": [
+      {
+        "empty": true,
+        "leftBottom": 1306,
+        "pageWidth": 320,
+        "rightBottom": 0,
+        "width": 320
+      },
+      {
+        "empty": true,
+        "leftBottom": 1269,
+        "pageWidth": 390,
+        "rightBottom": 0,
+        "width": 390
+      },
+      {
+        "empty": true,
+        "leftBottom": 1223,
+        "pageWidth": 768,
+        "rightBottom": 0,
+        "width": 768
+      },
+      {
+        "empty": true,
+        "leftBottom": 1420,
+        "pageWidth": 1024,
+        "rightBottom": 1420,
+        "width": 1024
+      },
+      {
+        "empty": true,
+        "leftBottom": 1189,
+        "pageWidth": 1440,
+        "rightBottom": 1189,
+        "width": 1440
+      }
+    ],
+    "conversationWidths": [
+      {
+        "briefHeight": 0,
+        "conversationHeight": 800,
+        "messagesScrollable": true,
+        "pageWidth": 320,
+        "width": 320
+      },
+      {
+        "briefHeight": 0,
+        "conversationHeight": 782,
+        "messagesScrollable": true,
+        "pageWidth": 390,
+        "width": 390
+      },
+      {
+        "briefHeight": 0,
+        "conversationHeight": 773,
+        "messagesScrollable": true,
+        "pageWidth": 768,
+        "width": 768
+      },
+      {
+        "briefHeight": 984,
+        "conversationHeight": 918,
+        "messagesScrollable": false,
+        "pageWidth": 1024,
+        "width": 1024
+      },
+      {
+        "briefHeight": 754,
+        "conversationHeight": 697,
+        "messagesScrollable": true,
+        "pageWidth": 1440,
+        "width": 1440
+      }
+    ],
+    "approvedBriefWidths": [
+      {
+        "approved": "Approved",
+        "briefWidth": 288,
+        "pageWidth": 320,
+        "width": 320
+      },
+      {
+        "approved": "Approved",
+        "briefWidth": 358,
+        "pageWidth": 390,
+        "width": 390
+      },
+      {
+        "approved": "Approved",
+        "briefWidth": 720,
+        "pageWidth": 768,
+        "width": 768
+      },
+      {
+        "approved": "Approved",
+        "briefWidth": 447,
+        "pageWidth": 1024,
+        "width": 1024
+      },
+      {
+        "approved": "Approved",
+        "briefWidth": 587,
+        "pageWidth": 1440,
+        "width": 1440
+      }
+    ],
+    "keyboardChecks": [
+      {
+        "control": "Cancel",
+        "insideDialog": true
+      },
+      {
+        "control": "Save detail ",
+        "insideDialog": true
+      },
+      {
+        "control": "",
+        "insideDialog": true
+      },
+      {
+        "control": "edit-input",
+        "insideDialog": true
+      },
+      {
+        "control": "",
+        "insideDialog": true
+      },
+      {
+        "control": "Save detail ",
+        "insideDialog": true
+      },
+      {
+        "control": "Cancel",
+        "insideDialog": true
+      },
+      {
+        "control": "edit-input",
+        "insideDialog": true
+      }
+    ],
+    "checks": [
+      "Own enquiry updated six guests",
+      "Constraint retained until explicit exact-time acceptance",
+      "Explicit 7:30 pm acceptance resolved the remaining field",
+      "Approval persisted on refresh",
+      "Mobile source navigation focused Staff message 2",
+      "Invalid guest count zero rejected",
+      "Escape returned focus to Edit Guests",
+      "Start action focused message-input",
+      "Fresh start cleared the brief",
+      "Optional correction example preserved uncertainty and blocked approval",
+      "Desktop selected city source expanded to 500px with 14px quote text"
+    ],
+    "textContrast": [
+      {
+        "contrast": 8.44,
+        "fontSize": "14px",
+        "selector": ".heading-copy > p:last-of-type"
+      },
+      {
+        "contrast": 7.9,
+        "fontSize": "11px",
+        "selector": ".page-overline"
+      },
+      {
+        "contrast": 5.34,
+        "fontSize": "12px",
+        "selector": ".workspace-status p"
+      },
+      {
+        "contrast": 5.97,
+        "fontSize": "13px",
+        "selector": ".field-label"
+      },
+      {
+        "contrast": 11.64,
+        "fontSize": "24px",
+        "selector": ".field-value"
+      },
+      {
+        "contrast": 5.51,
+        "fontSize": "12px",
+        "selector": ".field-footline"
+      },
+      {
+        "contrast": 5.94,
+        "fontSize": "11px",
+        "selector": ".field-status.resolved"
+      },
+      {
+        "contrast": 5.51,
+        "fontSize": "11px",
+        "selector": ".field-status.needs_clarification"
+      },
+      {
+        "contrast": 5.74,
+        "fontSize": "12px",
+        "selector": ".date-context"
+      },
+      {
+        "contrast": 5.51,
+        "fontSize": "11px",
+        "selector": ".approval-disclaimer"
+      },
+      {
+        "contrast": 4.92,
+        "fontSize": "12px",
+        "selector": ".page-footer"
+      }
+    ],
+    "contrastScope": "Selected key text only; not a complete WCAG audit"
+  },
+  "production": {
+    "emptyWidths": [
+      {
+        "empty": true,
+        "leftBottom": 1306,
+        "pageWidth": 320,
+        "rightBottom": 0,
+        "width": 320
+      },
+      {
+        "empty": true,
+        "leftBottom": 1269,
+        "pageWidth": 390,
+        "rightBottom": 0,
+        "width": 390
+      },
+      {
+        "empty": true,
+        "leftBottom": 1223,
+        "pageWidth": 768,
+        "rightBottom": 0,
+        "width": 768
+      },
+      {
+        "empty": true,
+        "leftBottom": 1420,
+        "pageWidth": 1024,
+        "rightBottom": 1420,
+        "width": 1024
+      },
+      {
+        "empty": true,
+        "leftBottom": 1189,
+        "pageWidth": 1440,
+        "rightBottom": 1189,
+        "width": 1440
+      }
+    ],
+    "approvedBriefWidths": [
+      {
+        "approved": "Approved",
+        "briefColumns": "none",
+        "pageWidth": 320,
+        "width": 320
+      },
+      {
+        "approved": "Approved",
+        "briefColumns": "none",
+        "pageWidth": 390,
+        "width": 390
+      },
+      {
+        "approved": "Approved",
+        "briefColumns": "none",
+        "pageWidth": 768,
+        "width": 768
+      },
+      {
+        "approved": "Approved",
+        "briefColumns": "none",
+        "pageWidth": 1024,
+        "width": 1024
+      },
+      {
+        "approved": "Approved",
+        "briefColumns": "266.461px 266.461px",
+        "pageWidth": 1440,
+        "width": 1440
+      }
+    ],
+    "customEnquiry": [
+      {
+        "field": "restaurantName",
+        "status": "Ready",
+        "value": "The Olive Room"
+      },
+      {
+        "field": "city",
+        "status": "Ready",
+        "value": "Sydney"
+      },
+      {
+        "field": "date",
+        "status": "Ready",
+        "value": "16 October 2026"
+      },
+      {
+        "field": "time",
+        "status": "Ready",
+        "value": "7:30 pm"
+      },
+      {
+        "field": "partySize",
+        "status": "Ready",
+        "value": "6 guests"
+      }
+    ],
+    "keyboardChecks": [
+      {
+        "control": "Cancel",
+        "insideDialog": true
+      },
+      {
+        "control": "Save detail ",
+        "insideDialog": true
+      },
+      {
+        "control": "",
+        "insideDialog": true
+      },
+      {
+        "control": "edit-input",
+        "insideDialog": true
+      },
+      {
+        "control": "",
+        "insideDialog": true
+      },
+      {
+        "control": "Save detail ",
+        "insideDialog": true
+      },
+      {
+        "control": "Cancel",
+        "insideDialog": true
+      },
+      {
+        "control": "edit-input",
+        "insideDialog": true
+      }
+    ],
+    "checks": [
+      "Fresh public visit was empty",
+      "Own three-message enquiry processed through real production OpenAI endpoint",
+      "All five expected fields were Ready",
+      "Approved brief and three messages restored after refresh",
+      "Mobile source link focused Staff message 2",
+      "Escape returned focus to Edit Guests"
+    ],
+    "warningAndErrorLogs": []
+  },
+  "gates": {
+    "testFiles": 11,
+    "tests": 46,
+    "typecheck": "pass",
+    "productionBuild": "pass",
+    "gitDiffCheck": "pass"
+  },
+  "screenshots": [
+    "docs/media/FormBridge-workspace.jpg",
+    "docs/media/FormBridge-mobile.jpg"
+  ],
+  "limits": [
+    "UI refinement only; extraction implementation, dependencies and evaluation matching unchanged",
+    "No benchmark rerun or new accuracy claim",
+    "Native download delivery was not retested in this refinement",
+    "One exact source-button selector failed because generated quote punctuation appeared in AX but not the DOM name; scoped evidence-link selector succeeded"
+  ]
+}
