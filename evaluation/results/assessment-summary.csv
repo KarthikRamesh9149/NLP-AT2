@@ -1,0 +1,9 @@
+file,mode,dialogues,correctFields,canonicalCorrectFields,completeStates,canonicalCompleteStates,terminalFailures,repairWarnings,analysisRequests,providerRequests,inputTokens,outputTokens,meanDialogueReplayMs
+sgd-test-20-assessment-final-regression.json,formbridge,20,100,100,20,20,0,0,137,140,240699,48625,28252
+sgd-dev-20-assessment-final-development.json,formbridge,20,96,96,17,17,0,2,166,172,295798,55365,33625
+sgd-dev-20-assessment-equal-model-development.json,rules,20,35,35,0,0,0,0,166,0,0,0,0
+sgd-dev-20-assessment-equal-model-development.json,model,20,86,92,9,14,0,0,166,166,93947,22893,23835
+sgd-dev-20-assessment-equal-model-development.json,formbridge,20,92,92,14,14,0,0,166,170,295908,57475,31852
+sgd-test-13-assessment-equal-model-unselected.json,rules,13,25,25,0,0,0,0,98,0,0,0,0
+sgd-test-13-assessment-equal-model-unselected.json,model,13,56,62,6,12,0,0,98,98,55253,11989,20576
+sgd-test-13-assessment-equal-model-unselected.json,formbridge,13,62,62,12,12,0,0,98,101,176247,37395,30754

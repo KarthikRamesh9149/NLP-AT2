@@ -1,0 +1,41 @@
+{
+  "seed": "formbridge-sgd-evaluation-v1",
+  "split": "dev",
+  "selectedIds": [
+    "4_00091",
+    "4_00080",
+    "4_00098",
+    "1_00024",
+    "4_00089",
+    "1_00005",
+    "1_00018",
+    "4_00066",
+    "4_00069",
+    "4_00093",
+    "4_00104",
+    "4_00082",
+    "4_00106",
+    "4_00076",
+    "4_00085",
+    "4_00081",
+    "1_00022",
+    "1_00017",
+    "1_00006",
+    "4_00073"
+  ],
+  "excludedIds": [],
+  "codeFingerprint": "a1113cf69b4d8ab94586a6e02c4cafba988c919dfcd4496e37ac269d0a16dbf6",
+  "runnerFingerprint": "8d35ba98fb2dc0934e72a076df5d7e235b67b0e362beb3b5772a446e48f9cc9f",
+  "extractionVersion": "grounded-state-v6",
+  "configuration": {
+    "baseline": "gpt-6-luna",
+    "formbridge": "gpt-6-luna",
+    "repair": "gpt-6.1-sol"
+  },
+  "transport": "in-process",
+  "replay": "all-user-turns",
+  "selectionPath": "evaluation/results/selection-grounded-v6-release-heldout-development.json",
+  "modes": [
+    "formbridge"
+  ]
+}

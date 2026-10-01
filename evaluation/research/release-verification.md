@@ -1,5 +1,7 @@
 # Grounded extraction release verification
 
+This is a historical release record. For the current final-source reruns, equal-model comparison, clean-checkout checks and verified native downloads, see [Final assessment evidence verification](assessment-final-verification.md).
+
 Verified on 1 October 2026 (Australia/Sydney). This file records engineering checks and their limits. It is not a coursework report or a claim of universal accuracy.
 
 ## Release configuration

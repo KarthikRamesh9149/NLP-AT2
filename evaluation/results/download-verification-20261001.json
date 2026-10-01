@@ -1,0 +1,44 @@
+{
+  "testedAt": "2026-10-01T06:04:35.021Z",
+  "url": "https://formbridge-nlp-at2.vercel.app/",
+  "browser": "Brave native browser",
+  "mechanism": "Actual UI download, native Save As confirmation, then parse saved bytes; no reconstructed files",
+  "checks": [
+    {
+      "name": "formbridge-verified-draft-20261001.txt",
+      "bytes": 250,
+      "sha256": "3d08b0b7671b6f4184345d7b8e2df576bde7e9bf85a23a849d032f154e151e9d",
+      "passed": true
+    },
+    {
+      "name": "formbridge-verified-approved-20261001.json",
+      "bytes": 2601,
+      "sha256": "5ab5f76a61af3305f3d021f95bca2ff57ca0cd2b35e89f83d708a86dce16a761",
+      "passed": true
+    },
+    {
+      "name": "formbridge-verified-approved-20261001.txt",
+      "bytes": 243,
+      "sha256": "1cd061cec0f43e409171467f72656acee97c063665a0c82d46acb09c83a22254",
+      "passed": true
+    },
+    {
+      "name": "formbridge-verified-draft-20261001.json",
+      "bytes": 3285,
+      "sha256": "3268954b514f71f6c36288cbed5ec1c534e0c9f76406ebb5a1a624834185306f",
+      "passed": true
+    }
+  ],
+  "covered": [
+    "draft and approved text",
+    "approved JSON",
+    "revised unresolved draft JSON",
+    "five fields",
+    "transcript",
+    "valid source IDs",
+    "history",
+    "export timestamp",
+    "approval cleared after correction"
+  ],
+  "note": "The earlier tool download-event timeouts did not represent application download failures."
+}

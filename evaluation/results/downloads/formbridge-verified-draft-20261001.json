@@ -1,0 +1,141 @@
+{
+  "title": "FormBridge booking brief",
+  "status": "draft_not_a_reservation",
+  "fields": {
+    "restaurantName": {
+      "value": "Juniper",
+      "status": "resolved",
+      "constraint": null,
+      "evidenceIds": [
+        "m_64132ce9-164f-49ad-95d6-637d6c3d7f06"
+      ],
+      "source": "model",
+      "note": ""
+    },
+    "city": {
+      "value": "Sydney",
+      "status": "resolved",
+      "constraint": null,
+      "evidenceIds": [
+        "m_64132ce9-164f-49ad-95d6-637d6c3d7f06"
+      ],
+      "source": "model",
+      "note": ""
+    },
+    "date": {
+      "value": "9 October 2026",
+      "status": "resolved",
+      "constraint": null,
+      "evidenceIds": [
+        "m_64132ce9-164f-49ad-95d6-637d6c3d7f06"
+      ],
+      "source": "model",
+      "note": ""
+    },
+    "time": {
+      "value": null,
+      "status": "needs_clarification",
+      "constraint": "sometime after 8 pm",
+      "evidenceIds": [
+        "m_7251c403-e1ef-4cd9-baf8-95246c031b0c"
+      ],
+      "source": "model",
+      "note": "Please confirm the remaining detail."
+    },
+    "partySize": {
+      "value": "5",
+      "status": "resolved",
+      "constraint": null,
+      "evidenceIds": [
+        "m_7251c403-e1ef-4cd9-baf8-95246c031b0c"
+      ],
+      "source": "model",
+      "note": ""
+    }
+  },
+  "messages": [
+    {
+      "id": "m_64132ce9-164f-49ad-95d6-637d6c3d7f06",
+      "speaker": "customer",
+      "text": "Four guests at Juniper in Sydney on 9 October 2026 at 7 pm."
+    },
+    {
+      "id": "m_7251c403-e1ef-4cd9-baf8-95246c031b0c",
+      "speaker": "customer",
+      "text": "Actually, five guests and sometime after 8 pm instead."
+    }
+  ],
+  "changes": [
+    {
+      "field": "restaurantName",
+      "previousValue": null,
+      "nextValue": "Juniper",
+      "operation": "set",
+      "evidenceIds": [
+        "m_64132ce9-164f-49ad-95d6-637d6c3d7f06"
+      ],
+      "revision": 1
+    },
+    {
+      "field": "city",
+      "previousValue": null,
+      "nextValue": "Sydney",
+      "operation": "set",
+      "evidenceIds": [
+        "m_64132ce9-164f-49ad-95d6-637d6c3d7f06"
+      ],
+      "revision": 2
+    },
+    {
+      "field": "date",
+      "previousValue": null,
+      "nextValue": "9 October 2026",
+      "operation": "set",
+      "evidenceIds": [
+        "m_64132ce9-164f-49ad-95d6-637d6c3d7f06"
+      ],
+      "revision": 3
+    },
+    {
+      "field": "time",
+      "previousValue": null,
+      "nextValue": "7 pm",
+      "operation": "set",
+      "evidenceIds": [
+        "m_64132ce9-164f-49ad-95d6-637d6c3d7f06"
+      ],
+      "revision": 4
+    },
+    {
+      "field": "partySize",
+      "previousValue": null,
+      "nextValue": "4",
+      "operation": "set",
+      "evidenceIds": [
+        "m_64132ce9-164f-49ad-95d6-637d6c3d7f06"
+      ],
+      "revision": 5
+    },
+    {
+      "field": "time",
+      "previousValue": "7 pm",
+      "nextValue": null,
+      "operation": "constrain",
+      "evidenceIds": [
+        "m_7251c403-e1ef-4cd9-baf8-95246c031b0c"
+      ],
+      "revision": 6
+    },
+    {
+      "field": "partySize",
+      "previousValue": "4",
+      "nextValue": "5",
+      "operation": "replace",
+      "evidenceIds": [
+        "m_7251c403-e1ef-4cd9-baf8-95246c031b0c"
+      ],
+      "revision": 7
+    }
+  ],
+  "exportedAt": "2026-10-01T06:03:48.178Z"
+}
