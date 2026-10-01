@@ -1,6 +1,9 @@
 // Shared, deterministic representations. A missing year or meridiem is never invented.
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 const monthPattern = months.join('|');
+const isoPattern = /\b(\d{4})-(\d{2})-(\d{2})\b/;
+const forwardPattern = new RegExp(`\\b(${monthPattern})\\s+(\\d{1,2})(?:st|nd|rd|th)?(?:,?\\s+(\\d{4}))?\\b`, 'i');
+const reversePattern = new RegExp(`\\b(\\d{1,2})(?:st|nd|rd|th)?\\s+(?:of\\s+)?(${monthPattern})(?:,?\\s+(\\d{4}))?\\b`, 'i');
 const numbers: Record<string, number> = { zero: 0, one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9, ten: 10, eleven: 11, twelve: 12, thirteen: 13, fourteen: 14, fifteen: 15, sixteen: 16, seventeen: 17, eighteen: 18, nineteen: 19, twenty: 20, thirty: 30 };
 export const cleanText = (text: string) => text.normalize('NFKC').replace(/[’‘]/g, "'").replace(/[“”]/g, '"').replace(/\s+/g, ' ').trim().toLowerCase();
 export function digitWords(text: string): string {
@@ -15,14 +18,14 @@ export function validIsoDate(text: string): boolean {
 }
 export interface CalendarDate { month: number; day: number; year: number | null; value: string }
 export function calendarDate(text: string): CalendarDate | null {
-  const iso = text.match(/\b(\d{4})-(\d{2})-(\d{2})\b/);
+  const iso = text.match(isoPattern);
   let month: number; let day: number; let year: number | null;
   if (iso) {
     if (!validIsoDate(iso[0])) return null;
     year = Number(iso[1]); month = Number(iso[2]); day = Number(iso[3]);
   } else {
-    const forward = text.match(new RegExp(`\\b(${monthPattern})\\s+(\\d{1,2})(?:st|nd|rd|th)?(?:,?\\s+(\\d{4}))?\\b`, 'i'));
-    const reverse = text.match(new RegExp(`\\b(\\d{1,2})(?:st|nd|rd|th)?\\s+(?:of\\s+)?(${monthPattern})(?:,?\\s+(\\d{4}))?\\b`, 'i'));
+    const forward = text.match(forwardPattern);
+    const reverse = text.match(reversePattern);
     const match = forward ?? reverse;
     if (!match) return null;
     month = months.findIndex((m) => m.toLowerCase() === match[forward ? 1 : 2].toLowerCase()) + 1;
@@ -30,6 +33,9 @@ export function calendarDate(text: string): CalendarDate | null {
     if (!validIsoDate(`${year ?? 2000}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`)) return null;
   }
   return { month, day, year, value: year ? `${day} ${months[month - 1]} ${year}` : `${months[month - 1]} ${ordinal(day)}` };
+}
+export function isInvalidCalendarDate(text: string): boolean {
+  return (isoPattern.test(text) || forwardPattern.test(text) || reversePattern.test(text)) && !calendarDate(text);
 }
 export function relativeDate(text: string, reference: string | null): string | null {
   if (!reference || !validIsoDate(reference)) return null;

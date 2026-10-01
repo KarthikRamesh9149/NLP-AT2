@@ -8,6 +8,13 @@ const snapshot = (fields: Partial<GroundedState>): GroundedState => ({ ...Object
 const field = (value: string, id: string, quote: string): GroundedField => ({ value, status: 'resolved', constraint: null, evidence: [{ id, quote }] });
 
 describe('grounded conversation state', () => {
+  it.each(['31 November 2026', '29 February 2026', '2026-13-01'])('keeps impossible date %s only as a clarification constraint', (date) => {
+    const messages: Message[] = [{ id: 'm1', speaker: 'customer', text: `A table on ${date}.` }];
+    const brief = reconcileGroundedState(createEmptyBrief(), snapshot({ date: field(date, 'm1', date) }), messages, null);
+    expect(brief.fields.date).toMatchObject({ value: null, status: 'needs_clarification', constraint: date, evidenceIds: ['m1'] });
+    expect(brief.history.at(-1)?.operation).toBe('constrain');
+    expect(() => approveBrief(brief)).toThrow();
+  });
   it('recognises booking requests as acceptance without accepting rejected alternatives', () => {
     expect(isAcceptance('Can you book me a table?')).toBe(true);
     expect(isAcceptance("That's excellent. Book a table please.")).toBe(true);

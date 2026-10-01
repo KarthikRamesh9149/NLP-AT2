@@ -1,4 +1,4 @@
-import { calendarDate, cleanText, clockTime, digitWords, relativeDate } from './temporal';
+import { calendarDate, cleanText, clockTime, digitWords, isInvalidCalendarDate, relativeDate } from './temporal';
 import { FIELD_KEYS, type Brief, type FieldKey, type FieldState, type FieldStatus, type Message } from './state';
 
 export interface Evidence { id: string; quote: string; kind?: 'value' | 'acceptance' | 'context' }
@@ -138,7 +138,10 @@ export function reconcileGroundedState(current: Brief, state: GroundedState, mes
         } else {
           const anchored = relativeDate(value, reference);
           if (anchored) { value = calendarDate(anchored)!.value; status = 'resolved'; constraint = null; }
-          else { constraint = value; status = 'needs_clarification'; }
+          else {
+            constraint = value; status = 'needs_clarification';
+            if (isInvalidCalendarDate(value)) value = null;
+          }
         }
       }
       if (key === 'time' && value && status === 'resolved') {
