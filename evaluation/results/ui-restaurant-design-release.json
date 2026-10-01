@@ -1,0 +1,191 @@
+{
+  "generatedAt": "2026-10-01T01:18:18.899Z",
+  "applicationCommit": "94233dcfc19906d5ec2d7182120dbe4b7f0cd7d1",
+  "productionUrl": "https://formbridge-nlp-at2.vercel.app/",
+  "deployment": "dpl_CTGeMyLjbwZN2aqKonP8PJRUpT48",
+  "localResponsiveChecks": [
+    {
+      "scrollWidth": 320,
+      "width": 320
+    },
+    {
+      "scrollWidth": 390,
+      "width": 390
+    },
+    {
+      "scrollWidth": 768,
+      "width": 768
+    },
+    {
+      "scrollWidth": 1024,
+      "width": 1024
+    },
+    {
+      "scrollWidth": 1440,
+      "width": 1440
+    }
+  ],
+  "productionResponsiveChecks": [
+    {
+      "scrollWidth": 320,
+      "width": 320
+    },
+    {
+      "scrollWidth": 390,
+      "width": 390
+    },
+    {
+      "scrollWidth": 768,
+      "width": 768
+    },
+    {
+      "scrollWidth": 1024,
+      "width": 1024
+    },
+    {
+      "scrollWidth": 1440,
+      "width": 1440
+    }
+  ],
+  "liveCustomEnquiry": [
+    {
+      "field": "restaurantName",
+      "status": "Ready",
+      "value": "The Olive Room"
+    },
+    {
+      "field": "city",
+      "status": "Ready",
+      "value": "Sydney"
+    },
+    {
+      "field": "date",
+      "status": "Ready",
+      "value": "16 October 2026"
+    },
+    {
+      "field": "time",
+      "status": "Ready",
+      "value": "7:30 pm"
+    },
+    {
+      "field": "partySize",
+      "status": "Ready",
+      "value": "6 guests"
+    }
+  ],
+  "liveChecks": [
+    "Fresh visit starts empty",
+    "Paste own conversation and run real API analysis",
+    "Loading state describes analysis instead of suggesting stale clarification",
+    "All five expected values ready",
+    "Approve brief shows reviewed handoff and approval stamp",
+    "Refresh restores approved brief and conversation",
+    "Mobile conversation and review tabs",
+    "No horizontal overflow at five widths",
+    "No browser warning or error logs observed"
+  ],
+  "localInteractionChecks": [
+    "Correction example retains time constraint and blocks approval",
+    "Source expansion exposes supporting messages",
+    "Mobile source link switches view and focuses the cited message",
+    "Main action focuses the composer",
+    "Manual time edit can be saved with Enter",
+    "Invalid guest count rejected without changing the brief",
+    "Explicit dialog keyboard boundaries wrap focus within the dialog",
+    "Escape returns focus to Edit Guests",
+    "Reset confirmation protects conversation and manually entered values",
+    "Change history expands without leaving the workspace"
+  ],
+  "contrastCheck": {
+    "method": "Read computed foreground/background colours for selected visible text roles; not a full accessibility audit",
+    "remainingBelow4_5": 0
+  },
+  "checks": {
+    "unitTests": 46,
+    "typecheck": "passed",
+    "productionBuild": "passed",
+    "githubActions": "36800633494 success"
+  },
+  "limits": [
+    "No recruited user study",
+    "Download file delivery was not reverified in this visual release",
+    "This is a design and workflow check; extraction benchmark has not been rerun because its source fingerprint is unchanged"
+  ],
+  "screenshotCaptureCommit": "29c82d219aca9c832b7aaa9fbda664d57d5043ed",
+  "productionKeyboardChecks": [
+    {
+      "insideDialog": true,
+      "label": "Cancel",
+      "tag": "BUTTON"
+    },
+    {
+      "insideDialog": true,
+      "label": "Save detail ",
+      "tag": "BUTTON"
+    },
+    {
+      "insideDialog": true,
+      "label": "Close dialog",
+      "tag": "BUTTON"
+    },
+    {
+      "insideDialog": true,
+      "label": "Guests",
+      "tag": "INPUT"
+    },
+    {
+      "insideDialog": true,
+      "label": "Cancel",
+      "tag": "BUTTON"
+    },
+    {
+      "insideDialog": true,
+      "label": "Save detail ",
+      "tag": "BUTTON"
+    },
+    {
+      "insideDialog": true,
+      "label": "Close dialog",
+      "tag": "BUTTON"
+    },
+    {
+      "insideDialog": true,
+      "label": "Guests",
+      "tag": "INPUT"
+    },
+    {
+      "insideDialog": true,
+      "label": "Close dialog",
+      "tag": "BUTTON"
+    },
+    {
+      "insideDialog": true,
+      "label": "Save detail ",
+      "tag": "BUTTON"
+    },
+    {
+      "insideDialog": true,
+      "label": "Cancel",
+      "tag": "BUTTON"
+    },
+    {
+      "insideDialog": true,
+      "label": "Guests",
+      "tag": "INPUT"
+    }
+  ],
+  "modalOpenerFocusRestored": "Edit Guests",
+  "fixedIssues": [
+    {
+      "issue": "Native Tab after the last dialog control left document focus on BODY",
+      "fix": "Explicit forward and reverse wrapping at modal boundaries",
+      "localForwardTabChecks": 8,
+      "productionTabAndShiftTabChecks": 12
+    },
+    {
+      "issue": "An attempted keyboard check ran before the refreshed page finished opening, so no dialog had opened",
+      "resolution": "Waited for the restored workspace and verified the open dialog before rerunning the check"
+    }
+  ]
+}

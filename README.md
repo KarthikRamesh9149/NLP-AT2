@@ -20,6 +20,11 @@ When a customer changes a booking detail, FormBridge keeps the latest request cl
 
 ![FormBridge booking workspace](docs/media/FormBridge-workspace.jpg)
 
+<details>
+  <summary>On mobile</summary>
+  <p align="center"><img src="docs/media/FormBridge-mobile.jpg" alt="FormBridge booking brief on mobile" width="360" /></p>
+</details>
+
 ### A quick introduction
 
 https://github.com/user-attachments/assets/18bf88d7-7031-447f-bc3c-800a070171ed
