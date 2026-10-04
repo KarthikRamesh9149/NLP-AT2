@@ -1,0 +1,93 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:05.319
+Let's prepare a restaurant booking brief with FormBridge. We'll follow a dinner enquiry at Juniper
+
+2
+00:00:05.319 --> 00:00:09.220
+in Sydney, including a change of plans and a staff review.
+
+3
+00:00:10.220 --> 00:00:15.784
+A new visit starts with an empty brief. You can paste an existing conversation, with Customer and
+
+4
+00:00:15.784 --> 00:00:21.020
+Staff labels, or add messages one at a time. For this enquiry, we'll add each message.
+
+5
+00:00:22.020 --> 00:00:28.860
+The customer asks for four people at Juniper in Sydney, on the tenth of October, at seven p.m. After
+
+6
+00:00:28.860 --> 00:00:32.820
+analysis, all five details appear in the brief, ready for review.
+
+7
+00:00:33.820 --> 00:00:39.636
+Now the customer says, actually, make that five guests, and sometime after eight. The brief updates
+
+8
+00:00:39.636 --> 00:00:46.180
+the guest count. It keeps the time unresolved and asks for an exact time, rather than choosing one.
+
+9
+00:00:47.180 --> 00:00:54.015
+Switch to Staff and add the offer: eight thirty. The suggestion is visible in the conversation, but
+
+10
+00:00:54.015 --> 00:00:56.830
+the brief still needs the customer's answer.
+
+11
+00:00:57.830 --> 00:01:04.311
+Switch back to Customer. Yes, eight thirty is perfect. After that acceptance, the requested time
+
+12
+00:01:04.311 --> 00:01:08.200
+becomes eight thirty and the brief is complete again.
+
+13
+00:01:09.200 --> 00:01:15.471
+Open the time detail to see its sources. Both the staff offer and the customer's acceptance are
+
+14
+00:01:15.471 --> 00:01:19.160
+linked, so you can review the context behind the answer.
+
+15
+00:01:20.160 --> 00:01:26.382
+Open What changed to review earlier values. You can follow the change from four guests to five, and
+
+16
+00:01:26.382 --> 00:01:30.530
+from seven p.m. to an open time preference, then to eight thirty.
+
+17
+00:01:31.530 --> 00:01:39.651
+Use the pencil beside a detail to review or edit it. Here we save the five guests as a
+
+18
+00:01:39.651 --> 00:01:44.780
+staff-reviewed value. Your edit is labelled and kept when new messages arrive.
+
+19
+00:01:45.780 --> 00:01:52.937
+When the details are ready, approve the brief and download a copy for your team. You can choose a
+
+20
+00:01:52.937 --> 00:01:58.963
+text brief or JSON. FormBridge prepares the handoff; it does not check availability or make the
+
+21
+00:01:58.963 --> 00:01:59.340
+reservation.
+
+22
+00:02:00.340 --> 00:02:06.450
+Choose New brief when you're ready for the next enquiry. Bring your own restaurant conversation and
+
+23
+00:02:06.450 --> 00:02:08.360
+give every detail a place.

@@ -25,13 +25,17 @@ When a customer changes a booking detail, FormBridge keeps the latest request cl
   <p align="center"><img src="docs/media/FormBridge-mobile.jpg" alt="FormBridge booking brief on mobile" width="360" /></p>
 </details>
 
-### A quick introduction
+### Meet FormBridge
 
-https://github.com/user-attachments/assets/18bf88d7-7031-447f-bc3c-800a070171ed
+A dinner enquiry changes. The brief keeps up. **57 seconds.**
 
-### A full walkthrough
+https://github.com/user-attachments/assets/6f236ad9-0861-4294-bf45-9d9d3cd96b5d
 
-https://github.com/user-attachments/assets/3d43b8a2-d011-4e47-aeac-9c11354216b4
+### From first hello to handoff
+
+Bring your own conversation, follow a change of plans, check the sources, and prepare a reviewed brief for your team. **2 minutes 9 seconds.**
+
+https://github.com/user-attachments/assets/43616c6d-b6fc-48fd-9320-eb3e18c6b9b9
 
 ## Use your own enquiry
 
