@@ -1,0 +1,2840 @@
+{
+  "reviewedAt": "2026-10-11",
+  "method": "Single retrospective inspection of saved final outputs against cited messages and full visible prefixes; no independent second rating and no new model calls.",
+  "datasetRevision": "e852981ae34990f4358979625854259302feaa78",
+  "supportRule": "Explicit customer value, or staff value followed by scoped acceptance; disputed carryover is ambiguous, not automatically correct or invented.",
+  "predictionFile": "evaluation/results/sgd-test-13-assessment-equal-model-unselected.json",
+  "predictionSha256": "27356a3e5babb839a2fab2030fd0526e11bacc01e51f72baf1f3571e058bf27b",
+  "summary": {
+    "dialogues": 13,
+    "fieldPositions": 65,
+    "nonemptyValues": 62,
+    "supportedValues": 61,
+    "ambiguousSupport": 1,
+    "omissions": 3,
+    "clearlyUnsupportedValues": 0,
+    "citationReferences": 171,
+    "yearMissingDatesRetainedAsUnresolved": 12,
+    "questionsReviewed": 9,
+    "appropriateQuestions": 8
+  },
+  "sourceReviews": [
+    {
+      "id": "1_00027",
+      "visibleMessages": [
+        {
+          "id": "m1",
+          "speaker": "USER",
+          "text": "I want to have a table booked for me at a restaurant, because I want to have a meal."
+        },
+        {
+          "id": "m2",
+          "speaker": "SYSTEM",
+          "text": "Can you tell me the restaurant you are interested to have a table booked at?"
+        },
+        {
+          "id": "m3",
+          "speaker": "USER",
+          "text": "Can you check if you can make a booking of a table at Castle Rock?"
+        },
+        {
+          "id": "m4",
+          "speaker": "SYSTEM",
+          "text": "Can you tell me the time that you want to have the table booked for you?"
+        },
+        {
+          "id": "m5",
+          "speaker": "USER",
+          "text": "I prefer to have the booking be made for 12:00."
+        },
+        {
+          "id": "m6",
+          "speaker": "SYSTEM",
+          "text": "Is there a specific location you are looking for?"
+        },
+        {
+          "id": "m7",
+          "speaker": "USER",
+          "text": "I am interested in restaurants which are located in Livermore."
+        },
+        {
+          "id": "m8",
+          "speaker": "SYSTEM",
+          "text": "Can you please confirm that you want to book a table for 2 people at Castle Rock Restaurant in Livermore, and that you want the table to be booked for you for 12 pm on March 1st?"
+        },
+        {
+          "id": "m9",
+          "speaker": "USER",
+          "text": "That is not right. Could you please see if you can make a booking at Mcdonald's?"
+        },
+        {
+          "id": "m10",
+          "speaker": "SYSTEM",
+          "text": "Can you please confirm that you want to have a table booked for you on March 1st at Mcdonald's?"
+        },
+        {
+          "id": "m11",
+          "speaker": "USER",
+          "text": "I don't want that either. See if you can find me restaurants in Pittsburg."
+        },
+        {
+          "id": "m12",
+          "speaker": "SYSTEM",
+          "text": "Can you please confirm that you want to have a table booked for you at 12 pm in the city of Pittsburg?"
+        },
+        {
+          "id": "m13",
+          "speaker": "USER",
+          "text": "Yes that suits me well. Could you inform me about the fact how expensive is the restaurant?"
+        },
+        {
+          "id": "m14",
+          "speaker": "SYSTEM",
+          "text": "Your requested booking has been made, and the restaurant is considered as cheap."
+        },
+        {
+          "id": "m15",
+          "speaker": "USER",
+          "text": "I appreciate it very much. That would be all."
+        }
+      ],
+      "fields": [
+        {
+          "field": "restaurantName",
+          "value": null,
+          "status": "needs_clarification",
+          "evidenceIds": [
+            "m3",
+            "m9",
+            "m11"
+          ],
+          "label": "omitted",
+          "rationale": "The final saved field is null despite a non-empty benchmark reference; excluded from source-support precision and retained as an omission.",
+          "citedMessages": [
+            {
+              "id": "m3",
+              "speaker": "USER",
+              "text": "Can you check if you can make a booking of a table at Castle Rock?"
+            },
+            {
+              "id": "m9",
+              "speaker": "USER",
+              "text": "That is not right. Could you please see if you can make a booking at Mcdonald's?"
+            },
+            {
+              "id": "m11",
+              "speaker": "USER",
+              "text": "I don't want that either. See if you can find me restaurants in Pittsburg."
+            }
+          ]
+        },
+        {
+          "field": "city",
+          "value": "Pittsburg",
+          "status": "resolved",
+          "evidenceIds": [
+            "m11",
+            "m12",
+            "m13"
+          ],
+          "label": "supported",
+          "rationale": "Only city and noon are restated in the accepted final summary; three reference values are omitted.",
+          "citedMessages": [
+            {
+              "id": "m11",
+              "speaker": "USER",
+              "text": "I don't want that either. See if you can find me restaurants in Pittsburg."
+            },
+            {
+              "id": "m12",
+              "speaker": "SYSTEM",
+              "text": "Can you please confirm that you want to have a table booked for you at 12 pm in the city of Pittsburg?"
+            },
+            {
+              "id": "m13",
+              "speaker": "USER",
+              "text": "Yes that suits me well. Could you inform me about the fact how expensive is the restaurant?"
+            }
+          ]
+        },
+        {
+          "field": "date",
+          "value": null,
+          "status": "missing",
+          "evidenceIds": [],
+          "label": "omitted",
+          "rationale": "The final saved field is null despite a non-empty benchmark reference; excluded from source-support precision and retained as an omission.",
+          "citedMessages": []
+        },
+        {
+          "field": "time",
+          "value": "12 pm",
+          "status": "resolved",
+          "evidenceIds": [
+            "m12",
+            "m13"
+          ],
+          "label": "supported",
+          "rationale": "Only city and noon are restated in the accepted final summary; three reference values are omitted.",
+          "citedMessages": [
+            {
+              "id": "m12",
+              "speaker": "SYSTEM",
+              "text": "Can you please confirm that you want to have a table booked for you at 12 pm in the city of Pittsburg?"
+            },
+            {
+              "id": "m13",
+              "speaker": "USER",
+              "text": "Yes that suits me well. Could you inform me about the fact how expensive is the restaurant?"
+            }
+          ]
+        },
+        {
+          "field": "partySize",
+          "value": null,
+          "status": "missing",
+          "evidenceIds": [],
+          "label": "omitted",
+          "rationale": "The final saved field is null despite a non-empty benchmark reference; excluded from source-support precision and retained as an omission.",
+          "citedMessages": []
+        }
+      ]
+    },
+    {
+      "id": "4_00038",
+      "visibleMessages": [
+        {
+          "id": "m1",
+          "speaker": "USER",
+          "text": "Can you find a place for me to eat in Los Gatos?"
+        },
+        {
+          "id": "m2",
+          "speaker": "SYSTEM",
+          "text": "Sure, anything in particular you want to eat?"
+        },
+        {
+          "id": "m3",
+          "speaker": "USER",
+          "text": "Yes, try searching for Chinese."
+        },
+        {
+          "id": "m4",
+          "speaker": "SYSTEM",
+          "text": "There are 2 places. How about Jasmine Chinese Cuisine in Los Gatos?"
+        },
+        {
+          "id": "m5",
+          "speaker": "USER",
+          "text": "Great, can you make a reservation there next Tuesday at morning 11:30."
+        },
+        {
+          "id": "m6",
+          "speaker": "SYSTEM",
+          "text": "Sure, please confirm you'd like a reservation for 2 at Jasmine Chinese Cuisine in Los Gatos for March 5th at 11:30 am."
+        },
+        {
+          "id": "m7",
+          "speaker": "USER",
+          "text": "Yup, that's great. What's their rating an do they have outdoor seating?"
+        },
+        {
+          "id": "m8",
+          "speaker": "SYSTEM",
+          "text": "I've successfully made your reservation. They don't have outdoor seating and their rating is 3.7."
+        },
+        {
+          "id": "m9",
+          "speaker": "USER",
+          "text": "Thanks, that's all for now."
+        }
+      ],
+      "fields": [
+        {
+          "field": "restaurantName",
+          "value": "Jasmine Chinese Cuisine",
+          "status": "resolved",
+          "evidenceIds": [
+            "m6",
+            "m7"
+          ],
+          "label": "supported",
+          "rationale": "The customer accepts the five-field staff summary.",
+          "citedMessages": [
+            {
+              "id": "m6",
+              "speaker": "SYSTEM",
+              "text": "Sure, please confirm you'd like a reservation for 2 at Jasmine Chinese Cuisine in Los Gatos for March 5th at 11:30 am."
+            },
+            {
+              "id": "m7",
+              "speaker": "USER",
+              "text": "Yup, that's great. What's their rating an do they have outdoor seating?"
+            }
+          ]
+        },
+        {
+          "field": "city",
+          "value": "Los Gatos",
+          "status": "resolved",
+          "evidenceIds": [
+            "m6",
+            "m7"
+          ],
+          "label": "supported",
+          "rationale": "The customer accepts the five-field staff summary.",
+          "citedMessages": [
+            {
+              "id": "m6",
+              "speaker": "SYSTEM",
+              "text": "Sure, please confirm you'd like a reservation for 2 at Jasmine Chinese Cuisine in Los Gatos for March 5th at 11:30 am."
+            },
+            {
+              "id": "m7",
+              "speaker": "USER",
+              "text": "Yup, that's great. What's their rating an do they have outdoor seating?"
+            }
+          ]
+        },
+        {
+          "field": "date",
+          "value": "March 5th",
+          "status": "needs_clarification",
+          "evidenceIds": [
+            "m6",
+            "m7"
+          ],
+          "label": "supported",
+          "rationale": "The customer accepts the five-field staff summary.",
+          "citedMessages": [
+            {
+              "id": "m6",
+              "speaker": "SYSTEM",
+              "text": "Sure, please confirm you'd like a reservation for 2 at Jasmine Chinese Cuisine in Los Gatos for March 5th at 11:30 am."
+            },
+            {
+              "id": "m7",
+              "speaker": "USER",
+              "text": "Yup, that's great. What's their rating an do they have outdoor seating?"
+            }
+          ]
+        },
+        {
+          "field": "time",
+          "value": "11:30 am",
+          "status": "resolved",
+          "evidenceIds": [
+            "m6",
+            "m7"
+          ],
+          "label": "supported",
+          "rationale": "The customer accepts the five-field staff summary.",
+          "citedMessages": [
+            {
+              "id": "m6",
+              "speaker": "SYSTEM",
+              "text": "Sure, please confirm you'd like a reservation for 2 at Jasmine Chinese Cuisine in Los Gatos for March 5th at 11:30 am."
+            },
+            {
+              "id": "m7",
+              "speaker": "USER",
+              "text": "Yup, that's great. What's their rating an do they have outdoor seating?"
+            }
+          ]
+        },
+        {
+          "field": "partySize",
+          "value": "2",
+          "status": "resolved",
+          "evidenceIds": [
+            "m6",
+            "m7"
+          ],
+          "label": "supported",
+          "rationale": "The customer accepts the five-field staff summary.",
+          "citedMessages": [
+            {
+              "id": "m6",
+              "speaker": "SYSTEM",
+              "text": "Sure, please confirm you'd like a reservation for 2 at Jasmine Chinese Cuisine in Los Gatos for March 5th at 11:30 am."
+            },
+            {
+              "id": "m7",
+              "speaker": "USER",
+              "text": "Yup, that's great. What's their rating an do they have outdoor seating?"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "4_00036",
+      "visibleMessages": [
+        {
+          "id": "m1",
+          "speaker": "USER",
+          "text": "I have a plan to eat outside once and I need a nice restaurant for me. Can you search for the one in San Ramon?"
+        },
+        {
+          "id": "m2",
+          "speaker": "SYSTEM",
+          "text": "Yes, what is your favorite food? If you tell me the same then I can search for the best restaurants."
+        },
+        {
+          "id": "m3",
+          "speaker": "USER",
+          "text": "I want to eat some Pakistani food and search it accordingly."
+        },
+        {
+          "id": "m4",
+          "speaker": "SYSTEM",
+          "text": "That's easy. I found 1 restaurant named Cafe Tandoor which is in San Ramon. Do you like to go there?"
+        },
+        {
+          "id": "m5",
+          "speaker": "USER",
+          "text": "Let me know their address to decide further."
+        },
+        {
+          "id": "m6",
+          "speaker": "SYSTEM",
+          "text": "They are located at 420 Market Place."
+        },
+        {
+          "id": "m7",
+          "speaker": "USER",
+          "text": "That is okay for me. Can I get a table there?. Please book it for me now."
+        },
+        {
+          "id": "m8",
+          "speaker": "SYSTEM",
+          "text": "Sure, I will book it and let me know your convenient time to book the same."
+        },
+        {
+          "id": "m9",
+          "speaker": "USER",
+          "text": "Make it at evening 4:30."
+        },
+        {
+          "id": "m10",
+          "speaker": "SYSTEM",
+          "text": "Okay. Please confirm to book a table for 2 at Cafe Tandoor in San Ramon on March 1st for the time at 4:30 pm."
+        },
+        {
+          "id": "m11",
+          "speaker": "USER",
+          "text": "That is confirmed and you can go ahead."
+        },
+        {
+          "id": "m12",
+          "speaker": "SYSTEM",
+          "text": "I am so sorry that I was not able to book it at that time. Shall I try for something else?"
+        },
+        {
+          "id": "m13",
+          "speaker": "USER",
+          "text": "Please check it for another time that is 1:30 pm."
+        },
+        {
+          "id": "m14",
+          "speaker": "SYSTEM",
+          "text": "Please confirm to book a table for 2 at Cafe Tandoor in San Ramon on March 1st for the time at 1:30 pm."
+        },
+        {
+          "id": "m15",
+          "speaker": "USER",
+          "text": "That is confirmed. Please proceed."
+        },
+        {
+          "id": "m16",
+          "speaker": "SYSTEM",
+          "text": "I have successfully booked the table as you requested."
+        },
+        {
+          "id": "m17",
+          "speaker": "USER",
+          "text": "That is nice and thank you so much."
+        }
+      ],
+      "fields": [
+        {
+          "field": "restaurantName",
+          "value": "Cafe Tandoor",
+          "status": "resolved",
+          "evidenceIds": [
+            "m14",
+            "m15"
+          ],
+          "label": "supported",
+          "rationale": "The customer explicitly confirms the five-field staff summary.",
+          "citedMessages": [
+            {
+              "id": "m14",
+              "speaker": "SYSTEM",
+              "text": "Please confirm to book a table for 2 at Cafe Tandoor in San Ramon on March 1st for the time at 1:30 pm."
+            },
+            {
+              "id": "m15",
+              "speaker": "USER",
+              "text": "That is confirmed. Please proceed."
+            }
+          ]
+        },
+        {
+          "field": "city",
+          "value": "San Ramon",
+          "status": "resolved",
+          "evidenceIds": [
+            "m14",
+            "m15"
+          ],
+          "label": "supported",
+          "rationale": "The customer explicitly confirms the five-field staff summary.",
+          "citedMessages": [
+            {
+              "id": "m14",
+              "speaker": "SYSTEM",
+              "text": "Please confirm to book a table for 2 at Cafe Tandoor in San Ramon on March 1st for the time at 1:30 pm."
+            },
+            {
+              "id": "m15",
+              "speaker": "USER",
+              "text": "That is confirmed. Please proceed."
+            }
+          ]
+        },
+        {
+          "field": "date",
+          "value": "March 1st",
+          "status": "needs_clarification",
+          "evidenceIds": [
+            "m14",
+            "m15"
+          ],
+          "label": "supported",
+          "rationale": "The customer explicitly confirms the five-field staff summary.",
+          "citedMessages": [
+            {
+              "id": "m14",
+              "speaker": "SYSTEM",
+              "text": "Please confirm to book a table for 2 at Cafe Tandoor in San Ramon on March 1st for the time at 1:30 pm."
+            },
+            {
+              "id": "m15",
+              "speaker": "USER",
+              "text": "That is confirmed. Please proceed."
+            }
+          ]
+        },
+        {
+          "field": "time",
+          "value": "1:30 pm",
+          "status": "resolved",
+          "evidenceIds": [
+            "m14",
+            "m15"
+          ],
+          "label": "supported",
+          "rationale": "The customer explicitly confirms the five-field staff summary.",
+          "citedMessages": [
+            {
+              "id": "m14",
+              "speaker": "SYSTEM",
+              "text": "Please confirm to book a table for 2 at Cafe Tandoor in San Ramon on March 1st for the time at 1:30 pm."
+            },
+            {
+              "id": "m15",
+              "speaker": "USER",
+              "text": "That is confirmed. Please proceed."
+            }
+          ]
+        },
+        {
+          "field": "partySize",
+          "value": "2",
+          "status": "resolved",
+          "evidenceIds": [
+            "m14",
+            "m15"
+          ],
+          "label": "supported",
+          "rationale": "The customer explicitly confirms the five-field staff summary.",
+          "citedMessages": [
+            {
+              "id": "m14",
+              "speaker": "SYSTEM",
+              "text": "Please confirm to book a table for 2 at Cafe Tandoor in San Ramon on March 1st for the time at 1:30 pm."
+            },
+            {
+              "id": "m15",
+              "speaker": "USER",
+              "text": "That is confirmed. Please proceed."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "1_00017",
+      "visibleMessages": [
+        {
+          "id": "m1",
+          "speaker": "USER",
+          "text": "Can you book a table at a restaurant for me?"
+        },
+        {
+          "id": "m2",
+          "speaker": "SYSTEM",
+          "text": "What is the location and time for the booking?"
+        },
+        {
+          "id": "m3",
+          "speaker": "USER",
+          "text": "I am looking for restaurants in Mountain View for the reservation at seven pm."
+        },
+        {
+          "id": "m4",
+          "speaker": "SYSTEM",
+          "text": "What is the name of your preferred restaurant?"
+        },
+        {
+          "id": "m5",
+          "speaker": "USER",
+          "text": "I would like to go with Sushi 85."
+        },
+        {
+          "id": "m6",
+          "speaker": "SYSTEM",
+          "text": "Please confirm: You want me to book a table for 2 people at Sushi 85 located Mountain View at 7 pm on March 1st."
+        },
+        {
+          "id": "m7",
+          "speaker": "USER",
+          "text": "Okay, That sounds great! Find me the address please."
+        },
+        {
+          "id": "m8",
+          "speaker": "SYSTEM",
+          "text": "I have successfully booked the table and the address is 1350 Grant Road."
+        },
+        {
+          "id": "m9",
+          "speaker": "USER",
+          "text": "Can you find me their phone number?"
+        },
+        {
+          "id": "m10",
+          "speaker": "SYSTEM",
+          "text": "You can call them on 650-965-8898."
+        },
+        {
+          "id": "m11",
+          "speaker": "USER",
+          "text": "Okay, Thank you for the help!"
+        }
+      ],
+      "fields": [
+        {
+          "field": "restaurantName",
+          "value": "Sushi 85",
+          "status": "resolved",
+          "evidenceIds": [
+            "m5",
+            "m6",
+            "m7"
+          ],
+          "label": "supported",
+          "rationale": "Customer-stated venue, city and time are supplemented by an accepted staff summary.",
+          "citedMessages": [
+            {
+              "id": "m5",
+              "speaker": "USER",
+              "text": "I would like to go with Sushi 85."
+            },
+            {
+              "id": "m6",
+              "speaker": "SYSTEM",
+              "text": "Please confirm: You want me to book a table for 2 people at Sushi 85 located Mountain View at 7 pm on March 1st."
+            },
+            {
+              "id": "m7",
+              "speaker": "USER",
+              "text": "Okay, That sounds great! Find me the address please."
+            }
+          ]
+        },
+        {
+          "field": "city",
+          "value": "Mountain View",
+          "status": "resolved",
+          "evidenceIds": [
+            "m3",
+            "m6",
+            "m7"
+          ],
+          "label": "supported",
+          "rationale": "Customer-stated venue, city and time are supplemented by an accepted staff summary.",
+          "citedMessages": [
+            {
+              "id": "m3",
+              "speaker": "USER",
+              "text": "I am looking for restaurants in Mountain View for the reservation at seven pm."
+            },
+            {
+              "id": "m6",
+              "speaker": "SYSTEM",
+              "text": "Please confirm: You want me to book a table for 2 people at Sushi 85 located Mountain View at 7 pm on March 1st."
+            },
+            {
+              "id": "m7",
+              "speaker": "USER",
+              "text": "Okay, That sounds great! Find me the address please."
+            }
+          ]
+        },
+        {
+          "field": "date",
+          "value": "March 1st",
+          "status": "needs_clarification",
+          "evidenceIds": [
+            "m6",
+            "m7"
+          ],
+          "label": "supported",
+          "rationale": "Customer-stated venue, city and time are supplemented by an accepted staff summary.",
+          "citedMessages": [
+            {
+              "id": "m6",
+              "speaker": "SYSTEM",
+              "text": "Please confirm: You want me to book a table for 2 people at Sushi 85 located Mountain View at 7 pm on March 1st."
+            },
+            {
+              "id": "m7",
+              "speaker": "USER",
+              "text": "Okay, That sounds great! Find me the address please."
+            }
+          ]
+        },
+        {
+          "field": "time",
+          "value": "7 pm",
+          "status": "resolved",
+          "evidenceIds": [
+            "m3",
+            "m6",
+            "m7"
+          ],
+          "label": "supported",
+          "rationale": "Customer-stated venue, city and time are supplemented by an accepted staff summary.",
+          "citedMessages": [
+            {
+              "id": "m3",
+              "speaker": "USER",
+              "text": "I am looking for restaurants in Mountain View for the reservation at seven pm."
+            },
+            {
+              "id": "m6",
+              "speaker": "SYSTEM",
+              "text": "Please confirm: You want me to book a table for 2 people at Sushi 85 located Mountain View at 7 pm on March 1st."
+            },
+            {
+              "id": "m7",
+              "speaker": "USER",
+              "text": "Okay, That sounds great! Find me the address please."
+            }
+          ]
+        },
+        {
+          "field": "partySize",
+          "value": "2",
+          "status": "resolved",
+          "evidenceIds": [
+            "m6",
+            "m7"
+          ],
+          "label": "supported",
+          "rationale": "Customer-stated venue, city and time are supplemented by an accepted staff summary.",
+          "citedMessages": [
+            {
+              "id": "m6",
+              "speaker": "SYSTEM",
+              "text": "Please confirm: You want me to book a table for 2 people at Sushi 85 located Mountain View at 7 pm on March 1st."
+            },
+            {
+              "id": "m7",
+              "speaker": "USER",
+              "text": "Okay, That sounds great! Find me the address please."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "4_00056",
+      "visibleMessages": [
+        {
+          "id": "m1",
+          "speaker": "USER",
+          "text": "Can you find me a Filipino place to eat."
+        },
+        {
+          "id": "m2",
+          "speaker": "SYSTEM",
+          "text": "In which city?"
+        },
+        {
+          "id": "m3",
+          "speaker": "USER",
+          "text": "I'm looking for something in Geyserville serving pasta outdoors."
+        },
+        {
+          "id": "m4",
+          "speaker": "SYSTEM",
+          "text": "There is 1 option. Diavola Pizzeria & Salumeria is in Geyserville."
+        },
+        {
+          "id": "m5",
+          "speaker": "USER",
+          "text": "That one sounds okay."
+        },
+        {
+          "id": "m6",
+          "speaker": "SYSTEM",
+          "text": "Should I book a table?"
+        },
+        {
+          "id": "m7",
+          "speaker": "USER",
+          "text": "Yes. Please book."
+        },
+        {
+          "id": "m8",
+          "speaker": "SYSTEM",
+          "text": "For what time?"
+        },
+        {
+          "id": "m9",
+          "speaker": "USER",
+          "text": "Please reserve for 1 in the afternoon."
+        },
+        {
+          "id": "m10",
+          "speaker": "SYSTEM",
+          "text": "Please confirm you want me to reserve a table for 2 at 1 pm at Diavola Pizzeria & Salumeria in Geyserville on March 1st."
+        },
+        {
+          "id": "m11",
+          "speaker": "USER",
+          "text": "Yes. That's correct."
+        },
+        {
+          "id": "m12",
+          "speaker": "SYSTEM",
+          "text": "Your reservation was a success."
+        },
+        {
+          "id": "m13",
+          "speaker": "USER",
+          "text": "Thanks. That will be all."
+        }
+      ],
+      "fields": [
+        {
+          "field": "restaurantName",
+          "value": "Diavola Pizzeria & Salumeria",
+          "status": "resolved",
+          "evidenceIds": [
+            "m4",
+            "m5",
+            "m11"
+          ],
+          "label": "supported",
+          "rationale": "The venue is accepted first; the later full summary confirms date and size.",
+          "citedMessages": [
+            {
+              "id": "m4",
+              "speaker": "SYSTEM",
+              "text": "There is 1 option. Diavola Pizzeria & Salumeria is in Geyserville."
+            },
+            {
+              "id": "m5",
+              "speaker": "USER",
+              "text": "That one sounds okay."
+            },
+            {
+              "id": "m11",
+              "speaker": "USER",
+              "text": "Yes. That's correct."
+            }
+          ]
+        },
+        {
+          "field": "city",
+          "value": "Geyserville",
+          "status": "resolved",
+          "evidenceIds": [
+            "m3",
+            "m11"
+          ],
+          "label": "supported",
+          "rationale": "The venue is accepted first; the later full summary confirms date and size.",
+          "citedMessages": [
+            {
+              "id": "m3",
+              "speaker": "USER",
+              "text": "I'm looking for something in Geyserville serving pasta outdoors."
+            },
+            {
+              "id": "m11",
+              "speaker": "USER",
+              "text": "Yes. That's correct."
+            }
+          ]
+        },
+        {
+          "field": "date",
+          "value": "March 1st",
+          "status": "needs_clarification",
+          "evidenceIds": [
+            "m10",
+            "m11"
+          ],
+          "label": "supported",
+          "rationale": "The venue is accepted first; the later full summary confirms date and size.",
+          "citedMessages": [
+            {
+              "id": "m10",
+              "speaker": "SYSTEM",
+              "text": "Please confirm you want me to reserve a table for 2 at 1 pm at Diavola Pizzeria & Salumeria in Geyserville on March 1st."
+            },
+            {
+              "id": "m11",
+              "speaker": "USER",
+              "text": "Yes. That's correct."
+            }
+          ]
+        },
+        {
+          "field": "time",
+          "value": "1 pm",
+          "status": "resolved",
+          "evidenceIds": [
+            "m9",
+            "m10",
+            "m11"
+          ],
+          "label": "supported",
+          "rationale": "The venue is accepted first; the later full summary confirms date and size.",
+          "citedMessages": [
+            {
+              "id": "m9",
+              "speaker": "USER",
+              "text": "Please reserve for 1 in the afternoon."
+            },
+            {
+              "id": "m10",
+              "speaker": "SYSTEM",
+              "text": "Please confirm you want me to reserve a table for 2 at 1 pm at Diavola Pizzeria & Salumeria in Geyserville on March 1st."
+            },
+            {
+              "id": "m11",
+              "speaker": "USER",
+              "text": "Yes. That's correct."
+            }
+          ]
+        },
+        {
+          "field": "partySize",
+          "value": "2",
+          "status": "resolved",
+          "evidenceIds": [
+            "m10",
+            "m11"
+          ],
+          "label": "supported",
+          "rationale": "The venue is accepted first; the later full summary confirms date and size.",
+          "citedMessages": [
+            {
+              "id": "m10",
+              "speaker": "SYSTEM",
+              "text": "Please confirm you want me to reserve a table for 2 at 1 pm at Diavola Pizzeria & Salumeria in Geyserville on March 1st."
+            },
+            {
+              "id": "m11",
+              "speaker": "USER",
+              "text": "Yes. That's correct."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "4_00055",
+      "visibleMessages": [
+        {
+          "id": "m1",
+          "speaker": "USER",
+          "text": "I'm new in town and would like to find a place to get something to eat."
+        },
+        {
+          "id": "m2",
+          "speaker": "SYSTEM",
+          "text": "What is the name of the area you would like me to look in?"
+        },
+        {
+          "id": "m3",
+          "speaker": "USER",
+          "text": "Somewhere close by, so Mountain View would be great."
+        },
+        {
+          "id": "m4",
+          "speaker": "SYSTEM",
+          "text": "Is there a specific type of cuisine you would like?"
+        },
+        {
+          "id": "m5",
+          "speaker": "USER",
+          "text": "I really enjoy French food, if you can find a place that serves it."
+        },
+        {
+          "id": "m6",
+          "speaker": "SYSTEM",
+          "text": "There are 2 that I was able to find. The first is Chez Tj and it is located in Mountain View."
+        },
+        {
+          "id": "m7",
+          "speaker": "USER",
+          "text": "That sounds great!"
+        },
+        {
+          "id": "m8",
+          "speaker": "SYSTEM",
+          "text": "Should I proceed with booking you a table?"
+        },
+        {
+          "id": "m9",
+          "speaker": "USER",
+          "text": "Yes, please. I need to book a table for 4 and prefer it to be in the morning 11:45."
+        },
+        {
+          "id": "m10",
+          "speaker": "SYSTEM",
+          "text": "Let's just make sure I have everything in order before I make the reservation for you. You would like a table for 4, at Chez Tj, located in Mountain View, on March 1st, at 11:45 am."
+        },
+        {
+          "id": "m11",
+          "speaker": "USER",
+          "text": "That sounds great! Can you provide me with their location?"
+        },
+        {
+          "id": "m12",
+          "speaker": "SYSTEM",
+          "text": "The restaurant I was successfully able to book you a table at is located at 938 Villa Street."
+        },
+        {
+          "id": "m13",
+          "speaker": "USER",
+          "text": "Can you give ma an idea of how pricey the establishment is?"
+        },
+        {
+          "id": "m14",
+          "speaker": "SYSTEM",
+          "text": "This restaurant has been rated on the ultra high-end regarding cost."
+        },
+        {
+          "id": "m15",
+          "speaker": "USER",
+          "text": "Thanks a lot!"
+        }
+      ],
+      "fields": [
+        {
+          "field": "restaurantName",
+          "value": "Chez Tj",
+          "status": "resolved",
+          "evidenceIds": [
+            "m6",
+            "m7"
+          ],
+          "label": "supported",
+          "rationale": "The venue offer and later booking summary receive customer acceptance.",
+          "citedMessages": [
+            {
+              "id": "m6",
+              "speaker": "SYSTEM",
+              "text": "There are 2 that I was able to find. The first is Chez Tj and it is located in Mountain View."
+            },
+            {
+              "id": "m7",
+              "speaker": "USER",
+              "text": "That sounds great!"
+            }
+          ]
+        },
+        {
+          "field": "city",
+          "value": "Mountain View",
+          "status": "resolved",
+          "evidenceIds": [
+            "m6",
+            "m7"
+          ],
+          "label": "supported",
+          "rationale": "The venue offer and later booking summary receive customer acceptance.",
+          "citedMessages": [
+            {
+              "id": "m6",
+              "speaker": "SYSTEM",
+              "text": "There are 2 that I was able to find. The first is Chez Tj and it is located in Mountain View."
+            },
+            {
+              "id": "m7",
+              "speaker": "USER",
+              "text": "That sounds great!"
+            }
+          ]
+        },
+        {
+          "field": "date",
+          "value": "March 1st",
+          "status": "needs_clarification",
+          "evidenceIds": [
+            "m10",
+            "m11"
+          ],
+          "label": "supported",
+          "rationale": "The venue offer and later booking summary receive customer acceptance.",
+          "citedMessages": [
+            {
+              "id": "m10",
+              "speaker": "SYSTEM",
+              "text": "Let's just make sure I have everything in order before I make the reservation for you. You would like a table for 4, at Chez Tj, located in Mountain View, on March 1st, at 11:45 am."
+            },
+            {
+              "id": "m11",
+              "speaker": "USER",
+              "text": "That sounds great! Can you provide me with their location?"
+            }
+          ]
+        },
+        {
+          "field": "time",
+          "value": "11:45 am",
+          "status": "resolved",
+          "evidenceIds": [
+            "m9",
+            "m10",
+            "m11"
+          ],
+          "label": "supported",
+          "rationale": "The venue offer and later booking summary receive customer acceptance.",
+          "citedMessages": [
+            {
+              "id": "m9",
+              "speaker": "USER",
+              "text": "Yes, please. I need to book a table for 4 and prefer it to be in the morning 11:45."
+            },
+            {
+              "id": "m10",
+              "speaker": "SYSTEM",
+              "text": "Let's just make sure I have everything in order before I make the reservation for you. You would like a table for 4, at Chez Tj, located in Mountain View, on March 1st, at 11:45 am."
+            },
+            {
+              "id": "m11",
+              "speaker": "USER",
+              "text": "That sounds great! Can you provide me with their location?"
+            }
+          ]
+        },
+        {
+          "field": "partySize",
+          "value": "4",
+          "status": "resolved",
+          "evidenceIds": [
+            "m9",
+            "m11"
+          ],
+          "label": "supported",
+          "rationale": "The venue offer and later booking summary receive customer acceptance.",
+          "citedMessages": [
+            {
+              "id": "m9",
+              "speaker": "USER",
+              "text": "Yes, please. I need to book a table for 4 and prefer it to be in the morning 11:45."
+            },
+            {
+              "id": "m11",
+              "speaker": "USER",
+              "text": "That sounds great! Can you provide me with their location?"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "1_00014",
+      "visibleMessages": [
+        {
+          "id": "m1",
+          "speaker": "USER",
+          "text": "Can you help me book a table at Thai Chili on March 11th? Please find restaurants in Santa Clara."
+        },
+        {
+          "id": "m2",
+          "speaker": "SYSTEM",
+          "text": "What time do you prefer?"
+        },
+        {
+          "id": "m3",
+          "speaker": "USER",
+          "text": "I want 5:45 in the evening."
+        },
+        {
+          "id": "m4",
+          "speaker": "SYSTEM",
+          "text": "Okay, you want to book a table for 2 people at Thai Chili Cuisine in Santa Clara on March 11th at 5:45 pm. Please confirm."
+        },
+        {
+          "id": "m5",
+          "speaker": "USER",
+          "text": "Yes, that's good."
+        },
+        {
+          "id": "m6",
+          "speaker": "SYSTEM",
+          "text": "Sorry, I fail to make a reservation. Thai Chili Cuisine is a good restaurant, do you want me to book a reservation for 2 again on March 11th at 6 pm?"
+        },
+        {
+          "id": "m7",
+          "speaker": "USER",
+          "text": "Yes, that's fine."
+        },
+        {
+          "id": "m8",
+          "speaker": "SYSTEM",
+          "text": "Your booking is now confirmed!"
+        },
+        {
+          "id": "m9",
+          "speaker": "USER",
+          "text": "Thanks a lot."
+        }
+      ],
+      "fields": [
+        {
+          "field": "restaurantName",
+          "value": "Thai Chili Cuisine",
+          "status": "resolved",
+          "evidenceIds": [
+            "m1",
+            "m4",
+            "m5",
+            "m6",
+            "m7"
+          ],
+          "label": "supported",
+          "rationale": "The customer accepts the original summary and the replacement 6 pm offer.",
+          "citedMessages": [
+            {
+              "id": "m1",
+              "speaker": "USER",
+              "text": "Can you help me book a table at Thai Chili on March 11th? Please find restaurants in Santa Clara."
+            },
+            {
+              "id": "m4",
+              "speaker": "SYSTEM",
+              "text": "Okay, you want to book a table for 2 people at Thai Chili Cuisine in Santa Clara on March 11th at 5:45 pm. Please confirm."
+            },
+            {
+              "id": "m5",
+              "speaker": "USER",
+              "text": "Yes, that's good."
+            },
+            {
+              "id": "m6",
+              "speaker": "SYSTEM",
+              "text": "Sorry, I fail to make a reservation. Thai Chili Cuisine is a good restaurant, do you want me to book a reservation for 2 again on March 11th at 6 pm?"
+            },
+            {
+              "id": "m7",
+              "speaker": "USER",
+              "text": "Yes, that's fine."
+            }
+          ]
+        },
+        {
+          "field": "city",
+          "value": "Santa Clara",
+          "status": "resolved",
+          "evidenceIds": [
+            "m1",
+            "m4",
+            "m5"
+          ],
+          "label": "supported",
+          "rationale": "The customer accepts the original summary and the replacement 6 pm offer.",
+          "citedMessages": [
+            {
+              "id": "m1",
+              "speaker": "USER",
+              "text": "Can you help me book a table at Thai Chili on March 11th? Please find restaurants in Santa Clara."
+            },
+            {
+              "id": "m4",
+              "speaker": "SYSTEM",
+              "text": "Okay, you want to book a table for 2 people at Thai Chili Cuisine in Santa Clara on March 11th at 5:45 pm. Please confirm."
+            },
+            {
+              "id": "m5",
+              "speaker": "USER",
+              "text": "Yes, that's good."
+            }
+          ]
+        },
+        {
+          "field": "date",
+          "value": "March 11th",
+          "status": "needs_clarification",
+          "evidenceIds": [
+            "m1",
+            "m4",
+            "m5",
+            "m6",
+            "m7"
+          ],
+          "label": "supported",
+          "rationale": "The customer accepts the original summary and the replacement 6 pm offer.",
+          "citedMessages": [
+            {
+              "id": "m1",
+              "speaker": "USER",
+              "text": "Can you help me book a table at Thai Chili on March 11th? Please find restaurants in Santa Clara."
+            },
+            {
+              "id": "m4",
+              "speaker": "SYSTEM",
+              "text": "Okay, you want to book a table for 2 people at Thai Chili Cuisine in Santa Clara on March 11th at 5:45 pm. Please confirm."
+            },
+            {
+              "id": "m5",
+              "speaker": "USER",
+              "text": "Yes, that's good."
+            },
+            {
+              "id": "m6",
+              "speaker": "SYSTEM",
+              "text": "Sorry, I fail to make a reservation. Thai Chili Cuisine is a good restaurant, do you want me to book a reservation for 2 again on March 11th at 6 pm?"
+            },
+            {
+              "id": "m7",
+              "speaker": "USER",
+              "text": "Yes, that's fine."
+            }
+          ]
+        },
+        {
+          "field": "time",
+          "value": "6 pm",
+          "status": "resolved",
+          "evidenceIds": [
+            "m3",
+            "m4",
+            "m5",
+            "m6",
+            "m7"
+          ],
+          "label": "supported",
+          "rationale": "The customer accepts the original summary and the replacement 6 pm offer.",
+          "citedMessages": [
+            {
+              "id": "m3",
+              "speaker": "USER",
+              "text": "I want 5:45 in the evening."
+            },
+            {
+              "id": "m4",
+              "speaker": "SYSTEM",
+              "text": "Okay, you want to book a table for 2 people at Thai Chili Cuisine in Santa Clara on March 11th at 5:45 pm. Please confirm."
+            },
+            {
+              "id": "m5",
+              "speaker": "USER",
+              "text": "Yes, that's good."
+            },
+            {
+              "id": "m6",
+              "speaker": "SYSTEM",
+              "text": "Sorry, I fail to make a reservation. Thai Chili Cuisine is a good restaurant, do you want me to book a reservation for 2 again on March 11th at 6 pm?"
+            },
+            {
+              "id": "m7",
+              "speaker": "USER",
+              "text": "Yes, that's fine."
+            }
+          ]
+        },
+        {
+          "field": "partySize",
+          "value": "2",
+          "status": "resolved",
+          "evidenceIds": [
+            "m4",
+            "m5",
+            "m6",
+            "m7"
+          ],
+          "label": "supported",
+          "rationale": "The customer accepts the original summary and the replacement 6 pm offer.",
+          "citedMessages": [
+            {
+              "id": "m4",
+              "speaker": "SYSTEM",
+              "text": "Okay, you want to book a table for 2 people at Thai Chili Cuisine in Santa Clara on March 11th at 5:45 pm. Please confirm."
+            },
+            {
+              "id": "m5",
+              "speaker": "USER",
+              "text": "Yes, that's good."
+            },
+            {
+              "id": "m6",
+              "speaker": "SYSTEM",
+              "text": "Sorry, I fail to make a reservation. Thai Chili Cuisine is a good restaurant, do you want me to book a reservation for 2 again on March 11th at 6 pm?"
+            },
+            {
+              "id": "m7",
+              "speaker": "USER",
+              "text": "Yes, that's fine."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "4_00052",
+      "visibleMessages": [
+        {
+          "id": "m1",
+          "speaker": "USER",
+          "text": "Can you find me a place to eat around the SFO area?"
+        },
+        {
+          "id": "m2",
+          "speaker": "SYSTEM",
+          "text": "Sure, what kind of grub?"
+        },
+        {
+          "id": "m3",
+          "speaker": "USER",
+          "text": "I want some Ramen, that sounds good right now"
+        },
+        {
+          "id": "m4",
+          "speaker": "SYSTEM",
+          "text": "I found 10 ramen places in San Francisco including 2g Japanese Brasserie which is a nice place"
+        },
+        {
+          "id": "m5",
+          "speaker": "USER",
+          "text": "Where are they located?"
+        },
+        {
+          "id": "m6",
+          "speaker": "SYSTEM",
+          "text": "They are at 601 Van Ness Avenue"
+        },
+        {
+          "id": "m7",
+          "speaker": "USER",
+          "text": "What else can you recommend to me?"
+        },
+        {
+          "id": "m8",
+          "speaker": "SYSTEM",
+          "text": "In San Francisco? How about Ace Wasabi Rock-n-roll Sushi?"
+        },
+        {
+          "id": "m9",
+          "speaker": "USER",
+          "text": "Is it pricey there? And what's their rating"
+        },
+        {
+          "id": "m10",
+          "speaker": "SYSTEM",
+          "text": "They are in the moderate range and have an average 4.4 rating"
+        },
+        {
+          "id": "m11",
+          "speaker": "USER",
+          "text": "What about cheap restaurants that you can recommend?"
+        },
+        {
+          "id": "m12",
+          "speaker": "SYSTEM",
+          "text": "I found 4 places like that in San Francisco including Fujiyama-ya"
+        },
+        {
+          "id": "m13",
+          "speaker": "USER",
+          "text": "Oh that sounds good, book me a table please!"
+        },
+        {
+          "id": "m14",
+          "speaker": "SYSTEM",
+          "text": "For what time?"
+        },
+        {
+          "id": "m15",
+          "speaker": "USER",
+          "text": "Dinner time, around 18:30"
+        },
+        {
+          "id": "m16",
+          "speaker": "SYSTEM",
+          "text": "Confirming you want a table for 2 at 6:30 pm on March 1st at Fujiyama-ya in San Francisco?"
+        },
+        {
+          "id": "m17",
+          "speaker": "USER",
+          "text": "Yes please, also what's their rating?"
+        },
+        {
+          "id": "m18",
+          "speaker": "SYSTEM",
+          "text": "It has been booked! And it's around 4.4"
+        },
+        {
+          "id": "m19",
+          "speaker": "USER",
+          "text": "Great, thanks for that"
+        }
+      ],
+      "fields": [
+        {
+          "field": "restaurantName",
+          "value": "Fujiyama-ya",
+          "status": "resolved",
+          "evidenceIds": [
+            "m12",
+            "m13",
+            "m16",
+            "m17"
+          ],
+          "label": "supported",
+          "rationale": "The named venue offer and full booking summary are accepted.",
+          "citedMessages": [
+            {
+              "id": "m12",
+              "speaker": "SYSTEM",
+              "text": "I found 4 places like that in San Francisco including Fujiyama-ya"
+            },
+            {
+              "id": "m13",
+              "speaker": "USER",
+              "text": "Oh that sounds good, book me a table please!"
+            },
+            {
+              "id": "m16",
+              "speaker": "SYSTEM",
+              "text": "Confirming you want a table for 2 at 6:30 pm on March 1st at Fujiyama-ya in San Francisco?"
+            },
+            {
+              "id": "m17",
+              "speaker": "USER",
+              "text": "Yes please, also what's their rating?"
+            }
+          ]
+        },
+        {
+          "field": "city",
+          "value": "San Francisco",
+          "status": "resolved",
+          "evidenceIds": [
+            "m12",
+            "m16",
+            "m17"
+          ],
+          "label": "supported",
+          "rationale": "The named venue offer and full booking summary are accepted.",
+          "citedMessages": [
+            {
+              "id": "m12",
+              "speaker": "SYSTEM",
+              "text": "I found 4 places like that in San Francisco including Fujiyama-ya"
+            },
+            {
+              "id": "m16",
+              "speaker": "SYSTEM",
+              "text": "Confirming you want a table for 2 at 6:30 pm on March 1st at Fujiyama-ya in San Francisco?"
+            },
+            {
+              "id": "m17",
+              "speaker": "USER",
+              "text": "Yes please, also what's their rating?"
+            }
+          ]
+        },
+        {
+          "field": "date",
+          "value": "March 1st",
+          "status": "needs_clarification",
+          "evidenceIds": [
+            "m16",
+            "m17"
+          ],
+          "label": "supported",
+          "rationale": "The named venue offer and full booking summary are accepted.",
+          "citedMessages": [
+            {
+              "id": "m16",
+              "speaker": "SYSTEM",
+              "text": "Confirming you want a table for 2 at 6:30 pm on March 1st at Fujiyama-ya in San Francisco?"
+            },
+            {
+              "id": "m17",
+              "speaker": "USER",
+              "text": "Yes please, also what's their rating?"
+            }
+          ]
+        },
+        {
+          "field": "time",
+          "value": "6:30 pm",
+          "status": "resolved",
+          "evidenceIds": [
+            "m15",
+            "m16",
+            "m17"
+          ],
+          "label": "supported",
+          "rationale": "The named venue offer and full booking summary are accepted.",
+          "citedMessages": [
+            {
+              "id": "m15",
+              "speaker": "USER",
+              "text": "Dinner time, around 18:30"
+            },
+            {
+              "id": "m16",
+              "speaker": "SYSTEM",
+              "text": "Confirming you want a table for 2 at 6:30 pm on March 1st at Fujiyama-ya in San Francisco?"
+            },
+            {
+              "id": "m17",
+              "speaker": "USER",
+              "text": "Yes please, also what's their rating?"
+            }
+          ]
+        },
+        {
+          "field": "partySize",
+          "value": "2",
+          "status": "resolved",
+          "evidenceIds": [
+            "m16",
+            "m17"
+          ],
+          "label": "supported",
+          "rationale": "The named venue offer and full booking summary are accepted.",
+          "citedMessages": [
+            {
+              "id": "m16",
+              "speaker": "SYSTEM",
+              "text": "Confirming you want a table for 2 at 6:30 pm on March 1st at Fujiyama-ya in San Francisco?"
+            },
+            {
+              "id": "m17",
+              "speaker": "USER",
+              "text": "Yes please, also what's their rating?"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "4_00048",
+      "visibleMessages": [
+        {
+          "id": "m1",
+          "speaker": "USER",
+          "text": "I want to find a place where I can have a meal."
+        },
+        {
+          "id": "m2",
+          "speaker": "SYSTEM",
+          "text": "Is there some specific kind of food you are interested in? Do you have a preferred location that I can look into?"
+        },
+        {
+          "id": "m3",
+          "speaker": "USER",
+          "text": "The place should have vegetarian alternatives, more specifically some place that serves Sushi in Berkeley."
+        },
+        {
+          "id": "m4",
+          "speaker": "SYSTEM",
+          "text": "There are 3 restaurants which match what you want, with one of the restaurants being Iyasare which is a good restaurant in Berkeley."
+        },
+        {
+          "id": "m5",
+          "speaker": "USER",
+          "text": "Alright, this seems nice."
+        },
+        {
+          "id": "m6",
+          "speaker": "SYSTEM",
+          "text": "Do you want to have a table booked for you at this restaurant?"
+        },
+        {
+          "id": "m7",
+          "speaker": "USER",
+          "text": "Yes, I want to have a table booked for me at this restaurant. I want to have the table to be reserved for two people on the 11th, as for the time, it should be for 2 pm."
+        },
+        {
+          "id": "m8",
+          "speaker": "SYSTEM",
+          "text": "Can you please confirm that you want to have a table booked for 2 people at 2 pm on March 11th at the Iyasare restaurant in Berkeley?"
+        },
+        {
+          "id": "m9",
+          "speaker": "USER",
+          "text": "Yes, that is what I want."
+        },
+        {
+          "id": "m10",
+          "speaker": "SYSTEM",
+          "text": "I apologize but I could not complete the reservation you asked for. Is there something else I can help you with?"
+        },
+        {
+          "id": "m11",
+          "speaker": "USER",
+          "text": "Would you mind trying again to book a table, but make it for four people at 7:15 pm"
+        },
+        {
+          "id": "m12",
+          "speaker": "SYSTEM",
+          "text": "Can you confirm that you want to have a table for 4 people booked for March 11th at 7:15 pm at Iyasare restaurant in Berkeley?"
+        },
+        {
+          "id": "m13",
+          "speaker": "USER",
+          "text": "Alright, that suits me well. Can you check if they have places to sit outside since I like fresh air."
+        },
+        {
+          "id": "m14",
+          "speaker": "SYSTEM",
+          "text": "I can confirm that they can provide you with outdoor seats, though I could not make the reservation you asked for. Iyasare is really a good restaurant so do you want to have the reservation for 4 people on March 11th at 7:30 pm?"
+        },
+        {
+          "id": "m15",
+          "speaker": "USER",
+          "text": "I do not want that. That would be all."
+        }
+      ],
+      "fields": [
+        {
+          "field": "restaurantName",
+          "value": "Iyasare",
+          "status": "resolved",
+          "evidenceIds": [
+            "m4",
+            "m5"
+          ],
+          "label": "supported",
+          "rationale": "The original summary is accepted; a later accepted retry changes time and party size.",
+          "citedMessages": [
+            {
+              "id": "m4",
+              "speaker": "SYSTEM",
+              "text": "There are 3 restaurants which match what you want, with one of the restaurants being Iyasare which is a good restaurant in Berkeley."
+            },
+            {
+              "id": "m5",
+              "speaker": "USER",
+              "text": "Alright, this seems nice."
+            }
+          ]
+        },
+        {
+          "field": "city",
+          "value": "Berkeley",
+          "status": "resolved",
+          "evidenceIds": [
+            "m3"
+          ],
+          "label": "supported",
+          "rationale": "The original summary is accepted; a later accepted retry changes time and party size.",
+          "citedMessages": [
+            {
+              "id": "m3",
+              "speaker": "USER",
+              "text": "The place should have vegetarian alternatives, more specifically some place that serves Sushi in Berkeley."
+            }
+          ]
+        },
+        {
+          "field": "date",
+          "value": "March 11th",
+          "status": "needs_clarification",
+          "evidenceIds": [
+            "m8",
+            "m9",
+            "m12",
+            "m13"
+          ],
+          "label": "supported",
+          "rationale": "The original summary is accepted; a later accepted retry changes time and party size.",
+          "citedMessages": [
+            {
+              "id": "m8",
+              "speaker": "SYSTEM",
+              "text": "Can you please confirm that you want to have a table booked for 2 people at 2 pm on March 11th at the Iyasare restaurant in Berkeley?"
+            },
+            {
+              "id": "m9",
+              "speaker": "USER",
+              "text": "Yes, that is what I want."
+            },
+            {
+              "id": "m12",
+              "speaker": "SYSTEM",
+              "text": "Can you confirm that you want to have a table for 4 people booked for March 11th at 7:15 pm at Iyasare restaurant in Berkeley?"
+            },
+            {
+              "id": "m13",
+              "speaker": "USER",
+              "text": "Alright, that suits me well. Can you check if they have places to sit outside since I like fresh air."
+            }
+          ]
+        },
+        {
+          "field": "time",
+          "value": "7:15 pm",
+          "status": "resolved",
+          "evidenceIds": [
+            "m11",
+            "m12",
+            "m13"
+          ],
+          "label": "supported",
+          "rationale": "The original summary is accepted; a later accepted retry changes time and party size.",
+          "citedMessages": [
+            {
+              "id": "m11",
+              "speaker": "USER",
+              "text": "Would you mind trying again to book a table, but make it for four people at 7:15 pm"
+            },
+            {
+              "id": "m12",
+              "speaker": "SYSTEM",
+              "text": "Can you confirm that you want to have a table for 4 people booked for March 11th at 7:15 pm at Iyasare restaurant in Berkeley?"
+            },
+            {
+              "id": "m13",
+              "speaker": "USER",
+              "text": "Alright, that suits me well. Can you check if they have places to sit outside since I like fresh air."
+            }
+          ]
+        },
+        {
+          "field": "partySize",
+          "value": "4",
+          "status": "resolved",
+          "evidenceIds": [
+            "m11",
+            "m12",
+            "m13"
+          ],
+          "label": "supported",
+          "rationale": "The original summary is accepted; a later accepted retry changes time and party size.",
+          "citedMessages": [
+            {
+              "id": "m11",
+              "speaker": "USER",
+              "text": "Would you mind trying again to book a table, but make it for four people at 7:15 pm"
+            },
+            {
+              "id": "m12",
+              "speaker": "SYSTEM",
+              "text": "Can you confirm that you want to have a table for 4 people booked for March 11th at 7:15 pm at Iyasare restaurant in Berkeley?"
+            },
+            {
+              "id": "m13",
+              "speaker": "USER",
+              "text": "Alright, that suits me well. Can you check if they have places to sit outside since I like fresh air."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "1_00024",
+      "visibleMessages": [
+        {
+          "id": "m1",
+          "speaker": "USER",
+          "text": "I need to book a table at a nice restaurant."
+        },
+        {
+          "id": "m2",
+          "speaker": "SYSTEM",
+          "text": "Sure thing, what are the specifics? Time, place and which restaurant?"
+        },
+        {
+          "id": "m3",
+          "speaker": "USER",
+          "text": "I kinda want to eat at Namu Gaji at one pm, the branch in SFO"
+        },
+        {
+          "id": "m4",
+          "speaker": "SYSTEM",
+          "text": "Just confirming you want me to search for a 1 pm reservation for 2 people on March 1st at the Namu Gaji in San Francisco yes?"
+        },
+        {
+          "id": "m5",
+          "speaker": "USER",
+          "text": "Yup that's right. Can you check how pricey it is and what their user rating is?"
+        },
+        {
+          "id": "m6",
+          "speaker": "SYSTEM",
+          "text": "Sure, they are in the moderate price range and have a 4.3 average user rating, however I was unable to book your table for 2 at Namu Gaji. Do you want me to try for March 1st at 12:30 pm instead?"
+        },
+        {
+          "id": "m7",
+          "speaker": "USER",
+          "text": "No, I'm not available then"
+        }
+      ],
+      "fields": [
+        {
+          "field": "restaurantName",
+          "value": "Namu Gaji",
+          "status": "resolved",
+          "evidenceIds": [
+            "m3",
+            "m4",
+            "m5"
+          ],
+          "label": "supported",
+          "rationale": "The customer accepts the staff expansion of the venue/city and the full summary.",
+          "citedMessages": [
+            {
+              "id": "m3",
+              "speaker": "USER",
+              "text": "I kinda want to eat at Namu Gaji at one pm, the branch in SFO"
+            },
+            {
+              "id": "m4",
+              "speaker": "SYSTEM",
+              "text": "Just confirming you want me to search for a 1 pm reservation for 2 people on March 1st at the Namu Gaji in San Francisco yes?"
+            },
+            {
+              "id": "m5",
+              "speaker": "USER",
+              "text": "Yup that's right. Can you check how pricey it is and what their user rating is?"
+            }
+          ]
+        },
+        {
+          "field": "city",
+          "value": "San Francisco",
+          "status": "resolved",
+          "evidenceIds": [
+            "m3",
+            "m4",
+            "m5"
+          ],
+          "label": "supported",
+          "rationale": "The customer accepts the staff expansion of the venue/city and the full summary.",
+          "citedMessages": [
+            {
+              "id": "m3",
+              "speaker": "USER",
+              "text": "I kinda want to eat at Namu Gaji at one pm, the branch in SFO"
+            },
+            {
+              "id": "m4",
+              "speaker": "SYSTEM",
+              "text": "Just confirming you want me to search for a 1 pm reservation for 2 people on March 1st at the Namu Gaji in San Francisco yes?"
+            },
+            {
+              "id": "m5",
+              "speaker": "USER",
+              "text": "Yup that's right. Can you check how pricey it is and what their user rating is?"
+            }
+          ]
+        },
+        {
+          "field": "date",
+          "value": "March 1st",
+          "status": "needs_clarification",
+          "evidenceIds": [
+            "m4",
+            "m5"
+          ],
+          "label": "supported",
+          "rationale": "The customer accepts the staff expansion of the venue/city and the full summary.",
+          "citedMessages": [
+            {
+              "id": "m4",
+              "speaker": "SYSTEM",
+              "text": "Just confirming you want me to search for a 1 pm reservation for 2 people on March 1st at the Namu Gaji in San Francisco yes?"
+            },
+            {
+              "id": "m5",
+              "speaker": "USER",
+              "text": "Yup that's right. Can you check how pricey it is and what their user rating is?"
+            }
+          ]
+        },
+        {
+          "field": "time",
+          "value": "1 pm",
+          "status": "resolved",
+          "evidenceIds": [
+            "m3",
+            "m4",
+            "m5"
+          ],
+          "label": "supported",
+          "rationale": "The customer accepts the staff expansion of the venue/city and the full summary.",
+          "citedMessages": [
+            {
+              "id": "m3",
+              "speaker": "USER",
+              "text": "I kinda want to eat at Namu Gaji at one pm, the branch in SFO"
+            },
+            {
+              "id": "m4",
+              "speaker": "SYSTEM",
+              "text": "Just confirming you want me to search for a 1 pm reservation for 2 people on March 1st at the Namu Gaji in San Francisco yes?"
+            },
+            {
+              "id": "m5",
+              "speaker": "USER",
+              "text": "Yup that's right. Can you check how pricey it is and what their user rating is?"
+            }
+          ]
+        },
+        {
+          "field": "partySize",
+          "value": "2",
+          "status": "resolved",
+          "evidenceIds": [
+            "m4",
+            "m5"
+          ],
+          "label": "supported",
+          "rationale": "The customer accepts the staff expansion of the venue/city and the full summary.",
+          "citedMessages": [
+            {
+              "id": "m4",
+              "speaker": "SYSTEM",
+              "text": "Just confirming you want me to search for a 1 pm reservation for 2 people on March 1st at the Namu Gaji in San Francisco yes?"
+            },
+            {
+              "id": "m5",
+              "speaker": "USER",
+              "text": "Yup that's right. Can you check how pricey it is and what their user rating is?"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "4_00060",
+      "visibleMessages": [
+        {
+          "id": "m1",
+          "speaker": "USER",
+          "text": "I am planning on going out for a meal with friends. Can you find me a place in Healdsburg?"
+        },
+        {
+          "id": "m2",
+          "speaker": "SYSTEM",
+          "text": "Are you looking for any specific type of cuisine?"
+        },
+        {
+          "id": "m3",
+          "speaker": "USER",
+          "text": "Sure. I'm interested in restaurants that serve Diner food."
+        },
+        {
+          "id": "m4",
+          "speaker": "SYSTEM",
+          "text": "There are 5 such restaurants in Healdsburg. One such place you might enjoy is called Bear Republic Brewing Co."
+        },
+        {
+          "id": "m5",
+          "speaker": "USER",
+          "text": "Can you tell me the user rating for this establishment? Also, is outdoor seating available?"
+        },
+        {
+          "id": "m6",
+          "speaker": "SYSTEM",
+          "text": "There is no outdoor seating at this restaurant. They are rated at approximately 4.4 by users."
+        },
+        {
+          "id": "m7",
+          "speaker": "USER",
+          "text": "Great, that sounds perfect! I would like to go ahead and make a reservation here."
+        },
+        {
+          "id": "m8",
+          "speaker": "SYSTEM",
+          "text": "And for what time would you like your reservation?"
+        },
+        {
+          "id": "m9",
+          "speaker": "USER",
+          "text": "I would like a reservation for 6:30 in the evening, please."
+        },
+        {
+          "id": "m10",
+          "speaker": "SYSTEM",
+          "text": "So, you would like to make a 6:30 pm reservation for 2 at Bear Republic Brewing Co in Healdsburg for March 1st, correct?"
+        },
+        {
+          "id": "m11",
+          "speaker": "USER",
+          "text": "Yes, that's perfect! Can you tell me if the price range is affordable? And also, are there menu items for vegetarians?"
+        },
+        {
+          "id": "m12",
+          "speaker": "SYSTEM",
+          "text": "Your table has been confirmed. The restaurant is in the moderate price range. Unfortunately, there are no vegetarian menu items."
+        },
+        {
+          "id": "m13",
+          "speaker": "USER",
+          "text": "Excellent. Thanks for you help. That's everything for me!"
+        }
+      ],
+      "fields": [
+        {
+          "field": "restaurantName",
+          "value": "Bear Republic Brewing Co",
+          "status": "resolved",
+          "evidenceIds": [
+            "m4",
+            "m7",
+            "m10",
+            "m11"
+          ],
+          "label": "supported",
+          "rationale": "A named venue offer and later full summary are accepted.",
+          "citedMessages": [
+            {
+              "id": "m4",
+              "speaker": "SYSTEM",
+              "text": "There are 5 such restaurants in Healdsburg. One such place you might enjoy is called Bear Republic Brewing Co."
+            },
+            {
+              "id": "m7",
+              "speaker": "USER",
+              "text": "Great, that sounds perfect! I would like to go ahead and make a reservation here."
+            },
+            {
+              "id": "m10",
+              "speaker": "SYSTEM",
+              "text": "So, you would like to make a 6:30 pm reservation for 2 at Bear Republic Brewing Co in Healdsburg for March 1st, correct?"
+            },
+            {
+              "id": "m11",
+              "speaker": "USER",
+              "text": "Yes, that's perfect! Can you tell me if the price range is affordable? And also, are there menu items for vegetarians?"
+            }
+          ]
+        },
+        {
+          "field": "city",
+          "value": "Healdsburg",
+          "status": "resolved",
+          "evidenceIds": [
+            "m1",
+            "m10",
+            "m11"
+          ],
+          "label": "supported",
+          "rationale": "A named venue offer and later full summary are accepted.",
+          "citedMessages": [
+            {
+              "id": "m1",
+              "speaker": "USER",
+              "text": "I am planning on going out for a meal with friends. Can you find me a place in Healdsburg?"
+            },
+            {
+              "id": "m10",
+              "speaker": "SYSTEM",
+              "text": "So, you would like to make a 6:30 pm reservation for 2 at Bear Republic Brewing Co in Healdsburg for March 1st, correct?"
+            },
+            {
+              "id": "m11",
+              "speaker": "USER",
+              "text": "Yes, that's perfect! Can you tell me if the price range is affordable? And also, are there menu items for vegetarians?"
+            }
+          ]
+        },
+        {
+          "field": "date",
+          "value": "March 1st",
+          "status": "needs_clarification",
+          "evidenceIds": [
+            "m10",
+            "m11"
+          ],
+          "label": "supported",
+          "rationale": "A named venue offer and later full summary are accepted.",
+          "citedMessages": [
+            {
+              "id": "m10",
+              "speaker": "SYSTEM",
+              "text": "So, you would like to make a 6:30 pm reservation for 2 at Bear Republic Brewing Co in Healdsburg for March 1st, correct?"
+            },
+            {
+              "id": "m11",
+              "speaker": "USER",
+              "text": "Yes, that's perfect! Can you tell me if the price range is affordable? And also, are there menu items for vegetarians?"
+            }
+          ]
+        },
+        {
+          "field": "time",
+          "value": "6:30 pm",
+          "status": "resolved",
+          "evidenceIds": [
+            "m9",
+            "m10",
+            "m11"
+          ],
+          "label": "supported",
+          "rationale": "A named venue offer and later full summary are accepted.",
+          "citedMessages": [
+            {
+              "id": "m9",
+              "speaker": "USER",
+              "text": "I would like a reservation for 6:30 in the evening, please."
+            },
+            {
+              "id": "m10",
+              "speaker": "SYSTEM",
+              "text": "So, you would like to make a 6:30 pm reservation for 2 at Bear Republic Brewing Co in Healdsburg for March 1st, correct?"
+            },
+            {
+              "id": "m11",
+              "speaker": "USER",
+              "text": "Yes, that's perfect! Can you tell me if the price range is affordable? And also, are there menu items for vegetarians?"
+            }
+          ]
+        },
+        {
+          "field": "partySize",
+          "value": "2",
+          "status": "resolved",
+          "evidenceIds": [
+            "m10",
+            "m11"
+          ],
+          "label": "supported",
+          "rationale": "A named venue offer and later full summary are accepted.",
+          "citedMessages": [
+            {
+              "id": "m10",
+              "speaker": "SYSTEM",
+              "text": "So, you would like to make a 6:30 pm reservation for 2 at Bear Republic Brewing Co in Healdsburg for March 1st, correct?"
+            },
+            {
+              "id": "m11",
+              "speaker": "USER",
+              "text": "Yes, that's perfect! Can you tell me if the price range is affordable? And also, are there menu items for vegetarians?"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "4_00026",
+      "visibleMessages": [
+        {
+          "id": "m1",
+          "speaker": "USER",
+          "text": "I need help finding somewhere to eat."
+        },
+        {
+          "id": "m2",
+          "speaker": "SYSTEM",
+          "text": "What area are you interested in and what kind of food do you like?"
+        },
+        {
+          "id": "m3",
+          "speaker": "USER",
+          "text": "I want a Barbecue place in San Fran."
+        },
+        {
+          "id": "m4",
+          "speaker": "SYSTEM",
+          "text": "1760 is a good place in San Francisco."
+        },
+        {
+          "id": "m5",
+          "speaker": "USER",
+          "text": "What else is there?"
+        },
+        {
+          "id": "m6",
+          "speaker": "SYSTEM",
+          "text": "25 Lusk is a good place in San Francisco."
+        },
+        {
+          "id": "m7",
+          "speaker": "USER",
+          "text": "Can you give me their phone number?"
+        },
+        {
+          "id": "m8",
+          "speaker": "SYSTEM",
+          "text": "You can reach them at 415-495-5875."
+        },
+        {
+          "id": "m9",
+          "speaker": "USER",
+          "text": "And what is their user rating?"
+        },
+        {
+          "id": "m10",
+          "speaker": "SYSTEM",
+          "text": "They have 4.4 user rating."
+        },
+        {
+          "id": "m11",
+          "speaker": "USER",
+          "text": "Alright, that seems good."
+        },
+        {
+          "id": "m12",
+          "speaker": "SYSTEM",
+          "text": "Do you want me to book you a table?"
+        },
+        {
+          "id": "m13",
+          "speaker": "USER",
+          "text": "Yes, please do that."
+        },
+        {
+          "id": "m14",
+          "speaker": "SYSTEM",
+          "text": "What time do you want the table?"
+        },
+        {
+          "id": "m15",
+          "speaker": "USER",
+          "text": "I want it for 7:15 pm."
+        },
+        {
+          "id": "m16",
+          "speaker": "SYSTEM",
+          "text": "I'll book you a table for 2 at 25 Lusk in San Francisco for March 1st at 7:15 pm. Does that work for you?"
+        },
+        {
+          "id": "m17",
+          "speaker": "USER",
+          "text": "No, it should be a table for 4 and for seven pm."
+        },
+        {
+          "id": "m18",
+          "speaker": "SYSTEM",
+          "text": "So a table for 4 at 7 pm. Are these the changes you wanted?"
+        },
+        {
+          "id": "m19",
+          "speaker": "USER",
+          "text": "Yes. And can you tell me their address?"
+        },
+        {
+          "id": "m20",
+          "speaker": "SYSTEM",
+          "text": "They are located at 25 Lusk Street. I have booked you table."
+        },
+        {
+          "id": "m21",
+          "speaker": "USER",
+          "text": "Thanks a lot."
+        }
+      ],
+      "fields": [
+        {
+          "field": "restaurantName",
+          "value": "25 Lusk",
+          "status": "resolved",
+          "evidenceIds": [
+            "m6",
+            "m11"
+          ],
+          "label": "supported",
+          "rationale": "The customer changes time and size; the later confirmation does not restate the date.",
+          "citedMessages": [
+            {
+              "id": "m6",
+              "speaker": "SYSTEM",
+              "text": "25 Lusk is a good place in San Francisco."
+            },
+            {
+              "id": "m11",
+              "speaker": "USER",
+              "text": "Alright, that seems good."
+            }
+          ]
+        },
+        {
+          "field": "city",
+          "value": "San Francisco",
+          "status": "resolved",
+          "evidenceIds": [
+            "m3",
+            "m6",
+            "m11"
+          ],
+          "label": "supported",
+          "rationale": "The customer changes time and size; the later confirmation does not restate the date.",
+          "citedMessages": [
+            {
+              "id": "m3",
+              "speaker": "USER",
+              "text": "I want a Barbecue place in San Fran."
+            },
+            {
+              "id": "m6",
+              "speaker": "SYSTEM",
+              "text": "25 Lusk is a good place in San Francisco."
+            },
+            {
+              "id": "m11",
+              "speaker": "USER",
+              "text": "Alright, that seems good."
+            }
+          ]
+        },
+        {
+          "field": "date",
+          "value": "March 1st",
+          "status": "needs_clarification",
+          "evidenceIds": [
+            "m16",
+            "m17",
+            "m19"
+          ],
+          "label": "ambiguous",
+          "rationale": "March 1st appears in m16. The customer rejects/corrects size and time in m17; m18 confirms only those changes and m19 accepts. Date carryover is plausible but is not explicitly reconfirmed.",
+          "citedMessages": [
+            {
+              "id": "m16",
+              "speaker": "SYSTEM",
+              "text": "I'll book you a table for 2 at 25 Lusk in San Francisco for March 1st at 7:15 pm. Does that work for you?"
+            },
+            {
+              "id": "m17",
+              "speaker": "USER",
+              "text": "No, it should be a table for 4 and for seven pm."
+            },
+            {
+              "id": "m19",
+              "speaker": "USER",
+              "text": "Yes. And can you tell me their address?"
+            }
+          ]
+        },
+        {
+          "field": "time",
+          "value": "7 pm",
+          "status": "resolved",
+          "evidenceIds": [
+            "m17",
+            "m18",
+            "m19"
+          ],
+          "label": "supported",
+          "rationale": "The customer changes time and size; the later confirmation does not restate the date.",
+          "citedMessages": [
+            {
+              "id": "m17",
+              "speaker": "USER",
+              "text": "No, it should be a table for 4 and for seven pm."
+            },
+            {
+              "id": "m18",
+              "speaker": "SYSTEM",
+              "text": "So a table for 4 at 7 pm. Are these the changes you wanted?"
+            },
+            {
+              "id": "m19",
+              "speaker": "USER",
+              "text": "Yes. And can you tell me their address?"
+            }
+          ]
+        },
+        {
+          "field": "partySize",
+          "value": "4",
+          "status": "resolved",
+          "evidenceIds": [
+            "m17",
+            "m18",
+            "m19"
+          ],
+          "label": "supported",
+          "rationale": "The customer changes time and size; the later confirmation does not restate the date.",
+          "citedMessages": [
+            {
+              "id": "m17",
+              "speaker": "USER",
+              "text": "No, it should be a table for 4 and for seven pm."
+            },
+            {
+              "id": "m18",
+              "speaker": "SYSTEM",
+              "text": "So a table for 4 at 7 pm. Are these the changes you wanted?"
+            },
+            {
+              "id": "m19",
+              "speaker": "USER",
+              "text": "Yes. And can you tell me their address?"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "4_00030",
+      "visibleMessages": [
+        {
+          "id": "m1",
+          "speaker": "USER",
+          "text": "Can you please help me find a place to eat?"
+        },
+        {
+          "id": "m2",
+          "speaker": "SYSTEM",
+          "text": "What location should I search in?"
+        },
+        {
+          "id": "m3",
+          "speaker": "USER",
+          "text": "Please find restaurants in Santa Clara."
+        },
+        {
+          "id": "m4",
+          "speaker": "SYSTEM",
+          "text": "What type of food are you looking for?"
+        },
+        {
+          "id": "m5",
+          "speaker": "USER",
+          "text": "Please find something serving Latin American food."
+        },
+        {
+          "id": "m6",
+          "speaker": "SYSTEM",
+          "text": "El Amigo Burrito is a nice restaurant in Santa Clara."
+        },
+        {
+          "id": "m7",
+          "speaker": "USER",
+          "text": "What is there phone number?"
+        },
+        {
+          "id": "m8",
+          "speaker": "SYSTEM",
+          "text": "The phone number is 408-248-3113."
+        },
+        {
+          "id": "m9",
+          "speaker": "USER",
+          "text": "Yes, that sounds good."
+        },
+        {
+          "id": "m10",
+          "speaker": "SYSTEM",
+          "text": "Would you like me to book a table there?"
+        },
+        {
+          "id": "m11",
+          "speaker": "USER",
+          "text": "Yes please, reserve a table."
+        },
+        {
+          "id": "m12",
+          "speaker": "SYSTEM",
+          "text": "What time should I try to reserve for?"
+        },
+        {
+          "id": "m13",
+          "speaker": "USER",
+          "text": "Please make the reservation at 5:30 in the evening."
+        },
+        {
+          "id": "m14",
+          "speaker": "SYSTEM",
+          "text": "Please confirm the following details: Booking a table at El Amigo Burrito in Santa Clara for 5:30 pm on March 1st. The reservation is for 2 people."
+        },
+        {
+          "id": "m15",
+          "speaker": "USER",
+          "text": "Yes, that is correct. Do they have vegetarian options on the menu, and what is their user rating?"
+        },
+        {
+          "id": "m16",
+          "speaker": "SYSTEM",
+          "text": "The rating is around 4.3 stars and they have good options for vegetarians. Sorry, I was unable to make the reservations at El Amigo Burrito at that time. Shall I try again for 2 people on March 1st at 5 pm?"
+        },
+        {
+          "id": "m17",
+          "speaker": "USER",
+          "text": "Yes, that works."
+        },
+        {
+          "id": "m18",
+          "speaker": "SYSTEM",
+          "text": "Your reservation was successful."
+        },
+        {
+          "id": "m19",
+          "speaker": "USER",
+          "text": "Thank you very much, that is all I need for now."
+        }
+      ],
+      "fields": [
+        {
+          "field": "restaurantName",
+          "value": "El Amigo Burrito",
+          "status": "resolved",
+          "evidenceIds": [
+            "m6",
+            "m9",
+            "m14",
+            "m15"
+          ],
+          "label": "supported",
+          "rationale": "The original summary and replacement 5 pm offer are accepted.",
+          "citedMessages": [
+            {
+              "id": "m6",
+              "speaker": "SYSTEM",
+              "text": "El Amigo Burrito is a nice restaurant in Santa Clara."
+            },
+            {
+              "id": "m9",
+              "speaker": "USER",
+              "text": "Yes, that sounds good."
+            },
+            {
+              "id": "m14",
+              "speaker": "SYSTEM",
+              "text": "Please confirm the following details: Booking a table at El Amigo Burrito in Santa Clara for 5:30 pm on March 1st. The reservation is for 2 people."
+            },
+            {
+              "id": "m15",
+              "speaker": "USER",
+              "text": "Yes, that is correct. Do they have vegetarian options on the menu, and what is their user rating?"
+            }
+          ]
+        },
+        {
+          "field": "city",
+          "value": "Santa Clara",
+          "status": "resolved",
+          "evidenceIds": [
+            "m3",
+            "m14",
+            "m15"
+          ],
+          "label": "supported",
+          "rationale": "The original summary and replacement 5 pm offer are accepted.",
+          "citedMessages": [
+            {
+              "id": "m3",
+              "speaker": "USER",
+              "text": "Please find restaurants in Santa Clara."
+            },
+            {
+              "id": "m14",
+              "speaker": "SYSTEM",
+              "text": "Please confirm the following details: Booking a table at El Amigo Burrito in Santa Clara for 5:30 pm on March 1st. The reservation is for 2 people."
+            },
+            {
+              "id": "m15",
+              "speaker": "USER",
+              "text": "Yes, that is correct. Do they have vegetarian options on the menu, and what is their user rating?"
+            }
+          ]
+        },
+        {
+          "field": "date",
+          "value": "March 1st",
+          "status": "needs_clarification",
+          "evidenceIds": [
+            "m14",
+            "m15",
+            "m16",
+            "m17"
+          ],
+          "label": "supported",
+          "rationale": "The original summary and replacement 5 pm offer are accepted.",
+          "citedMessages": [
+            {
+              "id": "m14",
+              "speaker": "SYSTEM",
+              "text": "Please confirm the following details: Booking a table at El Amigo Burrito in Santa Clara for 5:30 pm on March 1st. The reservation is for 2 people."
+            },
+            {
+              "id": "m15",
+              "speaker": "USER",
+              "text": "Yes, that is correct. Do they have vegetarian options on the menu, and what is their user rating?"
+            },
+            {
+              "id": "m16",
+              "speaker": "SYSTEM",
+              "text": "The rating is around 4.3 stars and they have good options for vegetarians. Sorry, I was unable to make the reservations at El Amigo Burrito at that time. Shall I try again for 2 people on March 1st at 5 pm?"
+            },
+            {
+              "id": "m17",
+              "speaker": "USER",
+              "text": "Yes, that works."
+            }
+          ]
+        },
+        {
+          "field": "time",
+          "value": "5 pm",
+          "status": "resolved",
+          "evidenceIds": [
+            "m16",
+            "m17"
+          ],
+          "label": "supported",
+          "rationale": "The original summary and replacement 5 pm offer are accepted.",
+          "citedMessages": [
+            {
+              "id": "m16",
+              "speaker": "SYSTEM",
+              "text": "The rating is around 4.3 stars and they have good options for vegetarians. Sorry, I was unable to make the reservations at El Amigo Burrito at that time. Shall I try again for 2 people on March 1st at 5 pm?"
+            },
+            {
+              "id": "m17",
+              "speaker": "USER",
+              "text": "Yes, that works."
+            }
+          ]
+        },
+        {
+          "field": "partySize",
+          "value": "2",
+          "status": "resolved",
+          "evidenceIds": [
+            "m14",
+            "m15",
+            "m16",
+            "m17"
+          ],
+          "label": "supported",
+          "rationale": "The original summary and replacement 5 pm offer are accepted.",
+          "citedMessages": [
+            {
+              "id": "m14",
+              "speaker": "SYSTEM",
+              "text": "Please confirm the following details: Booking a table at El Amigo Burrito in Santa Clara for 5:30 pm on March 1st. The reservation is for 2 people."
+            },
+            {
+              "id": "m15",
+              "speaker": "USER",
+              "text": "Yes, that is correct. Do they have vegetarian options on the menu, and what is their user rating?"
+            },
+            {
+              "id": "m16",
+              "speaker": "SYSTEM",
+              "text": "The rating is around 4.3 stars and they have good options for vegetarians. Sorry, I was unable to make the reservations at El Amigo Burrito at that time. Shall I try again for 2 people on March 1st at 5 pm?"
+            },
+            {
+              "id": "m17",
+              "speaker": "USER",
+              "text": "Yes, that works."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "clarificationReviews": [
+    {
+      "id": "E01",
+      "transcript": "A table for three, please.",
+      "expectedField": "restaurantName",
+      "criterion": "Ask for a missing restaurant before completing the brief.",
+      "actualQuestion": "Which restaurant would you like?",
+      "appropriate": true
+    },
+    {
+      "id": "E02",
+      "transcript": "Four at Juniper in Sydney on 9 October 2026, sometime after 8 pm.",
+      "expectedField": "time",
+      "criterion": "Ask for an exact time while retaining the after-eight constraint.",
+      "actualQuestion": "What exact time would you prefer (sometime after 8 pm)?",
+      "appropriate": true
+    },
+    {
+      "id": "E03",
+      "transcript": "Four at Juniper in Sydney on 9 October 2026, either 7 pm or 8 pm.",
+      "expectedField": "time",
+      "criterion": "Ask the customer to choose a time without choosing either alternative.",
+      "actualQuestion": "What exact time would you prefer (Either 7 pm or 8 pm)?",
+      "appropriate": true
+    },
+    {
+      "id": "E04",
+      "transcript": "Four at Juniper in Sydney on 9 October 2026 at 7. I have not decided between morning and evening.",
+      "expectedField": "time",
+      "criterion": "Ask for an exact time that resolves the undecided morning/evening period.",
+      "actualQuestion": "What exact time would you prefer (7, with morning or evening undecided)?",
+      "appropriate": true
+    },
+    {
+      "id": "E05",
+      "transcript": "Customer: Four at Juniper in Sydney on 9 October 2026.\nStaff: Shall I put you down for 7 pm?",
+      "expectedField": "time",
+      "criterion": "Ask for a customer-selected time; do not accept the unaccepted staff offer.",
+      "actualQuestion": "What exact time would you prefer?",
+      "appropriate": true
+    },
+    {
+      "id": "E07",
+      "transcript": "Customer: Four at Juniper in Sydney on 9 October 2026 at 7 pm.\nCustomer: Please cancel the whole booking request. Remove all its details.",
+      "expectedField": null,
+      "criterion": "Acknowledge the cancellation without treating it as a new booking enquiry.",
+      "actualQuestion": "Which restaurant would you like?",
+      "appropriate": false
+    },
+    {
+      "id": "E08",
+      "transcript": "Customer: Four at Juniper in Sydney on 9 October 2026 at 7 pm.\nCustomer: Forget the 7 pm time. I have not decided on a time yet.",
+      "expectedField": "time",
+      "criterion": "Ask for a replacement time after the customer explicitly clears it.",
+      "actualQuestion": "What exact time would you prefer?",
+      "appropriate": true
+    },
+    {
+      "id": "E10",
+      "transcript": "Four at Juniper in Sydney on 31 November 2026 at 7 pm.",
+      "expectedField": "date",
+      "criterion": "Ask for a valid exact date instead of resolving 31 November.",
+      "actualQuestion": "What exact date do you mean by 31 November 2026?",
+      "appropriate": true
+    },
+    {
+      "id": "E11",
+      "transcript": "Zero guests at Juniper in Sydney on 9 October 2026 at 7 pm.",
+      "expectedField": "partySize",
+      "criterion": "Ask for a valid party size instead of approving zero guests.",
+      "actualQuestion": "How many people are in your party?",
+      "appropriate": true
+    }
+  ]
+}

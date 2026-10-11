@@ -1,6 +1,6 @@
 # FormBridge report handover
 
-The report contains **15 main pages, including the cover and references, plus three appendix pages**. The Word document is editable; the PDF is the matching review copy. The Markdown source, build scripts, screenshot assets and error-analysis records are retained alongside them.
+The report contains **15 main pages, including the cover and references, plus five appendix pages**. The Word document is editable; the PDF is the matching review copy. The Markdown source, build scripts, screenshot assets and error-analysis records are retained alongside them.
 
 ## Rubric coverage
 
@@ -19,7 +19,7 @@ The report contains **15 main pages, including the cover and references, plus th
 | Ethics, limitations, recommendations and next steps | Section 10, page 13 |
 | Phases and individual contributions | Section 11, page 14; only Karthik's technical responsibility is currently confirmed |
 | APA-style references | Page 15 |
-| Supporting evidence | Appendix B, page 18 |
+| Supporting evidence | Appendices B–D, pages 18–20 |
 
 ## Required before submission
 
@@ -36,16 +36,22 @@ The report contains **15 main pages, including the cover and references, plus th
 - The same-model systems tie under canonical field matching. The report explains their representation, workflow and operating-cost differences without claiming a semantic accuracy win.
 - The 35 browser cases are authored functional checks. They are not a recruited-user study or a customer satisfaction measure.
 - Product images are genuine live-app captures using a fictional restaurant enquiry. No customer information appears.
+- A retrospective source-support review found 61 clearly supported values and one ambiguous carryover among 62 non-empty predictions. Eight of nine clarification questions were appropriate. The review is single-rater, uses known outputs and does not replace a user study. The cancellation question was subsequently corrected and its exact original case passed on replay; the original 8/9 score is retained.
+- `Usability-study.md` and the empty `usability-observations.csv` provide participant tasks and recording instructions. No participant results exist yet.
 - The report does not guarantee a grade. Its structure and evidence target the supplied HD criteria; marking remains with the assessor.
 
 ## Files
 
 - `FormBridge-AT2-Report.docx`: editable report.
-- `FormBridge-AT2-Report.pdf`: matching 18-page report and appendices.
+- `FormBridge-AT2-Report.pdf`: matching 20-page report and appendices.
 - `FormBridge-AT2-Report.md`: report source.
 - `build-report.py`: Word generation script.
 - `build-assets.py`: reproducible chart and figure generation.
-- `assets/`: original captures and report figures.
+- `assets/`: original captures and enlarged detail figures.
+- `browser-task-checks-20261011.json` and `browser-task-retest-20261011.json`: pre-fix task checks and eight verified live post-fix checks, with no human participants.
+- `feature-audit.json`: retained source-support and clarification ratings with original visible messages.
+- `verify-feature-audit.py`: checks annotation inputs and recounts results without API calls.
+- `Usability-study.md` and `usability-observations.csv`: proposed participant protocol and unfilled recording sheet.
 - `error-audit.json` and `error-transcripts.json`: error-analysis records, with upstream dataset attribution in the report.
 
 The report is a technical draft until the group identity and full contribution statement are provided. Placeholders and completion instructions have been removed from the report; missing details remain listed here. No Canvas submission or SPARKPlus evaluation has been performed.

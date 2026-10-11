@@ -15,7 +15,7 @@ A restaurant enquiry rarely arrives as a finished form. A customer may change th
 
 The project compares a rule-based extractor, direct contextual extraction and FormBridge's contextual extraction with evidence checks and state reconciliation. Evaluation uses a documented restaurant subset of Google's Schema-Guided Dialogue dataset. The final production configuration achieved 100/100 field checks on an inspected 20-dialogue regression sample and 96/100 on a repeatedly used 20-dialogue development selection. In a separate same-model comparison, direct extraction and FormBridge both achieved 92/100 canonical field checks on development data and 62/65 on 13 previously unselected test dialogues. FormBridge produced more consistent representations under the stricter matcher, but also used more tokens and longer replay times.
 
-The application supports review and handoff of a booking brief; it does not reserve a table. Recorded browser checks cover 20 ordinary enquiries and 15 edge cases; native text and JSON downloads were verified. No recruited-user study was conducted. The results show that the application supports the tested workflow. Broader extraction accuracy and benefits for restaurant staff require further evaluation.
+The application supports review and handoff of a booking brief; it does not reserve a table. Recorded browser checks cover 20 ordinary enquiries and 15 edge cases; native text and JSON downloads were verified. A retrospective source review found clear support for 61 of 62 non-empty predictions, with one ambiguous carryover. Eight of nine reviewed clarification questions addressed the outstanding task; the cancellation follow-up was then corrected. Eight live checks passed after deployment, including four repeated booking tasks with no field errors. No recruited-user study was conducted. Benefits for restaurant staff require participant evaluation.
 
 ## Contents
 
@@ -33,7 +33,7 @@ The application supports review and handoff of a booking brief; it does not rese
 | 10. Ethics, limitations and next steps | 13 |
 | 11. Project phases, contributions and conclusion | 14 |
 | References | 15 |
-| Appendices A–B: reproduction and supporting results | 16–18 |
+| Appendices A–D: reproduction and supporting results | 16–20 |
 
 <!-- PAGE 3 -->
 # 1. Problem, objectives and scope
@@ -71,16 +71,16 @@ Success means that staff can enter an enquiry, inspect the values and their sour
 
 The application starts with an empty workspace. Examples are available through an explicit button, while the main route supports the user's own conversation. A transcript can be pasted with Customer: and Staff: labels, or entered one message at a time. Unlabelled short text is treated as a customer enquiry. Speaker labels matter because a staff offer is not automatically the customer's choice.
 
-![The live booking workspace after the customer confirms a revised time](assets/workspace-approved.jpg)
-*Figure 1. Live application captured on 11 October 2026. The example request is Juniper, Sydney, 18 October 2026, 8:30 pm and five guests. Source: original product capture using a fictional enquiry.*
+![The reviewed booking card after the customer confirms a revised time](assets/booking-card-detail.jpg)
+*Figure 1. Reviewed booking details and handoff controls. The customer has accepted 8:30 pm for five guests at Juniper, Sydney, on 18 October 2026. Source: original live-app capture, 11 October 2026, using a fictional enquiry.*
 
 ## 2.1 From enquiry to reviewed brief
 
-1. **Gather:** Enter “A table for four at Juniper in Sydney on 18 October 2026 at 7 pm.”
-2. **Revise:** Add “Actually, make that five guests, and sometime after 8 pm instead.” Five guests becomes the current value; the exact time remains open.
-3. **Clarify:** The application suggests a question asking for the exact time. Staff can copy it and add the customer's reply.
-4. **Check:** A staff offer of 8:30 pm becomes ready after the customer accepts. Selecting Time displays both source messages.
-5. **Hand over:** Staff review or edit the details, approve the current revision and download text or JSON.
+1. **Gather:** Enter four guests, Juniper, Sydney, 18 October 2026 and 7 pm.
+2. **Revise:** Change to five guests after 8 pm. Guest count updates; exact time stays open.
+3. **Clarify:** Copy the suggested question and add the customer's response.
+4. **Check:** After the customer accepts staff's 8:30 pm offer, inspect both time sources.
+5. **Hand over:** Review, approve and download text or JSON.
 
 ## 2.2 Features that support review
 
@@ -123,19 +123,21 @@ The server imposes request-size and schema limits. Its local production rate lim
 | Direct contextual extraction | A structured five-field prediction from the complete visible prefix | Tests the benefit of contextual language understanding without FormBridge's evidence reconciliation |
 | FormBridge | Contextual candidates with quotations and message IDs, followed by deterministic checks, bounded repair and revision-aware reconciliation | Tests a more inspectable state flow suitable for staff review |
 
-The rules recognise common party-size phrases, full calendar dates, explicit times, after-time constraints and named restaurants or cities in restricted patterns. They process messages in order and use a simple acceptance pattern to connect a customer reply with the preceding staff message. Its restricted vocabulary limits coverage of varied dialogue. It uses no learned parameters or API tokens.
+Rules recognise explicit booking phrases and straightforward corrections. Messages are processed in order, with simple acceptance of a preceding staff offer. Restricted patterns limit coverage of varied dialogue; no learned parameters or API tokens are used.
 
-The direct baseline reconstructs the five-field state at every customer turn. Its structured output contains value, status and constraint, but no evidence citations. Its prompt instructs the model to avoid invented values and unaccepted staff offers. Both contextual methods therefore target the same booking-state task.
+The direct baseline reconstructs value, status and constraint at every customer turn, without evidence citations. Its prompt rejects invented values and unaccepted offers. Both contextual methods target the same five-field task.
 
-FormBridge reconstructs candidate values from the same visible prefix. Previous browser state supplies staff overrides and history; supporting utterances determine whether a candidate is accepted. Corrections update the brief without changing model weights.
+FormBridge reconstructs candidates from the same prefix. Browser state supplies staff overrides and history; supporting utterances determine acceptance. Corrections change the brief, not model weights.
 
 ## 4.2 Why a hosted LLM and structured output?
 
-Contextual extraction was selected because acceptance, correction and omitted context extend beyond a small set of regular expressions. A hosted model allowed the project to spend effort on state integrity, review controls and comparison, without assembling a new training corpus or serving a fine-tuned model. This choice brings network dependency, variable latency, external data processing and limited control over model weights.
+Acceptance, correction and omitted context extend beyond simple regular expressions. A hosted model allowed effort to focus on state integrity and review without training or serving new weights. Tradeoffs include network dependency, variable latency and external data processing.
 
 The Responses API parses a Zod-derived output schema. OpenAI distinguishes schema adherence from factual correctness: structured output can still contain mistakes (OpenAI, n.d.-b). FormBridge therefore validates what a candidate is supported by, in addition to whether it is shaped correctly.
 
 The deployed configuration uses GPT-6 Luna for extraction and at most one GPT-6.1 Sol repair, with low reasoning effort. The controlled comparison uses GPT-6 Luna for both approaches and repairs. Primary requests have a 12-second timeout; repairs have a 10-second timeout. SDK retries are disabled. Output budgets are 2,400 tokens for FormBridge and 900 for direct extraction. These model names are provider aliases, so a future rerun may use an updated model.
+
+Luna was retained as the primary model after development trials. An earlier Sol-led 10-dialogue pilot had one terminal failure and longer replay times; its different prompt and repair settings prevent a pure model ranking. Sol is reserved for a second check when validation detects an issue. Low reasoning and one repair limit waiting and usage. The 12- and 10-second limits leave headroom within Vercel's 30-second route limit; disabling SDK retries avoids additional waits. The larger FormBridge output budget accommodates five sets of source quotations. These are engineering choices, not proven optimal settings.
 
 ## 4.3 Scope of the model implementation
 
@@ -159,14 +161,14 @@ For each candidate, the system verifies that cited message IDs exist, quotations
 
 If validation finds a repairable inconsistency, the model receives targeted feedback and may return one revised candidate state. It does not receive dataset labels or benchmark answers. A failed repair produces a review warning; the first candidate remains subject to the same checks. If the initial request fails, the last valid brief is preserved and the unfinished update can be retried.
 
-![Uncertainty followed by evidence-supported acceptance](assets/uncertainty-and-evidence.jpg)
-*Figure 3. Time correction and acceptance in the live application. Left: “after 8 pm” leaves the exact time unresolved. Right: accepting 8:30 pm links the staff offer and customer reply. Source: original product captures.*
+![Accepted time and its supporting staff offer and customer response](assets/accepted-time-detail.jpg)
+*Figure 3. Expanded Time field linking the 8:30 pm staff offer and the customer's acceptance. Source: original live-app capture, 11 October 2026. An enlarged unresolved-time example appears in Appendix C.*
 
 ## 4.5 Distinguishing value agreement from readiness
 
 A historical dataset may label a date as “March 10th” without a year. FormBridge can retain that stated value while asking which year is intended. A correct field under the benchmark can therefore be unready for approval. Inventing a year would improve apparent completeness while reducing trustworthiness.
 
-Evidence checking can miss implicit acceptance or reject a valid correction. A quotation may also be present but misinterpreted. Prompt instructions and pattern filters provide limited protection against adversarial input. Staff review is therefore necessary, and an unsupported-value rate was not independently measured.
+Evidence checking can miss implicit acceptance or reject a valid correction. A quotation may also be present but misinterpreted. Prompt instructions and pattern filters provide limited protection against adversarial input. The retrospective source audit in Section 6.2 evaluates retained final values; it does not establish reliable evidence interpretation for arbitrary conversations.
 
 <!-- PAGE 8 -->
 # 5. Data sources and preparation
@@ -223,7 +225,7 @@ For N attempted dialogues, field accuracy is the number of matching final values
 
 Operational measures include analysis requests, provider attempts, returned input/output tokens, complete-dialogue replay time and repair warnings. Replay time sums requests across several customer turns; it is not the latency of one live message. Concurrent provider use and unreported usage from failed calls limit cost and timing interpretations.
 
-No independent aggregate score was produced for evidence correctness, unsupported values, clarification accuracy or real-user task completion. These require additional annotation or participants. The functional checks assess selected behaviours rather than replace those missing measurements.
+A supplementary retrospective audit inspected all 65 FormBridge field positions in the saved 13-dialogue test remainder. Each non-empty value was checked against its linked messages and visible conversation: explicit customer statements or scoped acceptance counted as supported; disputed carryover counted as ambiguous. Omissions remained separate. Nine clarification questions from the recorded edge cases were judged against the missing detail or customer intent, including cancellation. This was a single review of known outputs, without a second rating. It evaluates source support and question relevance separately from field matching, but does not measure unseen performance or user benefit. Appendix C gives the outcomes and criteria.
 
 ## 6.3 Reproduction and verification
 
@@ -292,7 +294,9 @@ FormBridge adds evidence links, revision history and explicit review states. The
 
 The four production development mismatches are omissions across three dialogues: two dates labelled “today” and two party-size values of two. These are benchmark mismatches even when preserving uncertainty is sensible for staff. In the test failure, later accepted text states time and city but omits venue, date and size, illustrating the difficulty of interpreting which parts of a rejected summary carry forward.
 
-The original conversations show these carryover patterns, but the saved traces do not retain every intermediate candidate and rejection decision. They therefore cannot establish whether extraction, repair or reconciliation caused each omission. Future evaluation needs both detailed decision traces and annotations that distinguish a supported carryover from an unresolved request.
+The source audit found clear support for 61/62 non-empty final values, with one ambiguous date carryover in 4_00026. No clearly invented value was observed; three omitted slots remain in the 65-position denominator. All 12 retained dates without a year remained unready for approval. Eight of nine clarification questions were appropriate. After whole-request cancellation, the remaining question asked for a restaurant as though starting a new enquiry. The fields were correctly cleared, but that question missed the customer's intent. The deployed correction now acknowledges cancellation; the exact case passed on replay (Appendix D).
+
+These reviews distinguish value matching, source support and conversational usefulness. The saved traces omit intermediate candidate decisions, so they cannot assign each error to extraction, repair or reconciliation. No second reviewer checked the source and question ratings.
 
 <!-- PAGE 12 -->
 # 9. Interaction design and verification
@@ -301,22 +305,22 @@ The original conversations show these carryover patterns, but the saved traces d
 
 On desktop, the conversation appears beside a booking slip. Mobile tabs switch between the two views without discarding the draft. Familiar restaurant terms, cream surfaces and green accents organise the five details, while text and icons identify their status.
 
-Status labels, familiar terms and editable values follow Nielsen's usability principles (Nielsen, 1994). Source links and explanations of uncertainty also support checking and correcting model output, as recommended by Amershi et al. (2019). These principles guided the interface design; its usability has not been tested with recruited participants.
+Status labels, familiar terms and editable values follow Nielsen's usability principles (Nielsen, 1994). Source links and uncertainty explanations support checking and correcting model output (Amershi et al., 2019). These principles guided the design; recruited participants have not evaluated it.
 
 ![The mobile booking brief and its handoff controls](assets/mobile-brief.jpg)
 *Figure 5. Mobile view of the same live enquiry captured on 11 October 2026. The detail statuses, source controls and approval boundary remain visible.*
 
 ## 9.2 Verification performed
 
-The recorded browser run passed all 20 ordinary enquiry cases and 15 edge cases. The authored cases exercised custom input, corrections, uncertain dates and times, staff acceptance, cancellation, manual overrides, refresh and mobile switching. Each pass refers to the case's specified functional checks, rather than general extraction accuracy.
+The recorded browser run passed 20 ordinary enquiries and 15 edge cases covering custom input, corrections, uncertainty, acceptance, cancellation, staff edits, refresh and mobile switching. Passing refers to specified functional checks. A later review found an inappropriate cancellation question. After correction, eight live checks passed: four repeated booking tasks and four cancellation/reopening checks (Appendix D).
 
-Four downloads were saved and opened: draft text, approved text, approved JSON and revised unresolved draft JSON. Checks covered values, transcript, source IDs, revision history and review status. A correction cleared approval in the revised export. Native file inspection verified delivery where browser automation had not returned a download event.
+Four downloaded files were opened: draft text, approved text, approved JSON and revised draft JSON. Values, transcript, source IDs, history and review status were checked. A correction cleared approval. Native file inspection confirmed delivery despite the missing browser download event.
 
-The interface includes labelled inputs and edit controls, a skip link, modal keyboard focus handling and reduced-motion support. The code and recorded interaction checks support these implementation claims. No formal accessibility conformance audit has been completed.
+Labelled controls, a skip link, modal focus handling and reduced-motion support are implemented. No formal accessibility conformance audit has been completed.
 
 ## 9.3 What remains unmeasured
 
-The functional checks did not measure satisfaction, task completion time or adoption by restaurant staff. A usability study should compare matched transcript-to-brief tasks with and without FormBridge, vary task order and record completion time, remaining errors and source checks. Restaurant staff would be the preferred participants; classmates would provide proxy feedback. The study should also test whether analysis delays disrupt the workflow.
+The repeated tasks had no errors across 20 field positions. Ten displayed time citations were inspected; both complete briefs were approved and both unresolved briefs stayed blocked. These are browser functional observations. Task time, satisfaction and staff adoption remain unmeasured; a participant comparison is still needed.
 
 <!-- PAGE 13 -->
 # 10. Ethics, limitations and next steps
@@ -333,7 +337,7 @@ Human approval is a review step; the application has no restaurant availability 
 
 The samples are small and domain-restricted. Development cases were repeatedly used; the regression selection was inspected. The 13-case remainder provides some separation from this project's earlier selections, but one dialogue changes its complete-brief percentage by 7.7 points. Its public provenance also prevents claims of guaranteed absence from model pretraining.
 
-The controlled experiment fixes model identity, but evidence prompts and repair budgets differ. It cannot isolate validation as the causal source of improvement. Values are scored at the final turn; intermediate-turn accuracy, unsupported-value rates, evidence correctness and clarification quality were not independently quantified. The canonical scorer still misses some harmless wording differences. API aliases, concurrent provider use and incomplete failed-call token reporting limit exact regeneration and cost conclusions.
+The controlled experiment fixes model identity, but evidence prompts and repair budgets differ. It cannot isolate validation as the causal source of improvement. Values are scored at the final turn. The supplementary source and clarification audit uses known outputs, one reviewer and a small selection; it cannot establish unseen support precision or inter-rater reliability. Intermediate-turn accuracy remains unquantified. The canonical scorer still misses harmless wording differences. API aliases, concurrent provider use and incomplete failed-call token reporting limit regeneration and cost conclusions.
 
 English-only patterns, a 30-message cap and party sizes of 1–30 limit applicability. Tab-local storage and a process-local limiter suit the current demonstration but do not establish production-scale reliability. A complete security or legal compliance assessment was outside the project evaluation.
 
@@ -359,6 +363,7 @@ These priorities address the observed extraction errors, unmeasured user benefit
 | Extraction and interaction refinement | 1 October | Grounding and temporal checks, cancellation handling, retained staff edits, focus handling and restaurant desk design |
 | Final evaluation and reproduction | 1 October | Fixed evaluation settings, same-model comparison, result files, clean-checkout checks and verified exports |
 | Product media and report preparation | 4–11 October | Updated launch/walkthrough films, real product captures and the technical report |
+| Report audit and targeted correction | 11 October | Source and question review, corrected cancellation follow-up and eight deployed task checks |
 
 *Table 4. Project phases and deliverables recorded in the repository.*
 
@@ -402,13 +407,18 @@ cd NLP-AT2
 git checkout 0b6bc901363b34472173ff7a05d5366f7bd5549c
 pnpm install --frozen-lockfile
 cp .env.example .env.local
+~~~
+
+Edit .env.local and set OPENAI_API_KEY to your own project key before model analysis. Keep this file private. Then run:
+
+~~~bash
 pnpm test
 pnpm typecheck
 pnpm build
 pnpm start
 ~~~
 
-The server reads OPENAI_API_KEY from the private environment file. The application runs at http://localhost:3000. The evaluation used source commit 32af459b6a1cd20ede9b08c2b73c20a0c385301e; the application release above has unchanged extractor and runner fingerprints.
+The application runs at http://localhost:3000. The foreground pnpm start process occupies this terminal. Open another terminal in NLP-AT2 for the commands below, or stop the server first: in-process evaluation does not require it. The evaluation used source commit 32af459b6a1cd20ede9b08c2b73c20a0c385301e; the release above has unchanged extractor and runner fingerprints.
 
 ## A.2 Dataset and same-model development comparison
 
@@ -500,17 +510,79 @@ Paths below are relative to the application repository.
 | Production development | evaluation/results/sgd-dev-20-assessment-final-development.json |
 | Same-model development | evaluation/results/sgd-dev-20-assessment-equal-model-development.json |
 | Same-model test remainder | evaluation/results/sgd-test-13-assessment-equal-model-unselected.json |
+| Model-selection development trials | evaluation/results/sgd-dev-10-grounded-luna-pilot.json; evaluation/results/sgd-dev-10-grounded-v3-development.json |
 | Dataset audit and licence | evaluation/results/sgd-audit.json; evaluation/DATA_LICENSE.txt |
 | Authored browser cases | evaluation/browser-cases-35.json |
 | Recorded 35-case browser run | evaluation/results/browser-use-35-final.json |
+| Source and clarification review | docs/assessment/feature-audit.json |
+| Live task checks and post-fix replay | docs/assessment/browser-task-checks-20261011.json; docs/assessment/browser-task-retest-20261011.json |
+| Participant tasks and recording sheet | docs/assessment/Usability-study.md; docs/assessment/usability-observations.csv |
 | Native exports and file checks | evaluation/results/download-verification-20261001.json; evaluation/results/downloads/ |
 | Full reproduction instructions | evaluation/REPRODUCIBILITY.md |
 | Automated release checks | GitHub Actions run 37173880400, release 0b6bc90 |
 
-Source fingerprints are recorded in the completed evaluation files. The browser-case record covers an earlier product release; the later evaluation runner change did not alter the interface.
+Source fingerprints are recorded in the completed evaluation files. The 35-case record covers an earlier release. The 11 October replay used b256d49; its cancellation presentation change leaves the recorded extractor fingerprint unchanged.
 
 ## B.2 Evidence provenance
 
 Error analysis used development dialogues 1_00005, 1_00006 and 1_00017, and test dialogue 1_00027 from the pinned SGD revision. The original labels and final run scores were retained. Figure 4 uses the saved summary CSV; field-level observations use the saved predictions. Dataset-derived material is attributed to Google Research and is subject to the dataset's Creative Commons Attribution-ShareAlike 4.0 International licence.
 
 Figures 1, 3 and 5 are original captures of the live application on 11 October 2026 using a fictional restaurant enquiry. They illustrate the interface without including customer records. Figure 2 describes the implemented processing flow.
+
+The source/clarification review retains predicted values, source IDs, visible messages and rating rationales in feature-audit.json. Run verify-feature-audit.py in docs/assessment with Python 3 to check input correspondence and recount annotations without API calls. The script verifies accounting, not the correctness of the semantic ratings.
+
+<!-- PAGE 19 -->
+# Appendix C. Source support and clarification review
+
+## C.1 Criteria and results
+
+The source review used the unchanged final predictions for all 13 test-remainder dialogues and their original visible prefixes at the pinned SGD revision. A value counted as supported when the cited messages established a customer statement or an accepted staff value. Conflicting or incomplete acceptance scope was labelled ambiguous. Null predictions were omissions and were excluded from support precision, while remaining in field-accuracy denominators. This single retrospective review was not blind to results and had no independent second rater.
+
+| Measure | Observed result |
+| --- | ---: |
+| Fields inspected | 65 |
+| Non-empty values with valid cited IDs | 62/62; 171 citation references |
+| Values with clear source support | 61/62 (98.4%) |
+| Ambiguous support | 1/62 (1.6%) |
+| Clearly unsupported values observed | 0/62 |
+| Omitted reference slots | 3/65 (4.6%) |
+| Retained year-missing dates marked unresolved | 12/12 |
+| Appropriate clarification questions | 8/9 (88.9%) |
+
+For 4_00026, March 1st appears in a staff summary that the customer corrects for party size and time. The later acceptance confirms only those changes. Carrying the date forward is plausible, but its support is less explicit than a direct reconfirmation. It is therefore counted as ambiguous despite matching the dataset label.
+
+Question review covered E01–E05, E07–E08 and E10–E11 in the existing browser record. A question needed to request the missing detail without choosing an unaccepted value. After whole-request cancellation, the criterion instead required acknowledging cancellation. E07 cleared all five fields but asked “Which restaurant would you like?”; it failed that conversational criterion. The other eight questions addressed the missing or uncertain detail. The authored functional pass count is unchanged because the original checks did not include this criterion.
+
+## C.2 Uncertainty in the interface
+
+![Time remains unresolved while an after-eight preference is retained](assets/uncertain-time-detail.jpg)
+*Figure 6. The customer changes to five guests after 8 pm. The exact time remains open and the suggested question preserves the constraint. Source: original live-app capture, 11 October 2026.*
+
+
+<!-- PAGE 20 -->
+# Appendix D. Live task replay after correction
+
+## D.1 Method and observed outcomes
+
+The public app was tested through its mobile interface on 11 October 2026 at release b256d49. Fictional conversations underwent live analysis; checks inspected values, time sources, questions and approval. A1/B1 accept offers and revise guest counts; A2/B2 reject offers and retain time preferences. All four passed before and after correction.
+
+| Check | Required outcome | Observed outcome |
+| --- | --- | --- |
+| A1: Juniper, Sydney | 18 Oct 2027; 7:30 pm; five guests | Correct; two time sources; approved |
+| B1: Willow House, Melbourne | 19 Oct 2027; 6:45 pm; three guests | Correct; two time sources; approved |
+| A2: Cedar Table, Adelaide | 20 Oct 2027; six guests; after 8 pm, exact time open | Correct; three time sources; approval disabled |
+| B2: Olive & Thyme, Brisbane | 21 Oct 2027; four guests; after 7 pm, exact time open | Correct; three time sources; approval disabled |
+| C1/C2: cancel, then courtesy reply | Clear all five fields; acknowledge cancellation | Both passed; no new-booking question |
+| C3: new booking after cancellation | Use five new values rather than cancelled details | All five correct; approval available |
+| E07: exact original cancellation case | Replace the inappropriate restaurant question | Passed; cancellation acknowledged; approval disabled |
+
+The four repeated booking tasks had zero errors across 20 field positions and ten inspected time citations. All eight specified checks passed. This is functional verification using authored tasks, with no human participants, manual comparison, satisfaction ratings or task-time measure. It does not establish general usability or perfect accuracy.
+
+## D.2 Correction and evidence
+
+The original E07 result remains in Appendix C. When all five fields are cleared and linked to a whole-request cancellation, the response and interface acknowledge it without asking for a restaurant. Six added tests cover cancellation, courtesy replies, reopening, refusal to reopen, partial clearing and retained staff details. All 59 tests, TypeScript checks and the production build passed. Extraction and scoring were unchanged; dataset results remain the earlier runs.
+
+![Cancellation acknowledgement with approval disabled](assets/cancellation-fixed-detail.jpg)
+*Figure 7. Corrected live cancellation response, 11 October 2026. The original failing question and the successful replay are retained separately.*
+
+Transcripts and observed states are retained in browser-task-retest-20261011.json. Download delivery was not retested.

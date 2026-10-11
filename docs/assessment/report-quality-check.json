@@ -1,7 +1,7 @@
 {
-  "pages": 18,
+  "pages": 20,
   "main_pages": 15,
-  "appendix_pages": 3,
+  "appendix_pages": 5,
   "referencing": "APA retained",
   "prediction_rows_verified": [
     {
@@ -83,14 +83,81 @@
   "unwanted_report_notes": "absent from PDF",
   "docx_comments_and_tracked_edits": "absent",
   "out_of_page_text": 0,
-  "embedded_images": 6,
+  "embedded_images": 8,
   "missing_required_information": [
     "full group identities and confirmed individual contributions"
   ],
-  "figure_and_cover_instances": 6,
+  "figure_and_cover_instances": 8,
   "cover": "UTS academic cover matching supplied example; one logo and no product photo",
   "reference_formatting": "APA entries with hanging indents and double spacing",
-  "layout": "18 pages; no out-of-page text; all sections correctly paginated",
+  "layout": "20 pages; no out-of-page text; references page 15; appendices pages 16-20",
   "cover_identity": "Karthik Ramesh; 26043455; supplied in user example",
-  "body_preservation": "Pages 2\u201316 and 18 unchanged; page 17 adds the live-app link moved from the cover"
+  "body_preservation": "Report revised following audit; unchanged benchmark predictions and original table totals",
+  "feature_audit": {
+    "dialogues": 13,
+    "fieldPositions": 65,
+    "nonemptyValues": 62,
+    "supportedValues": 61,
+    "ambiguousSupport": 1,
+    "omissions": 3,
+    "clearlyUnsupportedValues": 0,
+    "citationReferences": 171,
+    "yearMissingDatesRetainedAsUnresolved": 12,
+    "questionsReviewed": 9,
+    "appropriateQuestions": 8
+  },
+  "feature_audit_method": "Single retrospective inspection, no second rater, no new model requests",
+  "screenshot_display_widths_inches": {
+    "4": [
+      4.3
+    ],
+    "7": [
+      5.7
+    ],
+    "12": [
+      3.15
+    ],
+    "19": [
+      6.4
+    ],
+    "20": [
+      3.5
+    ]
+  },
+  "participant_study": "Protocol and empty observation sheet prepared; no participant outcomes",
+  "reproduction_clarifications": "Own API key and separate terminal explicitly described",
+  "model_justification": "Development evidence and bounded-request settings explained",
+  "checkedOn": "2026-10-11",
+  "live_task_retest": {
+    "checks": 8,
+    "passed": 8,
+    "repeatedBookingTasks": 4,
+    "bookingFieldPositions": 20,
+    "bookingFieldErrors": 0,
+    "timeSourcePanels": 4,
+    "timeCitations": 10,
+    "completeBriefsApproved": 2,
+    "unresolvedBriefsApprovalDisabled": 2,
+    "cancellationChecks": 4,
+    "humanParticipants": 0
+  },
+  "application_correction": "Cancelled enquiries acknowledge cancellation without asking for a new restaurant; exact original E07 replay passed",
+  "current_application_checks": {
+    "tests": 59,
+    "typecheck": "passed",
+    "production_build": "passed",
+    "github_actions_run": 38107452142,
+    "github_actions_conclusion": "success",
+    "source_commit": "b256d49f64abdb97da85f2888993663a65eaa854",
+    "deployment_id": "dpl_2Zv7boiHVA8w8CeCi5mZjMvGen1j",
+    "production_state": "READY"
+  },
+  "extractor_fingerprint_unchanged": true,
+  "file_sha256": {
+    "FormBridge-AT2-Report.md": "94e99265fba6f55b5e7c76b6a0dd3e34d0a61a15e07fe61ae87383666b474a39",
+    "FormBridge-AT2-Report.docx": "60620f3bda6f26049601eb81796fcb85682820380900433b74a53a812ae5cfd8",
+    "FormBridge-AT2-Report.pdf": "ce32771e84dc9e6113785423516eb5e70aeb9c4a34548b8f0217cc91e3e533be",
+    "feature-audit.json": "2725ad6d7170af261ed6ba0fa366cc220130d80447d857ad7e8653edfa5a93eb",
+    "browser-task-retest-20261011.json": "5472fefbe01c3b91a90a2019821a33be2a95dd59ce996757023f87a3be275945"
+  }
 }

@@ -95,7 +95,7 @@ def picture(path,page):
  path=ROOT/path
  p=doc.add_paragraph();p.alignment=WD_ALIGN_PARAGRAPH.CENTER
  p.paragraph_format.space_before=Pt(4);p.paragraph_format.space_after=Pt(3);p.paragraph_format.keep_with_next=True
- widths={1:6.7,4:6.2,5:6.7,7:6.7,10:6.7,12:1.23}
+ widths={1:6.7,4:4.3,5:6.7,7:5.7,10:6.7,12:3.15,19:6.4,20:3.5}
  p.add_run().add_picture(str(path),width=Inches(widths.get(page,6.3)))
 
 def paragraph(text,page):
@@ -144,8 +144,8 @@ for idx in range(1,len(chunks),2):
  if page==12:
   title=doc.add_paragraph(lines[0][2:],style='Heading 1');title.paragraph_format.page_break_before=True
   layout=doc.add_table(rows=1,cols=2);layout.autofit=False;layout.alignment=WD_TABLE_ALIGNMENT.CENTER
-  layout.columns[0].width=Inches(4.43);layout.columns[1].width=Inches(2.31)
-  left,right=layout.rows[0].cells;left.width=Inches(4.43);right.width=Inches(2.31)
+  layout.columns[0].width=Inches(3.38);layout.columns[1].width=Inches(3.36)
+  left,right=layout.rows[0].cells;left.width=Inches(3.38);right.width=Inches(3.36)
   for cell in [left,right]:
    cell.vertical_alignment=WD_CELL_VERTICAL_ALIGNMENT.TOP
    cp=cell._tc.get_or_add_tcPr();mar=OxmlElement('w:tcMar')
@@ -153,7 +153,7 @@ for idx in range(1,len(chunks),2):
     m=OxmlElement('w:'+side);m.set(qn('w:w'),'0' if side!='right' else '110');m.set(qn('w:type'),'dxa');mar.append(m)
    cp.append(mar)
   fig=right.paragraphs[0];fig.alignment=WD_ALIGN_PARAGRAPH.CENTER
-  fig.add_run().add_picture(str(ROOT/'assets/mobile-brief.jpg'),width=Inches(2.02))
+  fig.add_run().add_picture(str(ROOT/'assets/mobile-brief.jpg'),width=Inches(3.15))
   caption=right.add_paragraph(style='Caption')
   blocks=re.split(r'\n\s*\n','\n'.join(lines[1:]))
   for block in blocks:
