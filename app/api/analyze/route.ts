@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { requestSchema } from '@/lib/contracts';
 import { analyzeConversation } from '@/lib/engine';
 import { createEmptyBrief, type Brief } from '@/lib/state';
+import { isCancelledBooking } from '@/lib/cancellation-status';
 
 export const runtime = 'nodejs';
 export const maxDuration = 30;
@@ -43,7 +44,7 @@ export async function POST(request: Request) {
   const brief = (parsed.data.brief ?? createEmptyBrief()) as Brief;
   try {
     const analysis = await analyzeConversation(messages, brief, mode, referenceDate);
-    return NextResponse.json(analysis, { headers: { 'Cache-Control': 'no-store' } });
+    return NextResponse.json({ ...analysis, clarification: isCancelledBooking(analysis.brief, messages) ? null : analysis.clarification }, { headers: { 'Cache-Control': 'no-store' } });
   } catch (error) {
     const message = error instanceof Error && error.message === 'OpenAI API key is not configured.' ? error.message : 'Could not analyse this turn. Your last valid brief is unchanged.';
     return NextResponse.json({ error: message, brief }, { status: 503, headers: { 'Cache-Control': 'no-store' } });
