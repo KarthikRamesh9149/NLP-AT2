@@ -42,7 +42,7 @@ doc.core_properties.title='FormBridge: Evidence-linked dialogue state tracking f
 doc.core_properties.subject='36118 Applied Natural Language Processing, AT2 Part B'
 doc.core_properties.author='FormBridge project group'
 doc.core_properties.keywords='dialogue state tracking, restaurant booking, NLP, evidence, human review'
-doc.core_properties.comments='Editable group report. Cover identities and contribution fields require group confirmation.'
+doc.core_properties.comments=''
 
 def add_link(p,text,url):
  rel=p.part.relate_to(url,'http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink',is_external=True)
@@ -103,15 +103,53 @@ def paragraph(text,page):
  p=doc.add_paragraph(style='Caption' if caption else None)
  rich(p,text[1:-1] if caption and text.endswith('*') else text)
  if page==15 and not caption:
-  p.paragraph_format.left_indent=Inches(.22);p.paragraph_format.first_line_indent=Inches(-.22);p.paragraph_format.space_after=Pt(9)
-  for r in p.runs:r.font.size=Pt(10)
+  p.paragraph_format.left_indent=Inches(.5);p.paragraph_format.first_line_indent=Inches(-.5)
+  p.paragraph_format.space_after=Pt(0);p.paragraph_format.line_spacing=2.0
+  for r in p.runs:r.font.size=Pt(10.5)
  return p
+
+def cover(body):
+ lines=body.splitlines()
+ metadata={}
+ for line in lines:
+  match=re.match(r'\*\*([^*]+):\*\*\s*(.+)',line)
+  if match:metadata[match[1]]=match[2]
+ title=next(line[2:] for line in lines if line.startswith('# '))
+ subtitle=next(line[3:] for line in lines if line.startswith('## '))
+ p=doc.add_paragraph();p.paragraph_format.space_after=Pt(5)
+ r=p.add_run('36118   /   APPLIED NATURAL LANGUAGE PROCESSING')
+ r.font.name='Arial';r.font.size=Pt(9);r.font.bold=True;r.font.color.rgb=RGBColor.from_string(GREEN)
+ p=doc.add_paragraph();p.paragraph_format.space_after=Pt(29)
+ r=p.add_run('SPRING 2026     ·     ASSESSMENT TASK 2, PART B')
+ r.font.name='Arial';r.font.size=Pt(9);r.font.color.rgb=RGBColor.from_string(GREY)
+ p=doc.add_paragraph();p.paragraph_format.space_after=Pt(9)
+ r=p.add_run(title);r.font.name='Georgia';r.font.size=Pt(54);r.font.color.rgb=RGBColor.from_string(GREEN)
+ p=doc.add_paragraph();p.paragraph_format.space_after=Pt(22);p.paragraph_format.line_spacing=1.08
+ r=p.add_run(subtitle);r.font.name='Georgia';r.font.size=Pt(19);r.font.color.rgb=RGBColor.from_string(GREEN)
+ p=doc.add_paragraph();p.paragraph_format.space_after=Pt(9)
+ r=p.add_run('GROUP TECHNICAL REPORT');r.font.name='Arial';r.font.size=Pt(9);r.font.bold=True;r.font.color.rgb=RGBColor.from_string(GREY)
+ p=doc.add_paragraph();p.paragraph_format.space_after=Pt(8)
+ p.add_run().add_picture(str(ROOT/'assets/workspace-approved.jpg'),width=Inches(6.7))
+ p=doc.add_paragraph(style='Caption');p.paragraph_format.space_after=Pt(20)
+ p.add_run('The conversation and the reviewed booking brief in the live application.')
+ p=doc.add_paragraph();p.paragraph_format.space_after=Pt(10)
+ border=OxmlElement('w:pBdr');bottom=OxmlElement('w:bottom')
+ bottom.set(qn('w:val'),'single');bottom.set(qn('w:sz'),'9');bottom.set(qn('w:color'),GREEN);border.append(bottom)
+ p._p.get_or_add_pPr().append(border)
+ p=doc.add_paragraph();p.paragraph_format.space_after=Pt(7)
+ r=p.add_run(metadata.get('Report date',''));r.font.name='Arial';r.font.size=Pt(10);r.font.color.rgb=RGBColor.from_string(GREY)
+ for label in ['Application','Source repository']:
+  p=doc.add_paragraph();p.paragraph_format.space_after=Pt(4)
+  r=p.add_run(label+'  ');r.font.name='Arial';r.font.size=Pt(9);r.font.bold=True;r.font.color.rgb=RGBColor.from_string(GREY)
+  add_link(p,metadata[label],metadata[label])
 
 chunks=re.split(r'<!-- PAGE (\d+) -->',SRC.read_text())
 for idx in range(1,len(chunks),2):
  page=int(chunks[idx]);body=chunks[idx+1].strip();lines=body.splitlines()
 
- if page==1:doc.add_paragraph().paragraph_format.space_after=Pt(28)
+ if page==1:
+  cover(body)
+  continue
  if page==12:
   title=doc.add_paragraph(lines[0][2:],style='Heading 1');title.paragraph_format.page_break_before=True
   layout=doc.add_table(rows=1,cols=2);layout.autofit=False;layout.alignment=WD_TABLE_ALIGNMENT.CENTER

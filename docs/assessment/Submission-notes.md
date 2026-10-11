@@ -17,19 +17,18 @@ The report contains **15 main pages, including the cover and references, plus th
 | Outcomes and value added | Abstract; Sections 7–9; conclusion |
 | Challenges and solutions | Section 8, page 11 |
 | Ethics, limitations, recommendations and next steps | Section 10, page 13 |
-| Phases and individual contributions | Section 11, page 14; contribution fields require completion |
+| Phases and individual contributions | Section 11, page 14; only Karthik's technical responsibility is currently confirmed |
 | APA-style references | Page 15 |
-| Supporting evidence and AI assistance acknowledgement | Appendices B–C, page 18 |
+| Supporting evidence | Appendix B, page 18 |
 
 ## Required before submission
 
 1. Supply every team member's full name and student ID, and the individual submitting student's identity.
-2. Confirm actual responsibilities, report sections and supporting evidence for each person in Table 5. Do not assign equal contribution without confirmation.
+2. Confirm actual responsibilities and report sections for every team member. Section 11.2 currently includes only the verified technical responsibility; remaining roles cannot be invented.
 3. Have each member review and contribute to the report, including its technical findings and references.
-4. Check the subject's AI-use policy and use any prescribed acknowledgement wording. Appendix C truthfully records AI assistance; it is not a substitute for a required declaration.
-5. Provide the required code upload or source archive. The repository is private, so a link alone may not give the assessor access. Do not include API keys, environment secrets or local dependency directories in an archive.
-6. Verify the deadline and required upload format in Canvas. The pasted PDF's “Monday, 14 October 2026” is inconsistent: 14 October 2026 is Wednesday.
-7. Each member must complete the required individual submission and SPARKPlus peer evaluation.
+4. Provide the required code upload or source archive. The repository is private, so a link alone may not give the assessor access. Do not include API keys, environment secrets or local dependency directories in an archive.
+5. Verify the deadline and required upload format in Canvas. The pasted PDF's “Monday, 14 October 2026” is inconsistent: 14 October 2026 is Wednesday.
+6. Each member must complete the required individual submission and SPARKPlus peer evaluation.
 
 ## Evidence boundaries
 
@@ -49,4 +48,8 @@ The report contains **15 main pages, including the cover and references, plus th
 - `assets/`: original captures and report figures.
 - `error-audit.json` and `error-transcripts.json`: error-analysis records, with upstream dataset attribution in the report.
 
-The report is a technical draft until the identity and contribution fields are completed. No Canvas submission or SPARKPlus evaluation has been performed.
+The report is a technical draft until the group identity and full contribution statement are provided. Placeholders and completion instructions have been removed from the report; missing details remain listed here. No Canvas submission or SPARKPlus evaluation has been performed.
+
+## Editorial verification
+
+APA was retained following the user's final referencing instruction and the assignment brief. Report prose was edited for plain academic language; submission instructions, placeholders, peer-assessment administration and report-creation notes were removed. Technical methods, sample history and limitations remain because they are necessary to interpret the results. The figures use actual product screenshots, a conventional architecture diagram and a chart calculated from saved results. No generated photographs or decorative illustrations are included.

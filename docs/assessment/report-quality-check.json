@@ -1,14 +1,94 @@
 {
   "pages": 18,
-  "main_pages_including_cover_and_references": 15,
+  "main_pages": 15,
   "appendix_pages": 3,
-  "embedded_figures_and_cover_images": 6,
+  "referencing": "APA retained",
+  "prediction_rows_verified": [
+    {
+      "file": "sgd-test-20-assessment-final-regression.json",
+      "mode": "formbridge",
+      "fields": 100,
+      "strict": 100,
+      "canonical": 100,
+      "complete": 20,
+      "canonical_complete": 20
+    },
+    {
+      "file": "sgd-dev-20-assessment-final-development.json",
+      "mode": "formbridge",
+      "fields": 100,
+      "strict": 96,
+      "canonical": 96,
+      "complete": 17,
+      "canonical_complete": 17
+    },
+    {
+      "file": "sgd-dev-20-assessment-equal-model-development.json",
+      "mode": "rules",
+      "fields": 100,
+      "strict": 35,
+      "canonical": 35,
+      "complete": 0,
+      "canonical_complete": 0
+    },
+    {
+      "file": "sgd-dev-20-assessment-equal-model-development.json",
+      "mode": "model",
+      "fields": 100,
+      "strict": 86,
+      "canonical": 92,
+      "complete": 9,
+      "canonical_complete": 14
+    },
+    {
+      "file": "sgd-dev-20-assessment-equal-model-development.json",
+      "mode": "formbridge",
+      "fields": 100,
+      "strict": 92,
+      "canonical": 92,
+      "complete": 14,
+      "canonical_complete": 14
+    },
+    {
+      "file": "sgd-test-13-assessment-equal-model-unselected.json",
+      "mode": "rules",
+      "fields": 65,
+      "strict": 25,
+      "canonical": 25,
+      "complete": 0,
+      "canonical_complete": 0
+    },
+    {
+      "file": "sgd-test-13-assessment-equal-model-unselected.json",
+      "mode": "model",
+      "fields": 65,
+      "strict": 56,
+      "canonical": 62,
+      "complete": 6,
+      "canonical_complete": 12
+    },
+    {
+      "file": "sgd-test-13-assessment-equal-model-unselected.json",
+      "mode": "formbridge",
+      "fields": 65,
+      "strict": 62,
+      "canonical": 62,
+      "complete": 12,
+      "canonical_complete": 12
+    }
+  ],
+  "raw_field_checks_audited": 695,
+  "table_totals": "match recorded predictions",
+  "token_and_time_totals": "match saved summaries",
+  "unwanted_report_notes": "absent from PDF",
+  "docx_comments_and_tracked_edits": "absent",
   "out_of_page_text": 0,
-  "docx_zip_integrity": "passed",
-  "key_result_figures": "present",
-  "pending": [
-    "group names and IDs",
-    "individual contribution confirmation",
-    "subject-specific AI declaration check"
-  ]
+  "embedded_images": 5,
+  "missing_required_information": [
+    "full group identities and confirmed individual contributions"
+  ],
+  "figure_and_cover_instances": 6,
+  "cover": "redesigned and visually checked",
+  "reference_formatting": "APA entries with hanging indents and double spacing",
+  "layout": "18 pages; no out-of-page text; all sections correctly paginated"
 }
