@@ -1,0 +1,14 @@
+{
+  "pages": 18,
+  "main_pages_including_cover_and_references": 15,
+  "appendix_pages": 3,
+  "embedded_figures_and_cover_images": 6,
+  "out_of_page_text": 0,
+  "docx_zip_integrity": "passed",
+  "key_result_figures": "present",
+  "pending": [
+    "group names and IDs",
+    "individual contribution confirmation",
+    "subject-specific AI declaration check"
+  ]
+}

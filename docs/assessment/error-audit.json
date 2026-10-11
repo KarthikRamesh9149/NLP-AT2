@@ -1,0 +1,118 @@
+[
+  {
+    "file": "sgd-dev-20-assessment-final-development.json",
+    "id": "1_00005",
+    "mode": "formbridge",
+    "bad": [
+      {
+        "field": "date",
+        "predicted": null,
+        "gold": [
+          "today"
+        ],
+        "status": "missing",
+        "constraint": null
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "file": "sgd-dev-20-assessment-final-development.json",
+    "id": "1_00017",
+    "mode": "formbridge",
+    "bad": [
+      {
+        "field": "partySize",
+        "predicted": null,
+        "gold": [
+          "2"
+        ],
+        "status": "missing",
+        "constraint": null
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "file": "sgd-dev-20-assessment-final-development.json",
+    "id": "1_00006",
+    "mode": "formbridge",
+    "bad": [
+      {
+        "field": "date",
+        "predicted": null,
+        "gold": [
+          "today"
+        ],
+        "status": "missing",
+        "constraint": null
+      },
+      {
+        "field": "partySize",
+        "predicted": null,
+        "gold": [
+          "2"
+        ],
+        "status": "missing",
+        "constraint": null
+      }
+    ],
+    "warnings": [
+      {
+        "messageId": "m7",
+        "usage": {
+          "inputTokens": 1783,
+          "outputTokens": 216,
+          "model": "gpt-6-luna"
+        },
+        "latencyMs": 12487,
+        "warning": "Some details need another check. Review the sources or retry analysis."
+      },
+      {
+        "messageId": "m9",
+        "usage": {
+          "inputTokens": 1822,
+          "outputTokens": 618,
+          "model": "gpt-6-luna"
+        },
+        "latencyMs": 15875,
+        "warning": "Some details need another check. Review the sources or retry analysis."
+      }
+    ]
+  },
+  {
+    "file": "sgd-test-13-assessment-equal-model-unselected.json",
+    "id": "1_00027",
+    "mode": "formbridge",
+    "bad": [
+      {
+        "field": "restaurantName",
+        "predicted": null,
+        "gold": [
+          "Mcdonald's"
+        ],
+        "status": "needs_clarification",
+        "constraint": "A restaurant in Pittsburg; no restaurant chosen."
+      },
+      {
+        "field": "date",
+        "predicted": null,
+        "gold": [
+          "March 1st"
+        ],
+        "status": "missing",
+        "constraint": null
+      },
+      {
+        "field": "partySize",
+        "predicted": null,
+        "gold": [
+          "2"
+        ],
+        "status": "missing",
+        "constraint": null
+      }
+    ],
+    "warnings": []
+  }
+]
