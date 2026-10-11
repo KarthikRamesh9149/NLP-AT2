@@ -23,7 +23,7 @@ The report contains **15 main pages, including the cover and references, plus th
 
 ## Required before submission
 
-1. Supply every team member's full name and student ID, and the individual submitting student's identity.
+1. The individual cover uses Karthik Ramesh and student ID 26043455 from the supplied cover example. Supply the remaining team members' names and details for the contribution record.
 2. Confirm actual responsibilities and report sections for every team member. Section 11.2 currently includes only the verified technical responsibility; remaining roles cannot be invented.
 3. Have each member review and contribute to the report, including its technical findings and references.
 4. Provide the required code upload or source archive. The repository is private, so a link alone may not give the assessor access. Do not include API keys, environment secrets or local dependency directories in an archive.

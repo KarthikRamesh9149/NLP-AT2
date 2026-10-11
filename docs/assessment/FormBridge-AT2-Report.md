@@ -1,20 +1,12 @@
 <!-- PAGE 1 -->
-# FormBridge
-## Evidence-linked dialogue state tracking for restaurant booking briefs
+# Assignment 2: End-to-end NLP Project
+## FormBridge: Restaurant Booking Briefs
 
-**36118 Applied Natural Language Processing · Spring 2026**
+**Subject:** 36118 Applied Natural Language Processing
 
-**Assessment Task 2, Part B · Group technical report**
+**Student Name:** Karthik Ramesh
 
-![FormBridge's restaurant booking workspace](assets/workspace-approved.jpg)
-
-**Report date:** 11 October 2026
-
-**Application:** https://formbridge-nlp-at2.vercel.app/
-
-**Source repository:** https://github.com/KarthikRamesh9149/NLP-AT2
-
-**Project scope:** English-language restaurant enquiries; five booking fields; staff-reviewed text and JSON handoff.
+**Student ID:** 26043455
 
 <!-- PAGE 2 -->
 # Abstract
@@ -487,6 +479,8 @@ node --env-file=.env.local --import tsx scripts/evaluate.ts ../formbridge-sgd \
 ~~~
 
 ## A.6 Interface and download reproduction
+
+Live application: https://formbridge-nlp-at2.vercel.app/
 
 Start with a new brief; enter the four-message enquiry from Section 2 with a valid future date. Confirm four guests and 7 pm, then five guests and an unresolved after-8 preference, then accepted 8:30 pm. Inspect both time sources. Approve the resolved brief and download text and JSON; open the files and check the values and reviewed status. Add a further correction and confirm that approval clears. Refresh and inspect the restored draft. Downloads can be checked directly from the saved files.
 

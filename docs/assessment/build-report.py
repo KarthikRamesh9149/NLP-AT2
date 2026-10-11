@@ -109,39 +109,30 @@ def paragraph(text,page):
  return p
 
 def cover(body):
- lines=body.splitlines()
- metadata={}
+ lines=body.splitlines();metadata={}
  for line in lines:
   match=re.match(r'\*\*([^*]+):\*\*\s*(.+)',line)
   if match:metadata[match[1]]=match[2]
  title=next(line[2:] for line in lines if line.startswith('# '))
  subtitle=next(line[3:] for line in lines if line.startswith('## '))
- p=doc.add_paragraph();p.paragraph_format.space_after=Pt(5)
- r=p.add_run('36118   /   APPLIED NATURAL LANGUAGE PROCESSING')
- r.font.name='Arial';r.font.size=Pt(9);r.font.bold=True;r.font.color.rgb=RGBColor.from_string(GREEN)
- p=doc.add_paragraph();p.paragraph_format.space_after=Pt(29)
- r=p.add_run('SPRING 2026     ·     ASSESSMENT TASK 2, PART B')
- r.font.name='Arial';r.font.size=Pt(9);r.font.color.rgb=RGBColor.from_string(GREY)
- p=doc.add_paragraph();p.paragraph_format.space_after=Pt(9)
- r=p.add_run(title);r.font.name='Georgia';r.font.size=Pt(54);r.font.color.rgb=RGBColor.from_string(GREEN)
- p=doc.add_paragraph();p.paragraph_format.space_after=Pt(22);p.paragraph_format.line_spacing=1.08
- r=p.add_run(subtitle);r.font.name='Georgia';r.font.size=Pt(19);r.font.color.rgb=RGBColor.from_string(GREEN)
- p=doc.add_paragraph();p.paragraph_format.space_after=Pt(9)
- r=p.add_run('GROUP TECHNICAL REPORT');r.font.name='Arial';r.font.size=Pt(9);r.font.bold=True;r.font.color.rgb=RGBColor.from_string(GREY)
- p=doc.add_paragraph();p.paragraph_format.space_after=Pt(8)
- p.add_run().add_picture(str(ROOT/'assets/workspace-approved.jpg'),width=Inches(6.7))
- p=doc.add_paragraph(style='Caption');p.paragraph_format.space_after=Pt(20)
- p.add_run('The conversation and the reviewed booking brief in the live application.')
- p=doc.add_paragraph();p.paragraph_format.space_after=Pt(10)
- border=OxmlElement('w:pBdr');bottom=OxmlElement('w:bottom')
- bottom.set(qn('w:val'),'single');bottom.set(qn('w:sz'),'9');bottom.set(qn('w:color'),GREEN);border.append(bottom)
- p._p.get_or_add_pPr().append(border)
- p=doc.add_paragraph();p.paragraph_format.space_after=Pt(7)
- r=p.add_run(metadata.get('Report date',''));r.font.name='Arial';r.font.size=Pt(10);r.font.color.rgb=RGBColor.from_string(GREY)
- for label in ['Application','Source repository']:
-  p=doc.add_paragraph();p.paragraph_format.space_after=Pt(4)
-  r=p.add_run(label+'  ');r.font.name='Arial';r.font.size=Pt(9);r.font.bold=True;r.font.color.rgb=RGBColor.from_string(GREY)
-  add_link(p,metadata[label],metadata[label])
+ # Academic cover follows the supplied UTS layout.
+ p=doc.add_paragraph();p.alignment=WD_ALIGN_PARAGRAPH.CENTER
+ p.paragraph_format.space_before=Pt(26);p.paragraph_format.space_after=Pt(75)
+ p.paragraph_format.line_spacing=1.0
+ p.add_run().add_picture(str(ROOT/'assets/uts-logo.jpg'),width=Inches(5.4166666667))
+ def cover_text(text,size,before=0,after=0,center=True):
+  p=doc.add_paragraph();p.alignment=WD_ALIGN_PARAGRAPH.CENTER if center else WD_ALIGN_PARAGRAPH.LEFT
+  p.paragraph_format.space_before=Pt(before);p.paragraph_format.space_after=Pt(after)
+  p.paragraph_format.line_spacing=1.0;p.paragraph_format.keep_with_next=True
+  r=p.add_run(text);r.font.name='Liberation Serif';r.font.size=Pt(size);r.bold=True
+  r.font.color.rgb=RGBColor.from_string('202932')
+  return p
+ cover_text(title,19,after=8)
+ cover_text(subtitle,14,after=19)
+ cover_text(metadata['Subject'],14,after=140)
+ cover_text('Student Name: '+metadata['Student Name'],11.5,after=4,center=False)
+ p=cover_text('Student ID: '+metadata['Student ID'],11.5,after=18,center=False)
+ p.paragraph_format.keep_with_next=False
 
 chunks=re.split(r'<!-- PAGE (\d+) -->',SRC.read_text())
 for idx in range(1,len(chunks),2):

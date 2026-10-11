@@ -83,12 +83,14 @@
   "unwanted_report_notes": "absent from PDF",
   "docx_comments_and_tracked_edits": "absent",
   "out_of_page_text": 0,
-  "embedded_images": 5,
+  "embedded_images": 6,
   "missing_required_information": [
     "full group identities and confirmed individual contributions"
   ],
   "figure_and_cover_instances": 6,
-  "cover": "redesigned and visually checked",
+  "cover": "UTS academic cover matching supplied example; one logo and no product photo",
   "reference_formatting": "APA entries with hanging indents and double spacing",
-  "layout": "18 pages; no out-of-page text; all sections correctly paginated"
+  "layout": "18 pages; no out-of-page text; all sections correctly paginated",
+  "cover_identity": "Karthik Ramesh; 26043455; supplied in user example",
+  "body_preservation": "Pages 2\u201316 and 18 unchanged; page 17 adds the live-app link moved from the cover"
 }
