@@ -8,6 +8,14 @@ const snapshot = (fields: Partial<GroundedState>): GroundedState => ({ ...Object
 const field = (value: string, id: string, quote: string): GroundedField => ({ value, status: 'resolved', constraint: null, evidence: [{ id, quote }] });
 
 describe('grounded conversation state', () => {
+  it.each(['No problem, please go ahead.', 'No worries.', 'Not a problem.'])('accepts a staff offer with %s', text => {
+    const messages: Message[] = [{ id: 'offer', speaker: 'staff', text: 'Would 8:30 pm work?' }, { id: 'answer', speaker: 'customer', text }];
+    const time: GroundedField = { value: '8:30 pm', status: 'resolved', constraint: null, evidence: [{ id: 'offer', quote: '8:30 pm' }, { id: 'answer', quote: text, kind: 'acceptance' }] };
+    expect(reconcileGroundedState(createEmptyBrief(), snapshot({ time }), messages, null).fields.time.value).toBe('8:30 pm');
+  });
+  it.each(['No problem, but do not book that.', 'No worries, unless my friend changes her mind.', 'Not a problem, but I need to ask my friend first.'])('keeps a refusal or condition effective in %s', text => {
+    expect(isAcceptance(text)).toBe(false);
+  });
   it('stores an approximate clock only as a preference even when the model supplies a clock value', () => {
     const messages: Message[] = [{ id: 'm1', speaker: 'customer', text: 'Around 7 pm for two adults and three children at Juniper in Sydney.' }];
     const time: GroundedField = { value: '7 pm', status: 'needs_clarification', constraint: 'around 7 pm', evidence: [{ id: 'm1', quote: 'Around 7 pm' }] };

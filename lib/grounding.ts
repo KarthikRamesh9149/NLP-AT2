@@ -60,8 +60,10 @@ export function isAcceptance(text: string): boolean {
   });
   const positive = /\b(yes|yeah|yep|absolutely|i would love that|i'd love that|confirm|confirmed|exactly|correct|right|perfect|works|sounds (?:good|great|fabulous|lovely|wonderful|brilliant|excellent|perfect)|sounds like a good choice|that is exactly what i want|that's it|that is it|good|great|excellent|sure|go ahead|good for me|that works|that is good|that's good|fine|okay|ok|please book|please reserve|book (?:it|that|this|me|us|a table|the table)|reserve (?:it|that|this|a table|the table))\b/i;
   const bookingRequest = /\b(?:please (?:book|reserve)|book (?:it|that|this|me|us|a table|the table)|reserve (?:it|that|this|a table|the table))\b/;
-  return relevant.some(clause => positive.test(clause) && (!/\?$/.test(clause) || bookingRequest.test(clause)))
-    && !/\b(no|not|don't|doesn't|won't|reject|cancel|might|maybe|check with|ask my|if|unless)\b/i.test(relevant.join(' '));
+  const approvalIdiom = /\b(?:no problem|no worries|not a problem)\b/;
+  const refusalScope = relevant.join(' ').replace(new RegExp(approvalIdiom.source, 'g'), '');
+  return relevant.some(clause => (positive.test(clause) || approvalIdiom.test(clause)) && (!/\?$/.test(clause) || bookingRequest.test(clause)))
+    && !/\b(no|not|don't|doesn't|won't|reject|cancel|might|maybe|check with|ask my|if|unless)\b/i.test(refusalScope);
 }
 function acceptedEvidence(evidence: Evidence, messages: Message[]): boolean {
   const source = messages.find(message => message.id === evidence.id);
