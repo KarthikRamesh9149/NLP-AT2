@@ -7,7 +7,7 @@ import { rebuildForTranscriptChange } from './draft-workflow';
 
 export const SESSION_KEY = 'formbridge-session-v2';
 export const LEGACY_SESSION_KEY = 'formbridge-session';
-export const CURRENT_ANALYSIS_VERSION = 'grounded-state-v9';
+export const CURRENT_ANALYSIS_VERSION = 'grounded-state-v10';
 
 export interface SavedSession { messages: Message[]; brief: Brief; referenceDate?: string; pendingAnalysis?: boolean; manualMode?: boolean; analysisVersion?: string; caseId?: string; caseTitle?: string; notes?: string; teamCase?: { id: string; workspaceId: string; version: number } }
 

@@ -16,6 +16,7 @@ describe('grounded conversation state', () => {
   it('grounds a later exact clock in the same message as an earlier bound', () => {
     const messages: Message[] = [{ id: 'm1', speaker: 'customer', text: 'After 7 pm, 8:30 pm would work.' }];
     expect(reconcileGroundedState(createEmptyBrief(), snapshot({ time: field('8:30 pm', 'm1', '8:30 pm') }), messages, null).fields.time.value).toBe('8:30 pm');
+    expect(reconcileGroundedState(createEmptyBrief(), snapshot({ time: field('8:30 pm', 'm1', messages[0].text) }), messages, null).fields.time.value).toBe('8:30 pm');
   });
   it('uses separate valid quotations from one message without duplicating source links', () => {
     const text = 'Two adults and maybe three children. The children are not confirmed.';
@@ -40,6 +41,19 @@ describe('grounded conversation state', () => {
     expect(isAcceptance('Can you book me a table?')).toBe(true);
     expect(isAcceptance("That's excellent. Book a table please.")).toBe(true);
     expect(isAcceptance('Do not book that one')).toBe(false);
+  });
+  it('accepts a confirmed summary followed by a separate pricing question', () => {
+    expect(isAcceptance('Yes, that is correct. Are they not very costly?')).toBe(true);
+    const messages: Message[] = [{ id: 'offer', speaker: 'staff', text: 'Please confirm: March 1st for 2 people.' }, { id: 'accept', speaker: 'customer', text: 'Yes, that is correct. Are they not very costly?' }];
+    const partySize: GroundedField = { ...field('2', 'offer', '2 people'), evidence: [{ id: 'offer', quote: '2 people' }, { id: 'accept', quote: 'Yes, that is correct.' }] };
+    expect(reconcileGroundedState(createEmptyBrief(), snapshot({ partySize }), messages, null).fields.partySize.value).toBe('2');
+  });
+  it('keeps a later booking rejection effective even when the first sentence says yes', () => {
+    expect(isAcceptance('Yes. Do not book that one.')).toBe(false);
+    expect(isAcceptance('Yes, that is correct. Is it expensive? Do not book it.')).toBe(false);
+  });
+  it('does not mistake a question containing good for customer acceptance', () => {
+    expect(isAcceptance('Is that a good choice?')).toBe(false);
   });
   it('keeps the stated date expression visible without inventing a calendar reference', () => {
     const messages: Message[] = [{ id: 'm1', speaker: 'customer', text: 'Today please' }];

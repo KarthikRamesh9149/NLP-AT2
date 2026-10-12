@@ -5,6 +5,10 @@ const qualifier = /\b(?:after|before|around|about|approximately|maybe|perhaps|po
 const rangeEnd = /\b(?:between|from)\s+\d{1,2}(?::\d{2})?(?:\s*[ap]\.?m\.?)?\s+(?:and|to|until)\s*$/;
 const competingClock = /^\s*,?\s*(?:or|and|to|until|through|-)\s*(?:at\s*)?$/;
 
+export function hasClockEvidence(value: string, quote: string): boolean {
+  return [...digitWords(quote).matchAll(clockExpression)].some(match => clockTime(match[0]) === clockTime(value));
+}
+
 export function hasExactTimeEvidence(value: string, source: string): boolean {
   const text = digitWords(source);
   const clocks = [...text.matchAll(clockExpression)].filter(match => clockTime(match[0]));

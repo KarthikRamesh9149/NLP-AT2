@@ -3,7 +3,7 @@ import { FIELD_KEYS, type Brief, type FieldKey, type FieldState, type FieldStatu
 import { requestsCancellation } from './booking-intent';
 import { MAX_HISTORY } from './limits';
 import { guestCountInsideGroup, hasGuestCountContext, hasGuestCountEvidence } from './party-evidence';
-import { hasExactTimeEvidence } from './time-evidence';
+import { hasClockEvidence, hasExactTimeEvidence } from './time-evidence';
 
 export interface Evidence { id: string; quote: string; kind?: 'value' | 'acceptance' | 'context' }
 export interface GroundedField { value: string | null; status: FieldStatus; constraint: string | null; evidence: Evidence[] }
@@ -38,8 +38,8 @@ function containsValue(field: FieldKey, value: string, quote: string, reference:
     if (candidate && source) return candidate.month === source.month && candidate.day === source.day && (!candidate.year || candidate.year === source.year);
     if (candidate && relativeDate(quote, reference)) return calendarDate(relativeDate(quote, reference)!)?.value === candidate.value;
   }
-  if (field === 'time' && clockTime(value) && clockTime(quote)) {
-    if (clockTime(value) !== clockTime(quote)) return false;
+  if (field === 'time' && clockTime(value)) {
+    if (!hasClockEvidence(value, quote)) return false;
     if (!exact) return true;
     // Inspect the full source clause; a shortened quote must not erase its
     // qualifier, alternative or rejection.
@@ -49,8 +49,17 @@ function containsValue(field: FieldKey, value: string, quote: string, reference:
 }
 export function isAcceptance(text: string): boolean {
   const normal = cleanText(text);
-  return /\b(yes|yeah|yep|absolutely|i would love that|i'd love that|confirm|confirmed|exactly|correct|right|perfect|works|sounds good|sounds great|sounds like a good choice|that is exactly what i want|that's it|that is it|good|great|excellent|sure|go ahead|good for me|that works|that is good|that's good|fine|okay|ok|please book|please reserve|book (?:it|that|this|me|us|a table|the table)|reserve (?:it|that|this|a table|the table))\b/i.test(normal)
-    && !/\b(no|not|don't|doesn't|won't|reject|cancel|might|maybe|check with|ask my|if|unless)\b/i.test(normal);
+  const relevant = normal.split(/(?<=[.!?;])\s+/).filter(clause => {
+    // A separate question about the venue does not negate an accepted brief.
+    const venueQuestion = /\?$/.test(clause) && /^(?:are|is|do|does|what|where|how|can|could)\b/.test(clause)
+      && /\b(cost|costly|price|pricing|cheap|expensive|menu|food|cuisine|address|rating|ratings|review|reviews)\b/.test(clause)
+      && !/\b(book|reserve|reservation|booking|cancel|change|move|switch|instead|date|time|guests|people|party|table)\b/.test(clause);
+    return !venueQuestion;
+  });
+  const positive = /\b(yes|yeah|yep|absolutely|i would love that|i'd love that|confirm|confirmed|exactly|correct|right|perfect|works|sounds good|sounds great|sounds like a good choice|that is exactly what i want|that's it|that is it|good|great|excellent|sure|go ahead|good for me|that works|that is good|that's good|fine|okay|ok|please book|please reserve|book (?:it|that|this|me|us|a table|the table)|reserve (?:it|that|this|a table|the table))\b/i;
+  const bookingRequest = /\b(?:please (?:book|reserve)|book (?:it|that|this|me|us|a table|the table)|reserve (?:it|that|this|a table|the table))\b/;
+  return relevant.some(clause => positive.test(clause) && (!/\?$/.test(clause) || bookingRequest.test(clause)))
+    && !/\b(no|not|don't|doesn't|won't|reject|cancel|might|maybe|check with|ask my|if|unless)\b/i.test(relevant.join(' '));
 }
 function acceptedEvidence(evidence: Evidence, messages: Message[]): boolean {
   const source = messages.find(message => message.id === evidence.id);
