@@ -6,12 +6,14 @@ import { MAX_HISTORY } from './limits';
 export interface Evidence { id: string; quote: string; kind?: 'value' | 'acceptance' | 'context' }
 export interface GroundedField { value: string | null; status: FieldStatus; constraint: string | null; evidence: Evidence[] }
 export type GroundedState = Record<FieldKey, GroundedField>;
+const nonGuestUnit = String.raw`(?::|am\b|pm\b|o'clock|(?:jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?|jul(?:y)?|aug(?:ust)?|sep(?:t(?:ember)?)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)\b|(?:dollars?|aud|usd|euros?|pounds?|minutes?|hours?|days?|weeks?|months?|years?)\b)`;
 
 function containsValue(field: FieldKey, value: string, quote: string, reference: string | null, source = quote, messages: Message[] = [], sourceId?: string, exact = true): boolean {
   if (field === 'partySize') {
+    if (!/^\d+$/.test(value) || Number(value) < 1 || Number(value) > 30) return false;
     const text = digitWords(source);
     if (!new RegExp(`\\b${value}\\b`).test(digitWords(quote))) return false;
-    const count = new RegExp(`(?:\\b${value}\\s+(?:people|persons|guests|diners|adults|children|kids)\\b|\\b(?:party|group)\\s+(?:of\\s+)?${value}\\b|\\bfor\\s+${value}\\b(?!\\s*(?::|am\\b|pm\\b|o'clock)))`);
+    const count = new RegExp(`(?:\\b${value}\\s+(?:people|persons|guests|diners|adults|children|kids)\\b|\\b(?:party|group)\\s+(?:of\\s+)?${value}\\b|\\bfor\\s+${value}\\b(?!\\s*${nonGuestUnit}))`);
     const match = count.exec(text);
     if (match) {
       const prefix = text.slice(0, match.index).split(/[.!?;,]|\bbut\b/).at(-1) || '';
@@ -24,7 +26,8 @@ function containsValue(field: FieldKey, value: string, quote: string, reference:
     if (bare !== value) return false;
     if (question && /\b(?:how many|party size|guest count|number of (?:people|guests))\b/i.test(question.text)) return true;
     if (question && /\b(?:what time|which time|when|what date|which date|which year)\b/i.test(question.text)) return false;
-    return messages.slice(0,index).some(message => /\b\d{1,2}\s+(?:people|guests|diners)\b|\b(?:party|group) of \d{1,2}\b|\bfor \d{1,2}\b(?!\s*(?:am|pm|:))/i.test(digitWords(message.text)));
+    const priorCount = new RegExp(`\\b\\d{1,2}\\s+(?:people|guests|diners)\\b|\\b(?:party|group) of \\d{1,2}\\b|\\bfor \\d{1,2}\\b(?!\\s*${nonGuestUnit})`, 'i');
+    return messages.slice(0,index).some(message => priorCount.test(digitWords(message.text)));
   }
   if (field === 'date') {
     const candidate = calendarDate(value); const source = calendarDate(quote);

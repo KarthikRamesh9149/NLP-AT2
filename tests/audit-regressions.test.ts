@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { briefSchema } from '../lib/contracts';
 import { isCancelledBooking } from '../lib/cancellation-status';
-import { reconcileGroundedState, withExplicitClears, type GroundedField, type GroundedState } from '../lib/grounding';
+import { reconcileGroundedState, withExplicitClears, validationFeedback, type GroundedField, type GroundedState } from '../lib/grounding';
 import { applyManualEdit, approveBrief, createEmptyBrief, FIELD_KEYS, type Message } from '../lib/state';
 import { restoreSession } from '../lib/session';
 import { parseTranscript } from '../lib/transcript';
@@ -50,6 +50,15 @@ describe('audited safety failures', () => {
     const next = reconcileGroundedState(complete(), snapshot({ time: value('7 pm', 'm2', '7 pm') }), messages, null);
     expect(next.fields.time.status).toBe('needs_clarification');
     expect(() => approveBrief(next)).toThrow();
+  });
+  it.each(['For 4 March 2027 at 7 pm.', 'That charge is for 4 dollars.', 'Keep the table for 4 minutes.'])('does not use a date, price or duration number as guests: %s', text => {
+    const messages: Message[] = [{id:'m2',speaker:'customer',text}];
+    expect(reconcileGroundedState(createEmptyBrief(),snapshot({partySize:value('4','m2',text)}),messages,null).fields.partySize.value).toBeNull();
+  });
+  it('turns a malformed model count into feedback without compiling it as a regular expression', () => {
+    const messages: Message[] = [{id:'m2',speaker:'customer',text:'Some detail ('}];
+    const feedback = validationFeedback(snapshot({partySize:value('(','m2','(')}),messages,null);
+    expect(feedback.some(issue=>issue.startsWith('partySize:'))).toBe(true);
   });
   it('does not use a clock number as a guest count', () => {
     const messages: Message[] = [{ id: 'm2', speaker: 'customer', text: 'At 7 pm please.' }];

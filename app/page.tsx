@@ -66,7 +66,7 @@ export default function Workspace() {
   const isApproved = !busy && reviewedSession({ messages, brief, pendingAnalysis });
   const hasContent = messages.length > 0 || FIELD_KEYS.some(key => !!brief.fields[key].value || !!brief.fields[key].constraint) || !!notes;
   const bookingLink = bookingLinks.find(link => venueKey(link.restaurantName, link.city) === venueKey(brief.fields.restaurantName.value || '', brief.fields.city.value || '')) ?? null;
-  function snapshot(): SavedSession { return { messages, brief, referenceDate, pendingAnalysis: pendingAnalysis || busy, manualMode, analysisVersion: 'grounded-state-v7', ...(activeCaseId ? { caseId: activeCaseId } : {}), caseTitle: caseName, notes, ...(cloudCase ? { teamCase: cloudCase } : {}) }; }
+  function snapshot(): SavedSession { return { messages, brief, referenceDate, pendingAnalysis: pendingAnalysis || busy, manualMode, analysisVersion: 'grounded-state-v8', ...(activeCaseId ? { caseId: activeCaseId } : {}), caseTitle: caseName, notes, ...(cloudCase ? { teamCase: cloudCase } : {}) }; }
 
   useEffect(() => {
     setReferenceDate(today());
