@@ -27,7 +27,7 @@ export function readCases(raw: string | null): BookingCase[] {
 export function saveCase(cases: BookingCase[], record: BookingCase): BookingCase[] {
   if (!metadataSchema.safeParse(record).success || !parseSession(JSON.stringify(record.session))) throw new Error('Check the case name and draft before saving.');
   const remaining = cases.filter(item => item.id !== record.id);
-  if (remaining.length >= MAX_CASES) throw new Error('This device has 50 saved cases. Export an older case before removing it.');
+  if (remaining.length >= MAX_CASES) throw new Error('This device has 50 saved cases. Reopen an existing enquiry to update it, or save to your team workspace.');
   return [record, ...remaining].sort((a, b) => b.updatedAt.localeCompare(a.updatedAt));
 }
 export function exportCase(session: SavedSession, title: string, notes = '') {
