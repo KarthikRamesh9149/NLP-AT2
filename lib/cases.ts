@@ -6,7 +6,7 @@ import { utf8Bytes } from './limits';
 
 export const CASES_KEY = 'formbridge-cases-v1';
 const MAX_CASES = 50;
-const metadataSchema = z.object({ id: z.uuid(), title: z.string().trim().min(1).max(80), updatedAt: z.iso.datetime(), archived: z.boolean(), notes: z.string().max(2000).default('') });
+const metadataSchema = z.object({ id: z.uuid(), title: z.string().trim().min(1).max(80), updatedAt: z.iso.datetime({ offset: true }), archived: z.boolean(), notes: z.string().max(2000).default('') });
 export interface BookingCase extends z.infer<typeof metadataSchema> { session: SavedSession }
 
 export function caseTitle(session: SavedSession): string {
@@ -20,7 +20,7 @@ export function readCases(raw: string | null): BookingCase[] {
     return records.slice(0, MAX_CASES).flatMap(record => {
       const metadata = metadataSchema.safeParse(record);
       const session = record && typeof record === 'object' && 'session' in record ? parseSession(JSON.stringify(record.session)) : null;
-      return metadata.success && session ? [{ ...metadata.data, session }] : [];
+      return metadata.success && session ? [{ ...metadata.data, updatedAt: new Date(metadata.data.updatedAt).toISOString(), session }] : [];
     });
   } catch { return []; }
 }

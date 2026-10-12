@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { randomUUID } from 'node:crypto';
-import { exportCase, importCase, saveCase, type BookingCase } from '../lib/cases';
+import { exportCase, importCase, saveCase, readCases, type BookingCase } from '../lib/cases';
 import { analysisPayload, mergeAnalysisHistory, rebuildForTranscriptChange, resolveFieldReview } from '../lib/draft-workflow';
 import { applyManualEdit, approveBrief, createEmptyBrief, FIELD_KEYS } from '../lib/state';
 import { calendarExport, textExport } from '../lib/exports';
@@ -16,6 +16,10 @@ function session(): SavedSession {
   return { messages:[{id:'m1',speaker:'customer',text:'Juniper in Sydney for four people on 18 October 2027 at 7 pm.'}], brief:approveBrief(brief), referenceDate:'2026-10-13', pendingAnalysis:false };
 }
 describe('enquiry workflow', () => {
+  it('reads cloud cases with an RFC3339 timezone offset and database fractional seconds', () => {
+    const records=readCases(JSON.stringify([{id:randomUUID(),title:'Team dinner',notes:'',archived:false,updatedAt:'2026-10-12T15:40:10.123456+00:00',session:session()}]));
+    expect(records).toHaveLength(1); expect(records[0].title).toBe('Team dinner');
+  });
   it('reopens an exported case without importing its approval as a new decision', () => {
     const reopened=importCase(JSON.stringify(exportCase(session(),'Saturday dinner','Call before handoff')));
     expect(reopened.title).toBe('Saturday dinner'); expect(reopened.notes).toBe('Call before handoff');

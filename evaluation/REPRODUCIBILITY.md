@@ -16,7 +16,7 @@ cp .env.example .env.local
 
 Prerequisites: Node.js 24, pnpm 11.24.0, Git, an OpenAI API project with access to the configured models, and network access. Add your own `OPENAI_API_KEY` in `.env.local`. Never include a real key in a submission archive. The example works without a key; new analysis and model evaluation require one.
 
-The pinned commit contains the final extractor, equal-model baseline support, runner and frozen protocol. Later evidence/documentation commits do not change those source files. To inspect the completed result files, use the final evidence commit on `main` instead. API model aliases can change at the provider; saved predictions, model names, timestamps and fingerprints support auditing, but a rerun is not guaranteed to be identical.
+The pinned commit contains the extractor and runner used for the saved assessment experiments, including the equal-model comparison. Later product releases change that implementation and do not inherit those benchmark scores. Use the pinned commit to reproduce those historical runs; use `main` for the current application and its separate release checks. API model aliases can change at the provider; saved predictions, model names, timestamps and fingerprints support auditing, but a rerun is not guaranteed to be identical.
 
 ```bash
 pnpm test
@@ -26,6 +26,12 @@ pnpm start
 ```
 
 Open `http://localhost:3000`. For development use `pnpm dev`. An already-running `pnpm start` process does not load a newly built server automatically: stop and restart it after rebuilding.
+
+### Current product release
+
+To run the latest booking desk, check out `main`. Team cases and the production server require the Supabase URL, publishable key and server secret from `.env.example`, with all migrations applied to a dedicated project. Device sign-in is optional and requires the provider setting plus `NEXT_PUBLIC_DEVICE_SIGN_IN_ENABLED=true`. `pnpm dev` can run with device-only cases when Supabase is absent; production analysis deliberately refuses requests without its shared quota database. See `docs/OPERATIONS.md` for setup and allowance behaviour.
+
+The October 13 product checks cover the revised cancellation, evidence and year-handling logic. They are separate constructed regression checks and do not replace the earlier SGD benchmark runs.
 
 ## 2. Obtain the exact dataset revision
 
