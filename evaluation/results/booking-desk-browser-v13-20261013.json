@@ -1,0 +1,56 @@
+{
+  "checkedAt": "2026-10-12T19:14:16.734Z",
+  "url": "https://formbridge-nlp-at2.vercel.app/",
+  "productCommit": "1a34e29f559dc181cd5c186980e9e804f4e6eec7",
+  "extractionVersion": "grounded-state-v13",
+  "scope": "Fresh browser functional checks with synthetic enquiries. Not a participant usability study.",
+  "passed": 9,
+  "total": 9,
+  "checks": [
+    {
+      "id": "cache-upgrade",
+      "passed": true,
+      "observed": "All four messages preserved; older extracted values cleared; approval disabled; review banner offers Retry and manual review."
+    },
+    {
+      "id": "cache-reanalysis",
+      "passed": true,
+      "observed": "Retry restored Juniper, Sydney, 18 October 2027, 7 pm and six guests from the preserved conversation."
+    },
+    {
+      "id": "bounded-time-to-exact-choice",
+      "passed": true,
+      "observed": "The choice 8:30 pm replaced 7 pm; the other four fields remained unchanged."
+    },
+    {
+      "id": "time-source",
+      "passed": true,
+      "observed": "The time source links to Customer Message 5 and displays the complete quotation containing the bound and the later exact choice."
+    },
+    {
+      "id": "approval",
+      "passed": true,
+      "observed": "Approved state appears after all five fields are ready; wording says handoff and does not claim a restaurant reservation."
+    },
+    {
+      "id": "native-json-export",
+      "passed": true,
+      "observed": "Browser reported completed native download; the downloaded file has the current analysis version, five messages, all expected values, valid evidence references and the current approved revision."
+    },
+    {
+      "id": "unaccepted-staff-proposal",
+      "passed": true,
+      "observed": "A staff proposal for 19 October, 9 pm and eight guests did not overwrite 18 October, 8:30 pm and six guests; the prior approval was cleared."
+    },
+    {
+      "id": "acceptance-with-venue-information",
+      "passed": true,
+      "observed": "Sounds fabulous / Please go ahead with a separate outdoor-seating and rating request accepted the staff proposal. Date became 19 October 2027, time 9 pm and eight guests; restaurant and city stayed unchanged."
+    },
+    {
+      "id": "accepted-proposal-sources",
+      "passed": true,
+      "observed": "The time links to Staff Message 6 and Customer Message 7, showing the proposal and acceptance separately."
+    }
+  ]
+}

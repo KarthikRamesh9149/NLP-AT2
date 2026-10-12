@@ -1,0 +1,51 @@
+{
+  "checkedAt": "2026-10-12T19:24:39.248Z",
+  "url": "https://formbridge-nlp-at2.vercel.app/",
+  "productCommit": "73455c7e8c6bc004ea8bf86d088733f1eaa277d1",
+  "extractionVersion": "grounded-state-v14",
+  "scope": "Fresh browser functional checks with synthetic enquiries. Not a participant usability study.",
+  "passed": 8,
+  "total": 8,
+  "checks": [
+    {
+      "id": "cache-upgrade",
+      "passed": true,
+      "observed": "Seven messages preserved after the final upgrade; older model values cleared and approval blocked until rechecked."
+    },
+    {
+      "id": "approximate-time",
+      "passed": true,
+      "observed": "Time is labelled Ask customer with Around 7 pm; four of five details are ready; the app asks for an exact time and approval remains disabled."
+    },
+    {
+      "id": "family-headcount",
+      "passed": true,
+      "observed": "Two adults and three children resolve to five guests while the time remains uncertain."
+    },
+    {
+      "id": "correction-to-exact-time",
+      "passed": true,
+      "observed": "Six guests and an exact 8:30 pm became ready; restaurant, city and date stayed unchanged."
+    },
+    {
+      "id": "time-source",
+      "passed": true,
+      "observed": "The exact time links to Customer Message 2 and highlights its complete quotation."
+    },
+    {
+      "id": "approval",
+      "passed": true,
+      "observed": "The complete corrected brief is approved for staff handoff; the app does not claim to have reserved a table."
+    },
+    {
+      "id": "native-json-export",
+      "passed": true,
+      "observed": "Native download completed; file inspection confirms version v14, both messages, all expected resolved values and valid source IDs. The earlier approximate-time history has no exact value."
+    },
+    {
+      "id": "empty-public-landing",
+      "passed": true,
+      "observed": "The public app tab remains empty after reloading the final release; prepared examples are opt-in."
+    }
+  ]
+}

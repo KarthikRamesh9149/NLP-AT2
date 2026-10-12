@@ -1,0 +1,21 @@
+{
+  "checkedAt": "2026-10-12T19:23:27.314964+00:00",
+  "productCommit": "73455c7e8c6bc004ea8bf86d088733f1eaa277d1",
+  "extractionVersion": "grounded-state-v14",
+  "scope": "Native JSON download through the production browser using a synthetic enquiry. File content checked after the browser reported download completion.",
+  "file": "formbridge-booking-brief (4).json",
+  "sha256": "33268ada45287de281b7dc0fafdaddf27cca30fd5600b82493d02e0c03626e84",
+  "messageCount": 2,
+  "fields": {
+    "restaurantName": "Juniper",
+    "city": "Sydney",
+    "date": "18 October 2027",
+    "time": "8:30 pm",
+    "partySize": "6"
+  },
+  "allFieldsResolved": true,
+  "approved": true,
+  "validEvidenceIds": true,
+  "initialApproximateTimeHadNoExactValue": true,
+  "passed": true
+}

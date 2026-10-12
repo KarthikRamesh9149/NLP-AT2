@@ -1,0 +1,72 @@
+{
+  "checkedAt": "2026-10-12T19:27:44.269182+00:00",
+  "url": "https://formbridge-nlp-at2.vercel.app/",
+  "testedProductCommit": "73455c7e8c6bc004ea8bf86d088733f1eaa277d1",
+  "extractionVersion": "grounded-state-v14",
+  "codeFingerprint": "6c877932939735ece43cf57cdc455e0bf611da031dcf079baad076d8be7db55a",
+  "deployment": {
+    "id": "dpl_F3VFJxGLe2bG1UjsAZmzeJiuWAy3",
+    "ready": true,
+    "publicAlias": true,
+    "verifiedCommit": "73455c7e8c6bc004ea8bf86d088733f1eaa277d1"
+  },
+  "unitTests": {
+    "passed": 145,
+    "total": 145,
+    "files": 19
+  },
+  "typecheck": "passed",
+  "productionBuild": "passed",
+  "githubCI": {
+    "status": "passed",
+    "run": "https://github.com/KarthikRamesh9149/NLP-AT2/actions/runs/38296662303",
+    "verifiedCommit": "73455c7e8c6bc004ea8bf86d088733f1eaa277d1"
+  },
+  "providerScenarios": {
+    "file": "live-scenarios-deployed-20261013-v14-final.json",
+    "passed": 46,
+    "total": 46,
+    "scope": "Synthetic regression scenarios through the actual production API; not an SGD or recruited-user study."
+  },
+  "datasetRegression": {
+    "file": "sgd-test-20-product-v14-20261013-regression.json",
+    "matchedFields": 100,
+    "totalFields": 100,
+    "matchedFiveFieldStates": 20,
+    "dialogues": 20,
+    "analysisRequests": 137,
+    "providerRequests": 147,
+    "incompleteUsageDialogues": 1,
+    "scope": "Previously inspected regression sample, all visible customer-turn prefixes. Not an unseen test result or a new baseline comparison; field matching does not imply all dates are calendar-complete and approvable."
+  },
+  "freshBrowserChecks": {
+    "file": "booking-desk-browser-v14-20261013.json",
+    "passed": 8,
+    "total": 8
+  },
+  "precedingBrowserChecks": {
+    "file": "booking-desk-browser-v13-20261013.json",
+    "passed": 9,
+    "total": 9,
+    "testedVersion": "grounded-state-v13",
+    "note": "Retained contextual acceptance, proposal sources and export checks from the preceding release. Exact accepted-time paths and those UI components are unchanged by v14; approximate-time behaviour was freshly checked."
+  },
+  "retainedDatabaseChecks": {
+    "file": "team-backend-20261013.json",
+    "passed": 17,
+    "total": 17,
+    "note": "Database access, invite and concurrency paths and applied migrations are unchanged. These are the preceding release checks, not a new run."
+  },
+  "nativeDownload": {
+    "file": "booking-desk-export-v14-20261013.json",
+    "verified": true
+  },
+  "serverSecretsInBrowserBundle": false,
+  "browserBundleFilesChecked": 77,
+  "retainedAttempts": "product-regression-history-v14-20261013.json",
+  "remainingSetup": {
+    "deviceSignIn": "Supabase anonymous device authentication remains disabled pending the requested specific confirmation.",
+    "bookingProviderAPIs": "Venue provider-page handoff is available. No direct reservation API is configured."
+  },
+  "scope": "Functional and safeguard verification. Does not certify zero possible bugs or production readiness for an untested volume of real restaurant traffic."
+}

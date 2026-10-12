@@ -1,0 +1,78 @@
+{
+  "generatedAt": "2026-10-12T18:21:08.956Z",
+  "endpoint": "http://localhost:3000",
+  "model": "gpt-6-luna + gpt-6.1-sol",
+  "type": "team-authored synthetic regression scenarios; not an SGD benchmark",
+  "total": 1,
+  "passed": 0,
+  "usage": {
+    "inputTokens": 3597,
+    "outputTokens": 416
+  },
+  "results": [
+    {
+      "id": "S39",
+      "title": "An exact clock can resolve an earlier bound in the same message",
+      "category": "complete",
+      "passed": false,
+      "errors": [
+        "time: status missing, expected resolved"
+      ],
+      "fields": {
+        "restaurantName": {
+          "value": "Juniper",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "date": {
+          "value": "18 October 2027",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "time": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        },
+        "partySize": {
+          "value": "4",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        }
+      },
+      "usage": {
+        "inputTokens": 3597,
+        "outputTokens": 416,
+        "model": "gpt-6-luna + gpt-6.1-sol"
+      }
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "checkedAt": "2026-10-12T19:00:46.414Z",
+  "scope": "Controlled first-request HTTP 503 in a local proxy; the fallback is a real OpenAI API request. Not a naturally observed outage.",
+  "passed": true,
+  "requests": [
+    "gpt-6-luna",
+    "gpt-6.1-sol"
+  ],
+  "fields": {
+    "restaurantName": {
+      "value": "Juniper",
+      "status": "resolved",
+      "constraint": null,
+      "evidenceIds": [
+        "m1"
+      ],
+      "source": "model",
+      "note": ""
+    },
+    "city": {
+      "value": "Sydney",
+      "status": "resolved",
+      "constraint": null,
+      "evidenceIds": [
+        "m1"
+      ],
+      "source": "model",
+      "note": ""
+    },
+    "date": {
+      "value": "18 October 2027",
+      "status": "resolved",
+      "constraint": null,
+      "evidenceIds": [
+        "m1"
+      ],
+      "source": "model",
+      "note": ""
+    },
+    "time": {
+      "value": "7 pm",
+      "status": "resolved",
+      "constraint": null,
+      "evidenceIds": [
+        "m1"
+      ],
+      "source": "model",
+      "note": ""
+    },
+    "partySize": {
+      "value": "4",
+      "status": "resolved",
+      "constraint": null,
+      "evidenceIds": [
+        "m1"
+      ],
+      "source": "model",
+      "note": ""
+    }
+  },
+  "usage": {
+    "inputTokens": 1809,
+    "outputTokens": 201,
+    "model": "gpt-6-luna (failed) + gpt-6.1-sol",
+    "calls": [
+      {
+        "inputTokens": 1809,
+        "outputTokens": 201,
+        "model": "gpt-6.1-sol"
+      }
+    ],
+    "incomplete": true,
+    "attemptedCalls": 2
+  }
+}

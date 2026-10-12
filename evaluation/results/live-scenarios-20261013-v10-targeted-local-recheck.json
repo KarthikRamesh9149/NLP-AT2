@@ -1,0 +1,206 @@
+{
+  "generatedAt": "2026-10-12T18:23:26.704Z",
+  "endpoint": "http://localhost:3000",
+  "model": "gpt-6-luna",
+  "type": "team-authored synthetic regression scenarios; not an SGD benchmark",
+  "total": 3,
+  "passed": 3,
+  "usage": {
+    "inputTokens": 8962,
+    "outputTokens": 1252
+  },
+  "results": [
+    {
+      "id": "S39",
+      "title": "An exact clock can resolve an earlier bound in the same message",
+      "category": "complete",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": "Juniper",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "date": {
+          "value": "18 October 2027",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "time": {
+          "value": "8:30 pm",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "partySize": {
+          "value": "4",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        }
+      },
+      "usage": {
+        "inputTokens": 1785,
+        "outputTokens": 207,
+        "model": "gpt-6-luna"
+      }
+    },
+    {
+      "id": "S41",
+      "title": "A separate pricing question does not revoke an accepted summary",
+      "category": "staff",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": "Juniper",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "date": {
+          "value": "18 October 2027",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "time": {
+          "value": "7 pm",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m2",
+            "m3"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "partySize": {
+          "value": "2",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m2",
+            "m3"
+          ],
+          "source": "model",
+          "note": ""
+        }
+      },
+      "usage": {
+        "inputTokens": 3597,
+        "outputTokens": 694,
+        "model": "gpt-6-luna"
+      }
+    },
+    {
+      "id": "S42",
+      "title": "Asking whether a proposal is good does not accept its guest count",
+      "category": "staff",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": "Juniper",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "date": {
+          "value": "18 October 2027",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "time": {
+          "value": "7 pm",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "partySize": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        }
+      },
+      "usage": {
+        "inputTokens": 3580,
+        "outputTokens": 351,
+        "model": "gpt-6-luna"
+      }
+    }
+  ]
+}

@@ -1,0 +1,147 @@
+{
+  "generatedAt": "2026-10-12T18:58:40.084Z",
+  "endpoint": "http://localhost:3000",
+  "model": "gpt-6-luna",
+  "type": "team-authored synthetic regression scenarios; not an SGD benchmark",
+  "total": 2,
+  "passed": 2,
+  "usage": {
+    "inputTokens": 7186,
+    "outputTokens": 987
+  },
+  "results": [
+    {
+      "id": "S45",
+      "title": "An accepted date remains chosen while venue information is requested",
+      "category": "staff",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": "Juniper",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "date": {
+          "value": "5 March 2027",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m2",
+            "m3"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "time": {
+          "value": "7 pm",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1",
+            "m3"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "partySize": {
+          "value": "4",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1",
+            "m3"
+          ],
+          "source": "model",
+          "note": ""
+        }
+      },
+      "usage": {
+        "inputTokens": 3599,
+        "outputTokens": 430,
+        "model": "gpt-6-luna"
+      }
+    },
+    {
+      "id": "S46",
+      "title": "A restaurant recommendation can be accepted with sounds fabulous",
+      "category": "staff",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": "Juniper",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m2",
+            "m3"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m2",
+            "m3"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "date": {
+          "value": "18 October 2027",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "time": {
+          "value": "7 pm",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "partySize": {
+          "value": "4",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        }
+      },
+      "usage": {
+        "inputTokens": 3587,
+        "outputTokens": 557,
+        "model": "gpt-6-luna"
+      }
+    }
+  ]
+}

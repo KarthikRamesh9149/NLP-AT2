@@ -1,0 +1,154 @@
+{
+  "recordedAt": "2026-10-12T19:25:36.016846+00:00",
+  "scope": "Retained iterative regression checks on a previously inspected 20-dialogue selection. Not a held-out study, not a fresh comparison of systems, and not a measure of approved calendar-complete reservations.",
+  "datasetRevision": "e852981ae34990f4358979625854259302feaa78",
+  "selection": "selection-grounded-v6-release-regression.json",
+  "finalCodeFingerprint": "6c877932939735ece43cf57cdc455e0bf611da031dcf079baad076d8be7db55a",
+  "abortedRun": {
+    "selection": "selection-product-v9-20261013-regression.json",
+    "progress": "progress-product-v9-20261013-regression.json",
+    "reason": "Stopped before official dataset checkout completion was verified. Partial progress is retained and excluded from final results."
+  },
+  "runs": [
+    {
+      "version": "v9",
+      "file": "sgd-test-20-product-v9-20261013-regression-pinned.json",
+      "extractionVersion": "grounded-state-v9",
+      "codeFingerprint": "740c88f69d1aadb763f21aee2bf0e947583146325c7ff1217ffc2dea50e47b0f",
+      "summary": {
+        "dialogues": 20,
+        "attemptedDialogues": 20,
+        "failures": 0,
+        "fieldAccuracy": 0.98,
+        "canonicalFieldAccuracy": 0.98,
+        "canonicalCompleteFormAccuracy": 0.95,
+        "completeFormAccuracy": 0.95,
+        "totalAnalysisRequests": 137,
+        "totalProviderRequests": 144,
+        "totalInputTokens": 262372,
+        "totalOutputTokens": 47287,
+        "meanLatencyMs": 28055
+      }
+    },
+    {
+      "version": "v10",
+      "file": "sgd-test-20-product-v10-20261013-regression.json",
+      "extractionVersion": "grounded-state-v10",
+      "codeFingerprint": "05068d3f3dd0fcd9b2bbeeda094dbecc14b6078eb51fb01e741bcf1b5c1de92a",
+      "summary": {
+        "dialogues": 20,
+        "attemptedDialogues": 20,
+        "failures": 0,
+        "fieldAccuracy": 0.99,
+        "canonicalFieldAccuracy": 0.99,
+        "canonicalCompleteFormAccuracy": 0.95,
+        "completeFormAccuracy": 0.95,
+        "totalAnalysisRequests": 137,
+        "totalProviderRequests": 150,
+        "totalInputTokens": 287177,
+        "totalOutputTokens": 52808,
+        "meanLatencyMs": 31937
+      }
+    },
+    {
+      "version": "v11",
+      "file": "sgd-test-20-product-v11-20261013-regression.json",
+      "extractionVersion": "grounded-state-v11",
+      "codeFingerprint": "64930fc99a92878059a67a2695d988dd23f388131559417ebc676458edb1ed38",
+      "summary": {
+        "dialogues": 19,
+        "attemptedDialogues": 20,
+        "failures": 1,
+        "fieldAccuracy": 0.95,
+        "canonicalFieldAccuracy": 0.95,
+        "canonicalCompleteFormAccuracy": 0.95,
+        "completeFormAccuracy": 0.95,
+        "totalAnalysisRequests": 130,
+        "totalProviderRequests": 136,
+        "totalInputTokens": 263538,
+        "totalOutputTokens": 48727,
+        "meanLatencyMs": 28570
+      }
+    },
+    {
+      "version": "v12",
+      "file": "sgd-test-20-product-v12-20261013-regression.json",
+      "extractionVersion": "grounded-state-v12",
+      "codeFingerprint": "a456f6eef97dc3be5f7d5e9a80f89456cecb849b8c9c0cb5bd8fcfbc602dd157",
+      "summary": {
+        "dialogues": 20,
+        "attemptedDialogues": 20,
+        "failures": 0,
+        "fieldAccuracy": 0.98,
+        "canonicalFieldAccuracy": 0.98,
+        "canonicalCompleteFormAccuracy": 0.9,
+        "completeFormAccuracy": 0.9,
+        "totalAnalysisRequests": 137,
+        "totalProviderRequests": 146,
+        "totalInputTokens": 280971,
+        "totalOutputTokens": 48672,
+        "incompleteUsageDialogues": 1,
+        "meanLatencyMs": 30896
+      }
+    },
+    {
+      "version": "v13",
+      "file": "sgd-test-20-product-v13-20261013-regression.json",
+      "extractionVersion": "grounded-state-v13",
+      "codeFingerprint": "661f4ef2addc8b59562d1226a8e13e667ce6523ee9a6a2204707d75a1c6056cd",
+      "summary": {
+        "dialogues": 20,
+        "attemptedDialogues": 20,
+        "failures": 0,
+        "fieldAccuracy": 1,
+        "canonicalFieldAccuracy": 1,
+        "canonicalCompleteFormAccuracy": 1,
+        "completeFormAccuracy": 1,
+        "totalAnalysisRequests": 137,
+        "totalProviderRequests": 147,
+        "totalInputTokens": 282723,
+        "totalOutputTokens": 51050,
+        "incompleteUsageDialogues": 1,
+        "meanLatencyMs": 30297
+      }
+    },
+    {
+      "version": "v14",
+      "file": "sgd-test-20-product-v14-20261013-regression.json",
+      "extractionVersion": "grounded-state-v14",
+      "codeFingerprint": "6c877932939735ece43cf57cdc455e0bf611da031dcf079baad076d8be7db55a",
+      "summary": {
+        "dialogues": 20,
+        "attemptedDialogues": 20,
+        "failures": 0,
+        "fieldAccuracy": 1,
+        "canonicalFieldAccuracy": 1,
+        "canonicalCompleteFormAccuracy": 1,
+        "completeFormAccuracy": 1,
+        "totalAnalysisRequests": 137,
+        "totalProviderRequests": 147,
+        "totalInputTokens": 283322,
+        "totalOutputTokens": 51443,
+        "incompleteUsageDialogues": 1,
+        "meanLatencyMs": 29986
+      }
+    }
+  ],
+  "accounting": "Returned tokens are lower bounds when a failed request returned no usage. One dialogue in the final run has incomplete usage. Full quota reservation is retained when a request has unknown usage.",
+  "productionCorrection": {
+    "originalRun": "live-scenarios-deployed-20261013-v13-final.json",
+    "passed": 45,
+    "total": 46,
+    "failedScenarios": [
+      {
+        "id": "S36",
+        "errors": [
+          "time: value \"7 pm\", expected null"
+        ]
+      }
+    ],
+    "rootCause": "A model supplied an approximate clock as a value while correctly marking it uncertain. Reconciliation retained that value instead of storing only the preference.",
+    "fix": "After checking quoted evidence, uncertain time candidates are stored with null exact value and a retained constraint. A regression test verifies the output, history and approval gate.",
+    "fixCommit": "73455c7e8c6bc004ea8bf86d088733f1eaa277d1"
+  }
+}

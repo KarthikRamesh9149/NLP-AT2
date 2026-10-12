@@ -1,0 +1,526 @@
+{
+  "generatedAt": "2026-10-12T18:01:42.750Z",
+  "endpoint": "http://localhost:3000",
+  "model": "gpt-6-luna",
+  "type": "team-authored synthetic regression scenarios; not an SGD benchmark",
+  "total": 8,
+  "passed": 6,
+  "usage": {
+    "inputTokens": 18535,
+    "outputTokens": 2421
+  },
+  "results": [
+    {
+      "id": "S31",
+      "title": "Family booking counts adults and children",
+      "category": "complete",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": "Juniper",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "date": {
+          "value": "18 October 2027",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "time": {
+          "value": "7 pm",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "partySize": {
+          "value": "5",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        }
+      },
+      "usage": {
+        "inputTokens": 1673,
+        "outputTokens": 200,
+        "model": "gpt-6-luna"
+      }
+    },
+    {
+      "id": "S32",
+      "title": "Guests stated as two of us",
+      "category": "complete",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": "Juniper",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "date": {
+          "value": "18 October 2027",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "time": {
+          "value": "7 pm",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "partySize": {
+          "value": "2",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        }
+      },
+      "usage": {
+        "inputTokens": 1678,
+        "outputTokens": 200,
+        "model": "gpt-6-luna"
+      }
+    },
+    {
+      "id": "S33",
+      "title": "Children included in the total are not added twice",
+      "category": "safety",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": "Juniper",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "date": {
+          "value": "18 October 2027",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "time": {
+          "value": "7 pm",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "partySize": {
+          "value": "5",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        }
+      },
+      "usage": {
+        "inputTokens": 1675,
+        "outputTokens": 201,
+        "model": "gpt-6-luna"
+      }
+    },
+    {
+      "id": "S34",
+      "title": "Guest alternatives do not become an exact count",
+      "category": "uncertainty",
+      "passed": false,
+      "errors": [
+        "partySize: status missing, expected needs_clarification",
+        "time: status missing, expected resolved"
+      ],
+      "fields": {
+        "restaurantName": {
+          "value": "Juniper",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "date": {
+          "value": "18 October 2027",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "time": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        },
+        "partySize": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        }
+      },
+      "usage": {
+        "inputTokens": 3408,
+        "outputTokens": 527,
+        "model": "gpt-6-luna + gpt-6.1-sol"
+      }
+    },
+    {
+      "id": "S35",
+      "title": "Terse correction after a family total",
+      "category": "correction",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": "Juniper",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "date": {
+          "value": "18 October 2027",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "time": {
+          "value": "7 pm",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "partySize": {
+          "value": "6",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1",
+            "m2"
+          ],
+          "source": "model",
+          "note": ""
+        }
+      },
+      "usage": {
+        "inputTokens": 3369,
+        "outputTokens": 416,
+        "model": "gpt-6-luna"
+      }
+    },
+    {
+      "id": "S36",
+      "title": "Approximate time preserves an exact family headcount",
+      "category": "uncertainty",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": "Juniper",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "date": {
+          "value": "18 October 2027",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "time": {
+          "value": null,
+          "status": "needs_clarification",
+          "constraint": "Around 7 pm",
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": "Please confirm the remaining detail."
+        },
+        "partySize": {
+          "value": "5",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        }
+      },
+      "usage": {
+        "inputTokens": 1674,
+        "outputTokens": 205,
+        "model": "gpt-6-luna"
+      }
+    },
+    {
+      "id": "S37",
+      "title": "Infant is included in an explicit additive group",
+      "category": "complete",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": "Juniper",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "date": {
+          "value": "18 October 2027",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "time": {
+          "value": "7 pm",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "partySize": {
+          "value": "6",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        }
+      },
+      "usage": {
+        "inputTokens": 1676,
+        "outputTokens": 203,
+        "model": "gpt-6-luna"
+      }
+    },
+    {
+      "id": "S38",
+      "title": "An uncertain child group keeps the total open",
+      "category": "uncertainty",
+      "passed": false,
+      "errors": [
+        "partySize: status missing, expected needs_clarification"
+      ],
+      "fields": {
+        "restaurantName": {
+          "value": "Juniper",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "date": {
+          "value": "18 October 2027",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "time": {
+          "value": "7 pm",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "partySize": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        }
+      },
+      "usage": {
+        "inputTokens": 3382,
+        "outputTokens": 469,
+        "model": "gpt-6-luna + gpt-6.1-sol"
+      }
+    }
+  ]
+}

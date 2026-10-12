@@ -1,0 +1,342 @@
+{
+  "generatedAt": "2026-10-12T18:31:10.398Z",
+  "endpoint": "http://localhost:3000",
+  "model": "gpt-6-luna",
+  "type": "team-authored synthetic regression scenarios; not an SGD benchmark",
+  "total": 5,
+  "passed": 5,
+  "usage": {
+    "inputTokens": 16138,
+    "outputTokens": 2050
+  },
+  "results": [
+    {
+      "id": "S39",
+      "title": "An exact clock can resolve an earlier bound in the same message",
+      "category": "complete",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": "Juniper",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "date": {
+          "value": "18 October 2027",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "time": {
+          "value": "8:30 pm",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "partySize": {
+          "value": "4",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        }
+      },
+      "usage": {
+        "inputTokens": 1785,
+        "outputTokens": 410,
+        "model": "gpt-6-luna"
+      }
+    },
+    {
+      "id": "S41",
+      "title": "A separate pricing question does not revoke an accepted summary",
+      "category": "staff",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": "Juniper",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1",
+            "m2",
+            "m3"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1",
+            "m2",
+            "m3"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "date": {
+          "value": "18 October 2027",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1",
+            "m2",
+            "m3"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "time": {
+          "value": "7 pm",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m2",
+            "m3"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "partySize": {
+          "value": "2",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m2",
+            "m3"
+          ],
+          "source": "model",
+          "note": ""
+        }
+      },
+      "usage": {
+        "inputTokens": 3597,
+        "outputTokens": 498,
+        "model": "gpt-6-luna"
+      }
+    },
+    {
+      "id": "S42",
+      "title": "Asking whether a proposal is good does not accept its guest count",
+      "category": "staff",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": "Juniper",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "date": {
+          "value": "18 October 2027",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "time": {
+          "value": "7 pm",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "partySize": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        }
+      },
+      "usage": {
+        "inputTokens": 3580,
+        "outputTokens": 351,
+        "model": "gpt-6-luna"
+      }
+    },
+    {
+      "id": "S43",
+      "title": "A positive correction follows an explanation containing not",
+      "category": "correction",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": "Juniper",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "date": {
+          "value": "18 October 2027",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "time": {
+          "value": "7 pm",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "partySize": {
+          "value": "3",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1",
+            "m2"
+          ],
+          "source": "model",
+          "note": ""
+        }
+      },
+      "usage": {
+        "inputTokens": 3587,
+        "outputTokens": 411,
+        "model": "gpt-6-luna"
+      }
+    },
+    {
+      "id": "S44",
+      "title": "An accepted summary can be followed by a joined rating question",
+      "category": "staff",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": "Juniper",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "date": {
+          "value": "18 October 2027",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "time": {
+          "value": "7 pm",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "partySize": {
+          "value": "3",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m2",
+            "m3"
+          ],
+          "source": "model",
+          "note": ""
+        }
+      },
+      "usage": {
+        "inputTokens": 3589,
+        "outputTokens": 380,
+        "model": "gpt-6-luna"
+      }
+    }
+  ]
+}
