@@ -3,10 +3,11 @@ import { requestSchema } from '@/lib/contracts';
 import { analyzeConversation } from '@/lib/engine';
 import { createEmptyBrief, type Brief } from '@/lib/state';
 import { isCancelledBooking } from '@/lib/cancellation-status';
+import { MAX_BODY_BYTES } from '@/lib/limits';
+import { reserveUsage, settleUsage, UsageLimitError } from '@/lib/server/usage-budget';
 
 export const runtime = 'nodejs';
 export const maxDuration = 30;
-const MAX_BODY_BYTES = 48_000;
 const MAX_REQUESTS_PER_MINUTE = 60;
 const requests = new Map<string, { windowStart: number; count: number }>();
 
@@ -43,9 +44,12 @@ export async function POST(request: Request) {
   if (new Set(messages.map((message) => message.id)).size !== messages.length) return NextResponse.json({ error: 'Message IDs must be unique.' }, { status: 400 });
   const brief = (parsed.data.brief ?? createEmptyBrief()) as Brief;
   try {
+    const reservation = await reserveUsage(request, { messages, brief, referenceDate }, mode);
     const analysis = await analyzeConversation(messages, brief, mode, referenceDate);
+    if (!analysis.warning) await settleUsage(reservation, analysis.usage);
     return NextResponse.json({ ...analysis, clarification: isCancelledBooking(analysis.brief, messages) ? null : analysis.clarification }, { headers: { 'Cache-Control': 'no-store' } });
   } catch (error) {
+    if (error instanceof UsageLimitError) return NextResponse.json({ error: error.message, brief }, { status: error.status, headers: { 'Retry-After': String(error.retryAfter), 'Cache-Control': 'no-store' } });
     const message = error instanceof Error && error.message === 'OpenAI API key is not configured.' ? error.message : 'Could not analyse this turn. Your last valid brief is unchanged.';
     return NextResponse.json({ error: message, brief }, { status: 503, headers: { 'Cache-Control': 'no-store' } });
   }

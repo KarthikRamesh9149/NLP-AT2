@@ -12,10 +12,19 @@ function containsValue(field: FieldKey, value: string, quote: string, reference:
     const text = digitWords(source);
     if (!new RegExp(`\\b${value}\\b`).test(digitWords(quote))) return false;
     const count = new RegExp(`(?:\\b${value}\\s+(?:people|persons|guests|diners|adults|children|kids)\\b|\\b(?:party|group)\\s+(?:of\\s+)?${value}\\b|\\bfor\\s+${value}\\b(?!\\s*(?::|am\\b|pm\\b|o'clock)))`);
-    if (count.test(text)) return !exact || !/\b(?:or|between)\b/.test(text);
+    const match = count.exec(text);
+    if (match) {
+      const prefix = text.slice(0, match.index).split(/[.!?;,]|\bbut\b/).at(-1) || '';
+      if (/\b(?:not|no|don't|do not)\b/.test(prefix)) return false;
+      return !exact || !/\b\d{1,2}\s*(?:or|to|-)\s*\d{1,2}\s+(?:people|persons|guests|diners)\b|\bbetween\s+\d{1,2}\s+and\s+\d{1,2}\b/.test(text);
+    }
     const index = messages.findIndex(message => message.id === sourceId);
     const question = messages.slice(0, index).findLast(message => message.speaker === 'staff');
-    return /^\d{1,2}[.!?]?$/.test(text) && !!question && /\b(?:how many|party size|guest count|number of (?:people|guests))\b/i.test(question.text);
+    const bare = text.split(/[,;.!]/)[0].trim().replace(/^(?:actually\s+|make (?:it|that)\s+)/,'').replace(/\s+(?:instead|please)$/,'');
+    if (bare !== value) return false;
+    if (question && /\b(?:how many|party size|guest count|number of (?:people|guests))\b/i.test(question.text)) return true;
+    if (question && /\b(?:what time|which time|when|what date|which date|which year)\b/i.test(question.text)) return false;
+    return messages.slice(0,index).some(message => /\b\d{1,2}\s+(?:people|guests|diners)\b|\b(?:party|group) of \d{1,2}\b|\bfor \d{1,2}\b(?!\s*(?:am|pm|:))/i.test(digitWords(message.text)));
   }
   if (field === 'date') {
     const candidate = calendarDate(value); const source = calendarDate(quote);
@@ -73,6 +82,19 @@ function composedDateSupported(value: string, evidence: Evidence[], messages: Me
     if (yearAnswer && (e.quote.trim() === yearAnswer[0] || /\b(year|please|actually|instead)\b/i.test(e.quote) || messages.slice(anchorIndex + 1, messages.findIndex((m) => m.id === e.id)).some((m) => /\byear\b/i.test(m.text)))) year = Number(yearAnswer[0]);
   }
   return candidate.day === day && (!candidate.year || candidate.year === year);
+}
+
+function quotedYearAnswer(evidence: Evidence[], messages: Message[]): string | null {
+  for (const item of [...evidence].reverse()) {
+    const index = messages.findIndex(message => message.id === item.id);
+    const source = messages[index];
+    if (source?.speaker !== 'customer') continue;
+    const question = messages.slice(0,index).findLast(message => message.speaker === 'staff');
+    if (!question || !/\byear\b/i.test(question.text)) continue;
+    const answer = cleanText(source.text).match(/^(?:(?:the year is|in|actually|i mean)\s+)?(20\d{2}|21\d{2})(?:[, .]*(?:please|instead))?[.!]?$/);
+    if (answer && item.quote.includes(answer[1])) return answer[1];
+  }
+  return null;
 }
 
 // Explicit cancellation outranks a repeated older prediction. Later stated
@@ -163,7 +185,14 @@ export function reconcileGroundedState(current: Brief, state: GroundedState, mes
         const calendar = calendarDate(value);
         if (calendar) {
           value = calendar.value;
-          if (!calendar.year) { status = 'needs_clarification'; constraint = 'Year not specified'; }
+          if (!calendar.year) {
+            const year = quotedYearAnswer(evidence, messages);
+            const assembled = year ? `${calendar.value} ${year}` : null;
+            const dated = assembled ? calendarDate(assembled) : null;
+            if (dated?.year) { value = dated.value; status = 'resolved'; constraint = null; }
+            else if (assembled) { value = null; status = 'needs_clarification'; constraint = assembled; }
+            else { status = 'needs_clarification'; constraint = 'Year not specified'; }
+          }
         } else {
           const anchored = relativeDate(value, reference);
           if (anchored) { value = calendarDate(anchored)!.value; status = 'resolved'; constraint = null; }
@@ -183,6 +212,7 @@ export function reconcileGroundedState(current: Brief, state: GroundedState, mes
     if (previous.source === 'staff' && !cancelled) {
       const differs = value !== previous.value || status !== 'resolved';
       if (differs) {
+        if (!previous.review && previous.status === 'resolved' && evidence.every(e => previous.evidenceIds.includes(e.id))) continue;
         const review = { reason: 'staff_conflict' as const, value, constraint, status, evidenceIds: evidence.map(e => e.id) };
         if (JSON.stringify(previous.review) !== JSON.stringify(review)) next.revision += 1;
         next.fields[key] = { ...previous, status: 'needs_clarification', review, note: `Your edit: ${previous.value}. Conversation: ${value ?? constraint ?? 'not confirmed'}. Choose which to keep.` };

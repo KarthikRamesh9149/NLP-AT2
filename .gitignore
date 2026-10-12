@@ -9,3 +9,5 @@ test-results/
 .DS_Store
 *.tsbuildinfo
 __pycache__/
+supabase/.temp/
+supabase/.branches/

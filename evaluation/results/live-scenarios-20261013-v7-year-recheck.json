@@ -1,0 +1,76 @@
+{
+  "generatedAt": "2026-10-12T14:16:38.151Z",
+  "endpoint": "http://localhost:3000",
+  "model": "gpt-6-luna",
+  "type": "team-authored synthetic regression scenarios; not an SGD benchmark",
+  "total": 1,
+  "passed": 1,
+  "usage": {
+    "inputTokens": 3133,
+    "outputTokens": 523
+  },
+  "results": [
+    {
+      "id": "S22",
+      "title": "Year supplied in a separate answer",
+      "category": "missing",
+      "passed": true,
+      "errors": [],
+      "fields": {
+        "restaurantName": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        },
+        "city": {
+          "value": null,
+          "status": "missing",
+          "constraint": null,
+          "evidenceIds": [],
+          "source": null,
+          "note": ""
+        },
+        "date": {
+          "value": "3 March 2027",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1",
+            "m2",
+            "m3"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "time": {
+          "value": "7 pm",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        },
+        "partySize": {
+          "value": "4",
+          "status": "resolved",
+          "constraint": null,
+          "evidenceIds": [
+            "m1"
+          ],
+          "source": "model",
+          "note": ""
+        }
+      },
+      "usage": {
+        "inputTokens": 3133,
+        "outputTokens": 523,
+        "model": "gpt-6-luna"
+      }
+    }
+  ]
+}

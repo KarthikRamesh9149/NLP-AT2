@@ -14,7 +14,7 @@ function complete() {
 }
 
 describe('audited safety failures', () => {
-  it.each(['Please do not cancel my booking.', "Don't cancel my reservation.", 'If it rains, cancel my booking.', 'I might cancel my booking.', 'Can I cancel my booking?', 'No need to cancel the booking.'])('keeps the enquiry for %s', text => {
+  it.each(['Please do not cancel my booking.', "Don't cancel my reservation.", 'If it rains, cancel my booking.', 'I might cancel my booking.', 'Can I cancel my booking?', 'No need to cancel the booking.', 'The customer yesterday said cancel my booking.'])('keeps the enquiry for %s', text => {
     const candidate = snapshot({ time: value('7 pm', 'm1', '7 pm'), partySize: value('4', 'm1', 'four') });
     const messages: Message[] = [original, { id: 'm2', speaker: 'customer', text }];
     const cleared = withExplicitClears(candidate, messages);
@@ -24,8 +24,8 @@ describe('audited safety failures', () => {
     for (const key of FIELD_KEYS) empty.fields[key].evidenceIds = ['m2'];
     expect(isCancelledBooking(empty, messages)).toBe(false);
   });
-  it('still clears an explicit request to cancel', () => {
-    const messages: Message[] = [original, { id: 'm2', speaker: 'customer', text: 'Please cancel my booking.' }];
+  it.each(['Please cancel my booking.', 'Could you cancel my booking please?', 'Would you please cancel my reservation?'])('clears the cancellation request: %s', text => {
+    const messages: Message[] = [original, { id: 'm2', speaker: 'customer', text }];
     const next = reconcileGroundedState(complete(), withExplicitClears(snapshot(), messages), messages, null);
     expect(FIELD_KEYS.every(key => next.fields[key].value === null)).toBe(true);
     expect(isCancelledBooking(next, messages)).toBe(true);
@@ -54,6 +54,19 @@ describe('audited safety failures', () => {
   it('does not use a clock number as a guest count', () => {
     const messages: Message[] = [{ id: 'm2', speaker: 'customer', text: 'At 7 pm please.' }];
     expect(reconcileGroundedState(createEmptyBrief(), snapshot({ partySize: value('7', 'm2', '7 pm') }), messages, null).fields.partySize.value).toBeNull();
+  });
+  it('keeps the guest count exact when only the time has alternatives', () => {
+    const messages: Message[] = [{ id: 'm2', speaker: 'customer', text: 'Four people at 7 pm or 8 pm.' }];
+    expect(reconcileGroundedState(createEmptyBrief(), snapshot({ partySize: value('4', 'm2', 'Four people') }), messages, null).fields.partySize).toMatchObject({ value: '4', status: 'resolved' });
+  });
+  it('does not accept a specifically rejected guest count', () => {
+    const messages: Message[] = [{ id: 'm2', speaker: 'customer', text: 'Not four people. Five people instead.' }];
+    expect(reconcileGroundedState(createEmptyBrief(), snapshot({ partySize: value('4', 'm2', 'four people') }), messages, null).fields.partySize.value).toBeNull();
+    expect(reconcileGroundedState(createEmptyBrief(), snapshot({ partySize: value('5', 'm2', 'Five people') }), messages, null).fields.partySize.value).toBe('5');
+  });
+  it('uses the established guest-count context for a terse correction with a separate time constraint', () => {
+    const messages: Message[] = [original, { id: 'm2', speaker: 'customer', text: 'Five, after eight instead.' }];
+    expect(reconcileGroundedState(complete(), snapshot({ partySize: value('5', 'm2', 'Five') }), messages, null).fields.partySize.value).toBe('5');
   });
   it.each(['after 7 pm', 'around 7 pm', '7 pm or 8 pm', 'not 7 pm'])('does not turn %s into an exact time, even with a shortened quote', text => {
     const messages: Message[] = [{ id: 'm2', speaker: 'customer', text }];
@@ -96,5 +109,12 @@ describe('audited safety failures', () => {
   it('rejects a transcript that cannot fit the API request in UTF-8 bytes', () => {
     const transcript = Array.from({ length: 21 }, () => `Customer: ${'客'.repeat(800)}`).join('\n');
     expect(() => parseTranscript(transcript)).toThrow(/large|short|size|bytes/i);
+  });
+  it('resolves a quoted year answer even when the model leaves the date expression yearless', () => {
+    const messages: Message[] = [{ id:'m1',speaker:'customer',text:'March 3rd please.' },{ id:'m2',speaker:'staff',text:'Which year do you mean?' },{ id:'m3',speaker:'customer',text:'2027, please.' }];
+    const date: GroundedField = { value:'March 3rd',status:'needs_clarification',constraint:'Year not specified',evidence:[{id:'m1',quote:'March 3rd'},{id:'m2',quote:'Which year do you mean?'},{id:'m3',quote:'2027'}] };
+    expect(reconcileGroundedState(createEmptyBrief(),snapshot({date}),messages,null).fields.date).toMatchObject({value:'3 March 2027',status:'resolved',constraint:null});
+    messages[1].text='What is your reference number?'; date.evidence[1].quote=messages[1].text;
+    expect(reconcileGroundedState(createEmptyBrief(),snapshot({date}),messages,null).fields.date.status).toBe('needs_clarification');
   });
 });

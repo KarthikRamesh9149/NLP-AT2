@@ -32,7 +32,7 @@ export async function analyzeConversation(messages: Message[], current: Brief, m
     try {
       const repair = await extractGroundedState(messages, referenceDate, issues.join('\n'));
       state = withExplicitClears(repair.state, messages, referenceDate);
-      usage = { inputTokens: usage.inputTokens + repair.usage.inputTokens, outputTokens: usage.outputTokens + repair.usage.outputTokens, model: `${usage.model} + ${repair.usage.model}` };
+      usage = { inputTokens: usage.inputTokens + repair.usage.inputTokens, outputTokens: usage.outputTokens + repair.usage.outputTokens, model: `${usage.model} + ${repair.usage.model}`, calls: [initial.usage, repair.usage] };
     } catch {
       // The first response is still subject to every evidence check. A failed
       // second check must not destroy a valid result or apply unsupported data.

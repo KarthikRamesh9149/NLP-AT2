@@ -8,9 +8,11 @@ export function requestsCancellation(raw: string): boolean {
     const match = /\b(?:cancel|forget|remove|clear)\s+(?:(?:the|my|this|our)\s+)?(?:(?:whole|entire)\s+)?(?:booking|reservation)(?:\s+request)?\b/.exec(clause);
     if (!match) return false;
     const prefix = clause.slice(0, match.index);
-    if (/\b(?:if|unless|whether|when|might|may|could|perhaps|maybe|possibly)\b/.test(clause)) return false;
+    const politeRequest = /^\s*(?:please\s+)?(?:can|could|would|will)\s+you\s+(?:please\s+)?$/.test(prefix);
+    if (/\b(?:if|unless|whether|when|might|may|perhaps|maybe|possibly)\b/.test(clause) || (/\bcould\b/.test(clause) && !politeRequest)) return false;
     if (/\b(?:not|never|don't|do not|won't|cannot|can't|no need|avoid|without|stop)\b/.test(prefix)) return false;
-    if (/\b(?:can|could|should|would|will)\s+(?:i|we|you)\b/.test(prefix) || /\?/.test(clause)) return false;
+    if (/\b(?:said|wrote|quoted|mentioned|yesterday|previously)\b/.test(prefix)) return false;
+    if (!politeRequest && (/\b(?:can|could|should|would|will)\s+(?:i|we|you)\b/.test(prefix) || /\?/.test(clause))) return false;
     return !/\b(?:instead|change|reschedule|move)\b/.test(clause);
   });
 }

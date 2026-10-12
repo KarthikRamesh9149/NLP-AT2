@@ -26,7 +26,9 @@ export function resolveFieldReview(brief: Brief, key: FieldKey, choice: 'staff' 
   const field = brief.fields[key];
   if (choice === 'staff') {
     if (!field.value) throw new Error('Enter the detail you want to keep.');
-    return applyManualEdit(brief, key, field.value);
+    const next = applyManualEdit(brief, key, field.value);
+    if (field.review?.reason === 'staff_conflict') next.fields[key].evidenceIds = field.review.evidenceIds;
+    return next;
   }
   const review = field.review;
   if (!review || review.reason !== 'staff_conflict') throw new Error('Recheck the conversation before using a new value.');
