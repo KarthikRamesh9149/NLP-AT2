@@ -1,0 +1,46 @@
+{
+  "checkedAt": "2026-10-12T16:05:41.581317+00:00",
+  "type": "Actual native file downloads from local and production browser flows",
+  "files": [
+    {
+      "name": "formbridge-booking-brief (1).txt",
+      "bytes": 335,
+      "sha256": "5f337f28b811aff9075711185c640b07cc2b25dc2c577fdf295c2d0adb037f2b"
+    },
+    {
+      "name": "formbridge-booking-brief (1).json",
+      "bytes": 3324,
+      "sha256": "57ad058b2639c20f545f479d66ed563d6c7c2b523d2efce9ec8b82303b0bee72"
+    },
+    {
+      "name": "formbridge-enquiry.ics",
+      "bytes": 419,
+      "sha256": "3ccaab226b2cb5f0b1f278e545daf02f803d3356a3028fe4a928dfc0d5611676"
+    },
+    {
+      "name": "formbridge-booking-brief (2).txt",
+      "bytes": 429,
+      "sha256": "b76040ec419a8f2764e13e2f22de8facf228f91dfef2ddd510611035a7404156"
+    },
+    {
+      "name": "formbridge-booking-brief (2).json",
+      "bytes": 4749,
+      "sha256": "98961752154f23e7049790cf3a2987d89f5170285fbff90b84494e904f55ce19"
+    },
+    {
+      "name": "formbridge-enquiry (1).ics",
+      "bytes": 419,
+      "sha256": "97e7329017d43f8cee7b6717f5829f8e42fa77489cd0447f823672f2140df855"
+    },
+    {
+      "name": "formbridge-booking-brief (3).txt",
+      "bytes": 420,
+      "sha256": "641d9b712fd3514e3a71acea56b667a3742354d622d8ead1b7098dd3db4f574b"
+    }
+  ],
+  "verified": [
+    "Reviewed text and JSON include the transcript and correct five fields",
+    "Calendar reminders use the exact date/time and TENTATIVE status",
+    "Unfinished update export carries its warning"
+  ]
+}

@@ -43,4 +43,4 @@ The scenario runner calls real extraction endpoints. Its constructed cases are f
 
 Supabase row-level security protects case reads; membership checks protect writes. The server key is excluded from browser bundles and Git. Conversation text is untrusted model input, and model output is checked before updating the brief. Human approval applies to a brief, never a real reservation.
 
-On the free Supabase plan, leaked-password protection is unavailable. The provider's security advisor reports that limitation for email/password accounts. Device sign-in has no password, and membership isolation remains enforced.
+On the free Supabase plan, leaked-password protection is [unavailable](https://supabase.com/docs/guides/auth/password-security#password-strength-and-leaked-password-protection). The provider's security advisor reports that limitation for email/password accounts. Device sign-in has no password, and membership isolation remains enforced.

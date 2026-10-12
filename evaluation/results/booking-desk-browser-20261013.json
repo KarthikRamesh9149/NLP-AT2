@@ -1,0 +1,463 @@
+{
+  "checkedAt": "2026-10-12T16:03:09.373Z",
+  "url": "https://formbridge-nlp-at2.vercel.app/",
+  "finalProductCommit": "0f073c0f961ec3160db00da36f14ead819db9f2a",
+  "type": "Constructed browser workflow checks using synthetic enquiries; not a user study or unseen dataset score",
+  "finalChecks": [
+    {
+      "name": "New public visit starts empty",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:29:25.449Z"
+    },
+    {
+      "name": "Custom enquiry resolves all five details",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:29:50.498Z"
+    },
+    {
+      "name": "A correction updates the guest count",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:30:44.587Z"
+    },
+    {
+      "name": "After-eight remains a preference requiring an exact time",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:30:44.591Z"
+    },
+    {
+      "name": "An unaccepted staff suggestion does not resolve the time",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:30:45.192Z"
+    },
+    {
+      "name": "Verified staff account signs in on production",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:31:41.778Z"
+    },
+    {
+      "name": "Private team workspace is created through the UI",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:32:34.147Z"
+    },
+    {
+      "name": "Customer acceptance resolves the exact time",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:32:34.428Z"
+    },
+    {
+      "name": "A field reveals its staff offer and customer acceptance",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:32:47.405Z"
+    },
+    {
+      "name": "A saved enquiry reaches the private team",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:33:52.764Z"
+    },
+    {
+      "name": "Shared enquiry appears in team library",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:40:05.263Z"
+    },
+    {
+      "name": "Staff can make a deliberate field edit",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:36:23.891Z"
+    },
+    {
+      "name": "A customer change cannot silently overwrite a staff edit",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:37:24.705Z"
+    },
+    {
+      "name": "Staff can explicitly choose the customer’s changed value",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:38:50.163Z"
+    },
+    {
+      "name": "Refresh preserves the active reviewed data",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:39:57.391Z"
+    },
+    {
+      "name": "Saved enquiries can be searched",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:40:05.276Z"
+    },
+    {
+      "name": "A shared enquiry can be archived",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:41:33.251Z"
+    },
+    {
+      "name": "An archived shared enquiry can be restored",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:42:04.980Z"
+    },
+    {
+      "name": "Opening a case offers to preserve the current draft",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:42:14.707Z"
+    },
+    {
+      "name": "A shared case reopens with its saved details",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:42:14.989Z"
+    },
+    {
+      "name": "A complete brief can be approved",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:42:15.266Z"
+    },
+    {
+      "name": "The deployed JSON export delivers a file",
+      "passed": true,
+      "detail": "/Users/karthikramesh/Downloads/formbridge-booking-brief (2).json",
+      "checkedAt": "2026-10-12T15:42:15.546Z"
+    },
+    {
+      "name": "A reviewed enquiry downloads a calendar reminder",
+      "passed": true,
+      "detail": "/Users/karthikramesh/Downloads/formbridge-enquiry (1).ics",
+      "checkedAt": "2026-10-12T15:43:32.592Z"
+    },
+    {
+      "name": "The deployed text export delivers a file",
+      "passed": true,
+      "detail": "/Users/karthikramesh/Downloads/formbridge-booking-brief (3).txt",
+      "checkedAt": "2026-10-12T15:43:32.862Z"
+    },
+    {
+      "name": "Provider handoff rejects a deceptive domain",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:44:30.514Z"
+    },
+    {
+      "name": "A request not to cancel preserves the five booking details",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:46:08.203Z"
+    },
+    {
+      "name": "Editing text and correcting its speaker rebuilds the brief",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:47:40.362Z"
+    },
+    {
+      "name": "Deleting a source message removes its changed value",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:48:48.436Z"
+    },
+    {
+      "name": "Undo restores the deleted message and its draft details",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:48:48.713Z"
+    },
+    {
+      "name": "The live assistant returns a reviewable reply without booking a table",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:50:25.870Z"
+    },
+    {
+      "name": "Assistant replies enter the staff composer without changing the brief",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:50:26.151Z"
+    },
+    {
+      "name": "Reopening an exported file discards its old approval",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:50:36.976Z"
+    },
+    {
+      "name": "Downloaded JSON reopens with the original conversation and values",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:52:38.375Z"
+    },
+    {
+      "name": "The live library fits phone, tablet and desktop widths",
+      "passed": true,
+      "detail": "[{\"scrollWidth\":320,\"width\":320},{\"scrollWidth\":390,\"width\":390},{\"scrollWidth\":768,\"width\":768},{\"scrollWidth\":1024,\"width\":1024}]",
+      "checkedAt": "2026-10-12T15:55:54.834Z"
+    },
+    {
+      "name": "Phone users can switch to the booking brief",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:56:13.944Z"
+    },
+    {
+      "name": "A polite cancellation clears the enquiry and acknowledges it",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:59:12.568Z"
+    },
+    {
+      "name": "Signing out clears the active enquiry and private-team UI",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T16:03:09.369Z"
+    }
+  ],
+  "attempts": [
+    {
+      "name": "New public visit starts empty",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:29:25.449Z"
+    },
+    {
+      "name": "Custom enquiry resolves all five details",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:29:50.498Z"
+    },
+    {
+      "name": "A correction updates the guest count",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:30:44.587Z"
+    },
+    {
+      "name": "After-eight remains a preference requiring an exact time",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:30:44.591Z"
+    },
+    {
+      "name": "An unaccepted staff suggestion does not resolve the time",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:30:45.192Z"
+    },
+    {
+      "name": "Verified staff account signs in on production",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:31:41.778Z"
+    },
+    {
+      "name": "Private team workspace is created through the UI",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:32:34.147Z"
+    },
+    {
+      "name": "Customer acceptance resolves the exact time",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:32:34.428Z"
+    },
+    {
+      "name": "A field reveals its staff offer and customer acceptance",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:32:47.405Z"
+    },
+    {
+      "name": "A saved enquiry reaches the private team",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:33:52.764Z"
+    },
+    {
+      "name": "Shared enquiry appears in team library",
+      "passed": false,
+      "detail": "Before timestamp fix: server save acknowledged, library incorrectly showed zero records.",
+      "checkedAt": "2026-10-12T15:36:15.706Z"
+    },
+    {
+      "name": "Staff can make a deliberate field edit",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:36:23.891Z"
+    },
+    {
+      "name": "A customer change cannot silently overwrite a staff edit",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:37:24.705Z"
+    },
+    {
+      "name": "Staff can explicitly choose the customer’s changed value",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:38:50.163Z"
+    },
+    {
+      "name": "Refresh preserves the active reviewed data",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:39:57.391Z"
+    },
+    {
+      "name": "Shared enquiry appears in team library",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:40:05.263Z"
+    },
+    {
+      "name": "Saved enquiries can be searched",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:40:05.276Z"
+    },
+    {
+      "name": "A shared enquiry can be archived",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:41:33.251Z"
+    },
+    {
+      "name": "An archived shared enquiry can be restored",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:42:04.980Z"
+    },
+    {
+      "name": "Opening a case offers to preserve the current draft",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:42:14.707Z"
+    },
+    {
+      "name": "A shared case reopens with its saved details",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:42:14.989Z"
+    },
+    {
+      "name": "A complete brief can be approved",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:42:15.266Z"
+    },
+    {
+      "name": "The deployed JSON export delivers a file",
+      "passed": true,
+      "detail": "/Users/karthikramesh/Downloads/formbridge-booking-brief (2).json",
+      "checkedAt": "2026-10-12T15:42:15.546Z"
+    },
+    {
+      "name": "A reviewed enquiry downloads a calendar reminder",
+      "passed": true,
+      "detail": "/Users/karthikramesh/Downloads/formbridge-enquiry (1).ics",
+      "checkedAt": "2026-10-12T15:43:32.592Z"
+    },
+    {
+      "name": "The deployed text export delivers a file",
+      "passed": true,
+      "detail": "/Users/karthikramesh/Downloads/formbridge-booking-brief (3).txt",
+      "checkedAt": "2026-10-12T15:43:32.862Z"
+    },
+    {
+      "name": "Provider handoff rejects a deceptive domain",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:44:30.514Z"
+    },
+    {
+      "name": "A request not to cancel preserves the five booking details",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:46:08.203Z"
+    },
+    {
+      "name": "Editing text and correcting its speaker rebuilds the brief",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:47:40.362Z"
+    },
+    {
+      "name": "Deleting a source message removes its changed value",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:48:48.436Z"
+    },
+    {
+      "name": "Undo restores the deleted message and its draft details",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:48:48.713Z"
+    },
+    {
+      "name": "The live assistant returns a reviewable reply without booking a table",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:50:25.870Z"
+    },
+    {
+      "name": "Assistant replies enter the staff composer without changing the brief",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:50:26.151Z"
+    },
+    {
+      "name": "Reopening an exported file discards its old approval",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:50:36.976Z"
+    },
+    {
+      "name": "Downloaded JSON reopens with the original conversation and values",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:52:38.375Z"
+    },
+    {
+      "name": "The live library fits phone, tablet and desktop widths",
+      "passed": true,
+      "detail": "[{\"scrollWidth\":320,\"width\":320},{\"scrollWidth\":390,\"width\":390},{\"scrollWidth\":768,\"width\":768},{\"scrollWidth\":1024,\"width\":1024}]",
+      "checkedAt": "2026-10-12T15:55:54.834Z"
+    },
+    {
+      "name": "Phone users can switch to the booking brief",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:56:13.944Z"
+    },
+    {
+      "name": "A polite cancellation clears the enquiry and acknowledges it",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T15:59:12.568Z"
+    },
+    {
+      "name": "Signing out clears the active enquiry and private-team UI",
+      "passed": true,
+      "detail": "",
+      "checkedAt": "2026-10-12T16:03:09.369Z"
+    }
+  ],
+  "latestPassed": 37,
+  "latestTotal": 37,
+  "console": []
+}

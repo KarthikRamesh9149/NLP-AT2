@@ -1,0 +1,76 @@
+{
+  "checkedAt": "2026-10-12T15:21:08.473Z",
+  "checks": [
+    {
+      "name": "Verified fixture account signs in without sending email",
+      "passed": true
+    },
+    {
+      "name": "Verified fixture account signs in without sending email",
+      "passed": true
+    },
+    {
+      "name": "An authenticated staff member can create a private team",
+      "passed": true
+    },
+    {
+      "name": "Owner can save a case",
+      "passed": true
+    },
+    {
+      "name": "Public browser keys cannot read private cases",
+      "passed": true
+    },
+    {
+      "name": "Another signed-in user cannot read the case",
+      "passed": true
+    },
+    {
+      "name": "Another signed-in user cannot write the case",
+      "passed": true
+    },
+    {
+      "name": "Only an owner can issue a team invitation",
+      "passed": true
+    },
+    {
+      "name": "Staff cannot call the privileged budget function",
+      "passed": true
+    },
+    {
+      "name": "Joining the same workspace again is idempotent",
+      "passed": true
+    },
+    {
+      "name": "An invited member can read the shared case",
+      "passed": true
+    },
+    {
+      "name": "Simultaneous edits permit one update and reject the stale version",
+      "passed": true
+    },
+    {
+      "name": "Retrying an identical save is idempotent",
+      "passed": true
+    },
+    {
+      "name": "Missing session payload is rejected",
+      "passed": true
+    },
+    {
+      "name": "Concurrent workspace creation enforces the three-workspace owner limit",
+      "passed": true
+    },
+    {
+      "name": "The shared daily budget is reserved atomically across parallel calls",
+      "passed": true
+    },
+    {
+      "name": "A durable per-minute quota permits thirty concurrent requests and rejects the extra request",
+      "passed": true
+    }
+  ],
+  "type": "Live database authorization, concurrency and quota checks using synthetic fixtures",
+  "projectRef": "kpawqpouxxrmssepsbag",
+  "fixtureCleanup": "All seven synthetic verification accounts and their workspaces were removed after browser verification."
+}

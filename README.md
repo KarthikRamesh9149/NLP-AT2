@@ -18,11 +18,16 @@ When a customer changes a booking detail, FormBridge keeps the latest request cl
 
 ## See it in action
 
-![FormBridge booking workspace](docs/media/FormBridge-workspace.jpg)
+![FormBridge booking workspace](docs/media/FormBridge-booking-desk.png)
 
 <details>
   <summary>On mobile</summary>
-  <p align="center"><img src="docs/media/FormBridge-mobile.jpg" alt="FormBridge booking brief on mobile" width="360" /></p>
+  <p align="center"><img src="docs/media/FormBridge-booking-desk-mobile.png" alt="FormBridge booking brief on mobile" width="360" /></p>
+</details>
+
+<details>
+  <summary>The enquiry book</summary>
+  <img src="docs/media/FormBridge-enquiry-book.png" alt="Private restaurant enquiries in the FormBridge enquiry book" width="100%" />
 </details>
 
 ### Meet FormBridge
@@ -44,6 +49,8 @@ https://github.com/user-attachments/assets/43616c6d-b6fc-48fd-9320-eb3e18c6b9b9
 3. Review the restaurant, city, date, time, and party size in the booking brief. Select a detail to see the messages behind it.
 4. Ask the suggested follow-up question when a detail is missing or uncertain. You can also edit a detail yourself.
 5. Save the enquiry to your device or private team workspace. Approve and download the brief when it is ready to hand off.
+
+The booking desk and device library work without an account. Team workspaces require staff sign-in.
 
 Select **Try an example** if you want to explore a prepared conversation first. You can start over at any time with **New brief**.
 
