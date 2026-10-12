@@ -8,6 +8,61 @@ const snapshot = (fields: Partial<GroundedState>): GroundedState => ({ ...Object
 const field = (value: string, id: string, quote: string): GroundedField => ({ value, status: 'resolved', constraint: null, evidence: [{ id, quote }] });
 
 describe('grounded conversation state', () => {
+  it.each([
+    ['date', 'today', 'today', 'needs_clarification'],
+    ['time', '7 pm', '7 pm', 'resolved'],
+    ['partySize', '2', 'two people', 'resolved'],
+  ] as const)('requests the missing acceptance quotation for staff-sourced %s', (key, value, quote, status) => {
+    const messages: Message[] = [{ id: 'offer', speaker: 'staff', text: 'Please confirm a table for two people today at 7 pm.' }, { id: 'answer', speaker: 'customer', text: 'Yes, correct.' }];
+    const candidate: GroundedField = { value, status, constraint: status === 'needs_clarification' ? value : null, evidence: [{ id: 'offer', quote }] };
+    expect(reconcileGroundedState(createEmptyBrief(), snapshot({ [key]: candidate }), messages, null).fields[key].value).toBeNull();
+    expect(validationFeedback(snapshot({ [key]: candidate }), messages, null).some(issue => issue.startsWith(`${key}:`))).toBe(true);
+    candidate.evidence.push({ id: 'answer', quote: 'Yes, correct.', kind: 'acceptance' });
+    expect(validationFeedback(snapshot({ [key]: candidate }), messages, null).some(issue => issue.startsWith(`${key}:`))).toBe(false);
+    expect(reconcileGroundedState(createEmptyBrief(), snapshot({ [key]: candidate }), messages, null).fields[key].value).toBe(value);
+  });
+  it.each([['evening 6:30', '6:30 pm'], ['afternoon 12:45', '12:45 pm'], ['morning 9', '9 am']])('grounds a clock written as %s', (quote, value) => {
+    const messages: Message[] = [{ id: 'm1', speaker: 'customer', text: `A table at ${quote}, please.` }];
+    expect(reconcileGroundedState(createEmptyBrief(), snapshot({ time: field(value, 'm1', quote) }), messages, null).fields.time.value).toBe(value);
+  });
+  it('does not use a guest count after morning as a clock', () => {
+    const messages: Message[] = [{ id: 'm1', speaker: 'customer', text: 'In the morning two people will visit.' }];
+    expect(reconcileGroundedState(createEmptyBrief(), snapshot({ time: field('2 am', 'm1', messages[0].text) }), messages, null).fields.time.value).toBeNull();
+  });
+  it.each(['Yes perfect.Is the restaurant very expensive?', "Yes, it is correct. Do you know if the restaurant is pricey?"])('preserves acceptance alongside the venue question in %s', text => {
+    expect(isAcceptance(text)).toBe(true);
+  });
+  it('accepts that will work as the answer to a time offer', () => {
+    const messages: Message[] = [{ id: 'offer', speaker: 'staff', text: 'Would 8:30 pm work?' }, { id: 'answer', speaker: 'customer', text: 'That will work.' }];
+    const time: GroundedField = { value: '8:30 pm', status: 'resolved', constraint: null, evidence: [{ id: 'offer', quote: '8:30 pm' }, { id: 'answer', quote: 'That will work.', kind: 'acceptance' }] };
+    expect(reconcileGroundedState(createEmptyBrief(), snapshot({ time }), messages, null).fields.time.value).toBe('8:30 pm');
+  });
+  it('allows a tentative exact staff offer after the customer accepts it', () => {
+    const messages: Message[] = [{ id: 'offer', speaker: 'staff', text: 'Perhaps 8:30 pm would work?' }, { id: 'answer', speaker: 'customer', text: 'Yes, please.' }];
+    const time: GroundedField = { value: '8:30 pm', status: 'resolved', constraint: null, evidence: [{ id: 'offer', quote: '8:30 pm' }, { id: 'answer', quote: 'Yes, please.', kind: 'acceptance' }] };
+    expect(reconcileGroundedState(createEmptyBrief(), snapshot({ time }), messages, null).fields.time.value).toBe('8:30 pm');
+  });
+  it.each(['Perhaps after 8 pm?', 'Maybe 7 pm or 8 pm?', 'Perhaps not 8 pm?', 'Not maybe 8 pm.'])('keeps %s unresolved even after a general yes', text => {
+    const messages: Message[] = [{ id: 'offer', speaker: 'staff', text }, { id: 'answer', speaker: 'customer', text: 'Yes, please.' }];
+    const time: GroundedField = { value: '8 pm', status: 'resolved', constraint: null, evidence: [{ id: 'offer', quote: '8 pm' }, { id: 'answer', quote: 'Yes, please.', kind: 'acceptance' }] };
+    expect(reconcileGroundedState(createEmptyBrief(), snapshot({ time }), messages, null).fields.time.status).not.toBe('resolved');
+  });
+  it('grounds a stated guest count after its field label', () => {
+    const messages: Message[] = [{ id: 'm1', speaker: 'customer', text: 'The number of people is 2.' }];
+    expect(reconcileGroundedState(createEmptyBrief(), snapshot({ partySize: field('2', 'm1', '2') }), messages, null).fields.partySize.value).toBe('2');
+  });
+  it('does not make one number from a labelled guest alternative exact', () => {
+    const messages: Message[] = [{ id: 'm1', speaker: 'customer', text: 'The guest count is 2 or 3.' }];
+    expect(reconcileGroundedState(createEmptyBrief(), snapshot({ partySize: field('2', 'm1', '2') }), messages, null).fields.partySize.status).not.toBe('resolved');
+  });
+  it('requests a check of a stated relative date in an accepted confirmation chain', () => {
+    const messages: Message[] = [{id:'offer',speaker:'staff',text:'Please confirm a table for 2 today.'},{id:'change',speaker:'customer',text:'Make that four people.'},{id:'revised',speaker:'staff',text:'Please confirm a table for four people.'},{id:'answer',speaker:'customer',text:'Yes, correct.'}];
+    expect(validationFeedback(snapshot({}),messages,null).some(issue=>issue.startsWith('date:'))).toBe(true);
+  });
+  it('requests a missing count check when a revised proposal is later accepted', () => {
+    const messages: Message[] = [{id:'offer',speaker:'staff',text:'Please confirm a table for 2 people today.'},{id:'change',speaker:'customer',text:'No, make the date 18 October 2027.'},{id:'revised',speaker:'staff',text:'Please confirm 18 October 2027.'},{id:'answer',speaker:'customer',text:'Yes, correct.'}];
+    expect(validationFeedback(snapshot({}),messages,null).some(issue=>issue.startsWith('partySize:'))).toBe(true);
+  });
   it.each(['No problem, please go ahead.', 'No worries.', 'Not a problem.'])('accepts a staff offer with %s', text => {
     const messages: Message[] = [{ id: 'offer', speaker: 'staff', text: 'Would 8:30 pm work?' }, { id: 'answer', speaker: 'customer', text }];
     const time: GroundedField = { value: '8:30 pm', status: 'resolved', constraint: null, evidence: [{ id: 'offer', quote: '8:30 pm' }, { id: 'answer', quote: text, kind: 'acceptance' }] };

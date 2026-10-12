@@ -11,6 +11,14 @@ function propose(count: string, quote: string, source = quote) {
 }
 
 describe('guest count evidence in ordinary booking language', () => {
+  it('does not accept a labelled adult subgroup as the whole family count', () => {
+    const source = 'The party size is two adults and three children.';
+    expect(propose('2', 'two adults', source).brief.fields.partySize.value).toBeNull();
+    expect(propose('5', 'two adults and three children', source).brief.fields.partySize.value).toBe('5');
+  });
+  it('keeps a tentative labelled count unresolved', () => {
+    expect(propose('2', '2', 'Maybe the number of people is 2.').brief.fields.partySize.value).toBeNull();
+  });
   it('accepts a total supported by all parts of a family headcount', () => {
     const { brief, state, messages } = propose('5', 'two adults and three children');
     expect(brief.fields.partySize).toMatchObject({ value: '5', status: 'resolved', evidenceIds: ['family'] });

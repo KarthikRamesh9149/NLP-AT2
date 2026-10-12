@@ -83,6 +83,21 @@ node --env-file=.env.local --import tsx scripts/evaluate.ts ../formbridge-sgd \
 
 This selection was used repeatedly for development checks. Do not describe it as a fresh untouched test on each rerun.
 
+### Current product comparison using the same primary model
+
+```bash
+OPENAI_MODEL=gpt-6-luna \
+FORMBRIDGE_MODEL=gpt-6-luna \
+FORMBRIDGE_REPAIR_MODEL=gpt-6.1-sol \
+node --env-file=.env.local --import tsx scripts/evaluate.ts ../formbridge-sgd \
+  --transport=in-process --replay=all-user-turns \
+  --split=dev --sample=20 --modes=rules,model,formbridge \
+  --selection=evaluation/results/selection-grounded-v6-release-heldout-development.json \
+  --tag=reproduce-product-primary-comparison
+```
+
+Use `main` for the current product configuration. Both contextual systems use Luna for their primary call; FormBridge additionally permits a Sol repair or recovery. This compares complete pipelines and must account for that extra model, its requests and usage. It is not an equal-model or guard-only experiment. The equal-model commands below serve that distinct purpose. Keep failed or lower-scoring attempts alongside later revisions, and do not replace their files or claim an inspected development selection is unseen.
+
 ## 4. Reproduce the equal-model comparison
 
 Rules, direct extraction and FormBridge receive identical visible customer prefixes in identical order. Each method's final state is scored against the same five fields. The rules use no model. Both model systems use GPT-6 Luna with low reasoning; FormBridge's one permitted repair also uses Luna for these comparison runs. Production uses Sol for repair, so these controlled comparisons are deliberately separate from the production-configuration checks above.

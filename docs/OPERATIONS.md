@@ -16,6 +16,8 @@ The calculation is an application allowance, not an account-wide OpenAI billing 
 
 Extraction makes at most two provider requests: a primary check and either a validation repair or recovery from a transient timeout, connection failure or server error. Recovery uses the configured repair model and applies the same evidence checks. Authentication and other non-transient failures stop immediately. A recovered request with unknown primary usage keeps its full allowance reservation; reported tokens cover only completed calls. Both failed calls leave the previous valid brief intact for retry or manual review.
 
+The primary call has a 12-second timeout and the single secondary call has a 14-second timeout. SDK retries are disabled. The combined 26-second provider allowance leaves headroom within the 30-second analysis route; it does not guarantee that a provider request succeeds. The browser waits up to 35 seconds and preserves an unfinished draft if the request is interrupted.
+
 ## Saved enquiries
 
 An active draft uses session storage; device cases use local storage. Team cases use Supabase. Staff notes are stored with the case and are separate from extracted booking details. Exported JSON includes the transcript. Reopening JSON discards its approval and checks the conversation again. Saved model-derived briefs from older validation versions also require a fresh check before approval; their transcript and staff notes are preserved.
