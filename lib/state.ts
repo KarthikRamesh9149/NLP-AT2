@@ -1,4 +1,5 @@
 import { calendarDate, clockTime } from './temporal';
+import { MAX_HISTORY } from './limits';
 export const FIELD_KEYS = ['restaurantName', 'city', 'date', 'time', 'partySize'] as const;
 export type FieldKey = (typeof FIELD_KEYS)[number];
 export type FieldStatus = 'missing' | 'resolved' | 'needs_clarification';
@@ -26,6 +27,13 @@ export interface FieldState {
   evidenceIds: string[];
   source: 'model' | 'rule' | 'staff' | null;
   note: string;
+  review?: {
+    reason: 'unsupported_update' | 'staff_conflict' | 'transcript_changed';
+    value: string | null;
+    constraint: string | null;
+    status: FieldStatus;
+    evidenceIds: string[];
+  };
 }
 
 export interface Change {
@@ -99,6 +107,7 @@ export function applyProposals(brief: Brief, proposals: Proposal[], messages: Me
     next.history.push({ field: proposal.field, previousValue: previous.value, nextValue: nextField.value, operation, evidenceIds: proposal.evidenceIds, revision: next.revision });
     next.approvedRevision = null;
   }
+  next.history = next.history.slice(-MAX_HISTORY);
   return next;
 }
 
@@ -123,12 +132,12 @@ export function applyManualEdit(brief: Brief, field: FieldKey, value: string): B
     fields: { ...brief.fields, [field]: { value: cleaned, status, constraint, evidenceIds: [], source: 'staff', note: 'Reviewed by staff' } },
     revision,
     approvedRevision: null,
-    history: [...brief.history, { field, previousValue: brief.fields[field].value, nextValue: cleaned, operation: 'manual', evidenceIds: [], revision }],
+    history: [...brief.history, { field, previousValue: brief.fields[field].value, nextValue: cleaned, operation: 'manual' as const, evidenceIds: [], revision }].slice(-MAX_HISTORY),
   };
 }
 
 export function approveBrief(brief: Brief): Brief {
-  if (FIELD_KEYS.some((field) => brief.fields[field].status !== 'resolved' || !brief.fields[field].value)) throw new Error('Resolve all five fields before approving this brief.');
+  if (FIELD_KEYS.some((field) => brief.fields[field].status !== 'resolved' || !brief.fields[field].value || brief.fields[field].review)) throw new Error('Resolve all five fields and review conflicting changes before approving this brief.');
   return { ...brief, approvedRevision: brief.revision };
 }
 
@@ -142,6 +151,7 @@ export function clarificationFor(brief: Brief): string | null {
   };
   const field = FIELD_KEYS.find((key) => brief.fields[key].status === 'needs_clarification') ?? FIELD_KEYS.find((key) => brief.fields[key].status === 'missing');
   if (!field) return null;
+  if (brief.fields[field].review) return `Review the ${field === 'partySize' ? 'guest count' : field === 'restaurantName' ? 'restaurant' : field} change before approving the brief.`;
   if (field === 'date' && brief.fields.date.value && brief.fields.date.constraint === 'Year not specified') return `Which year do you mean for ${brief.fields.date.value}?`;
   if (field === 'date' && brief.fields.date.constraint) return `What exact date do you mean by ${brief.fields.date.constraint}?`;
   if (field === 'time' && brief.fields.time.constraint) return `What exact time would you prefer (${brief.fields.time.constraint})?`;

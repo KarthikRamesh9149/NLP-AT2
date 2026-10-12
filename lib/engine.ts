@@ -2,6 +2,7 @@ import { reconcileGroundedState, validationFeedback, withExplicitClears, type Gr
 import { extractFullState, extractGroundedState, type ApiUsage } from './ai';
 import { clarificationFor, createEmptyBrief, FIELD_KEYS, type Brief, type Message } from './state';
 import { runRules } from './rules';
+import { bookingMessages } from './booking-intent';
 
 export type Mode = 'formbridge' | 'model' | 'rules';
 export interface Analysis { brief: Brief; clarification: string | null; usage: ApiUsage | null; appliedUpdates: number; warning?: string }
@@ -22,7 +23,7 @@ export async function analyzeConversation(messages: Message[], current: Brief, m
   }
   // Discard instruction attempts without discarding the real conversation
   // surrounding them. This works for both pasted transcripts and live updates.
-  messages = messages.filter((message) => !/\b(?:ignore (?:all |any )?(?:previous|prior|system) instructions|not a booking change)\b/i.test(message.text));
+  messages = bookingMessages(messages);
   if (!messages.some((message) => message.speaker === 'customer')) return { brief: current, clarification: clarificationFor(current), usage: null, appliedUpdates: 0 };
   const initial = await extractGroundedState(messages, referenceDate);
   let state: GroundedState = withExplicitClears(initial.state, messages, referenceDate); let usage = initial.usage; let warning: string | undefined;
@@ -39,5 +40,5 @@ export async function analyzeConversation(messages: Message[], current: Brief, m
     }
   }
   const brief = reconcileGroundedState(current, state, messages, referenceDate);
-  return { brief, clarification: clarificationFor(brief), usage, appliedUpdates: brief.history.length - current.history.length, ...(warning ? { warning } : {}) };
+  return { brief, clarification: clarificationFor(brief), usage, appliedUpdates: brief.revision - current.revision, ...(warning ? { warning } : {}) };
 }

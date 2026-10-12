@@ -1,27 +1,45 @@
 import { calendarDate, cleanText, clockTime, digitWords, isInvalidCalendarDate, relativeDate } from './temporal';
 import { FIELD_KEYS, type Brief, type FieldKey, type FieldState, type FieldStatus, type Message } from './state';
+import { requestsCancellation } from './booking-intent';
+import { MAX_HISTORY } from './limits';
 
 export interface Evidence { id: string; quote: string; kind?: 'value' | 'acceptance' | 'context' }
 export interface GroundedField { value: string | null; status: FieldStatus; constraint: string | null; evidence: Evidence[] }
 export type GroundedState = Record<FieldKey, GroundedField>;
 
-function containsValue(field: FieldKey, value: string, quote: string, reference: string | null): boolean {
-  if (field === 'partySize') return new RegExp(`\\b${value}\\b`).test(digitWords(quote));
+function containsValue(field: FieldKey, value: string, quote: string, reference: string | null, source = quote, messages: Message[] = [], sourceId?: string, exact = true): boolean {
+  if (field === 'partySize') {
+    const text = digitWords(source);
+    if (!new RegExp(`\\b${value}\\b`).test(digitWords(quote))) return false;
+    const count = new RegExp(`(?:\\b${value}\\s+(?:people|persons|guests|diners|adults|children|kids)\\b|\\b(?:party|group)\\s+(?:of\\s+)?${value}\\b|\\bfor\\s+${value}\\b(?!\\s*(?::|am\\b|pm\\b|o'clock)))`);
+    if (count.test(text)) return !exact || !/\b(?:or|between)\b/.test(text);
+    const index = messages.findIndex(message => message.id === sourceId);
+    const question = messages.slice(0, index).findLast(message => message.speaker === 'staff');
+    return /^\d{1,2}[.!?]?$/.test(text) && !!question && /\b(?:how many|party size|guest count|number of (?:people|guests))\b/i.test(question.text);
+  }
   if (field === 'date') {
     const candidate = calendarDate(value); const source = calendarDate(quote);
     if (candidate && source) return candidate.month === source.month && candidate.day === source.day && (!candidate.year || candidate.year === source.year);
     if (candidate && relativeDate(quote, reference)) return calendarDate(relativeDate(quote, reference)!)?.value === candidate.value;
   }
-  if (field === 'time' && clockTime(value) && clockTime(quote)) return clockTime(value) === clockTime(quote);
+  if (field === 'time' && clockTime(value) && clockTime(quote)) {
+    if (clockTime(value) !== clockTime(quote)) return false;
+    if (!exact) return true;
+    // Inspect the full source clause; a shortened quote must not erase its
+    // qualifier, alternative or rejection.
+    return source.split(/[;.!?\n]|\b(?:but|instead|actually)\b/i).some(clause => clockTime(clause) === clockTime(value)
+      && !/\b(?:after|before|around|about|approximately|between|until|from|later than|earlier than|not|no|or)\b/i.test(clause));
+  }
   return cleanText(quote).includes(cleanText(value));
 }
 export function isAcceptance(text: string): boolean {
-  return /\b(yes|yeah|yep|confirm|confirmed|exactly|correct|right|perfect|works|sounds good|sounds great|sounds like a good choice|that is exactly what I want|that's it|that is it|good|great|excellent|sure|go ahead|good for me|that works|that is good|that's good|fine|okay|ok|please book|please reserve|book (?:it|that|this|me|us|a table|the table)|reserve (?:it|that|this|a table|the table))\b/i.test(text)
-    && !/\b(no|not|don't|doesn't|won't|reject|cancel)\b/i.test(text);
+  const normal = cleanText(text);
+  return /\b(yes|yeah|yep|absolutely|i would love that|i'd love that|confirm|confirmed|exactly|correct|right|perfect|works|sounds good|sounds great|sounds like a good choice|that is exactly what i want|that's it|that is it|good|great|excellent|sure|go ahead|good for me|that works|that is good|that's good|fine|okay|ok|please book|please reserve|book (?:it|that|this|me|us|a table|the table)|reserve (?:it|that|this|a table|the table))\b/i.test(normal)
+    && !/\b(no|not|don't|doesn't|won't|reject|cancel|might|maybe|check with|ask my|if|unless)\b/i.test(normal);
 }
-function acceptedEvidence(evidence: Evidence): boolean {
-  if (isAcceptance(evidence.quote)) return true;
-  return evidence.kind === 'acceptance' && !/\b(no|not|don't|doesn't|won't|reject|cancel)\b/i.test(evidence.quote);
+function acceptedEvidence(evidence: Evidence, messages: Message[]): boolean {
+  const source = messages.find(message => message.id === evidence.id);
+  return !!source && isAcceptance(source.text) && isAcceptance(evidence.quote);
 }
 function checkedEvidence(field: GroundedField, messages: Message[]): Evidence[] | null {
   if (field.evidence.length > 12) return null;
@@ -40,7 +58,7 @@ function composedDateSupported(value: string, evidence: Evidence[], messages: Me
   const usable = evidence.filter((e) => {
     const index = messages.findIndex((m) => m.id === e.id);
     if (messages[index]?.speaker === 'customer') return true;
-    return evidence.some((a) => messages.findIndex((m) => m.id === a.id) > index && messages.find((m) => m.id === a.id)?.speaker === 'customer' && acceptedEvidence(a));
+    return evidence.some((a) => messages.findIndex((m) => m.id === a.id) > index && messages.find((m) => m.id === a.id)?.speaker === 'customer' && acceptedEvidence(a, messages));
   }).sort((a, b) => messages.findIndex((m) => m.id === a.id) - messages.findIndex((m) => m.id === b.id));
   const anchors = usable.map((e) => ({ e, date: calendarDate(e.quote) })).filter((x) => x.date !== null);
   const anchor = anchors.at(-1);
@@ -65,12 +83,12 @@ export function withExplicitClears(state: GroundedState, messages: Message[], re
     const message = messages[index];
     if (message.speaker !== 'customer') continue;
     const text = cleanText(message.text);
-    const whole = /\b(?:cancel|forget|remove|clear)\s+(?:the\s+|my\s+|this\s+)?(?:whole\s+|entire\s+)?(?:booking|reservation)(?:\s+request)?\b/.test(text) && !/\b(?:instead|change|reschedule|move)\b/.test(text);
+    const whole = requestsCancellation(message.text);
     const time = /\b(?:forget|remove|clear|cancel)\b/.test(text) && /\btime\b/.test(text) && /\b(?:not decided|undecided|not sure|haven't decided|have not decided)\b/.test(text) && !/\b(?:instead|or|after|before|between)\b/.test(text);
     const keys: FieldKey[] = whole ? [...FIELD_KEYS] : time ? ['time'] : [];
     for (const key of keys) {
       const candidate = state[key];
-      const laterValue = candidate.value && candidate.evidence.some((e) => messages.findIndex((m) => m.id === e.id) > index && containsValue(key, candidate.value!, e.quote, reference));
+      const laterValue = candidate.value && candidate.evidence.some((e) => messages.findIndex((m) => m.id === e.id) > index && containsValue(key, candidate.value!, e.quote, reference, messages.find(m => m.id === e.id)?.text, messages, e.id, candidate.status === 'resolved'));
       if (laterValue) continue;
       next[key] = { value: null, status: 'missing', constraint: null, evidence: [{ id: message.id, quote: message.text, kind: 'context' }] };
     }
@@ -86,7 +104,7 @@ export function validationFeedback(state: GroundedState, messages: Message[], re
     const candidate = state[key];
     const evidence = checkedEvidence(candidate, messages);
     if (!evidence || ((candidate.value || candidate.constraint) && !evidence.length)) { issues.push(`${key}: supply actual supporting quotations and real message IDs, or leave this unconfirmed.`); continue; }
-    if (candidate.value && !evidence.some((e) => containsValue(key, candidate.value!, e.quote, reference)) && !(key === 'date' && composedDateSupported(candidate.value, evidence, messages))) issues.push(`${key}: this value is not supported by its quoted evidence. Recheck the visible conversation; never invent a value.`);
+    if (candidate.value && !evidence.some((e) => containsValue(key, candidate.value!, e.quote, reference, messages.find(m => m.id === e.id)?.text, messages, e.id, candidate.status === 'resolved')) && !(key === 'date' && composedDateSupported(candidate.value, evidence, messages))) issues.push(`${key}: this value is not supported by its quoted evidence. Recheck the visible conversation; never invent a value.`);
   }
   if (!state.partySize.value && messages.some((m, index) => m.speaker === 'staff' && /\b(?:for|party of|group of)\s+([1-9]\d?)\b/i.test(digitWords(m.text)) && messages.slice(index + 1).find((next) => next.speaker === 'customer') && isAcceptance(messages.slice(index + 1).find((next) => next.speaker === 'customer')!.text))) {
     issues.push('partySize: recheck the customer-accepted staff summary for a stated party size. Keep it missing if the size was rejected or later cancelled; never add a default.');
@@ -109,27 +127,38 @@ export function reconcileGroundedState(current: Brief, state: GroundedState, mes
   const next: Brief = { ...current, fields: { ...current.fields }, history: [...current.history] };
   for (const key of FIELD_KEYS) {
     const candidate = state[key]; const previous = current.fields[key];
+    const reject = () => {
+      if (!previous.value || (!candidate.value && !candidate.constraint && !candidate.evidence.length)) return;
+      const newest = Math.max(-1, ...candidate.evidence.map(e => messages.findIndex(m => m.id === e.id)));
+      const previousPosition = Math.max(-1, ...previous.evidenceIds.map(id => messages.findIndex(m => m.id === id)));
+      if (previous.value === candidate.value && previous.constraint === candidate.constraint && previous.status === candidate.status && newest <= previousPosition) return;
+      if (previous.review?.reason === 'unsupported_update') return;
+      next.revision += 1;
+      next.fields[key] = { ...previous, status: 'needs_clarification', note: 'A new detail could not be verified. The earlier value is kept for your review.', review: { reason: 'unsupported_update', value: null, constraint: null, status: 'missing', evidenceIds: [] } };
+      next.approvedRevision = null;
+    };
     const evidence = checkedEvidence(candidate, messages);
-    if (!evidence || !evidence.length) continue;
+    if (!evidence || !evidence.length) { reject(); continue; }
     const customerEvidence = evidence.filter((e) => messages.find((m) => m.id === e.id)?.speaker === 'customer');
-    if (!customerEvidence.length) continue;
+    if (!customerEvidence.length) { reject(); continue; }
+    if (candidate.status === 'missing' && !candidate.value && !candidate.constraint && customerEvidence.every(e => /\b(?:cancel|forget|remove|clear).*\b(?:booking|reservation)\b/i.test(e.quote) && !requestsCancellation(messages.find(m => m.id === e.id)!.text))) continue;
     let value = candidate.value?.trim() ?? null;
     let status = candidate.status; let constraint = candidate.constraint?.trim() ?? null;
-    if ((value?.length ?? 0) > 120 || (constraint?.length ?? 0) > 120) continue;
-    if (status === 'resolved' && !value) continue;
-    if (status === 'missing' && value) continue;
-    if (status === 'needs_clarification' && !value && !constraint) continue;
+    if ((value?.length ?? 0) > 120 || (constraint?.length ?? 0) > 120) { reject(); continue; }
+    if (status === 'resolved' && !value) { reject(); continue; }
+    if (status === 'missing' && value) { reject(); continue; }
+    if (status === 'needs_clarification' && !value && !constraint) { reject(); continue; }
     if (value) {
-      if (key === 'partySize' && (!/^\d+$/.test(value) || Number(value) < 1 || Number(value) > 30)) continue;
+      if (key === 'partySize' && (!/^\d+$/.test(value) || Number(value) < 1 || Number(value) > 30)) { reject(); continue; }
       // A directly stated customer value or a staff value explicitly accepted
       // later must support the candidate. Message IDs alone are insufficient.
       const supported = (key === 'date' && composedDateSupported(value, evidence, messages)) || evidence.some((e) => {
-        if (!containsValue(key, value!, e.quote, reference)) return false;
+        if (!containsValue(key, value!, e.quote, reference, messages.find(m => m.id === e.id)?.text, messages, e.id, status === 'resolved')) return false;
         const sourceIndex = messages.findIndex((m) => m.id === e.id);
         if (messages[sourceIndex].speaker === 'customer') return true;
-        return customerEvidence.some((acceptance) => messages.findIndex((m) => m.id === acceptance.id) > sourceIndex && acceptedEvidence(acceptance));
+        return customerEvidence.some((acceptance) => messages.findIndex((m) => m.id === acceptance.id) > sourceIndex && acceptedEvidence(acceptance, messages));
       });
-      if (!supported) continue;
+      if (!supported) { reject(); continue; }
       if (key === 'date') {
         const calendar = calendarDate(value);
         if (calendar) {
@@ -150,13 +179,18 @@ export function reconcileGroundedState(current: Brief, state: GroundedState, mes
         else { constraint = value; status = 'needs_clarification'; }
       }
     }
-    if (previous.source === 'staff') {
+    const cancelled = status === 'missing' && customerEvidence.some(e => requestsCancellation(e.quote));
+    if (previous.source === 'staff' && !cancelled) {
       const differs = value !== previous.value || status !== 'resolved';
-      next.fields[key] = { ...previous, note: differs ? `Conversation now says ${value ?? constraint ?? 'not confirmed'}. Your edit is kept until you review it.` : 'Reviewed by staff' };
-      if (differs) next.approvedRevision = null;
+      if (differs) {
+        const review = { reason: 'staff_conflict' as const, value, constraint, status, evidenceIds: evidence.map(e => e.id) };
+        if (JSON.stringify(previous.review) !== JSON.stringify(review)) next.revision += 1;
+        next.fields[key] = { ...previous, status: 'needs_clarification', review, note: `Your edit: ${previous.value}. Conversation: ${value ?? constraint ?? 'not confirmed'}. Choose which to keep.` };
+        next.approvedRevision = null;
+      } else next.fields[key] = { ...previous, status, review: undefined, note: 'Reviewed by staff' };
       continue;
     }
-    if (status === 'missing' && previous.value && !customerEvidence.some((e) => /\b(cancel|forget|remove|clear|undecided|not decided|not sure|no longer|haven't decided|have not decided)\b/i.test(e.quote))) continue;
+    if (status === 'missing' && previous.value && !customerEvidence.some((e) => requestsCancellation(e.quote) || /\b(?:undecided|not decided|not sure|no longer|haven't decided|have not decided)\b/i.test(e.quote))) { reject(); continue; }
     const ids = evidence.map((e) => e.id);
     // Newer accepted evidence can repair an earlier missed update, including
     // after small talk. Older evidence cannot roll back a later correction.
@@ -174,5 +208,6 @@ export function reconcileGroundedState(current: Brief, state: GroundedState, mes
     next.history.push({ field: key, previousValue: previous.value, nextValue: value, operation, evidenceIds: ids, revision: next.revision });
     next.approvedRevision = null;
   }
+  next.history = next.history.slice(-MAX_HISTORY);
   return next;
 }
