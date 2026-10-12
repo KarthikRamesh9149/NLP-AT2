@@ -16,7 +16,7 @@ The calculation is an application allowance, not an account-wide OpenAI billing 
 
 ## Saved enquiries
 
-An active draft uses session storage; device cases use local storage. Team cases use Supabase. Staff notes are stored with the case and are separate from extracted booking details. Exported JSON includes the transcript. Reopening JSON discards its approval and checks the conversation again.
+An active draft uses session storage; device cases use local storage. Team cases use Supabase. Staff notes are stored with the case and are separate from extracted booking details. Exported JSON includes the transcript. Reopening JSON discards its approval and checks the conversation again. Saved model-derived briefs from older validation versions also require a fresh check before approval; their transcript and staff notes are preserved.
 
 A simultaneous team edit can fail with a stale-version message. Keep the active draft, save a device copy if needed, refresh the enquiry book, and reopen the team version before deciding how to combine the changes.
 
