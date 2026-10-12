@@ -1,0 +1,11 @@
+{
+  "checkedAt": "2026-10-12T21:55:44.723Z",
+  "checks": {
+    "upcomingTask": true,
+    "guestCare": true,
+    "humanReview": true,
+    "openQueue": true
+  },
+  "path": "/Users/karthikramesh/Downloads/formbridge-handoff-2026-10-13.txt",
+  "sha256": "14c3934063284789cf65008f945c219428bf371eb89083b7160e4acd33f6a602"
+}

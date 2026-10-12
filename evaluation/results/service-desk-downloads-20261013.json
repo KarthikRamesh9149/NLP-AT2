@@ -1,0 +1,26 @@
+{
+  "checkedAt": "2026-10-12T21:51:43.327Z",
+  "checks": {
+    "format": true,
+    "reviewed": true,
+    "party": true,
+    "time": true,
+    "guestCare": true,
+    "followUp": true,
+    "textCare": true,
+    "textFollowUp": true,
+    "audioAbsent": true
+  },
+  "files": {
+    "json": {
+      "path": "/Users/karthikramesh/Downloads/formbridge-booking-brief (5).json",
+      "size": 5573,
+      "sha256": "3020756877e417d9cbd0407b2c203f4dac245b2f59ba5cd34575ca8cdf804aa7"
+    },
+    "text": {
+      "path": "/Users/karthikramesh/Downloads/formbridge-booking-brief (4).txt",
+      "size": 1140,
+      "sha256": "a745f2e26950fdcbfbf133d5df50fda422863260dee0b7a19a7614551c775a4e"
+    }
+  }
+}

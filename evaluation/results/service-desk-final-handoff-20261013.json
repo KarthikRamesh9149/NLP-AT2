@@ -1,0 +1,17 @@
+{
+  "checkedAt": "2026-10-12T22:05:52.234864+00:00",
+  "deploymentCommit": "2ab9e0c3abaa35b72bb89dfb73a9a0462b65f52b",
+  "checks": {
+    "time": true,
+    "guests": true,
+    "dietary": true,
+    "reviewStatus": true,
+    "completedFollowUp": true,
+    "humanHandoff": true
+  },
+  "file": {
+    "path": "/Users/karthikramesh/Downloads/formbridge-handoff-2027-10-18.txt",
+    "sha256": "a42fecdc5d0f9f7b1efb21bc18b1342deff8825d9057d5c3bff2dff37e053642",
+    "bytes": 768
+  }
+}

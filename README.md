@@ -1,12 +1,12 @@
 <div align="center">
-  <img src="docs/media/FormBridge-banner.png" alt="FormBridge — a booking brief that keeps up with the conversation" width="100%" />
+  <img src="docs/media/FormBridge-banner.png" alt="FormBridge. A place for every detail." width="100%" />
 
-  <p><strong>Turn a changing restaurant enquiry into a booking brief you can review with confidence.</strong></p>
+  <p><strong>Your restaurant enquiry desk, from the first message to the next shift.</strong></p>
 
   <p>
     <a href="https://formbridge-nlp-at2.vercel.app/">Open FormBridge</a>
     ·
-    <a href="#see-it-in-action">See it in action</a>
+    <a href="#see-it-in-action">Watch the films</a>
     ·
     <a href="#run-locally">Run locally</a>
   </p>
@@ -14,81 +14,99 @@
 
 ---
 
-When a customer changes a booking detail, FormBridge keeps the latest request clear. It shows where each detail came from, keeps uncertain answers open, and gives staff a brief to check before handing it on.
+A birthday dinner. One more guest. A later arrival. FormBridge turns the conversation into a clear booking brief, keeps guest requests close, and helps your team follow through.
+
+Bring your own enquiry by typing, pasting or using a voice message. Check the sources behind each detail, save the case, and leave the next shift a useful handoff.
 
 ## See it in action
 
-![FormBridge booking workspace](docs/media/FormBridge-booking-desk.png)
+### Meet FormBridge
+
+From a voice enquiry to a thoughtful handoff. **1 minute.**
+
+https://github.com/user-attachments/assets/2e3bc586-31e8-486b-bbb0-ab09d1b3d639
+
+### A birthday dinner, from first hello to handoff
+
+Follow a change of plans, check the agreed time, prepare a follow-up and save the enquiry to a private team desk. **2 minutes 53 seconds.**
+
+https://github.com/user-attachments/assets/23a82dc9-b820-46a5-b418-846f9378b808
+
+[Launch film](docs/media/FormBridge-launch.mp4) · [Product walkthrough](docs/media/FormBridge-walkthrough.mp4) · [Launch captions](docs/media/FormBridge-launch.vtt) · [Walkthrough captions](docs/media/FormBridge-walkthrough.vtt)
+
+## Made for the way enquiries happen
+
+| At the desk | With FormBridge |
+| --- | --- |
+| A conversation arrives in pieces | Type customer and staff messages, paste a transcript, or record or upload a short voice message. |
+| The guest changes their plans | The brief follows corrections. Preferences and alternatives stay open until an exact answer is agreed. |
+| A detail needs checking | Select it to see the supporting messages and previous values. Edit the conversation or review a conflicting change. |
+| A guest needs a little extra care | Keep a name, contact details, dietary requests, seating preference and occasion beside the enquiry. |
+| The next step needs attention | Ask the desk assistant for a reply, a follow-up or a shift note. Review its proposal before applying it. |
+| Another shift takes over | Reopen saved cases, see upcoming enquiries, complete follow-ups and download a shift handoff. |
+| The team works together | Create a private workspace from this device and invite teammates with a code. Conflicting saved edits are checked before replacement. |
+
+**The brief tracks restaurant, city, date, time and guests.** Guest-care details and staff tasks stay alongside it. “After eight” remains a time preference; an accepted suggestion of 8:30 pm can become the agreed time, with the relevant messages linked.
+
+**Approving a brief does not reserve a table.** FormBridge prepares information for staff review. Venue booking pages and tentative calendar reminders help with the next step; availability and reservations are handled by the restaurant or booking provider.
+
+## A place for every detail
+
+![A reviewed restaurant enquiry in FormBridge](docs/media/FormBridge-booking-desk.png)
 
 <details>
-  <summary>On mobile</summary>
-  <p align="center"><img src="docs/media/FormBridge-booking-desk-mobile.png" alt="FormBridge booking brief on mobile" width="360" /></p>
+  <summary>The service planner</summary>
+  <p>Saved enquiries in time order, with guest requests and a handoff for the shift.</p>
+  <img src="docs/media/FormBridge-service-planner.png" alt="FormBridge service timeline with a reviewed birthday dinner enquiry" width="100%" />
+</details>
+
+<details>
+  <summary>Voice input</summary>
+  <p>Review the transcript before it becomes part of the conversation.</p>
+  <img src="docs/media/FormBridge-voice.png" alt="An editable voice transcript ready for staff review" width="100%" />
 </details>
 
 <details>
   <summary>The enquiry book</summary>
-  <img src="docs/media/FormBridge-enquiry-book.png" alt="Private restaurant enquiries in the FormBridge enquiry book" width="100%" />
+  <p>Search, reopen or archive cases saved to your device or private team.</p>
+  <img src="docs/media/FormBridge-enquiry-book.png" alt="A private team enquiry saved in the FormBridge enquiry book" width="100%" />
 </details>
 
-### Meet FormBridge
+<details>
+  <summary>On mobile</summary>
+  <p align="center"><img src="docs/media/FormBridge-booking-desk-mobile.png" alt="The FormBridge booking brief on a mobile screen" width="360" /></p>
+</details>
 
-A dinner enquiry changes. The brief keeps up. **57 seconds.**
-
-https://github.com/user-attachments/assets/6f236ad9-0861-4294-bf45-9d9d3cd96b5d
-
-### From first hello to handoff
-
-Bring your own conversation, follow a change of plans, check the sources, and prepare a reviewed brief for your team. **2 minutes 9 seconds.**
-
-https://github.com/user-attachments/assets/43616c6d-b6fc-48fd-9320-eb3e18c6b9b9
-
-## Use your own enquiry
+## Bring your own enquiry
 
 1. [Open FormBridge](https://formbridge-nlp-at2.vercel.app/). A new visit starts with an empty brief.
-2. Paste your conversation, or enter a customer message about a restaurant booking. Add staff replies and further customer messages as the conversation develops.
-3. Review the restaurant, city, date, time, and party size in the booking brief. Select a detail to see the messages behind it.
-4. Ask the suggested follow-up question when a detail is missing or uncertain. You can also edit a detail yourself.
-5. Save the enquiry to your device or private team workspace. Approve and download the brief when it is ready to hand off.
+2. Add a customer message, paste a conversation, or open **Voice message**. Review a voice transcript before using it in the composer.
+3. Add staff replies and further customer messages. Check the brief and ask for any missing details.
+4. Add guest requests, prepare a follow-up with the assistant, and save the enquiry to **This device** or your private team.
+5. Approve the reviewed brief, download a copy, or open **Service planner** to prepare the next shift.
 
-The booking desk and device library work without an account. Team workspaces require staff sign-in.
-
-Select **Try an example** if you want to explore a prepared conversation first. You can start over at any time with **New brief**.
-
-**Approving a brief does not make a reservation.** FormBridge prepares information for a person to review; it does not check availability or contact a restaurant.
-
-## What FormBridge handles
-
-- **Changes of mind:** “Four people at seven” followed by “make that five, after eight” updates the party size and leaves the exact time open.
-- **Family parties:** Adults and children are counted together. Children already included in a stated total are counted once.
-- **Uncertain details:** Preferences and alternatives stay visible until the customer confirms a specific answer.
-- **Staff suggestions:** A proposed time becomes the requested time only when the customer accepts it.
-- **Clear review:** Each extracted detail links to the conversation, and earlier values appear in the change history.
-- **An enquiry book:** Save, search, archive and reopen cases, with notes for the next shift.
-- **Private team desks:** Share saved enquiries with invited teammates. Concurrent edits are checked before a saved case is replaced.
-- **A desk assistant:** Ask what needs clarification, summarise changes or prepare a warm reply. Draft replies go into the staff composer for review.
-- **Conversation corrections:** Edit a message, correct its speaker, remove it or undo the change. The brief is reviewed against the updated conversation.
-- **Human control:** Resolve conflicting changes, keep a staff edit or use the customer’s latest request, then approve the brief.
-- **Useful handoff:** Download text or JSON, reopen a saved JSON file, create a tentative calendar reminder and open the restaurant’s booking page.
-
-FormBridge is designed for text conversations about **restaurant reservations**. It tracks five details: restaurant, city, date, time, and party size.
+The booking desk and device library work without an account. In **Team workspace**, choose **Continue on this device** to create or join a private team. Keep the team's invitation code if you need to join from another browser. **Try an example** is available when you want a quick introduction.
 
 ## Run locally
 
-Install Node.js 24 and pnpm 11.24.0, then run:
+Use Node.js 24 and pnpm 11.24.0.
 
 ```bash
 pnpm install --frozen-lockfile
 cp .env.example .env.local
+```
+
+Add your `OPENAI_API_KEY` to `.env.local`, then start the app:
+
+```bash
 pnpm dev
 ```
 
-Add your `OPENAI_API_KEY` to `.env.local` to analyse new messages. Open [http://localhost:3000](http://localhost:3000) in your browser. The example, manual review and device case library can be used without an API key. Keep `.env.local` private; it is excluded from Git.
+Open [localhost:3000](http://localhost:3000). Without an API key, the prepared example, manual review and device library remain available. Keep `.env.local` private; Git excludes it.
 
-For team cases, create a Supabase project, apply the migrations in `supabase/migrations/`, and set the three Supabase variables shown in `.env.example`. The publishable key belongs in the browser; the secret key stays on the server. Team sign-in uses the authentication options enabled on that project.
+For private teams, create a Supabase project, apply `supabase/migrations/` in filename order, and fill in the three Supabase variables in `.env.example`. Enable anonymous sign-ins in Supabase Auth and set `NEXT_PUBLIC_DEVICE_SIGN_IN_ENABLED=true` to offer device sign-in. The publishable key is used by the browser; the secret key stays on the server.
 
-A production deployment requires the Supabase configuration for its shared API allowance. Set the variables in Vercel for the relevant environments before deploying. The database starts with an estimated US$1 daily and US$5 monthly analysis allowance, shared by extraction and the assistant. When the allowance is reached, saved cases and manual review remain available.
-
-To check a local change:
+For Vercel, configure the same environment variables before building. Supabase is required in production for the shared allowance covering analysis, assistant and voice requests. When that allowance is reached, manual review and saved cases remain available. Configuration and maintenance are covered in the [operations guide](docs/OPERATIONS.md).
 
 ```bash
 pnpm test
@@ -96,11 +114,13 @@ pnpm typecheck
 pnpm build
 ```
 
-The web app uses Next.js and TypeScript. Its server calls OpenAI to understand the conversation, while the app checks each proposed change before updating the brief. The API key stays on the server. The site is deployed on Vercel. Supabase stores private team cases and enforces the shared analysis allowance.
+**Built with Next.js, TypeScript, OpenAI, Supabase and Vercel.** The server keeps the OpenAI key private, and the application checks proposed booking changes before updating the brief.
 
 ## Your data
 
-Your current draft is saved in this browser tab so you can refresh the page. Cases saved to **This device** stay in this browser. Cases saved to a **team** are stored in Supabase and visible to that team’s members. Device sign-in cannot be recovered after clearing browser data without joining the team again. Text submitted for analysis or to the desk assistant is sent to OpenAI. Avoid entering sensitive personal information, and review the brief before using it.
+The active draft stays in this browser tab. **This device** cases stay in this browser; **team** cases are stored in Supabase and visible to team members. Device sign-in has no account recovery after browser data is cleared, so keep a team invitation code or download a copy of important enquiries.
+
+Conversation and assistant requests are sent to OpenAI for processing. Voice transcription sends the selected audio to OpenAI; FormBridge does not save the raw audio. Check the transcript and brief before using them, and enter only the information needed for the enquiry.
 
 ---
 

@@ -1,0 +1,188 @@
+{
+  "captureUrl": "https://formbridge-nlp-at2.vercel.app/",
+  "captureCommits": [
+    "34c90f6784833b0c9dba83bf4eb8e9120a237627",
+    "c999a5982e03131d2b2f777d13fbcebf42ebd4ee",
+    "2ab9e0c3abaa35b72bb89dfb73a9a0462b65f52b"
+  ],
+  "films": {
+    "launch": {
+      "bytes": 2495544,
+      "sha256": "8cf9110c73b5a890cc2f89a75333fc9490b3da457c78db0686d3e6281f545a66",
+      "scenes": [
+        {
+          "image": "live-landing.png",
+          "startSeconds": 0,
+          "durationSeconds": 6.9,
+          "voiceSeconds": 6.25,
+          "imageSha256": "1a760b18120a7ba0639c15c893111c0a2c5ef029ee49d595201d0c1c15af60f5"
+        },
+        {
+          "image": "live-voice-preview.png",
+          "startSeconds": 6.9,
+          "durationSeconds": 6.15,
+          "voiceSeconds": 5.5,
+          "imageSha256": "50d93fb7b36a782bbed24b31d1a0203da1343f037284dee6bc48940e77d44416"
+        },
+        {
+          "image": "live-correction.png",
+          "startSeconds": 13.05,
+          "durationSeconds": 8.7,
+          "voiceSeconds": 8.05,
+          "imageSha256": "9c34d43d086ba21b13554939e9b8b4cf46e7394fec1c525615e523802cc44576"
+        },
+        {
+          "image": "live-sources.png",
+          "startSeconds": 21.75,
+          "durationSeconds": 7.55,
+          "voiceSeconds": 6.9,
+          "imageSha256": "eb5eb3d13d1c763a66d837ad4e4c77313a4ee3e4c5fa0d01ba5ecf0ac9ed565c"
+        },
+        {
+          "image": "live-assistant.png",
+          "startSeconds": 29.3,
+          "durationSeconds": 7.9,
+          "voiceSeconds": 7.25,
+          "imageSha256": "003b69a9b4f7376af56260680da7c23597521958ea8d369b0945c30456ba2111"
+        },
+        {
+          "image": "live-guest-care.png",
+          "startSeconds": 37.2,
+          "durationSeconds": 6.35,
+          "voiceSeconds": 5.7,
+          "imageSha256": "14563655895585f5259ef90a3bc37e489b4176e0d8f90fcc74380c18549c2e91"
+        },
+        {
+          "image": "live-planner.png",
+          "startSeconds": 43.550000000000004,
+          "durationSeconds": 8.3,
+          "voiceSeconds": 7.65,
+          "imageSha256": "1bb1d937be6c71e20fe009b929a69fe68cbd3449eca32525889043d44a14ec1c"
+        },
+        {
+          "image": "live-landing.png",
+          "startSeconds": 51.85000000000001,
+          "durationSeconds": 7.75,
+          "voiceSeconds": 7.1,
+          "imageSha256": "1a760b18120a7ba0639c15c893111c0a2c5ef029ee49d595201d0c1c15af60f5"
+        }
+      ],
+      "decodeVerified": true,
+      "githubAttachmentUrl": "https://github.com/user-attachments/assets/2e3bc586-31e8-486b-bbb0-ab09d1b3d639",
+      "renderDurationSeconds": 59.6,
+      "durationSeconds": 59.687696,
+      "githubPreview": {
+        "readyState": 4,
+        "mediaError": null,
+        "playbackVerified": true
+      }
+    },
+    "walkthrough": {
+      "bytes": 6897719,
+      "sha256": "4da6ba80a28581a82a9afe44dd3504526baddaf1d3f57493ea1f7788f2f3974b",
+      "scenes": [
+        {
+          "image": "live-landing.png",
+          "startSeconds": 0,
+          "durationSeconds": 11.5,
+          "voiceSeconds": 10.85,
+          "imageSha256": "1a760b18120a7ba0639c15c893111c0a2c5ef029ee49d595201d0c1c15af60f5"
+        },
+        {
+          "image": "live-voice-entry.png",
+          "startSeconds": 11.5,
+          "durationSeconds": 12.0,
+          "voiceSeconds": 11.35,
+          "imageSha256": "f657c7e94a43ca1e2e9903e41530d6969f6266cab4070f2a00fd44ae6aebf4ea"
+        },
+        {
+          "image": "live-voice-preview.png",
+          "startSeconds": 23.5,
+          "durationSeconds": 12.75,
+          "voiceSeconds": 12.1,
+          "imageSha256": "50d93fb7b36a782bbed24b31d1a0203da1343f037284dee6bc48940e77d44416"
+        },
+        {
+          "image": "live-first-brief.png",
+          "startSeconds": 36.25,
+          "durationSeconds": 13.8,
+          "voiceSeconds": 13.15,
+          "imageSha256": "d88c0b4c1f72d06ae03235084222559f47b76f42e3cb6e5b00762dc54587b31d"
+        },
+        {
+          "image": "live-correction.png",
+          "startSeconds": 50.05,
+          "durationSeconds": 13.85,
+          "voiceSeconds": 13.2,
+          "imageSha256": "9c34d43d086ba21b13554939e9b8b4cf46e7394fec1c525615e523802cc44576"
+        },
+        {
+          "image": "live-sources.png",
+          "startSeconds": 63.9,
+          "durationSeconds": 12.9,
+          "voiceSeconds": 12.25,
+          "imageSha256": "eb5eb3d13d1c763a66d837ad4e4c77313a4ee3e4c5fa0d01ba5ecf0ac9ed565c"
+        },
+        {
+          "image": "live-assistant.png",
+          "startSeconds": 76.8,
+          "durationSeconds": 12.5,
+          "voiceSeconds": 11.85,
+          "imageSha256": "003b69a9b4f7376af56260680da7c23597521958ea8d369b0945c30456ba2111"
+        },
+        {
+          "image": "live-guest-care.png",
+          "startSeconds": 89.3,
+          "durationSeconds": 15.85,
+          "voiceSeconds": 15.2,
+          "imageSha256": "14563655895585f5259ef90a3bc37e489b4176e0d8f90fcc74380c18549c2e91"
+        },
+        {
+          "image": "live-approved.png",
+          "startSeconds": 105.14999999999999,
+          "durationSeconds": 13.95,
+          "voiceSeconds": 13.3,
+          "imageSha256": "60913ab63cb99328c9d0f75eeee6f3ad41c75ed060b98c5261e8d11e90270b1f"
+        },
+        {
+          "image": "live-team.png",
+          "startSeconds": 119.1,
+          "durationSeconds": 12.6,
+          "voiceSeconds": 11.95,
+          "imageSha256": "307bd6ed6f93670d5629820127db9050a7eba104c63b923bd5e78f3daae12615"
+        },
+        {
+          "image": "live-planner.png",
+          "startSeconds": 131.7,
+          "durationSeconds": 15.8,
+          "voiceSeconds": 15.15,
+          "imageSha256": "1bb1d937be6c71e20fe009b929a69fe68cbd3449eca32525889043d44a14ec1c"
+        },
+        {
+          "image": "live-follow-ups.png",
+          "startSeconds": 147.5,
+          "durationSeconds": 14.25,
+          "voiceSeconds": 13.6,
+          "imageSha256": "575592a158ca13d3e2279fc37f7c11d97de6e7254d1a058587f7a33604182f90"
+        },
+        {
+          "image": "live-landing.png",
+          "startSeconds": 161.75,
+          "durationSeconds": 11.6,
+          "voiceSeconds": 10.95,
+          "imageSha256": "1a760b18120a7ba0639c15c893111c0a2c5ef029ee49d595201d0c1c15af60f5"
+        }
+      ],
+      "decodeVerified": true,
+      "githubAttachmentUrl": "https://github.com/user-attachments/assets/23a82dc9-b820-46a5-b418-846f9378b808",
+      "renderDurationSeconds": 173.35,
+      "durationSeconds": 173.454667,
+      "githubPreview": {
+        "readyState": 4,
+        "mediaError": null,
+        "playbackVerified": true
+      }
+    }
+  },
+  "verifiedAt": "2026-10-12T22:11:45.718118+00:00"
+}
