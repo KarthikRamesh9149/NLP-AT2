@@ -10,8 +10,17 @@ export function costMicroUsd(model: string, inputTokens: number, outputTokens: n
   if (!rates) throw new Error('This model needs a verified price before public use.');
   return Math.ceil(inputTokens * rates[0] * 1.4 + outputTokens * rates[1] * 1.1);
 }
-export function maximumCost(input: unknown, kind: 'formbridge' | 'model' | 'assistant' | 'rules'): number {
+export function voiceCostMicroUsd(seconds: number): number {
+  if (!Number.isFinite(seconds) || seconds<=0 || seconds>122) throw new Error('Invalid transcription duration.');
+  return Math.ceil(seconds*75); // gpt-transcribe: US$0.0045 per minute.
+}
+export function maximumCost(input: unknown, kind: 'formbridge' | 'model' | 'assistant' | 'rules' | 'voice'): number {
   if (kind === 'rules') return 0;
+  if (kind === 'voice') {
+    const seconds=(input as {seconds?:number})?.seconds;
+    if (typeof seconds!=='number' || seconds<=0 || seconds>120) throw new Error('Invalid transcription duration.');
+    return Math.ceil(voiceCostMicroUsd(Math.ceil(seconds)+1)*1.4);
+  }
   const tokens = utf8Bytes(JSON.stringify(input)) + utf8Bytes(extractionInstructions) + 4000;
   if (kind === 'assistant') return costMicroUsd(formbridgeModel(), tokens, 1200);
   if (kind === 'model') return costMicroUsd(process.env.OPENAI_MODEL || 'gpt-4.1-mini-2025-04-14', tokens, 900);
@@ -26,7 +35,7 @@ function serverDatabase() {
   if (!url || !key) return null;
   return createClient(url, key, { auth: { autoRefreshToken: false, persistSession: false }, global: { fetch: (input, init) => fetch(input, { ...init, signal: AbortSignal.timeout(3000) }) } });
 }
-export async function reserveUsage(request: Request, input: unknown, kind: 'formbridge' | 'model' | 'assistant' | 'rules'): Promise<string | null> {
+export async function reserveUsage(request: Request, input: unknown, kind: 'formbridge' | 'model' | 'assistant' | 'rules' | 'voice'): Promise<string | null> {
   if (process.env.NODE_ENV === 'test') return null;
   const database = serverDatabase();
   if (!database) {
@@ -47,4 +56,9 @@ export async function settleUsage(id: string | null, usage: ApiUsage | null): Pr
   const calls = usage?.calls ?? (usage ? [usage] : []);
   const cost = calls.reduce((sum, call) => sum + costMicroUsd(call.model, call.inputTokens, call.outputTokens), 0);
   try { await database.rpc('fb_settle_usage', { p_id: id, p_actual_cost: cost }); } catch { /* The full reservation remains charged. */ }
+}
+export async function settleVoiceUsage(id: string | null, seconds: number | null): Promise<void> {
+  if (!id || seconds===null) return;
+  const database=serverDatabase(); if(!database) return;
+  try { await database.rpc('fb_settle_usage',{p_id:id,p_actual_cost:voiceCostMicroUsd(seconds)}); } catch { /* Unknown usage keeps the full reservation. */ }
 }

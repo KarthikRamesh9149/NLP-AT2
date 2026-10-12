@@ -43,7 +43,7 @@ export function importCase(raw: string): { session: SavedSession; title: string;
   // Reopen both the current format and briefs exported by earlier releases.
   const legacy = !data.brief && data.fields ? { fields: data.fields, history: data.changes ?? [], revision: 0, approvedRevision: null } : null;
   if (legacy) legacy.revision = Math.max(0, ...(Array.isArray(legacy.history) ? legacy.history.map((change: { revision?: number }) => change.revision ?? 0) : []));
-  const session = parseSession(JSON.stringify({ messages: data.messages, brief: data.brief ?? legacy, ...(data.referenceDate ? { referenceDate: data.referenceDate } : {}) }));
+  const session = parseSession(JSON.stringify({ messages: data.messages, brief: data.brief ?? legacy, ...(data.referenceDate ? { referenceDate: data.referenceDate } : {}), ...(data.followUp !== undefined ? { followUp: data.followUp } : {}), ...(data.guestCare !== undefined ? { guestCare: data.guestCare } : {}) }));
   if (!session) throw new Error('This file has invalid booking details or messages.');
   const title = typeof data.title === 'string' ? data.title.trim().slice(0, 80) || caseTitle(session) : caseTitle(session);
   const notes = typeof data.notes === 'string' ? data.notes.slice(0, 2000) : '';

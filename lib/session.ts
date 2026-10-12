@@ -4,12 +4,13 @@ import { validIsoDate } from './temporal';
 import { FIELD_KEYS, type Brief, type Message } from './state';
 import { MAX_HISTORY } from './limits';
 import { rebuildForTranscriptChange } from './draft-workflow';
+import { followUpSchema, guestCareSchema, type FollowUp, type GuestCare } from './follow-up';
 
 export const SESSION_KEY = 'formbridge-session-v2';
 export const LEGACY_SESSION_KEY = 'formbridge-session';
 export const CURRENT_ANALYSIS_VERSION = 'grounded-state-v17';
 
-export interface SavedSession { messages: Message[]; brief: Brief; referenceDate?: string; pendingAnalysis?: boolean; manualMode?: boolean; analysisVersion?: string; caseId?: string; caseTitle?: string; notes?: string; teamCase?: { id: string; workspaceId: string; version: number } }
+export interface SavedSession { messages: Message[]; brief: Brief; referenceDate?: string; pendingAnalysis?: boolean; manualMode?: boolean; analysisVersion?: string; caseId?: string; caseTitle?: string; notes?: string; followUp?: FollowUp | null; guestCare?: GuestCare; teamCase?: { id: string; workspaceId: string; version: number } }
 
 export function needsSavedReview(session: SavedSession): boolean {
   return session.analysisVersion !== CURRENT_ANALYSIS_VERSION && FIELD_KEYS.some(key => !!session.brief.fields[key].value || !!session.brief.fields[key].constraint || !!session.brief.fields[key].review);
@@ -35,6 +36,8 @@ export function parseSession(raw: string | null): SavedSession | null {
     if (session.analysisVersion !== undefined && (typeof session.analysisVersion !== 'string' || session.analysisVersion.length > 50)) return null;
     if (session.caseTitle !== undefined && (typeof session.caseTitle !== 'string' || session.caseTitle.length > 80)) return null;
     if (session.notes !== undefined && (typeof session.notes !== 'string' || session.notes.length > 2000)) return null;
+    if (session.followUp !== undefined && session.followUp !== null) { const task=followUpSchema.safeParse(session.followUp); if(!task.success)return null; session.followUp=task.data; }
+    if (session.guestCare !== undefined) { const care=guestCareSchema.safeParse(session.guestCare); if(!care.success)return null; session.guestCare=care.data; }
     const uuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
     if (session.caseId !== undefined && (typeof session.caseId !== 'string' || !uuid.test(session.caseId))) return null;
     if (session.teamCase && (!uuid.test(session.teamCase.id) || !uuid.test(session.teamCase.workspaceId) || !Number.isInteger(session.teamCase.version) || session.teamCase.version < 1)) return null;

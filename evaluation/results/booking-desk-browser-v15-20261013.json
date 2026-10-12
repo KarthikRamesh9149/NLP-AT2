@@ -1,0 +1,31 @@
+{
+  "checkedAt": "2026-10-12T20:45:26.345Z",
+  "url": "https://formbridge-nlp-at2.vercel.app/",
+  "extractionVersion": "grounded-state-v15",
+  "checks": [
+    {
+      "id": "missing-time",
+      "passed": true,
+      "observed": "Four details ready; time missing; the app asks for an exact time and approval is disabled."
+    },
+    {
+      "id": "unaccepted-staff-offer",
+      "passed": true,
+      "observed": "The staff offer is in the transcript while time remains missing and approval stays disabled."
+    },
+    {
+      "name": "Affirmative reply resolves the staff time offer",
+      "passed": true,
+      "observedTime": "8:30 pm",
+      "readyDetails": 5
+    },
+    {
+      "name": "Accepted time links to the offer and the customer reply",
+      "passed": true,
+      "observedMessages": [
+        "Would 8:30 pm work for your dinner?",
+        "No problem, please go ahead."
+      ]
+    }
+  ]
+}

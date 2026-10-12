@@ -4,10 +4,11 @@ import { MAX_BODY_BYTES, utf8Bytes } from '@/lib/limits';
 import { validIsoDate } from '@/lib/temporal';
 import { askDeskAssistant } from '@/lib/server/desk-assistant';
 import { reserveUsage, settleUsage, UsageLimitError } from '@/lib/server/usage-budget';
+import { followUpSchema, guestCareSchema } from '@/lib/follow-up';
 
 export const runtime = 'nodejs';
 export const maxDuration = 20;
-const schema = z.object({ question: z.string().trim().min(1).max(1000), history: z.array(z.object({ role: z.enum(['user','assistant']), text: z.string().max(4000) })).max(8).default([]), messages: z.array(messageSchema).max(30), brief: briefSchema, pendingAnalysis: z.boolean().default(false), referenceDate: z.string().refine(validIsoDate).nullable().default(null) });
+const schema = z.object({ question: z.string().trim().min(1).max(1000), history: z.array(z.object({ role: z.enum(['user','assistant']), text: z.string().max(4000) })).max(8).default([]), messages: z.array(messageSchema).max(30), brief: briefSchema, pendingAnalysis: z.boolean().default(false), referenceDate: z.string().refine(validIsoDate).nullable().default(null), today: z.string().refine(validIsoDate).optional(), notes: z.string().max(2000).default(''), followUp: followUpSchema.nullable().optional(), guestCare: guestCareSchema.optional() });
 export async function POST(request: Request) {
   const headers = { 'Cache-Control': 'no-store' };
   let body: unknown;

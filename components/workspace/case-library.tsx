@@ -2,22 +2,10 @@
 import { useMemo, useState } from 'react';
 import { Archive, ArrowRight, BookOpen, Check, Clock3, FolderOpen, RefreshCw, Search, Upload } from 'lucide-react';
 import { type BookingCase } from '@/lib/cases';
-import { FIELD_KEYS } from '@/lib/state';
-import { needsSavedReview } from '@/lib/session';
-import { isCancelledBooking } from '@/lib/cancellation-status';
+import { caseStatus } from '@/lib/case-status';
 import type { TeamCase } from '@/hooks/use-team';
 import { Dialog } from './dialog';
 
-export function caseStatus(record: BookingCase): string {
-  const { brief, messages, pendingAnalysis } = record.session;
-  if (record.archived) return 'Archived';
-  if (needsSavedReview(record.session)) return 'Review saved brief';
-  if (pendingAnalysis) return 'Update unfinished';
-  if (isCancelledBooking(brief, messages)) return 'Cancelled';
-  if (brief.approvedRevision === brief.revision) return 'Approved';
-  if (FIELD_KEYS.every(key => brief.fields[key].status === 'resolved' && !brief.fields[key].review)) return 'Ready for review';
-  return 'Needs details';
-}
 export function CaseLibrary({ deviceCases, teamCases, teamName, loading, onOpen, onArchive, onReopen, onRefresh, onClose }: { deviceCases: BookingCase[]; teamCases: TeamCase[]; teamName: string | null; loading: boolean; onOpen: (record: BookingCase | TeamCase) => void; onArchive: (record: BookingCase | TeamCase) => Promise<void>; onReopen: () => void; onRefresh: () => void; onClose: () => void }) {
   const [scope, setScope] = useState<'device' | 'team'>(teamName ? 'team' : 'device');
   const [query, setQuery] = useState(''); const [archived, setArchived] = useState(false);

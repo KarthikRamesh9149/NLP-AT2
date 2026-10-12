@@ -10,7 +10,7 @@ Enable the authentication options used by your team in Supabase. Device sign-in 
 
 ## Analysis allowance
 
-`private.fb_quota_policy` starts with an estimated US$1 per UTC day, US$5 per calendar month and 30 requests per IP per minute. These apply to extraction and assistant requests together. The server reserves enough for its configured primary and repair calls before contacting OpenAI, then settles known completed usage. An uncertain failed call retains its reservation.
+`private.fb_quota_policy` starts with an estimated US$1 per UTC day, US$5 per calendar month and 30 requests per IP per minute. These apply to extraction, assistant and voice-transcription requests together. The server reserves enough for its configured primary and repair calls before contacting OpenAI, then settles known completed usage. An uncertain failed call retains its reservation.
 
 The calculation is an application allowance, not an account-wide OpenAI billing guarantee. Keep provider pricing current before changing model settings. The current configuration explicitly uses the standard service tier, with a price margin. Unknown model prices are rejected.
 
@@ -20,11 +20,19 @@ The primary call has a 12-second timeout and the single secondary call has a 14-
 
 ## Saved enquiries
 
-An active draft uses session storage; device cases use local storage. Team cases use Supabase. Staff notes are stored with the case and are separate from extracted booking details. Exported JSON includes the transcript. Reopening JSON discards its approval and checks the conversation again. Saved model-derived briefs from older validation versions also require a fresh check before approval; their transcript and staff notes are preserved.
+An active draft uses session storage; device cases use local storage. Team cases use Supabase. Staff notes, guest-care details and follow-ups are stored with the case and are separate from extracted booking details. A proposed assistant task is applied only after staff review; replacing an open follow-up requires an explicit choice. The planner shows saved enquiries with current, resolved dates and keeps unfinished or yearless dates out of the timeline. Completing a team follow-up uses the same version check as other case edits. Exported JSON includes the transcript. Reopening JSON discards its approval and checks the conversation again. Saved model-derived briefs from older validation versions also require a fresh check before approval; their transcript and staff notes are preserved.
 
 A simultaneous team edit can fail with a stale-version message. Keep the active draft, save a device copy if needed, refresh the enquiry book, and reopen the team version before deciding how to combine the changes.
 
 Device identities do not provide account recovery. Keep a private invitation code before signing out or clearing browser data. Invitations expire after seven days and a new code replaces the previous one.
+
+## Voice input and assistant tools
+
+Voice input records or uploads an audio message for review. The browser converts it to mono, 16 kHz, 16-bit PCM WAV. The server verifies the complete WAV header, size, duration and non-silent samples before reserving quota and calling `gpt-transcribe`. Messages are limited to 120 seconds; converted requests remain below Vercel's request-size limit. Raw uploads are limited to 10 MB. No raw audio is stored in FormBridge. The transcript must be reviewed before it is put in the composer; it is never submitted automatically.
+
+The transcription call has a 20-second timeout and no SDK retries. Unknown audio usage retains the full reservation. The current verified price is US$0.0045 per audio minute; the reservation adds a duration and price margin. Provider errors leave text entry available.
+
+The desk assistant uses strict Responses API function calling to prepare staff tasks. The only tool prepares a proposed follow-up and/or handoff note. Its arguments are validated again in the application: real source IDs, valid dates, bounded notes and a matching staff request. No assistant tool edits the five booking fields, performs a reservation or sends a message. Ordinary answers and reply drafts remain available through structured output.
 
 ## Booking providers
 
