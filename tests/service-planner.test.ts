@@ -68,4 +68,24 @@ describe('service planner', () => {
     item.session.brief.fields.partySize.value='999';
     expect(buildServicePlan([item],'2027-10-18','2026-10-13').knownGuests).toBe(0);
   });
+  it('does not present disputed guest counts or times as agreed in a handoff',()=>{
+    const item=enquiry();
+    item.session.brief.fields.time.review={reason:'staff_conflict',value:'9 pm',status:'resolved',constraint:null,evidenceIds:[]};
+    item.session.brief.fields.partySize.review={reason:'staff_conflict',value:'5',status:'resolved',constraint:null,evidenceIds:[]};
+    const plan=buildServicePlan([item],'2027-10-18','2026-10-13');
+    const handoff=shiftHandoff(plan,'2027-10-18');
+    expect(plan.knownGuests).toBe(0);
+    expect(handoff).toContain('Time to confirm');
+    expect(handoff).toContain('Guests to confirm');
+    expect(handoff).not.toContain('8:30 pm');
+    expect(handoff).not.toContain('4 guests');
+  });
+  it('keeps unfinished saved booking details out of the handoff while retaining staff tasks',()=>{
+    const item=enquiry();item.session.pendingAnalysis=true;
+    item.session.followUp={dueDate:'2026-10-14',note:'Check the updated request',done:false};
+    const handoff=shiftHandoff(buildServicePlan([item],'2027-10-18','2026-10-13'),'2027-10-18');
+    expect(handoff).toContain('Booking details need review.');
+    expect(handoff).toContain('Check the updated request');
+    expect(handoff).not.toContain('8:30 pm');
+  });
 });
