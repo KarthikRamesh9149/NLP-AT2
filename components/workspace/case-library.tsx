@@ -3,6 +3,7 @@ import { useMemo, useState } from 'react';
 import { Archive, ArrowRight, BookOpen, Check, Clock3, FolderOpen, RefreshCw, Search, Upload } from 'lucide-react';
 import { type BookingCase } from '@/lib/cases';
 import { FIELD_KEYS } from '@/lib/state';
+import { needsSavedReview } from '@/lib/session';
 import { isCancelledBooking } from '@/lib/cancellation-status';
 import type { TeamCase } from '@/hooks/use-team';
 import { Dialog } from './dialog';
@@ -10,6 +11,7 @@ import { Dialog } from './dialog';
 export function caseStatus(record: BookingCase): string {
   const { brief, messages, pendingAnalysis } = record.session;
   if (record.archived) return 'Archived';
+  if (needsSavedReview(record.session)) return 'Review saved brief';
   if (pendingAnalysis) return 'Update unfinished';
   if (isCancelledBooking(brief, messages)) return 'Cancelled';
   if (brief.approvedRevision === brief.revision) return 'Approved';

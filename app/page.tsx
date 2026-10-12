@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { ArrowRight, BookOpen, CalendarPlus, Check, CheckCheck, Circle, CircleHelp, Copy, Download, ExternalLink, History, Link2, LoaderCircle, MessageSquareText, Pencil, Plus, RotateCcw, Save, Send, ShieldCheck, Trash2, Users, Utensils, Upload, X } from 'lucide-react';
 import { demoBrief, demoMessages } from '@/lib/demo';
-import { LEGACY_SESSION_KEY, restoreSession, SESSION_KEY, type SavedSession } from '@/lib/session';
+import { LEGACY_SESSION_KEY, restoreSession, SESSION_KEY, prepareStoredSession, CURRENT_ANALYSIS_VERSION, type SavedSession } from '@/lib/session';
 import { briefSchema } from '@/lib/contracts';
 import { applyManualEdit, approveBrief, clarificationFor, createEmptyBrief, FIELD_KEYS, type Brief, type FieldKey, type Message, type Speaker } from '@/lib/state';
 import { BookingCard, fieldLabels } from '@/components/workspace/booking-card';
@@ -66,7 +66,7 @@ export default function Workspace() {
   const isApproved = !busy && reviewedSession({ messages, brief, pendingAnalysis });
   const hasContent = messages.length > 0 || FIELD_KEYS.some(key => !!brief.fields[key].value || !!brief.fields[key].constraint) || !!notes;
   const bookingLink = bookingLinks.find(link => venueKey(link.restaurantName, link.city) === venueKey(brief.fields.restaurantName.value || '', brief.fields.city.value || '')) ?? null;
-  function snapshot(): SavedSession { return { messages, brief, referenceDate, pendingAnalysis: pendingAnalysis || busy, manualMode, analysisVersion: 'grounded-state-v8', ...(activeCaseId ? { caseId: activeCaseId } : {}), caseTitle: caseName, notes, ...(cloudCase ? { teamCase: cloudCase } : {}) }; }
+  function snapshot(): SavedSession { return { messages, brief, referenceDate, pendingAnalysis: pendingAnalysis || busy, manualMode, analysisVersion: CURRENT_ANALYSIS_VERSION, ...(activeCaseId ? { caseId: activeCaseId } : {}), caseTitle: caseName, notes, ...(cloudCase ? { teamCase: cloudCase } : {}) }; }
 
   useEffect(() => {
     setReferenceDate(today());
@@ -187,7 +187,7 @@ export default function Workspace() {
     finally { setSaving(false); }
   }
   function loadCase(record: BookingCase | TeamCase) {
-    reset(); const session = record.session;
+    reset(); const session = prepareStoredSession(record.session);
     setMessages(session.messages); setBrief(session.brief); setReferenceDate(session.referenceDate || today()); setPendingAnalysis(session.pendingAnalysis ?? false); setManualMode(session.manualMode ?? false); setCaseName(record.title); setNotes(record.notes); setNotice(`Opened ${record.title}.`);
     if ('workspaceId' in record) setCloudCase({ id: record.id, workspaceId: record.workspaceId, version: record.version }); else setActiveCaseId(record.id);
     setRequestedCase(null);
