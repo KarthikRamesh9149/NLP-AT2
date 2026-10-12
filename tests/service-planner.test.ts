@@ -62,4 +62,10 @@ describe('service planner', () => {
     expect(shiftHandoff(buildServicePlan([item],'2027-10-18','2026-10-13'),'2027-10-18')).toContain('Dietary requests: One vegetarian guest');
     expect(item.session.brief.fields.partySize.value).toBe('4');
   });
+  it('includes upcoming tasks in a shift handoff and excludes invalid guest counts from totals',()=>{
+    const item=enquiry(); item.session.followUp={dueDate:'2026-10-14',note:'Check vegetarian request',done:false};
+    expect(shiftHandoff(buildServicePlan([item],'2026-10-13','2026-10-13'),'2026-10-13')).toContain('Check vegetarian request');
+    item.session.brief.fields.partySize.value='999';
+    expect(buildServicePlan([item],'2027-10-18','2026-10-13').knownGuests).toBe(0);
+  });
 });

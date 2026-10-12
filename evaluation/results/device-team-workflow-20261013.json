@@ -1,0 +1,57 @@
+{
+  "checkedAt": "2026-10-12T21:36:28.968Z",
+  "checks": [
+    {
+      "name": "A device identity signs in through the enabled provider",
+      "passed": true
+    },
+    {
+      "name": "A device identity signs in through the enabled provider",
+      "passed": true
+    },
+    {
+      "name": "A device owner saves guest care and a follow-up",
+      "passed": true
+    },
+    {
+      "name": "An unsigned browser cannot read the enquiry",
+      "passed": true
+    },
+    {
+      "name": "Another device cannot read the private enquiry",
+      "passed": true
+    },
+    {
+      "name": "Another device cannot overwrite the private enquiry",
+      "passed": true
+    },
+    {
+      "name": "An invited device reads the complete guest-care and follow-up payload",
+      "passed": true
+    },
+    {
+      "name": "A member cannot issue a workspace invitation",
+      "passed": true
+    },
+    {
+      "name": "An invited device completes a follow-up with a version check",
+      "passed": true
+    },
+    {
+      "name": "A stale owner cannot silently overwrite the completed task",
+      "passed": true
+    },
+    {
+      "name": "Completion persists for the next shift without losing guest requests",
+      "passed": true
+    }
+  ],
+  "fixtures": {
+    "users": [
+      "d909c0ca-4ce2-4a7c-8e5f-af632f3173e0",
+      "4e6b035b-659a-4798-819d-95d5c0607147"
+    ],
+    "workspace": "179a5fc7-1b90-4462-a14e-c4fab3720610",
+    "case": "bf434314-fd9e-45e7-a7cc-192ace4b82e6"
+  }
+}

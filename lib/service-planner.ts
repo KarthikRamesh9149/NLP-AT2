@@ -24,7 +24,7 @@ export function buildServicePlan(records: BookingCase[], date: string, today: st
   const followUps = active.filter(record => record.session.followUp && !record.session.followUp.done)
     .sort((a,b) => a.session.followUp!.dueDate.localeCompare(b.session.followUp!.dueDate))
     .map(record => ({ record, overdue: record.session.followUp!.dueDate < today }));
-  const knownGuests = service.reduce((sum, { record }) => { const field = record.session.brief.fields.partySize; return sum + (field.status === 'resolved' && !field.review && /^\d+$/.test(field.value || '') ? Number(field.value) : 0); }, 0);
+  const knownGuests = service.reduce((sum, { record }) => { const field = record.session.brief.fields.partySize; const count=Number(field.value); return sum + (field.status === 'resolved' && !field.review && /^\d+$/.test(field.value || '') && count>=1 && count<=30 ? count : 0); }, 0);
   return { service, unscheduled, followUps, knownGuests };
 }
 export type ServicePlan = ReturnType<typeof buildServicePlan>;
@@ -35,9 +35,8 @@ export function shiftHandoff(plan: ServicePlan, date: string): string {
       ...(care ? Object.entries(care).filter(([,value]) => value).map(([key,value]) => `${({ name:'Guest',contact:'Contact',dietary:'Dietary requests',seating:'Seating',occasion:'Occasion' } as Record<string,string>)[key]}: ${value}`) : []),
       ...(record.notes ? [`Staff notes: ${record.notes}`] : []), ...(record.session.followUp ? [`Follow-up ${record.session.followUp.done ? 'completed' : record.session.followUp.dueDate}: ${record.session.followUp.note}`] : [])].join('\n');
   };
-  const due = plan.followUps.filter(({record}) => record.session.followUp!.dueDate <= date);
   return ['FORMBRIDGE · SHIFT HANDOFF',date,'Booking enquiries for staff review. No table is reserved.', '',
     'SERVICE ENQUIRIES', ...(plan.service.length ? plan.service.map(({record}) => describe(record)+'\n') : ['No saved enquiries for this date.']),
-    '', 'FOLLOW-UPS DUE', ...(due.length ? due.map(({record}) => describe(record)+'\n') : ['No follow-ups due.']),
+    '', 'OPEN FOLLOW-UPS', ...(plan.followUps.length ? plan.followUps.map(({record}) => describe(record)+'\n') : ['No open follow-ups.']),
     '', 'DATE STILL NEEDED', ...(plan.unscheduled.length ? plan.unscheduled.map(describe) : ['None.'])].join('\n');
 }
