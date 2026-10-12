@@ -8,6 +8,14 @@ const snapshot = (fields: Partial<GroundedState>): GroundedState => ({ ...Object
 const field = (value: string, id: string, quote: string): GroundedField => ({ value, status: 'resolved', constraint: null, evidence: [{ id, quote }] });
 
 describe('grounded conversation state', () => {
+  it('stores an approximate clock only as a preference even when the model supplies a clock value', () => {
+    const messages: Message[] = [{ id: 'm1', speaker: 'customer', text: 'Around 7 pm for two adults and three children at Juniper in Sydney.' }];
+    const time: GroundedField = { value: '7 pm', status: 'needs_clarification', constraint: 'around 7 pm', evidence: [{ id: 'm1', quote: 'Around 7 pm' }] };
+    const brief = reconcileGroundedState(createEmptyBrief(), snapshot({ time }), messages, null);
+    expect(brief.fields.time).toMatchObject({ value: null, status: 'needs_clarification', constraint: 'around 7 pm', evidenceIds: ['m1'] });
+    expect(brief.history.at(-1)?.operation).toBe('constrain');
+    expect(() => approveBrief(brief)).toThrow();
+  });
   it('keeps an exact time when only the guest count has alternatives', () => {
     const text = 'Four people or five people at Juniper in Sydney on 18 October 2027 at 7 pm.';
     const messages: Message[] = [{ id: 'm1', speaker: 'customer', text }];

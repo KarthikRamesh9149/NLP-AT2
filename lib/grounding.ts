@@ -228,6 +228,10 @@ export function reconcileGroundedState(current: Brief, state: GroundedState, mes
         if (clock) value = clock;
         else { constraint = value; status = 'needs_clarification'; }
       }
+      if (key === 'time' && value && status === 'needs_clarification') {
+        constraint ??= value;
+        value = null;
+      }
     }
     const cancelled = status === 'missing' && customerEvidence.some(e => requestsCancellation(e.quote));
     if (previous.source === 'staff' && !cancelled) {
