@@ -50,4 +50,9 @@ describe('guest count evidence in ordinary booking language', () => {
     state.partySize = { value: '6', status: 'resolved', constraint: null, evidence: [{ id: 'correction', quote: 'six' }] };
     expect(reconcileGroundedState(brief, state, messages, null).fields.partySize.value).toBe('6');
   });
+  it('accepts a positive booking correction after an explanation with a negation', () => {
+    const text = "No, I'm sorry, I forgot he is not bringing his wife so let's book a table for 3 instead.";
+    expect(propose('3', 'for 3', text).brief.fields.partySize.value).toBe('3');
+    expect(propose('3', 'for 3', 'Do not book a table for 3.').brief.fields.partySize.value).toBeNull();
+  });
 });

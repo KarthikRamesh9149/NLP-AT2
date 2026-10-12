@@ -20,7 +20,7 @@ function containsValue(field: FieldKey, value: string, quote: string, reference:
     const match = count.exec(text);
     if (match) {
       if (guestCountInsideGroup(value, source, match.index, match.index + match[0].length, exact)) return false;
-      const prefix = text.slice(0, match.index).split(/[.!?;,]|\bbut\b/).at(-1) || '';
+      const prefix = text.slice(0, match.index).split(/[.!?;,]|\b(?:but|so)\b/).at(-1) || '';
       if (/\b(?:not|no|don't|do not)\b/.test(prefix)) return false;
       return !exact || !/\b\d{1,2}\s*(?:or|to|-)\s*\d{1,2}\s+(?:people|persons|guests|diners)\b|\bbetween\s+\d{1,2}\s+and\s+\d{1,2}\b/.test(text);
     }
@@ -49,9 +49,9 @@ function containsValue(field: FieldKey, value: string, quote: string, reference:
 }
 export function isAcceptance(text: string): boolean {
   const normal = cleanText(text);
-  const relevant = normal.split(/(?<=[.!?;])\s+/).filter(clause => {
+  const relevant = normal.split(/(?<=[.!?;])\s+|,\s+(?=(?:and\s+)?(?:are|is|do|does|what|where|how|can|could|would)\b)/).filter(clause => {
     // A separate question about the venue does not negate an accepted brief.
-    const venueQuestion = /\?$/.test(clause) && /^(?:are|is|do|does|what|where|how|can|could)\b/.test(clause)
+    const venueQuestion = /\?$/.test(clause) && /^(?:and\s+)?(?:are|is|do|does|what|where|how|can|could)\b/.test(clause)
       && /\b(cost|costly|price|pricing|cheap|expensive|menu|food|cuisine|address|rating|ratings|review|reviews)\b/.test(clause)
       && !/\b(book|reserve|reservation|booking|cancel|change|move|switch|instead|date|time|guests|people|party|table)\b/.test(clause);
     return !venueQuestion;

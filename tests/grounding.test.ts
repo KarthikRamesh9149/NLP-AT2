@@ -48,6 +48,10 @@ describe('grounded conversation state', () => {
     const partySize: GroundedField = { ...field('2', 'offer', '2 people'), evidence: [{ id: 'offer', quote: '2 people' }, { id: 'accept', quote: 'Yes, that is correct.' }] };
     expect(reconcileGroundedState(createEmptyBrief(), snapshot({ partySize }), messages, null).fields.partySize.value).toBe('2');
   });
+  it('accepts an affirmative response joined to a separate venue question', () => {
+    expect(isAcceptance("Perfect, and can you also tell me the establishment's rating as well?")).toBe(true);
+    expect(isAcceptance('Yes, can you cancel my booking?')).toBe(false);
+  });
   it('keeps a later booking rejection effective even when the first sentence says yes', () => {
     expect(isAcceptance('Yes. Do not book that one.')).toBe(false);
     expect(isAcceptance('Yes, that is correct. Is it expensive? Do not book it.')).toBe(false);
