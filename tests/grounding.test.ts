@@ -8,6 +8,27 @@ const snapshot = (fields: Partial<GroundedState>): GroundedState => ({ ...Object
 const field = (value: string, id: string, quote: string): GroundedField => ({ value, status: 'resolved', constraint: null, evidence: [{ id, quote }] });
 
 describe('grounded conversation state', () => {
+  it('keeps an exact time when only the guest count has alternatives', () => {
+    const text = 'Four people or five people at Juniper in Sydney on 18 October 2027 at 7 pm.';
+    const messages: Message[] = [{ id: 'm1', speaker: 'customer', text }];
+    expect(reconcileGroundedState(createEmptyBrief(), snapshot({ time: field('7 pm', 'm1', '7 pm') }), messages, null).fields.time.value).toBe('7 pm');
+  });
+  it('grounds a later exact clock in the same message as an earlier bound', () => {
+    const messages: Message[] = [{ id: 'm1', speaker: 'customer', text: 'After 7 pm, 8:30 pm would work.' }];
+    expect(reconcileGroundedState(createEmptyBrief(), snapshot({ time: field('8:30 pm', 'm1', '8:30 pm') }), messages, null).fields.time.value).toBe('8:30 pm');
+  });
+  it('uses separate valid quotations from one message without duplicating source links', () => {
+    const text = 'Two adults and maybe three children. The children are not confirmed.';
+    const messages: Message[] = [{ id: 'm1', speaker: 'customer', text }];
+    const partySize: GroundedField = { value: null, status: 'needs_clarification', constraint: 'Two adults and maybe three children', evidence: [{ id: 'm1', quote: 'Two adults and maybe three children' }, { id: 'm1', quote: 'The children are not confirmed.' }] };
+    const state = snapshot({ partySize });
+    expect(validationFeedback(state, messages, null)).toEqual([]);
+    expect(reconcileGroundedState(createEmptyBrief(), state, messages, null).fields.partySize).toMatchObject({ value: null, status: 'needs_clarification', evidenceIds: ['m1'] });
+  });
+  it.each(['from 7 to 8 pm', 'between 7 and 8 pm', 'maybe at 8 pm'])('does not accept the clock inside %s as exact', text => {
+    const messages: Message[] = [{ id: 'm1', speaker: 'customer', text }];
+    expect(reconcileGroundedState(createEmptyBrief(), snapshot({ time: field('8 pm', 'm1', '8 pm') }), messages, null).fields.time.status).not.toBe('resolved');
+  });
   it.each(['31 November 2026', '29 February 2026', '2026-13-01'])('keeps impossible date %s only as a clarification constraint', (date) => {
     const messages: Message[] = [{ id: 'm1', speaker: 'customer', text: `A table on ${date}.` }];
     const brief = reconcileGroundedState(createEmptyBrief(), snapshot({ date: field(date, 'm1', date) }), messages, null);

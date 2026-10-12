@@ -2,6 +2,8 @@ import { calendarDate, cleanText, clockTime, digitWords, isInvalidCalendarDate, 
 import { FIELD_KEYS, type Brief, type FieldKey, type FieldState, type FieldStatus, type Message } from './state';
 import { requestsCancellation } from './booking-intent';
 import { MAX_HISTORY } from './limits';
+import { guestCountInsideGroup, hasGuestCountContext, hasGuestCountEvidence } from './party-evidence';
+import { hasExactTimeEvidence } from './time-evidence';
 
 export interface Evidence { id: string; quote: string; kind?: 'value' | 'acceptance' | 'context' }
 export interface GroundedField { value: string | null; status: FieldStatus; constraint: string | null; evidence: Evidence[] }
@@ -12,22 +14,24 @@ function containsValue(field: FieldKey, value: string, quote: string, reference:
   if (field === 'partySize') {
     if (!/^\d+$/.test(value) || Number(value) < 1 || Number(value) > 30) return false;
     const text = digitWords(source);
+    if (hasGuestCountEvidence(value, quote, source, exact)) return true;
     if (!new RegExp(`\\b${value}\\b`).test(digitWords(quote))) return false;
-    const count = new RegExp(`(?:\\b${value}\\s+(?:people|persons|guests|diners|adults|children|kids)\\b|\\b(?:party|group)\\s+(?:of\\s+)?${value}\\b|\\bfor\\s+${value}\\b(?!\\s*${nonGuestUnit}))`);
+    const count = new RegExp(`(?:\\b(?:party|group)\\s+(?:of\\s+)?${value}\\b|\\bfor\\s+${value}\\b(?!\\s*${nonGuestUnit}))`);
     const match = count.exec(text);
     if (match) {
+      if (guestCountInsideGroup(value, source, match.index, match.index + match[0].length, exact)) return false;
       const prefix = text.slice(0, match.index).split(/[.!?;,]|\bbut\b/).at(-1) || '';
       if (/\b(?:not|no|don't|do not)\b/.test(prefix)) return false;
       return !exact || !/\b\d{1,2}\s*(?:or|to|-)\s*\d{1,2}\s+(?:people|persons|guests|diners)\b|\bbetween\s+\d{1,2}\s+and\s+\d{1,2}\b/.test(text);
     }
     const index = messages.findIndex(message => message.id === sourceId);
     const question = messages.slice(0, index).findLast(message => message.speaker === 'staff');
-    const bare = text.split(/[,;.!]/)[0].trim().replace(/^(?:actually\s+|make (?:it|that)\s+)/,'').replace(/\s+(?:instead|please)$/,'');
+    const bare = text.replace(/^(?:actually\b[, ]*|make (?:it|that)\s+)/, '').split(/[,;.!]/)[0].trim().replace(/\s+(?:instead|please)$/,'');
     if (bare !== value) return false;
     if (question && /\b(?:how many|party size|guest count|number of (?:people|guests))\b/i.test(question.text)) return true;
     if (question && /\b(?:what time|which time|when|what date|which date|which year)\b/i.test(question.text)) return false;
     const priorCount = new RegExp(`\\b\\d{1,2}\\s+(?:people|guests|diners)\\b|\\b(?:party|group) of \\d{1,2}\\b|\\bfor \\d{1,2}\\b(?!\\s*${nonGuestUnit})`, 'i');
-    return messages.slice(0,index).some(message => priorCount.test(digitWords(message.text)));
+    return messages.slice(0,index).some(message => hasGuestCountContext(message.text) || priorCount.test(digitWords(message.text)));
   }
   if (field === 'date') {
     const candidate = calendarDate(value); const source = calendarDate(quote);
@@ -39,8 +43,7 @@ function containsValue(field: FieldKey, value: string, quote: string, reference:
     if (!exact) return true;
     // Inspect the full source clause; a shortened quote must not erase its
     // qualifier, alternative or rejection.
-    return source.split(/[;.!?\n]|\b(?:but|instead|actually)\b/i).some(clause => clockTime(clause) === clockTime(value)
-      && !/\b(?:after|before|around|about|approximately|between|until|from|later than|earlier than|not|no|or)\b/i.test(clause));
+    return hasExactTimeEvidence(value, source);
   }
   return cleanText(quote).includes(cleanText(value));
 }
@@ -55,13 +58,14 @@ function acceptedEvidence(evidence: Evidence, messages: Message[]): boolean {
 }
 function checkedEvidence(field: GroundedField, messages: Message[]): Evidence[] | null {
   if (field.evidence.length > 12) return null;
-  const seen = new Set<string>();
+  const seen = new Set<string>(); const checked: Evidence[] = [];
   for (const evidence of field.evidence) {
     const message = messages.find((m) => m.id === evidence.id);
-    if (seen.has(evidence.id) || !message || !evidence.quote.trim() || !cleanText(message.text).includes(cleanText(evidence.quote))) return null;
-    seen.add(evidence.id);
+    if (!message || !evidence.quote.trim() || !cleanText(message.text).includes(cleanText(evidence.quote))) return null;
+    const key = `${evidence.id}\u0000${cleanText(evidence.quote)}`;
+    if (!seen.has(key)) { checked.push(evidence); seen.add(key); }
   }
-  return field.evidence;
+  return checked;
 }
 
 function composedDateSupported(value: string, evidence: Evidence[], messages: Message[]): boolean {
@@ -164,6 +168,7 @@ export function reconcileGroundedState(current: Brief, state: GroundedState, mes
     };
     const evidence = checkedEvidence(candidate, messages);
     if (!evidence || !evidence.length) { reject(); continue; }
+    const ids = [...new Set(evidence.map(item => item.id))];
     const customerEvidence = evidence.filter((e) => messages.find((m) => m.id === e.id)?.speaker === 'customer');
     if (!customerEvidence.length) { reject(); continue; }
     if (candidate.status === 'missing' && !candidate.value && !candidate.constraint && customerEvidence.every(e => /\b(?:cancel|forget|remove|clear).*\b(?:booking|reservation)\b/i.test(e.quote) && !requestsCancellation(messages.find(m => m.id === e.id)!.text))) continue;
@@ -216,7 +221,7 @@ export function reconcileGroundedState(current: Brief, state: GroundedState, mes
       const differs = value !== previous.value || status !== 'resolved';
       if (differs) {
         if (!previous.review && previous.status === 'resolved' && evidence.every(e => previous.evidenceIds.includes(e.id))) continue;
-        const review = { reason: 'staff_conflict' as const, value, constraint, status, evidenceIds: evidence.map(e => e.id) };
+        const review = { reason: 'staff_conflict' as const, value, constraint, status, evidenceIds: ids };
         if (JSON.stringify(previous.review) !== JSON.stringify(review)) next.revision += 1;
         next.fields[key] = { ...previous, status: 'needs_clarification', review, note: `Your edit: ${previous.value}. Conversation: ${value ?? constraint ?? 'not confirmed'}. Choose which to keep.` };
         next.approvedRevision = null;
@@ -224,7 +229,6 @@ export function reconcileGroundedState(current: Brief, state: GroundedState, mes
       continue;
     }
     if (status === 'missing' && previous.value && !customerEvidence.some((e) => requestsCancellation(e.quote) || /\b(?:undecided|not decided|not sure|no longer|haven't decided|have not decided)\b/i.test(e.quote))) { reject(); continue; }
-    const ids = evidence.map((e) => e.id);
     // Newer accepted evidence can repair an earlier missed update, including
     // after small talk. Older evidence cannot roll back a later correction.
     const customerPosition = (ids: string[]) => Math.max(-1, ...messages.map((m, i) => m.speaker === 'customer' && ids.includes(m.id) ? i : -1));

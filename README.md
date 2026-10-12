@@ -59,6 +59,7 @@ Select **Try an example** if you want to explore a prepared conversation first. 
 ## What FormBridge handles
 
 - **Changes of mind:** “Four people at seven” followed by “make that five, after eight” updates the party size and leaves the exact time open.
+- **Family parties:** Adults and children are counted together. Children already included in a stated total are counted once.
 - **Uncertain details:** Preferences and alternatives stay visible until the customer confirms a specific answer.
 - **Staff suggestions:** A proposed time becomes the requested time only when the customer accepts it.
 - **Clear review:** Each extracted detail links to the conversation, and earlier values appear in the change history.

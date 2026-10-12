@@ -79,7 +79,7 @@ function score(dialogue: EligibleDialogue, brief: Brief) {
   return { completeFormExact: exact, fields, canonicalFields, canonicalFormExact: FIELD_KEYS.every((key) => canonicalFields[key].match) };
 }
 
-async function fingerprint() { return createHash('sha256').update((await Promise.all(['lib/ai.ts', 'lib/engine.ts', 'lib/grounding.ts', 'lib/temporal.ts', 'lib/booking-intent.ts', 'lib/cancellation-status.ts', 'lib/state.ts', 'lib/evaluation-match.ts'].map((p) => readFile(p, 'utf8')))).join('\n')).digest('hex'); }
+async function fingerprint() { return createHash('sha256').update((await Promise.all(['lib/ai.ts', 'lib/engine.ts', 'lib/grounding.ts', 'lib/party-evidence.ts', 'lib/time-evidence.ts', 'lib/temporal.ts', 'lib/booking-intent.ts', 'lib/cancellation-status.ts', 'lib/state.ts', 'lib/evaluation-match.ts'].map((p) => readFile(p, 'utf8')))).join('\n')).digest('hex'); }
 
 async function main() {
   if (!['http', 'in-process'].includes(transport) || !['all-user-turns', 'legacy'].includes(replay)) throw new Error('Invalid transport or replay policy.');
