@@ -1,0 +1,8 @@
+{
+  "checkedAt": "2026-10-12T16:25:05.110Z",
+  "url": "https://formbridge-nlp-at2.vercel.app/",
+  "productCommit": "602429a3ec5c356291201cfd0813bc40cc9c49fe",
+  "input": "Juniper in Sydney for 4 March 2027 at 7 pm please.",
+  "passed": true,
+  "observation": "PREPARED WITH FORMBRIDGE\nNew brief\nBooking brief\n\nThe details behind a warm welcome\n\nDraft\nRestaurant\nReady\nJuniper\nView source\nCity\nReady\nSydney\nView source\nDate\nReady\n4 March 2027\nView source\nTime\nReady\n7 pm\nView source\nGuests\nNeeded\nNot provided\nWaiting for a detail\nAsk the customer\n\nHow many people are in your party?\n\nApprove brief\nDownload draft\nJSON\n\nA booking brief for staff review. No table is reserved.\n\nFor the next step\nAdd booking page"
+}
