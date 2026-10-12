@@ -41,7 +41,7 @@ export async function reserveUsage(request: Request, input: unknown, kind: 'form
   return data.reservationId;
 }
 export async function settleUsage(id: string | null, usage: ApiUsage | null): Promise<void> {
-  if (!id) return;
+  if (!id || usage?.incomplete) return;
   const database = serverDatabase();
   if (!database) return;
   const calls = usage?.calls ?? (usage ? [usage] : []);

@@ -26,3 +26,8 @@ it.each(['rules', 'model', 'formbridge'] as const)('replays %s over identical cu
   expect(result.usage?.inputTokens ?? 0).toBe(mode === 'rules' ? 0 : 40);
   expect(result.turns).toHaveLength(2);
 });
+
+it('records two attempted calls and incomplete token usage after a recovered timeout', async () => {
+  const result = await replayDialogue([{id:'m1',speaker:'customer',text:'Four guests.'}],'formbridge',async()=>({brief:createEmptyBrief(),latencyMs:20,usage:{inputTokens:100,outputTokens:80,model:'gpt-6.1-sol',incomplete:true,attemptedCalls:2},warning:'Review this detail.'}));
+  expect(result.providerRequests).toBe(2); expect(result.usage).toMatchObject({incomplete:true,inputTokens:100,outputTokens:80});
+});

@@ -31,7 +31,7 @@ Open `http://localhost:3000`. For development use `pnpm dev`. An already-running
 
 To run the latest booking desk, check out `main`. Team cases and the production server require the Supabase URL, publishable key and server secret from `.env.example`, with all migrations applied to a dedicated project. Device sign-in is optional and requires the provider setting plus `NEXT_PUBLIC_DEVICE_SIGN_IN_ENABLED=true`. `pnpm dev` can run with device-only cases when Supabase is absent; production analysis deliberately refuses requests without its shared quota database. See `docs/OPERATIONS.md` for setup and allowance behaviour.
 
-The October 13 product checks cover the revised cancellation, evidence and year-handling logic. They are separate constructed regression checks and do not replace the earlier SGD benchmark runs.
+The October 13 product checks cover cancellation, evidence, dates, family headcounts, acceptance scope and bounded recovery from transient provider failures. Constructed scenarios and current-code reruns of the original dataset selection are retained separately from the earlier assessment benchmark runs. A rerun of an inspected selection remains regression evidence.
 
 ## 2. Obtain the exact dataset revision
 
@@ -129,6 +129,8 @@ Each run writes:
 Field accuracy uses five checks per attempted dialogue. A 20-dialogue sample therefore contains 100 checks; the 13-dialogue sample contains 65. Complete-state accuracy requires all five final values to match. Strict matching retains the original normalisation rule; canonical matching additionally accepts equivalent calendar/clock representations without inventing missing years or AM/PM. Both are reported. A date may match a historical label while remaining unresolved for staff approval.
 
 Failures stay in accuracy denominators. Request and usage totals describe completed replay predictions; a terminally failed replay can have partially consumed, unreported usage. A failed repair is flagged in the turn trace and counted as an attempted provider call. Latency is the sum of all prefix requests for a complete dialogue, including repair waiting, not a single-message time. Observed token totals are not an invoice or full account spend.
+
+Current runs also record `incompleteUsageDialogues`. A successful fallback after an interrupted request can have unknown usage for the failed call. Its attempted call is counted, its unknown tokens are not replaced with invented numbers, and the known token totals are a lower bound. The production allowance retains the full reservation for such requests.
 
 Gold labels and automatic predictions are stored separately from model inputs. Staff edits are excluded from these automatic scores. No benchmark answer table or dialogue-specific shortcut is used in the extractor. A source fingerprint change during extraction invalidates the final report.
 

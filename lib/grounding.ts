@@ -51,12 +51,14 @@ export function isAcceptance(text: string): boolean {
   const normal = cleanText(text);
   const relevant = normal.split(/(?<=[.!?;])\s+|,\s+(?=(?:and\s+)?(?:are|is|do|does|what|where|how|can|could|would)\b)/).filter(clause => {
     // A separate question about the venue does not negate an accepted brief.
-    const venueQuestion = /\?$/.test(clause) && /^(?:and\s+)?(?:are|is|do|does|what|where|how|can|could)\b/.test(clause)
-      && /\b(cost|costly|price|pricing|cheap|expensive|menu|food|cuisine|address|rating|ratings|review|reviews)\b/.test(clause)
+    const asksQuestion = /\?$/.test(clause) && /^(?:(?:and|also)\s+)?(?:are|is|do|does|what|where|how|can|could)\b/.test(clause);
+    const requestsInformation = /^(?:(?:and|also)\s+)?(?:tell|show|find out|see|check|let me know)\b/.test(clause);
+    const venueQuestion = (asksQuestion || requestsInformation)
+      && /\b(cost|costly|price|pricing|cheap|expensive|menu|food|cuisine|address|rating|ratings|review|reviews|outdoor seating|indoor seating)\b/.test(clause)
       && !/\b(book|reserve|reservation|booking|cancel|change|move|switch|instead|date|time|guests|people|party|table)\b/.test(clause);
     return !venueQuestion;
   });
-  const positive = /\b(yes|yeah|yep|absolutely|i would love that|i'd love that|confirm|confirmed|exactly|correct|right|perfect|works|sounds good|sounds great|sounds like a good choice|that is exactly what i want|that's it|that is it|good|great|excellent|sure|go ahead|good for me|that works|that is good|that's good|fine|okay|ok|please book|please reserve|book (?:it|that|this|me|us|a table|the table)|reserve (?:it|that|this|a table|the table))\b/i;
+  const positive = /\b(yes|yeah|yep|absolutely|i would love that|i'd love that|confirm|confirmed|exactly|correct|right|perfect|works|sounds (?:good|great|fabulous|lovely|wonderful|brilliant|excellent|perfect)|sounds like a good choice|that is exactly what i want|that's it|that is it|good|great|excellent|sure|go ahead|good for me|that works|that is good|that's good|fine|okay|ok|please book|please reserve|book (?:it|that|this|me|us|a table|the table)|reserve (?:it|that|this|a table|the table))\b/i;
   const bookingRequest = /\b(?:please (?:book|reserve)|book (?:it|that|this|me|us|a table|the table)|reserve (?:it|that|this|a table|the table))\b/;
   return relevant.some(clause => positive.test(clause) && (!/\?$/.test(clause) || bookingRequest.test(clause)))
     && !/\b(no|not|don't|doesn't|won't|reject|cancel|might|maybe|check with|ask my|if|unless)\b/i.test(relevant.join(' '));
@@ -183,6 +185,8 @@ export function reconcileGroundedState(current: Brief, state: GroundedState, mes
     if (candidate.status === 'missing' && !candidate.value && !candidate.constraint && customerEvidence.every(e => /\b(?:cancel|forget|remove|clear).*\b(?:booking|reservation)\b/i.test(e.quote) && !requestsCancellation(messages.find(m => m.id === e.id)!.text))) continue;
     let value = candidate.value?.trim() ?? null;
     let status = candidate.status; let constraint = candidate.constraint?.trim() ?? null;
+    if (key === 'date' && !value && status === 'needs_clarification' && constraint
+      && /^(?:(?:this|next|coming)\s+)?(?:monday|tuesday|wednesday|thursday|friday|saturday|sunday)(?:\s+(?:this|next)\s+week)?$|^(?:today|tomorrow|day after tomorrow)$/i.test(constraint)) value = constraint;
     if ((value?.length ?? 0) > 120 || (constraint?.length ?? 0) > 120) { reject(); continue; }
     if (status === 'resolved' && !value) { reject(); continue; }
     if (status === 'missing' && value) { reject(); continue; }

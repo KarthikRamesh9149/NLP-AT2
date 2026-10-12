@@ -52,6 +52,24 @@ describe('grounded conversation state', () => {
     expect(isAcceptance("Perfect, and can you also tell me the establishment's rating as well?")).toBe(true);
     expect(isAcceptance('Yes, can you cancel my booking?')).toBe(false);
   });
+  it('keeps an acceptance when a separate sentence requests venue information', () => {
+    expect(isAcceptance('Yes. Also see if they have outdoor seating and what their rating is.')).toBe(true);
+    expect(isAcceptance('Yes, if they have outdoor seating.')).toBe(false);
+  });
+  it('grounds a venue accepted with sounds fabulous', () => {
+    const messages: Message[] = [{id:'offer',speaker:'staff',text:'Juniper is a restaurant in Sydney.'},{id:'accept',speaker:'customer',text:'Sounds fabulous.'}];
+    const restaurantName: GroundedField = {value:'Juniper',status:'resolved',constraint:null,evidence:[{id:'offer',quote:'Juniper'},{id:'accept',quote:'Sounds fabulous.',kind:'acceptance'}]};
+    expect(reconcileGroundedState(createEmptyBrief(),snapshot({restaurantName}),messages,null).fields.restaurantName.value).toBe('Juniper');
+  });
+  it('keeps a quoted weekday visible as an unresolved date when a model puts it only in the constraint', () => {
+    const messages: Message[] = [{id:'m1',speaker:'customer',text:'Tuesday next week please.'}];
+    const date: GroundedField = {value:null,status:'needs_clarification',constraint:'Tuesday next week',evidence:[{id:'m1',quote:'Tuesday next week'}]};
+    const brief=reconcileGroundedState(createEmptyBrief(),snapshot({date}),messages,null);
+    expect(brief.fields.date).toMatchObject({value:'Tuesday next week',status:'needs_clarification'});
+    expect(()=>approveBrief(brief)).toThrow();
+    date.constraint='Tuesday or Wednesday';
+    expect(reconcileGroundedState(createEmptyBrief(),snapshot({date}),messages,null).fields.date.value).toBeNull();
+  });
   it('keeps a later booking rejection effective even when the first sentence says yes', () => {
     expect(isAcceptance('Yes. Do not book that one.')).toBe(false);
     expect(isAcceptance('Yes, that is correct. Is it expensive? Do not book it.')).toBe(false);
