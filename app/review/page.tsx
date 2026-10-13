@@ -9,8 +9,19 @@ import {
 } from "lucide-react";
 import type { ReviewSnapshot } from "@/lib/guest-portal";
 export default function ReviewPage() {
-  const [token, setToken] = useState(""),
-    [snapshot, setSnapshot] = useState<ReviewSnapshot | null>(null),
+  const [token, setToken] = useState<string | null>(null);
+  useEffect(() => {
+    const update = () => setToken(window.location.hash.slice(1));
+    update();
+    window.addEventListener("hashchange", update);
+    return () => window.removeEventListener("hashchange", update);
+  }, []);
+  // Each link owns its draft and request state, including when a guest opens
+  // a replacement link in the same tab.
+  return <ReviewContent key={token ?? "loading"} token={token} />;
+}
+function ReviewContent({ token }: { token: string | null }) {
+  const [snapshot, setSnapshot] = useState<ReviewSnapshot | null>(null),
     [values, setValues] = useState({
       date: "",
       time: "",
@@ -26,9 +37,9 @@ export default function ReviewPage() {
     [error, setError] = useState(""),
     [received, setReceived] = useState(false);
   useEffect(() => {
+    if (token === null) return;
     let alive = true;
-    const secret = window.location.hash.slice(1);
-    setToken(secret);
+    const secret = token;
     if (!/^[a-f0-9]{64}$/.test(secret)) {
       setError(
         "This review link is invalid. Ask the restaurant for a fresh link.",
@@ -71,7 +82,7 @@ export default function ReviewPage() {
     return () => {
       alive = false;
     };
-  }, []);
+  }, [token]);
   async function submit() {
     setBusy(true);
     setError("");
