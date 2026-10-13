@@ -1,0 +1,1588 @@
+{
+  "generatedAt": "2026-10-13T05:31:39.372Z",
+  "sourceRevision": "ba2e45154d742097cc7e19e7582dfa97dfde57ad",
+  "extractionVersion": "grounded-state-v18",
+  "sourceFingerprint": "d82f14b6990edb9b6c52d6d3cb9aa229de00cdb980b66d92a5b0f65c8d380214",
+  "configuration": {
+    "primary": "gpt-6-luna",
+    "repair": "gpt-6.1-sol"
+  },
+  "kind": "features",
+  "protocol": "Twenty pre-specified constructed English transcripts. One complete transcript is passed to the current FormBridge pipeline from an empty brief, as in pasted-transcript analysis. Gold values, statuses, source bundles and clarification targets are not model inputs. All cases and failures are retained. Approval uses the application function; cancellation suppresses clarification as in the deployed route. Source metrics concern message links, not independently rated quotation wording. No user participants.",
+  "cases": [
+    {
+      "id": "F01",
+      "purpose": "Explicit complete request",
+      "messages": [
+        {
+          "id": "m1",
+          "text": "A table for four at Juniper House in Sydney on 6 November 2026 at 7 pm.",
+          "speaker": "customer"
+        }
+      ],
+      "referenceDate": null,
+      "expected": {
+        "restaurantName": {
+          "value": "Juniper House",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "date": {
+          "value": "6 November 2026",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "time": {
+          "value": "7 pm",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "partySize": {
+          "value": "4",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        }
+      },
+      "question": null,
+      "approval": true
+    },
+    {
+      "id": "F02",
+      "purpose": "Guest correction changes one field",
+      "messages": [
+        {
+          "id": "m1",
+          "text": "A table for four at Juniper House in Sydney on 6 November 2026 at 7 pm.",
+          "speaker": "customer"
+        },
+        {
+          "id": "m2",
+          "text": "Actually make that six guests instead.",
+          "speaker": "customer"
+        }
+      ],
+      "referenceDate": null,
+      "expected": {
+        "restaurantName": {
+          "value": "Juniper House",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "date": {
+          "value": "6 November 2026",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "time": {
+          "value": "7 pm",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "partySize": {
+          "value": "6",
+          "status": "resolved",
+          "support": [
+            [
+              "m2"
+            ]
+          ],
+          "allowed": [
+            "m1",
+            "m2"
+          ]
+        }
+      },
+      "question": null,
+      "approval": true
+    },
+    {
+      "id": "F03",
+      "purpose": "Accepted staff time links offer and acceptance",
+      "messages": [
+        {
+          "id": "m1",
+          "text": "A table for four at Juniper House in Sydney on 6 November 2026, after 7 pm.",
+          "speaker": "customer"
+        },
+        {
+          "id": "m2",
+          "text": "Would 8:30 pm work?",
+          "speaker": "staff"
+        },
+        {
+          "id": "m3",
+          "text": "Yes, that works.",
+          "speaker": "customer"
+        }
+      ],
+      "referenceDate": null,
+      "expected": {
+        "restaurantName": {
+          "value": "Juniper House",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "date": {
+          "value": "6 November 2026",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "time": {
+          "value": "8:30 pm",
+          "status": "resolved",
+          "support": [
+            [
+              "m2",
+              "m3"
+            ]
+          ],
+          "allowed": [
+            "m1",
+            "m2",
+            "m3"
+          ]
+        },
+        "partySize": {
+          "value": "4",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        }
+      },
+      "question": null,
+      "approval": true
+    },
+    {
+      "id": "F04",
+      "purpose": "Unaccepted offer stays uncertain",
+      "messages": [
+        {
+          "id": "m1",
+          "text": "A table for four at Juniper House in Sydney on 6 November 2026, after 7 pm.",
+          "speaker": "customer"
+        },
+        {
+          "id": "m2",
+          "text": "Would 8:30 pm work?",
+          "speaker": "staff"
+        },
+        {
+          "id": "m3",
+          "text": "Is the restaurant accessible?",
+          "speaker": "customer"
+        }
+      ],
+      "referenceDate": null,
+      "expected": {
+        "restaurantName": {
+          "value": "Juniper House",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "date": {
+          "value": "6 November 2026",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "time": {
+          "value": null,
+          "status": "needs_clarification",
+          "constraint": "after.*7",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1",
+            "m2",
+            "m3"
+          ]
+        },
+        "partySize": {
+          "value": "4",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        }
+      },
+      "question": "time",
+      "approval": false
+    },
+    {
+      "id": "F05",
+      "purpose": "Rejected alternative retains chosen time",
+      "messages": [
+        {
+          "id": "m1",
+          "text": "A table for four at Juniper House in Sydney on 6 November 2026 at 7 pm.",
+          "speaker": "customer"
+        },
+        {
+          "id": "m2",
+          "text": "Would 8 pm work instead?",
+          "speaker": "staff"
+        },
+        {
+          "id": "m3",
+          "text": "No, keep my original time.",
+          "speaker": "customer"
+        }
+      ],
+      "referenceDate": null,
+      "expected": {
+        "restaurantName": {
+          "value": "Juniper House",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "date": {
+          "value": "6 November 2026",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "time": {
+          "value": "7 pm",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1",
+            "m2",
+            "m3"
+          ]
+        },
+        "partySize": {
+          "value": "4",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        }
+      },
+      "question": null,
+      "approval": true
+    },
+    {
+      "id": "F06",
+      "purpose": "Time range replaces an exact value",
+      "messages": [
+        {
+          "id": "m1",
+          "text": "A table for four at Juniper House in Sydney on 6 November 2026 at 7 pm.",
+          "speaker": "customer"
+        },
+        {
+          "id": "m2",
+          "text": "Change the time to sometime after 8 pm.",
+          "speaker": "customer"
+        }
+      ],
+      "referenceDate": null,
+      "expected": {
+        "restaurantName": {
+          "value": "Juniper House",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "date": {
+          "value": "6 November 2026",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "time": {
+          "value": null,
+          "status": "needs_clarification",
+          "constraint": "after.*8",
+          "support": [
+            [
+              "m2"
+            ]
+          ],
+          "allowed": [
+            "m1",
+            "m2"
+          ]
+        },
+        "partySize": {
+          "value": "4",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        }
+      },
+      "question": "time",
+      "approval": false
+    },
+    {
+      "id": "F07",
+      "purpose": "Alternatives require a choice",
+      "messages": [
+        {
+          "id": "m1",
+          "text": "Four people at Juniper House in Sydney on 6 November 2026, either 7 pm or 8 pm.",
+          "speaker": "customer"
+        }
+      ],
+      "referenceDate": null,
+      "expected": {
+        "restaurantName": {
+          "value": "Juniper House",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "date": {
+          "value": "6 November 2026",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "time": {
+          "value": null,
+          "status": "needs_clarification",
+          "constraint": "7.*8",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "partySize": {
+          "value": "4",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        }
+      },
+      "question": "time",
+      "approval": false
+    },
+    {
+      "id": "F08",
+      "purpose": "Clock time without a period stays uncertain",
+      "messages": [
+        {
+          "id": "m1",
+          "text": "Four people at Juniper House in Sydney on 6 November 2026 at 7.",
+          "speaker": "customer"
+        }
+      ],
+      "referenceDate": null,
+      "expected": {
+        "restaurantName": {
+          "value": "Juniper House",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "date": {
+          "value": "6 November 2026",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "time": {
+          "value": null,
+          "status": "needs_clarification",
+          "constraint": "7",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "partySize": {
+          "value": "4",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        }
+      },
+      "question": "time",
+      "approval": false
+    },
+    {
+      "id": "F09",
+      "purpose": "Missing year is asked explicitly",
+      "messages": [
+        {
+          "id": "m1",
+          "text": "Four people at Juniper House in Sydney on November 6th at 7 pm.",
+          "speaker": "customer"
+        }
+      ],
+      "referenceDate": null,
+      "expected": {
+        "restaurantName": {
+          "value": "Juniper House",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "date": {
+          "value": "November 6th",
+          "status": "needs_clarification",
+          "constraint": "year",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "time": {
+          "value": "7 pm",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "partySize": {
+          "value": "4",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        }
+      },
+      "question": "year",
+      "approval": false
+    },
+    {
+      "id": "F10",
+      "purpose": "Relative date without an anchor stays visible",
+      "messages": [
+        {
+          "id": "m1",
+          "text": "Four people at Juniper House in Sydney tomorrow at 7 pm.",
+          "speaker": "customer"
+        }
+      ],
+      "referenceDate": null,
+      "expected": {
+        "restaurantName": {
+          "value": "Juniper House",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "date": {
+          "value": "tomorrow",
+          "status": "needs_clarification",
+          "constraint": "tomorrow",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "time": {
+          "value": "7 pm",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "partySize": {
+          "value": "4",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        }
+      },
+      "question": "date.*tomorrow",
+      "approval": false
+    },
+    {
+      "id": "F11",
+      "purpose": "Reference date anchors tomorrow",
+      "messages": [
+        {
+          "id": "m1",
+          "text": "Four people at Juniper House in Sydney tomorrow at 7 pm.",
+          "speaker": "customer"
+        }
+      ],
+      "referenceDate": "2026-11-05",
+      "expected": {
+        "restaurantName": {
+          "value": "Juniper House",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "date": {
+          "value": "6 November 2026",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "time": {
+          "value": "7 pm",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "partySize": {
+          "value": "4",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        }
+      },
+      "question": null,
+      "approval": true
+    },
+    {
+      "id": "F12",
+      "purpose": "A missing guest count is not defaulted",
+      "messages": [
+        {
+          "id": "m1",
+          "text": "Juniper House in Sydney on 6 November 2026 at 7 pm.",
+          "speaker": "customer"
+        }
+      ],
+      "referenceDate": null,
+      "expected": {
+        "restaurantName": {
+          "value": "Juniper House",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "date": {
+          "value": "6 November 2026",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "time": {
+          "value": "7 pm",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "partySize": {
+          "value": null,
+          "status": "missing",
+          "support": [],
+          "allowed": []
+        }
+      },
+      "question": "how many",
+      "approval": false
+    },
+    {
+      "id": "F13",
+      "purpose": "An unaccepted staff default remains absent",
+      "messages": [
+        {
+          "id": "m1",
+          "text": "Juniper House in Sydney on 6 November 2026 at 7 pm.",
+          "speaker": "customer"
+        },
+        {
+          "id": "m2",
+          "text": "Shall I put two guests?",
+          "speaker": "staff"
+        },
+        {
+          "id": "m3",
+          "text": "What food do they serve?",
+          "speaker": "customer"
+        }
+      ],
+      "referenceDate": null,
+      "expected": {
+        "restaurantName": {
+          "value": "Juniper House",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "date": {
+          "value": "6 November 2026",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "time": {
+          "value": "7 pm",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "partySize": {
+          "value": null,
+          "status": "missing",
+          "support": [],
+          "allowed": []
+        }
+      },
+      "question": "how many",
+      "approval": false
+    },
+    {
+      "id": "F14",
+      "purpose": "Negated cancellation retains the request",
+      "messages": [
+        {
+          "id": "m1",
+          "text": "A table for four at Juniper House in Sydney on 6 November 2026 at 7 pm.",
+          "speaker": "customer"
+        },
+        {
+          "id": "m2",
+          "text": "Please do not cancel my booking.",
+          "speaker": "customer"
+        }
+      ],
+      "referenceDate": null,
+      "expected": {
+        "restaurantName": {
+          "value": "Juniper House",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "date": {
+          "value": "6 November 2026",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "time": {
+          "value": "7 pm",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "partySize": {
+          "value": "4",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        }
+      },
+      "question": null,
+      "approval": true
+    },
+    {
+      "id": "F15",
+      "purpose": "Explicit cancellation clears every field",
+      "messages": [
+        {
+          "id": "m1",
+          "text": "A table for four at Juniper House in Sydney on 6 November 2026 at 7 pm.",
+          "speaker": "customer"
+        },
+        {
+          "id": "m2",
+          "text": "Please cancel the whole booking request.",
+          "speaker": "customer"
+        }
+      ],
+      "referenceDate": null,
+      "expected": {
+        "restaurantName": {
+          "value": null,
+          "status": "missing",
+          "support": [],
+          "allowed": []
+        },
+        "city": {
+          "value": null,
+          "status": "missing",
+          "support": [],
+          "allowed": []
+        },
+        "date": {
+          "value": null,
+          "status": "missing",
+          "support": [],
+          "allowed": []
+        },
+        "time": {
+          "value": null,
+          "status": "missing",
+          "support": [],
+          "allowed": []
+        },
+        "partySize": {
+          "value": null,
+          "status": "missing",
+          "support": [],
+          "allowed": []
+        }
+      },
+      "question": null,
+      "approval": false
+    },
+    {
+      "id": "F16",
+      "purpose": "Adults and children are counted once",
+      "messages": [
+        {
+          "id": "m1",
+          "text": "A table for two adults and three children at Juniper House in Sydney on 6 November 2026 at 7 pm.",
+          "speaker": "customer"
+        }
+      ],
+      "referenceDate": null,
+      "expected": {
+        "restaurantName": {
+          "value": "Juniper House",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "date": {
+          "value": "6 November 2026",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "time": {
+          "value": "7 pm",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "partySize": {
+          "value": "5",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        }
+      },
+      "question": null,
+      "approval": true
+    },
+    {
+      "id": "F17",
+      "purpose": "Subgroup is already included in the total",
+      "messages": [
+        {
+          "id": "m1",
+          "text": "A table for four people including two children at Juniper House in Sydney on 6 November 2026 at 7 pm.",
+          "speaker": "customer"
+        }
+      ],
+      "referenceDate": null,
+      "expected": {
+        "restaurantName": {
+          "value": "Juniper House",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "date": {
+          "value": "6 November 2026",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "time": {
+          "value": "7 pm",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "partySize": {
+          "value": "4",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        }
+      },
+      "question": null,
+      "approval": true
+    },
+    {
+      "id": "F18",
+      "purpose": "A separate year answer combines two sources",
+      "messages": [
+        {
+          "id": "m1",
+          "text": "Four people at Juniper House in Sydney on November 6th at 7 pm.",
+          "speaker": "customer"
+        },
+        {
+          "id": "m2",
+          "text": "Which year do you mean?",
+          "speaker": "staff"
+        },
+        {
+          "id": "m3",
+          "text": "2026, please.",
+          "speaker": "customer"
+        }
+      ],
+      "referenceDate": null,
+      "expected": {
+        "restaurantName": {
+          "value": "Juniper House",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "date": {
+          "value": "6 November 2026",
+          "status": "resolved",
+          "support": [
+            [
+              "m1",
+              "m3"
+            ]
+          ],
+          "allowed": [
+            "m1",
+            "m2",
+            "m3"
+          ]
+        },
+        "time": {
+          "value": "7 pm",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "partySize": {
+          "value": "4",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        }
+      },
+      "question": null,
+      "approval": true
+    },
+    {
+      "id": "F19",
+      "purpose": "Day correction preserves month and year",
+      "messages": [
+        {
+          "id": "m1",
+          "text": "A table for four at Juniper House in Sydney on 6 November 2026 at 7 pm.",
+          "speaker": "customer"
+        },
+        {
+          "id": "m2",
+          "text": "Actually the 7th, everything else stays the same.",
+          "speaker": "customer"
+        }
+      ],
+      "referenceDate": null,
+      "expected": {
+        "restaurantName": {
+          "value": "Juniper House",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "date": {
+          "value": "7 November 2026",
+          "status": "resolved",
+          "support": [
+            [
+              "m1",
+              "m2"
+            ]
+          ],
+          "allowed": [
+            "m1",
+            "m2"
+          ]
+        },
+        "time": {
+          "value": "7 pm",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "partySize": {
+          "value": "4",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        }
+      },
+      "question": null,
+      "approval": true
+    },
+    {
+      "id": "F20",
+      "purpose": "An impossible calendar date blocks approval",
+      "messages": [
+        {
+          "id": "m1",
+          "text": "Four people at Juniper House in Sydney on 31 November 2026 at 7 pm.",
+          "speaker": "customer"
+        }
+      ],
+      "referenceDate": null,
+      "expected": {
+        "restaurantName": {
+          "value": "Juniper House",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "city": {
+          "value": "Sydney",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "date": {
+          "value": null,
+          "status": "needs_clarification",
+          "constraint": "31.*november.*2026",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "time": {
+          "value": "7 pm",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        },
+        "partySize": {
+          "value": "4",
+          "status": "resolved",
+          "support": [
+            [
+              "m1"
+            ]
+          ],
+          "allowed": [
+            "m1"
+          ]
+        }
+      },
+      "question": "date",
+      "approval": false
+    }
+  ]
+}

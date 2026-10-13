@@ -1,0 +1,68 @@
+{
+  "reviewedAt": "2026-10-13T05:38:55.614Z",
+  "url": "https://formbridge-nlp-at2.vercel.app/",
+  "type": "Structured functional walkthrough performed through the browser; no recruited human participants and no time-saving estimate.",
+  "tasks": [
+    {
+      "task": "W1",
+      "action": "Open a fresh booking desk",
+      "observation": "No sample is loaded; zero of five details are ready; approval is disabled.",
+      "passed": true
+    },
+    {
+      "task": "W2",
+      "action": "Enter a complete enquiry",
+      "observation": "Restaurant Juniper House, Sydney, 6 November 2026, 7 pm and four guests are all ready; approval becomes available.",
+      "passed": true
+    },
+    {
+      "task": "W3",
+      "action": "Change four guests to six and replace 7 pm with after 8 pm",
+      "observation": "Six guests are retained; restaurant, city and date remain; time asks for an exact choice and approval is disabled.",
+      "passed": true
+    },
+    {
+      "task": "W4",
+      "action": "Inspect sources and change history",
+      "observation": "The guest field links both customer messages. History shows four changing to six and the earlier 7 pm time replaced by an unresolved preference.",
+      "passed": true
+    },
+    {
+      "task": "W5",
+      "action": "Add a staff offer of 8:30 pm",
+      "observation": "The after-8 preference remains unresolved and the app asks for the customer response; approval stays disabled.",
+      "passed": true
+    },
+    {
+      "task": "W6",
+      "action": "Accept the offered time as the customer",
+      "observation": "8:30 pm becomes ready; six guests and the established restaurant, city and date remain; all five details are ready.",
+      "passed": true
+    },
+    {
+      "task": "W7",
+      "action": "Approve the reviewed brief",
+      "observation": "The card shows APPROVED and offers the reviewed download, while retaining the notice that no table is reserved.",
+      "passed": true
+    },
+    {
+      "task": "W8",
+      "action": "Edit the earlier guest correction after approval",
+      "observation": "Changing six to five rebuilds the brief with five guests and 8:30 pm, preserves venue/date/city, and removes the previous approval. The edit dialog explains rebuilding and an Undo control is available.",
+      "passed": true
+    }
+  ],
+  "passed": 8,
+  "total": 8,
+  "observations": [
+    "The changing ready count and Ask customer label expose unresolved time.",
+    "View source expands linked customer messages; What changed exposes superseded values.",
+    "Approval is removed after transcript edits and Undo is offered.",
+    "The product explicitly says no table is reserved."
+  ],
+  "limits": [
+    "One fictional conversation followed through eight tasks; not eight participants.",
+    "No novice learnability, staff workload, satisfaction or comparative task time was measured."
+  ],
+  "screenshot": "docs/assessment/assets/FormBridge-core-workflow.jpg"
+}

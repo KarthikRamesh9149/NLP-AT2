@@ -1,0 +1,34 @@
+{
+  "generatedAt": "2026-10-13T05:31:39.372Z",
+  "sourceRevision": "ba2e45154d742097cc7e19e7582dfa97dfde57ad",
+  "extractionVersion": "grounded-state-v18",
+  "sourceFingerprint": "d82f14b6990edb9b6c52d6d3cb9aa229de00cdb980b66d92a5b0f65c8d380214",
+  "configuration": {
+    "primary": "gpt-6-luna",
+    "repair": "gpt-6.1-sol"
+  },
+  "kind": "component",
+  "protocol": "One primary call per final visible prefix. The same parsed proposal is scored directly and after deterministic explicit-clearing and reconciliation. No repair, earlier predicted state or prompt difference. This isolates postprocessing of these proposals, not the complete incremental product.",
+  "selectedIds": [
+    "4_00091",
+    "4_00080",
+    "4_00098",
+    "1_00024",
+    "4_00089",
+    "1_00005",
+    "1_00018",
+    "4_00066",
+    "4_00069",
+    "4_00093",
+    "4_00104",
+    "4_00082",
+    "4_00106",
+    "4_00076",
+    "4_00085",
+    "4_00081",
+    "1_00022",
+    "1_00017",
+    "1_00006",
+    "4_00073"
+  ]
+}

@@ -1,0 +1,5405 @@
+{
+  "generatedAt": "2026-10-13T05:31:39.372Z",
+  "sourceRevision": "ba2e45154d742097cc7e19e7582dfa97dfde57ad",
+  "extractionVersion": "grounded-state-v18",
+  "sourceFingerprint": "d82f14b6990edb9b6c52d6d3cb9aa229de00cdb980b66d92a5b0f65c8d380214",
+  "configuration": {
+    "primary": "gpt-6-luna",
+    "repair": "gpt-6.1-sol"
+  },
+  "kind": "component",
+  "summary": {
+    "attemptedDialogues": 20,
+    "failures": 1,
+    "fieldPositions": 100,
+    "rawCorrect": 88,
+    "guardedCorrect": 85,
+    "rawComplete": 14,
+    "guardedComplete": 12,
+    "helped": 1,
+    "harmed": 4,
+    "changed": 5,
+    "providerAttempts": 20
+  },
+  "results": [
+    {
+      "id": "4_00091",
+      "messages": [
+        {
+          "id": "m1",
+          "speaker": "customer",
+          "text": "Fine me a place to eat."
+        },
+        {
+          "id": "m2",
+          "speaker": "staff",
+          "text": "Where do you want and what kind of food to you like?"
+        },
+        {
+          "id": "m3",
+          "speaker": "customer",
+          "text": "Find me Sushi places in San Jose."
+        },
+        {
+          "id": "m4",
+          "speaker": "staff",
+          "text": "Search revealed 10 results. Do you like Bluefin in San Jose?"
+        },
+        {
+          "id": "m5",
+          "speaker": "customer",
+          "text": "What else do you have?"
+        },
+        {
+          "id": "m6",
+          "speaker": "staff",
+          "text": "Dan Izakaya Restaurant is in San Jose."
+        },
+        {
+          "id": "m7",
+          "speaker": "customer",
+          "text": "Does their menu have vegetarian food?"
+        },
+        {
+          "id": "m8",
+          "speaker": "staff",
+          "text": "They do not have vegetarian food."
+        },
+        {
+          "id": "m9",
+          "speaker": "customer",
+          "text": "What is their contact number and their rating?"
+        },
+        {
+          "id": "m10",
+          "speaker": "staff",
+          "text": "Their contact number is 408-249-6020 and it is rating 4.4."
+        },
+        {
+          "id": "m11",
+          "speaker": "customer",
+          "text": "That works for me. Make a reservation."
+        },
+        {
+          "id": "m12",
+          "speaker": "staff",
+          "text": "What time do you want?"
+        },
+        {
+          "id": "m13",
+          "speaker": "customer",
+          "text": "I want a reservation for evening 6:30."
+        },
+        {
+          "id": "m14",
+          "speaker": "staff",
+          "text": "You want a reservation for 2 people at Dan Izakaya Restaurant in San Jose today for 6:30 pm. Is that right?"
+        },
+        {
+          "id": "m15",
+          "speaker": "customer",
+          "text": "No, I want it on the 10th for 1 person."
+        },
+        {
+          "id": "m16",
+          "speaker": "staff",
+          "text": "You want a reservation for March 10th for 1 person. Is that right?"
+        },
+        {
+          "id": "m17",
+          "speaker": "customer",
+          "text": "That is right. What is their address and do they offer outdoor seating?"
+        },
+        {
+          "id": "m18",
+          "speaker": "staff",
+          "text": "Your booking is confirmed. Their location is 1306 Saratoga Avenue and they don't offer outdoor seating."
+        },
+        {
+          "id": "m19",
+          "speaker": "customer",
+          "text": "Thanks a lot."
+        }
+      ],
+      "fields": {
+        "restaurantName": {
+          "gold": [
+            "Dan Izakaya Restaurant"
+          ],
+          "raw": {
+            "value": "Dan Izakaya Restaurant",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m6",
+                "quote": "Dan Izakaya Restaurant is in San Jose.",
+                "kind": "value"
+              },
+              {
+                "id": "m11",
+                "quote": "That works for me. Make a reservation.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "Dan Izakaya Restaurant",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m6",
+              "m11"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "city": {
+          "gold": [
+            "San Jose"
+          ],
+          "raw": {
+            "value": "San Jose",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m3",
+                "quote": "Find me Sushi places in San Jose.",
+                "kind": "value"
+              },
+              {
+                "id": "m14",
+                "quote": "You want a reservation for 2 people at Dan Izakaya Restaurant in San Jose today for 6:30 pm. Is that right?",
+                "kind": "context"
+              },
+              {
+                "id": "m17",
+                "quote": "That is right.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "San Jose",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m3",
+              "m14",
+              "m17"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "date": {
+          "gold": [
+            "March 10th",
+            "the 10th"
+          ],
+          "raw": {
+            "value": "March 10th",
+            "status": "needs_clarification",
+            "constraint": "Year not specified",
+            "evidence": [
+              {
+                "id": "m15",
+                "quote": "No, I want it on the 10th for 1 person.",
+                "kind": "value"
+              },
+              {
+                "id": "m16",
+                "quote": "You want a reservation for March 10th for 1 person. Is that right?",
+                "kind": "context"
+              },
+              {
+                "id": "m17",
+                "quote": "That is right.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "March 10th",
+            "status": "needs_clarification",
+            "constraint": "Year not specified",
+            "evidenceIds": [
+              "m15",
+              "m16",
+              "m17"
+            ],
+            "source": "model",
+            "note": "Please confirm the remaining detail."
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "time": {
+          "gold": [
+            "6:30 pm",
+            "evening 6:30"
+          ],
+          "raw": {
+            "value": "6:30 pm",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m13",
+                "quote": "I want a reservation for evening 6:30.",
+                "kind": "value"
+              },
+              {
+                "id": "m14",
+                "quote": "You want a reservation for 2 people at Dan Izakaya Restaurant in San Jose today for 6:30 pm. Is that right?",
+                "kind": "context"
+              },
+              {
+                "id": "m17",
+                "quote": "That is right.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "6:30 pm",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m13",
+              "m14",
+              "m17"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "partySize": {
+          "gold": [
+            "1"
+          ],
+          "raw": {
+            "value": "1",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m15",
+                "quote": "No, I want it on the 10th for 1 person.",
+                "kind": "value"
+              },
+              {
+                "id": "m16",
+                "quote": "You want a reservation for March 10th for 1 person. Is that right?",
+                "kind": "context"
+              },
+              {
+                "id": "m17",
+                "quote": "That is right.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "1",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m15",
+              "m16",
+              "m17"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        }
+      },
+      "usage": {
+        "inputTokens": 2201,
+        "outputTokens": 1091,
+        "model": "gpt-6-luna"
+      },
+      "latencyMs": 11791
+    },
+    {
+      "id": "4_00080",
+      "messages": [
+        {
+          "id": "m1",
+          "speaker": "customer",
+          "text": "I want to find somewhere to eat."
+        },
+        {
+          "id": "m2",
+          "speaker": "staff",
+          "text": "What type of food sounds good tonight?"
+        },
+        {
+          "id": "m3",
+          "speaker": "customer",
+          "text": "I'd like somewhere with sushi."
+        },
+        {
+          "id": "m4",
+          "speaker": "staff",
+          "text": "What location would you like to find a restaurant in?"
+        },
+        {
+          "id": "m5",
+          "speaker": "customer",
+          "text": "Please find me places in San Fran."
+        },
+        {
+          "id": "m6",
+          "speaker": "staff",
+          "text": "Atami Sushi Bar & Grill in San Francisco looks like a nice restaurant."
+        },
+        {
+          "id": "m7",
+          "speaker": "customer",
+          "text": "What's its user rating and where is it located?"
+        },
+        {
+          "id": "m8",
+          "speaker": "staff",
+          "text": "It's rated about 4.5 and the address is 1662 Lombard Street."
+        },
+        {
+          "id": "m9",
+          "speaker": "customer",
+          "text": "Yeah, that sounds great. Please book me a table."
+        },
+        {
+          "id": "m10",
+          "speaker": "staff",
+          "text": "What time would you like the reservation?"
+        },
+        {
+          "id": "m11",
+          "speaker": "customer",
+          "text": "Please set it for 5:45 pm."
+        },
+        {
+          "id": "m12",
+          "speaker": "staff",
+          "text": "Great, please conform that you would like a table for 2 people today at 5:45 pm at Atami Sushi Bar & Grill in San Francisco."
+        },
+        {
+          "id": "m13",
+          "speaker": "customer",
+          "text": "Yeah, that sounds good."
+        },
+        {
+          "id": "m14",
+          "speaker": "staff",
+          "text": "My apologies, I couldn't make a reservation. Atami Sushi Bar & Grill is nice, should I make a reservation for 2 people today at 6 pm?"
+        },
+        {
+          "id": "m15",
+          "speaker": "customer",
+          "text": "Yeah, that's fine with me."
+        },
+        {
+          "id": "m16",
+          "speaker": "staff",
+          "text": "The reservation was successful this time."
+        },
+        {
+          "id": "m17",
+          "speaker": "customer",
+          "text": "Thanks for your help, that's it for now."
+        }
+      ],
+      "fields": {
+        "restaurantName": {
+          "gold": [
+            "Atami Sushi Bar & Grill"
+          ],
+          "raw": {
+            "value": "Atami Sushi Bar & Grill",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m6",
+                "quote": "Atami Sushi Bar & Grill in San Francisco looks like a nice restaurant.",
+                "kind": "value"
+              },
+              {
+                "id": "m9",
+                "quote": "Yeah, that sounds great. Please book me a table.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "Atami Sushi Bar & Grill",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m6",
+              "m9"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "city": {
+          "gold": [
+            "San Fran",
+            "San Francisco"
+          ],
+          "raw": {
+            "value": "San Francisco",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m5",
+                "quote": "Please find me places in San Fran.",
+                "kind": "value"
+              },
+              {
+                "id": "m9",
+                "quote": "Yeah, that sounds great. Please book me a table.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": null,
+            "status": "missing",
+            "constraint": null,
+            "evidenceIds": [],
+            "source": null,
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": false
+        },
+        "date": {
+          "gold": [
+            "today"
+          ],
+          "raw": {
+            "value": "today",
+            "status": "needs_clarification",
+            "constraint": "today",
+            "evidence": [
+              {
+                "id": "m12",
+                "quote": "Great, please conform that you would like a table for 2 people today at 5:45 pm at Atami Sushi Bar & Grill in San Francisco.",
+                "kind": "value"
+              },
+              {
+                "id": "m13",
+                "quote": "Yeah, that sounds good.",
+                "kind": "acceptance"
+              },
+              {
+                "id": "m14",
+                "quote": "My apologies, I couldn't make a reservation. Atami Sushi Bar & Grill is nice, should I make a reservation for 2 people today at 6 pm?",
+                "kind": "value"
+              },
+              {
+                "id": "m15",
+                "quote": "Yeah, that's fine with me.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "today",
+            "status": "needs_clarification",
+            "constraint": "today",
+            "evidenceIds": [
+              "m12",
+              "m13",
+              "m14",
+              "m15"
+            ],
+            "source": "model",
+            "note": "Please confirm the remaining detail."
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "time": {
+          "gold": [
+            "6 pm"
+          ],
+          "raw": {
+            "value": "6 pm",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m11",
+                "quote": "Please set it for 5:45 pm.",
+                "kind": "value"
+              },
+              {
+                "id": "m12",
+                "quote": "Great, please conform that you would like a table for 2 people today at 5:45 pm at Atami Sushi Bar & Grill in San Francisco.",
+                "kind": "acceptance"
+              },
+              {
+                "id": "m14",
+                "quote": "My apologies, I couldn't make a reservation. Atami Sushi Bar & Grill is nice, should I make a reservation for 2 people today at 6 pm?",
+                "kind": "value"
+              },
+              {
+                "id": "m15",
+                "quote": "Yeah, that's fine with me.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "6 pm",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m11",
+              "m12",
+              "m14",
+              "m15"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "partySize": {
+          "gold": [
+            "2"
+          ],
+          "raw": {
+            "value": "2",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m12",
+                "quote": "Great, please conform that you would like a table for 2 people today at 5:45 pm at Atami Sushi Bar & Grill in San Francisco.",
+                "kind": "value"
+              },
+              {
+                "id": "m13",
+                "quote": "Yeah, that sounds good.",
+                "kind": "acceptance"
+              },
+              {
+                "id": "m14",
+                "quote": "My apologies, I couldn't make a reservation. Atami Sushi Bar & Grill is nice, should I make a reservation for 2 people today at 6 pm?",
+                "kind": "value"
+              },
+              {
+                "id": "m15",
+                "quote": "Yeah, that's fine with me.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "2",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m12",
+              "m13",
+              "m14",
+              "m15"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        }
+      },
+      "usage": {
+        "inputTokens": 2156,
+        "outputTokens": 877,
+        "model": "gpt-6-luna"
+      },
+      "latencyMs": 7137
+    },
+    {
+      "id": "4_00098",
+      "messages": [
+        {
+          "id": "m1",
+          "speaker": "customer",
+          "text": "I would like to eat in a restaurant."
+        },
+        {
+          "id": "m2",
+          "speaker": "staff",
+          "text": "Do you also have a specific food request?"
+        },
+        {
+          "id": "m3",
+          "speaker": "customer",
+          "text": "Yes, I would love to try Himalayan"
+        },
+        {
+          "id": "m4",
+          "speaker": "staff",
+          "text": "Where do I have to look?"
+        },
+        {
+          "id": "m5",
+          "speaker": "customer",
+          "text": "Look in the San Rafael area."
+        },
+        {
+          "id": "m6",
+          "speaker": "staff",
+          "text": "There 1 restaurant called Napoli Pizza-taste of the Himalayas and it's in San Rafael."
+        },
+        {
+          "id": "m7",
+          "speaker": "customer",
+          "text": "Do they serve vegetarians food?"
+        },
+        {
+          "id": "m8",
+          "speaker": "staff",
+          "text": "No, I'm afraid they don't."
+        },
+        {
+          "id": "m9",
+          "speaker": "customer",
+          "text": "It's fine with me. Get a table for three people at 13:00"
+        },
+        {
+          "id": "m10",
+          "speaker": "staff",
+          "text": "Okay, confirm me the following before I go on. I'll book a table at Napoli Pizza-taste of the himalayas in San Rafael for 3 people. The table is for today at 1 pm"
+        },
+        {
+          "id": "m11",
+          "speaker": "customer",
+          "text": "Yes, you can go on now."
+        },
+        {
+          "id": "m12",
+          "speaker": "staff",
+          "text": "I apologize, the reservation is not possible. Can I assist you in some other procedure?"
+        },
+        {
+          "id": "m13",
+          "speaker": "customer",
+          "text": "Try to make the reservation at evening 6."
+        },
+        {
+          "id": "m14",
+          "speaker": "staff",
+          "text": "Okay, read the specifics and tell me if they are correct. You want a table at Napoli Pizza-taste of The Himalayas in San Rafael for 3 people. You want to go today at 6 pm."
+        },
+        {
+          "id": "m15",
+          "speaker": "customer",
+          "text": "Yes, it's correct. Do you know if the restaurant is pricey? Can you tell me the address?"
+        },
+        {
+          "id": "m16",
+          "speaker": "staff",
+          "text": "The reservation is confirmed. The location is 869 4th street and it is classified as a moderate restaurant."
+        },
+        {
+          "id": "m17",
+          "speaker": "customer",
+          "text": "That's great, bye for now."
+        }
+      ],
+      "fields": {
+        "restaurantName": {
+          "gold": [
+            "Napoli Pizza-taste of The Himalayas",
+            "Napoli Pizza-taste of the Himalayas",
+            "Napoli Pizza-taste of the himalayas"
+          ],
+          "raw": {
+            "value": "Napoli Pizza-taste of the Himalayas",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m6",
+                "quote": "Napoli Pizza-taste of the Himalayas",
+                "kind": "value"
+              },
+              {
+                "id": "m10",
+                "quote": "I'll book a table at Napoli Pizza-taste of the himalayas",
+                "kind": "context"
+              },
+              {
+                "id": "m11",
+                "quote": "Yes, you can go on now.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "Napoli Pizza-taste of the Himalayas",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m6",
+              "m10",
+              "m11"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "city": {
+          "gold": [
+            "San Rafael"
+          ],
+          "raw": {
+            "value": "San Rafael",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m5",
+                "quote": "San Rafael area",
+                "kind": "value"
+              },
+              {
+                "id": "m10",
+                "quote": "in San Rafael",
+                "kind": "context"
+              },
+              {
+                "id": "m11",
+                "quote": "Yes, you can go on now.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "San Rafael",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m5",
+              "m10",
+              "m11"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "date": {
+          "gold": [
+            "today"
+          ],
+          "raw": {
+            "value": "today",
+            "status": "needs_clarification",
+            "constraint": "today",
+            "evidence": [
+              {
+                "id": "m10",
+                "quote": "today",
+                "kind": "context"
+              },
+              {
+                "id": "m11",
+                "quote": "Yes, you can go on now.",
+                "kind": "acceptance"
+              },
+              {
+                "id": "m14",
+                "quote": "today",
+                "kind": "context"
+              },
+              {
+                "id": "m15",
+                "quote": "Yes, it's correct.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "today",
+            "status": "needs_clarification",
+            "constraint": "today",
+            "evidenceIds": [
+              "m10",
+              "m11",
+              "m14",
+              "m15"
+            ],
+            "source": "model",
+            "note": "Please confirm the remaining detail."
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "time": {
+          "gold": [
+            "6 pm",
+            "evening 6"
+          ],
+          "raw": {
+            "value": "6 pm",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m13",
+                "quote": "evening 6",
+                "kind": "value"
+              },
+              {
+                "id": "m14",
+                "quote": "today at 6 pm",
+                "kind": "context"
+              },
+              {
+                "id": "m15",
+                "quote": "Yes, it's correct.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "6 pm",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m13",
+              "m14",
+              "m15"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "partySize": {
+          "gold": [
+            "3"
+          ],
+          "raw": {
+            "value": "3",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m9",
+                "quote": "three people",
+                "kind": "value"
+              },
+              {
+                "id": "m10",
+                "quote": "for 3 people",
+                "kind": "context"
+              },
+              {
+                "id": "m11",
+                "quote": "Yes, you can go on now.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "3",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m9",
+              "m10",
+              "m11"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        }
+      },
+      "usage": {
+        "inputTokens": 2209,
+        "outputTokens": 406,
+        "model": "gpt-6-luna"
+      },
+      "latencyMs": 4218
+    },
+    {
+      "id": "1_00024",
+      "messages": [
+        {
+          "id": "m1",
+          "speaker": "customer",
+          "text": "I have a plan to eat outside for which I need some nice restaurant. Please help me to book a table."
+        },
+        {
+          "id": "m2",
+          "speaker": "staff",
+          "text": "What is your desired location to eat?"
+        },
+        {
+          "id": "m3",
+          "speaker": "customer",
+          "text": "I like to eat at some nice place in Lafayette."
+        },
+        {
+          "id": "m4",
+          "speaker": "staff",
+          "text": "Let me know your convenient time to eat, so that I can search according to you."
+        },
+        {
+          "id": "m5",
+          "speaker": "customer",
+          "text": "11:45 in the morning is the convenient time for me and make the booking accordingly."
+        },
+        {
+          "id": "m6",
+          "speaker": "staff",
+          "text": "Any preferred restaurant?"
+        },
+        {
+          "id": "m7",
+          "speaker": "customer",
+          "text": "Yes, try to book a table in The Cooperage, that was the nice place."
+        },
+        {
+          "id": "m8",
+          "speaker": "staff",
+          "text": "Please confirm to book a table for 2 in The Cooperage American Grille in Lafayette at 11:45 am today."
+        },
+        {
+          "id": "m9",
+          "speaker": "customer",
+          "text": "Yes, that is great. continue."
+        },
+        {
+          "id": "m10",
+          "speaker": "staff",
+          "text": "Your reservation was successfully made at this place."
+        },
+        {
+          "id": "m11",
+          "speaker": "customer",
+          "text": "Thanks and that's all."
+        }
+      ],
+      "fields": {
+        "restaurantName": {
+          "gold": [
+            "The Cooperage",
+            "The Cooperage American Grille"
+          ],
+          "raw": {
+            "value": "The Cooperage",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m7",
+                "quote": "try to book a table in The Cooperage",
+                "kind": "value"
+              },
+              {
+                "id": "m8",
+                "quote": "The Cooperage American Grille",
+                "kind": "context"
+              },
+              {
+                "id": "m9",
+                "quote": "Yes, that is great. continue.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "The Cooperage",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m7",
+              "m8",
+              "m9"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "city": {
+          "gold": [
+            "Lafayette"
+          ],
+          "raw": {
+            "value": "Lafayette",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m3",
+                "quote": "in Lafayette",
+                "kind": "value"
+              },
+              {
+                "id": "m8",
+                "quote": "in Lafayette",
+                "kind": "context"
+              },
+              {
+                "id": "m9",
+                "quote": "Yes, that is great. continue.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "Lafayette",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m3",
+              "m8",
+              "m9"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "date": {
+          "gold": [
+            "today"
+          ],
+          "raw": {
+            "value": "today",
+            "status": "needs_clarification",
+            "constraint": "today",
+            "evidence": [
+              {
+                "id": "m8",
+                "quote": "today",
+                "kind": "value"
+              },
+              {
+                "id": "m9",
+                "quote": "Yes, that is great. continue.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "today",
+            "status": "needs_clarification",
+            "constraint": "today",
+            "evidenceIds": [
+              "m8",
+              "m9"
+            ],
+            "source": "model",
+            "note": "Please confirm the remaining detail."
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "time": {
+          "gold": [
+            "11:45 am",
+            "11:45 in the morning"
+          ],
+          "raw": {
+            "value": "11:45 am",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m5",
+                "quote": "11:45 in the morning",
+                "kind": "value"
+              },
+              {
+                "id": "m8",
+                "quote": "11:45 am",
+                "kind": "context"
+              },
+              {
+                "id": "m9",
+                "quote": "Yes, that is great. continue.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "11:45 am",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m5",
+              "m8",
+              "m9"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "partySize": {
+          "gold": [
+            "2"
+          ],
+          "raw": {
+            "value": "2",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m8",
+                "quote": "for 2",
+                "kind": "value"
+              },
+              {
+                "id": "m9",
+                "quote": "Yes, that is great. continue.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "2",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m8",
+              "m9"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        }
+      },
+      "usage": {
+        "inputTokens": 2023,
+        "outputTokens": 352,
+        "model": "gpt-6-luna"
+      },
+      "latencyMs": 3839
+    },
+    {
+      "id": "4_00089",
+      "messages": [
+        {
+          "id": "m1",
+          "speaker": "customer",
+          "text": "I'm looking for somewhere to eat vegetarian food."
+        },
+        {
+          "id": "m2",
+          "speaker": "staff",
+          "text": "What kind of food would you like and where would you like me to search?"
+        },
+        {
+          "id": "m3",
+          "speaker": "customer",
+          "text": "I like Pizza and Pasta and am looking for moderate priced restaurants in Sunnyvale."
+        },
+        {
+          "id": "m4",
+          "speaker": "staff",
+          "text": "Gumba's in Sunnyvale is a nice restaurant."
+        },
+        {
+          "id": "m5",
+          "speaker": "customer",
+          "text": "Do you have any other recommendations?"
+        },
+        {
+          "id": "m6",
+          "speaker": "staff",
+          "text": "Il Postale is also a nice restaurant in Sunnyvale."
+        },
+        {
+          "id": "m7",
+          "speaker": "customer",
+          "text": "How about other restaurants?"
+        },
+        {
+          "id": "m8",
+          "speaker": "staff",
+          "text": "Pezzella's Villa Napoli in Sunnyvale is a nice place to eat."
+        },
+        {
+          "id": "m9",
+          "speaker": "customer",
+          "text": "Great. I'd like to reserve a table."
+        },
+        {
+          "id": "m10",
+          "speaker": "staff",
+          "text": "What time would you like me to make the reservation?"
+        },
+        {
+          "id": "m11",
+          "speaker": "customer",
+          "text": "I'd like to go at 8 in the night."
+        },
+        {
+          "id": "m12",
+          "speaker": "staff",
+          "text": "Sure no problem. So just to confirm: You would like to book a table for 2 people at Pezzella's Villa Napoli in Sunnyvale today at 8 pm."
+        },
+        {
+          "id": "m13",
+          "speaker": "customer",
+          "text": "Actually no, I'd like to change the date to the 13th of this month and I only need a reservation for 1."
+        },
+        {
+          "id": "m14",
+          "speaker": "staff",
+          "text": "So that's March 13th for 1 person."
+        },
+        {
+          "id": "m15",
+          "speaker": "customer",
+          "text": "I've changed my mind again. Please make the reservation for morning 11:45 for three people."
+        },
+        {
+          "id": "m16",
+          "speaker": "staff",
+          "text": "So that's a reservation at 11:45 am for 3 people."
+        },
+        {
+          "id": "m17",
+          "speaker": "customer",
+          "text": "Perfect. What is the customer rating for the restaurant and do they have outdoor seating?"
+        },
+        {
+          "id": "m18",
+          "speaker": "staff",
+          "text": "Unfortunately I have been unable to make a reservation. The restaurant does have outdoor seating and customers have given Pezzella's Villa Napoli restaurant a rating of 4.3. Would you like me to book a table for March 13th at 12 pm instead?"
+        },
+        {
+          "id": "m19",
+          "speaker": "customer",
+          "text": "Sure that's fine."
+        },
+        {
+          "id": "m20",
+          "speaker": "staff",
+          "text": "Your reservation has been successful."
+        },
+        {
+          "id": "m21",
+          "speaker": "customer",
+          "text": "Thanks"
+        }
+      ],
+      "fields": {
+        "restaurantName": {
+          "gold": [
+            "Pezzella's Villa Napoli"
+          ],
+          "raw": {
+            "value": "Pezzella's Villa Napoli",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m12",
+                "quote": "You would like to book a table for 2 people at Pezzella's Villa Napoli in Sunnyvale today at 8 pm.",
+                "kind": "value"
+              },
+              {
+                "id": "m13",
+                "quote": "Actually no, I'd like to change the date to the 13th of this month and I only need a reservation for 1.",
+                "kind": "context"
+              }
+            ]
+          },
+          "guarded": {
+            "value": null,
+            "status": "missing",
+            "constraint": null,
+            "evidenceIds": [],
+            "source": null,
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": false
+        },
+        "city": {
+          "gold": [
+            "Sunnyvale"
+          ],
+          "raw": {
+            "value": "Sunnyvale",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m12",
+                "quote": "You would like to book a table for 2 people at Pezzella's Villa Napoli in Sunnyvale today at 8 pm.",
+                "kind": "value"
+              },
+              {
+                "id": "m13",
+                "quote": "Actually no, I'd like to change the date to the 13th of this month and I only need a reservation for 1.",
+                "kind": "context"
+              }
+            ]
+          },
+          "guarded": {
+            "value": null,
+            "status": "missing",
+            "constraint": null,
+            "evidenceIds": [],
+            "source": null,
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": false
+        },
+        "date": {
+          "gold": [
+            "13th of this month",
+            "March 13th"
+          ],
+          "raw": {
+            "value": "March 13th",
+            "status": "needs_clarification",
+            "constraint": "Year not specified",
+            "evidence": [
+              {
+                "id": "m13",
+                "quote": "Actually no, I'd like to change the date to the 13th of this month",
+                "kind": "value"
+              },
+              {
+                "id": "m14",
+                "quote": "So that's March 13th for 1 person.",
+                "kind": "context"
+              },
+              {
+                "id": "m19",
+                "quote": "Sure that's fine.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "March 13th",
+            "status": "needs_clarification",
+            "constraint": "Year not specified",
+            "evidenceIds": [
+              "m13",
+              "m14",
+              "m19"
+            ],
+            "source": "model",
+            "note": "Please confirm the remaining detail."
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "time": {
+          "gold": [
+            "12 pm"
+          ],
+          "raw": {
+            "value": "12 pm",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m18",
+                "quote": "Would you like me to book a table for March 13th at 12 pm instead?",
+                "kind": "value"
+              },
+              {
+                "id": "m19",
+                "quote": "Sure that's fine.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "12 pm",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m18",
+              "m19"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "partySize": {
+          "gold": [
+            "3"
+          ],
+          "raw": {
+            "value": "3",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m15",
+                "quote": "I've changed my mind again. Please make the reservation for morning 11:45 for three people.",
+                "kind": "value"
+              },
+              {
+                "id": "m16",
+                "quote": "So that's a reservation at 11:45 am for 3 people.",
+                "kind": "context"
+              },
+              {
+                "id": "m17",
+                "quote": "Perfect.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "3",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m15",
+              "m16",
+              "m17"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        }
+      },
+      "usage": {
+        "inputTokens": 2309,
+        "outputTokens": 697,
+        "model": "gpt-6-luna"
+      },
+      "latencyMs": 5419
+    },
+    {
+      "id": "1_00005",
+      "messages": [
+        {
+          "id": "m1",
+          "speaker": "customer",
+          "text": "I want to make a reservation at a restaurant."
+        },
+        {
+          "id": "m2",
+          "speaker": "staff",
+          "text": "Okay, I can do that. Is there a particular restaurant that you wish to visit?"
+        },
+        {
+          "id": "m3",
+          "speaker": "customer",
+          "text": "Can you look at Villa Romano in Napa?"
+        },
+        {
+          "id": "m4",
+          "speaker": "staff",
+          "text": "Yes. What time?"
+        },
+        {
+          "id": "m5",
+          "speaker": "customer",
+          "text": "Try for afternoon 12:45."
+        },
+        {
+          "id": "m6",
+          "speaker": "staff",
+          "text": "No problem, please confirm: reservation for 2 at Villa Romano in Napa, today at 12:45 pm."
+        },
+        {
+          "id": "m7",
+          "speaker": "customer",
+          "text": "Make it for 4 people."
+        },
+        {
+          "id": "m8",
+          "speaker": "staff",
+          "text": "Okay, please confirm: reservation for 4 people at Villa Romano."
+        },
+        {
+          "id": "m9",
+          "speaker": "customer",
+          "text": "Actually, can we change it to Big 4."
+        },
+        {
+          "id": "m10",
+          "speaker": "staff",
+          "text": "Please confirm: table for 4 people at The Big 4."
+        },
+        {
+          "id": "m11",
+          "speaker": "customer",
+          "text": "Yes, that's right."
+        }
+      ],
+      "fields": {
+        "restaurantName": {
+          "gold": [
+            "Big 4",
+            "The Big 4"
+          ],
+          "raw": {
+            "value": "The Big 4",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m10",
+                "quote": "The Big 4",
+                "kind": "value"
+              },
+              {
+                "id": "m11",
+                "quote": "Yes, that's right.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "The Big 4",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m10",
+              "m11"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "city": {
+          "gold": [
+            "Napa"
+          ],
+          "raw": {
+            "value": "Napa",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m3",
+                "quote": "Villa Romano in Napa",
+                "kind": "value"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "Napa",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m3"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "date": {
+          "gold": [
+            "today"
+          ],
+          "raw": {
+            "value": "today",
+            "status": "needs_clarification",
+            "constraint": "today",
+            "evidence": [
+              {
+                "id": "m6",
+                "quote": "today",
+                "kind": "value"
+              }
+            ]
+          },
+          "guarded": {
+            "value": null,
+            "status": "missing",
+            "constraint": null,
+            "evidenceIds": [],
+            "source": null,
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": false
+        },
+        "time": {
+          "gold": [
+            "12:45 pm",
+            "afternoon 12:45"
+          ],
+          "raw": {
+            "value": "12:45 pm",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m5",
+                "quote": "afternoon 12:45",
+                "kind": "value"
+              },
+              {
+                "id": "m6",
+                "quote": "12:45 pm",
+                "kind": "context"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "12:45 pm",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m5",
+              "m6"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "partySize": {
+          "gold": [
+            "4"
+          ],
+          "raw": {
+            "value": "4",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m7",
+                "quote": "4 people",
+                "kind": "value"
+              },
+              {
+                "id": "m11",
+                "quote": "Yes, that's right.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "4",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m7",
+              "m11"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        }
+      },
+      "usage": {
+        "inputTokens": 2000,
+        "outputTokens": 250,
+        "model": "gpt-6-luna"
+      },
+      "latencyMs": 2819
+    },
+    {
+      "id": "1_00018",
+      "messages": [
+        {
+          "id": "m1",
+          "speaker": "customer",
+          "text": "I'd like to find a table for a restaurant in SFO."
+        },
+        {
+          "id": "m2",
+          "speaker": "staff",
+          "text": "Okay, which restaurant would you like to look at, and when would you like to go?"
+        },
+        {
+          "id": "m3",
+          "speaker": "customer",
+          "text": "I'd like to go to El Tesoro at 11:45 am."
+        },
+        {
+          "id": "m4",
+          "speaker": "staff",
+          "text": "Please confirm: You'd like a table at El Tesoro Taqueria & grill in San Francisco for 2 people at 11:45 am today."
+        },
+        {
+          "id": "m5",
+          "speaker": "customer",
+          "text": "Works for me, do they have vegetarian options?"
+        },
+        {
+          "id": "m6",
+          "speaker": "staff",
+          "text": "Reservation made, and yes, they do."
+        },
+        {
+          "id": "m7",
+          "speaker": "customer",
+          "text": "Thank you very much."
+        }
+      ],
+      "fields": {
+        "restaurantName": {
+          "gold": [
+            "El Tesoro",
+            "El Tesoro Taqueria & grill"
+          ],
+          "raw": {
+            "value": "El Tesoro Taqueria & grill",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m3",
+                "quote": "I'd like to go to El Tesoro",
+                "kind": "value"
+              },
+              {
+                "id": "m4",
+                "quote": "El Tesoro Taqueria & grill",
+                "kind": "value"
+              },
+              {
+                "id": "m5",
+                "quote": "Works for me",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "El Tesoro Taqueria & grill",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m3",
+              "m4",
+              "m5"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "city": {
+          "gold": [
+            "SFO",
+            "San Francisco"
+          ],
+          "raw": {
+            "value": "San Francisco",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m1",
+                "quote": "in SFO",
+                "kind": "context"
+              },
+              {
+                "id": "m4",
+                "quote": "in San Francisco",
+                "kind": "value"
+              },
+              {
+                "id": "m5",
+                "quote": "Works for me",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "San Francisco",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1",
+              "m4",
+              "m5"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "date": {
+          "gold": [
+            "today"
+          ],
+          "raw": {
+            "value": "today",
+            "status": "needs_clarification",
+            "constraint": "today",
+            "evidence": [
+              {
+                "id": "m4",
+                "quote": "today",
+                "kind": "value"
+              },
+              {
+                "id": "m5",
+                "quote": "Works for me",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "today",
+            "status": "needs_clarification",
+            "constraint": "today",
+            "evidenceIds": [
+              "m4",
+              "m5"
+            ],
+            "source": "model",
+            "note": "Please confirm the remaining detail."
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "time": {
+          "gold": [
+            "11:45 am"
+          ],
+          "raw": {
+            "value": "11:45 am",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m3",
+                "quote": "11:45 am",
+                "kind": "value"
+              },
+              {
+                "id": "m5",
+                "quote": "Works for me",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "11:45 am",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m3",
+              "m5"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "partySize": {
+          "gold": [
+            "2"
+          ],
+          "raw": {
+            "value": "2",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m4",
+                "quote": "2 people",
+                "kind": "value"
+              },
+              {
+                "id": "m5",
+                "quote": "Works for me",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "2",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m4",
+              "m5"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        }
+      },
+      "usage": {
+        "inputTokens": 1930,
+        "outputTokens": 320,
+        "model": "gpt-6-luna"
+      },
+      "latencyMs": 3438
+    },
+    {
+      "id": "4_00066",
+      "messages": [
+        {
+          "id": "m1",
+          "speaker": "customer",
+          "text": "I'm in the mood to eat something find me anything that have available serving Pick-up."
+        },
+        {
+          "id": "m2",
+          "speaker": "staff",
+          "text": "In what city you want to be?"
+        },
+        {
+          "id": "m3",
+          "speaker": "customer",
+          "text": "In Santa Clara would be perfect."
+        },
+        {
+          "id": "m4",
+          "speaker": "staff",
+          "text": "A nice restaurant in Santa Clara is Chili's Grill & Bar ."
+        },
+        {
+          "id": "m5",
+          "speaker": "customer",
+          "text": "Yes sounds good."
+        },
+        {
+          "id": "m6",
+          "speaker": "staff",
+          "text": "You want to reserve a table there?"
+        },
+        {
+          "id": "m7",
+          "speaker": "customer",
+          "text": "Yes make it for 3 people,please."
+        },
+        {
+          "id": "m8",
+          "speaker": "staff",
+          "text": "At what time you want to be?"
+        },
+        {
+          "id": "m9",
+          "speaker": "customer",
+          "text": "On 7 in the evening."
+        },
+        {
+          "id": "m10",
+          "speaker": "staff",
+          "text": "Book a table at Chili's Grill & Bar in Santa Clara at 7 pm today for 3 people.I'm right?"
+        },
+        {
+          "id": "m11",
+          "speaker": "customer",
+          "text": "Yes perfect.Is the restaurant very expensive?"
+        },
+        {
+          "id": "m12",
+          "speaker": "staff",
+          "text": "Reservation is successful .Is a moderate restaurant."
+        },
+        {
+          "id": "m13",
+          "speaker": "customer",
+          "text": "Thank you for help"
+        }
+      ],
+      "fields": {
+        "restaurantName": {
+          "gold": [
+            "Chili's Grill & Bar"
+          ],
+          "raw": {
+            "value": "Chili's Grill & Bar",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m4",
+                "quote": "A nice restaurant in Santa Clara is Chili's Grill & Bar .",
+                "kind": "value"
+              },
+              {
+                "id": "m5",
+                "quote": "Yes sounds good.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "Chili's Grill & Bar",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m4",
+              "m5"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "city": {
+          "gold": [
+            "Santa Clara"
+          ],
+          "raw": {
+            "value": "Santa Clara",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m3",
+                "quote": "In Santa Clara would be perfect.",
+                "kind": "value"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "Santa Clara",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m3"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "date": {
+          "gold": [
+            "today"
+          ],
+          "raw": {
+            "value": null,
+            "status": "missing",
+            "constraint": null,
+            "evidence": []
+          },
+          "guarded": {
+            "value": null,
+            "status": "missing",
+            "constraint": null,
+            "evidenceIds": [],
+            "source": null,
+            "note": ""
+          },
+          "rawMatch": false,
+          "guardedMatch": false
+        },
+        "time": {
+          "gold": [
+            "7 in the evening",
+            "7 pm"
+          ],
+          "raw": {
+            "value": "7 pm",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m9",
+                "quote": "On 7 in the evening.",
+                "kind": "value"
+              },
+              {
+                "id": "m10",
+                "quote": "at 7 pm today",
+                "kind": "context"
+              },
+              {
+                "id": "m11",
+                "quote": "Yes perfect.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "7 pm",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m9",
+              "m10",
+              "m11"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "partySize": {
+          "gold": [
+            "3"
+          ],
+          "raw": {
+            "value": "3",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m7",
+                "quote": "Yes make it for 3 people,please.",
+                "kind": "value"
+              },
+              {
+                "id": "m10",
+                "quote": "for 3 people",
+                "kind": "context"
+              },
+              {
+                "id": "m11",
+                "quote": "Yes perfect.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "3",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m7",
+              "m10",
+              "m11"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        }
+      },
+      "usage": {
+        "inputTokens": 2027,
+        "outputTokens": 280,
+        "model": "gpt-6-luna"
+      },
+      "latencyMs": 3105
+    },
+    {
+      "id": "4_00069",
+      "error": "Request timed out.",
+      "latencyMs": 12011
+    },
+    {
+      "id": "4_00093",
+      "messages": [
+        {
+          "id": "m1",
+          "speaker": "customer",
+          "text": "I'd like to find a place to eat."
+        },
+        {
+          "id": "m2",
+          "speaker": "staff",
+          "text": "Okay. Can you tell me what kind of food you'd like, and the area you want the restaurant to be?"
+        },
+        {
+          "id": "m3",
+          "speaker": "customer",
+          "text": "I want to eat at a Southern restaurant, in SF."
+        },
+        {
+          "id": "m4",
+          "speaker": "staff",
+          "text": "I've got a good one here, called 1760. It's in San Francisco, as you wanted."
+        },
+        {
+          "id": "m5",
+          "speaker": "customer",
+          "text": "Can you give me their phone number? How expensive a restaurant are we talking?"
+        },
+        {
+          "id": "m6",
+          "speaker": "staff",
+          "text": "The number there is 415-359-1212. They are pricey, in term of cost."
+        },
+        {
+          "id": "m7",
+          "speaker": "customer",
+          "text": "Could you recommend any other restaurants?"
+        },
+        {
+          "id": "m8",
+          "speaker": "staff",
+          "text": "Okay, how about 25 Lusk? That's a nice place in San Francisco."
+        },
+        {
+          "id": "m9",
+          "speaker": "customer",
+          "text": "Can you give me the name of any other restaurants? I want to go someplace pricey."
+        },
+        {
+          "id": "m10",
+          "speaker": "staff",
+          "text": "Here's one, 3rd Cousin. It's in San Francisco."
+        },
+        {
+          "id": "m11",
+          "speaker": "customer",
+          "text": "That sounds good."
+        },
+        {
+          "id": "m12",
+          "speaker": "staff",
+          "text": "Do you want me to reserve you a table there."
+        },
+        {
+          "id": "m13",
+          "speaker": "customer",
+          "text": "Yes, please reserve me a table. I want to eat there on Wednesday next week."
+        },
+        {
+          "id": "m14",
+          "speaker": "staff",
+          "text": "What time do you want me to try to get a reservation for?"
+        },
+        {
+          "id": "m15",
+          "speaker": "customer",
+          "text": "I'd like to eat at 6:45 pm."
+        },
+        {
+          "id": "m16",
+          "speaker": "staff",
+          "text": "Okay, let me confirm. You want me to make a reservation at 3rd Cousin in San Francisco, next Wednesday at 6:45 pm, for 2 people."
+        },
+        {
+          "id": "m17",
+          "speaker": "customer",
+          "text": "That sounds great. Can you check if they have outdoor seating?"
+        },
+        {
+          "id": "m18",
+          "speaker": "staff",
+          "text": "I couldn't make a reservation, sorry. They don't have any outdoor seating. But 3rd Cousin is really a nice nice restaurant. Want me to try again for a reservation, maybe next Wednesday at 6:30 pm for 2?"
+        },
+        {
+          "id": "m19",
+          "speaker": "customer",
+          "text": "That will work."
+        },
+        {
+          "id": "m20",
+          "speaker": "staff",
+          "text": "This time the reservation was successful."
+        },
+        {
+          "id": "m21",
+          "speaker": "customer",
+          "text": "Great, thanks."
+        }
+      ],
+      "fields": {
+        "restaurantName": {
+          "gold": [
+            "3rd Cousin"
+          ],
+          "raw": {
+            "value": "3rd Cousin",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m10",
+                "quote": "Here's one, 3rd Cousin. It's in San Francisco.",
+                "kind": "value"
+              },
+              {
+                "id": "m11",
+                "quote": "That sounds good.",
+                "kind": "acceptance"
+              },
+              {
+                "id": "m16",
+                "quote": "at 3rd Cousin in San Francisco",
+                "kind": "context"
+              },
+              {
+                "id": "m17",
+                "quote": "That sounds great.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "3rd Cousin",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m10",
+              "m11",
+              "m16",
+              "m17"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "city": {
+          "gold": [
+            "SF",
+            "San Francisco"
+          ],
+          "raw": {
+            "value": "San Francisco",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m10",
+                "quote": "It's in San Francisco.",
+                "kind": "value"
+              },
+              {
+                "id": "m11",
+                "quote": "That sounds good.",
+                "kind": "acceptance"
+              },
+              {
+                "id": "m16",
+                "quote": "in San Francisco",
+                "kind": "context"
+              },
+              {
+                "id": "m17",
+                "quote": "That sounds great.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "San Francisco",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m10",
+              "m11",
+              "m16",
+              "m17"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "date": {
+          "gold": [
+            "Wednesday next week",
+            "next Wednesday"
+          ],
+          "raw": {
+            "value": null,
+            "status": "needs_clarification",
+            "constraint": "Wednesday next week",
+            "evidence": [
+              {
+                "id": "m13",
+                "quote": "I want to eat there on Wednesday next week.",
+                "kind": "value"
+              },
+              {
+                "id": "m16",
+                "quote": "next Wednesday",
+                "kind": "context"
+              },
+              {
+                "id": "m17",
+                "quote": "That sounds great.",
+                "kind": "acceptance"
+              },
+              {
+                "id": "m18",
+                "quote": "maybe next Wednesday at 6:30 pm for 2?",
+                "kind": "context"
+              },
+              {
+                "id": "m19",
+                "quote": "That will work.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "Wednesday next week",
+            "status": "needs_clarification",
+            "constraint": "Wednesday next week",
+            "evidenceIds": [
+              "m13",
+              "m16",
+              "m17",
+              "m18",
+              "m19"
+            ],
+            "source": "model",
+            "note": "Please confirm the remaining detail."
+          },
+          "rawMatch": false,
+          "guardedMatch": true
+        },
+        "time": {
+          "gold": [
+            "6:30 pm"
+          ],
+          "raw": {
+            "value": "6:30 pm",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m15",
+                "quote": "I'd like to eat at 6:45 pm.",
+                "kind": "value"
+              },
+              {
+                "id": "m16",
+                "quote": "at 6:45 pm",
+                "kind": "context"
+              },
+              {
+                "id": "m17",
+                "quote": "That sounds great.",
+                "kind": "acceptance"
+              },
+              {
+                "id": "m18",
+                "quote": "maybe next Wednesday at 6:30 pm for 2?",
+                "kind": "context"
+              },
+              {
+                "id": "m19",
+                "quote": "That will work.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "6:30 pm",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m15",
+              "m16",
+              "m17",
+              "m18",
+              "m19"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "partySize": {
+          "gold": [
+            "2"
+          ],
+          "raw": {
+            "value": "2",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m16",
+                "quote": "for 2 people.",
+                "kind": "context"
+              },
+              {
+                "id": "m17",
+                "quote": "That sounds great.",
+                "kind": "acceptance"
+              },
+              {
+                "id": "m18",
+                "quote": "for 2?",
+                "kind": "context"
+              },
+              {
+                "id": "m19",
+                "quote": "That will work.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "2",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m16",
+              "m17",
+              "m18",
+              "m19"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        }
+      },
+      "usage": {
+        "inputTokens": 2326,
+        "outputTokens": 519,
+        "model": "gpt-6-luna"
+      },
+      "latencyMs": 4486
+    },
+    {
+      "id": "4_00104",
+      "messages": [
+        {
+          "id": "m1",
+          "speaker": "customer",
+          "text": "I'm kinda hungry. Can you help me find a place where I can eat?"
+        },
+        {
+          "id": "m2",
+          "speaker": "staff",
+          "text": "What kind of food do you feel like eating?"
+        },
+        {
+          "id": "m3",
+          "speaker": "customer",
+          "text": "Something Latin American."
+        },
+        {
+          "id": "m4",
+          "speaker": "staff",
+          "text": "In what location?"
+        },
+        {
+          "id": "m5",
+          "speaker": "customer",
+          "text": "Milpitas, please."
+        },
+        {
+          "id": "m6",
+          "speaker": "staff",
+          "text": "Baja Cactus is one of the good ones in Milpitas."
+        },
+        {
+          "id": "m7",
+          "speaker": "customer",
+          "text": "Do they have vegetarian options?"
+        },
+        {
+          "id": "m8",
+          "speaker": "staff",
+          "text": "They have a few good ones, yes."
+        },
+        {
+          "id": "m9",
+          "speaker": "customer",
+          "text": "Do they have outdoor seating?"
+        },
+        {
+          "id": "m10",
+          "speaker": "staff",
+          "text": "Unfortunately, they don't."
+        },
+        {
+          "id": "m11",
+          "speaker": "customer",
+          "text": "I think that's good for me. Can you book me a table for the 12th?"
+        },
+        {
+          "id": "m12",
+          "speaker": "staff",
+          "text": "Around what time?"
+        },
+        {
+          "id": "m13",
+          "speaker": "customer",
+          "text": "At 11:30 am, if possible."
+        },
+        {
+          "id": "m14",
+          "speaker": "staff",
+          "text": "Please confirm: you want to book a table at Baja Cactus in Milpitas on the March 12th. A table for 2 at 11:30 am."
+        },
+        {
+          "id": "m15",
+          "speaker": "customer",
+          "text": "That works. What's their user rating and address?"
+        },
+        {
+          "id": "m16",
+          "speaker": "staff",
+          "text": "Your reservation was successful. They have a 4.3 rating and are located on 338 South Main Street."
+        },
+        {
+          "id": "m17",
+          "speaker": "customer",
+          "text": "Thanks a lot."
+        }
+      ],
+      "fields": {
+        "restaurantName": {
+          "gold": [
+            "Baja Cactus"
+          ],
+          "raw": {
+            "value": "Baja Cactus",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m6",
+                "quote": "Baja Cactus is one of the good ones in Milpitas.",
+                "kind": "value"
+              },
+              {
+                "id": "m14",
+                "quote": "Please confirm: you want to book a table at Baja Cactus in Milpitas on the March 12th. A table for 2 at 11:30 am.",
+                "kind": "acceptance"
+              },
+              {
+                "id": "m15",
+                "quote": "That works.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "Baja Cactus",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m6",
+              "m14",
+              "m15"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "city": {
+          "gold": [
+            "Milpitas"
+          ],
+          "raw": {
+            "value": "Milpitas",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m5",
+                "quote": "Milpitas, please.",
+                "kind": "value"
+              },
+              {
+                "id": "m14",
+                "quote": "Please confirm: you want to book a table at Baja Cactus in Milpitas on the March 12th. A table for 2 at 11:30 am.",
+                "kind": "acceptance"
+              },
+              {
+                "id": "m15",
+                "quote": "That works.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "Milpitas",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m5",
+              "m14",
+              "m15"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "date": {
+          "gold": [
+            "March 12th",
+            "the 12th"
+          ],
+          "raw": {
+            "value": "March 12th",
+            "status": "needs_clarification",
+            "constraint": "Year not specified",
+            "evidence": [
+              {
+                "id": "m11",
+                "quote": "Can you book me a table for the 12th?",
+                "kind": "value"
+              },
+              {
+                "id": "m14",
+                "quote": "Please confirm: you want to book a table at Baja Cactus in Milpitas on the March 12th. A table for 2 at 11:30 am.",
+                "kind": "value"
+              },
+              {
+                "id": "m15",
+                "quote": "That works.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "March 12th",
+            "status": "needs_clarification",
+            "constraint": "Year not specified",
+            "evidenceIds": [
+              "m11",
+              "m14",
+              "m15"
+            ],
+            "source": "model",
+            "note": "Please confirm the remaining detail."
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "time": {
+          "gold": [
+            "11:30 am"
+          ],
+          "raw": {
+            "value": "11:30 am",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m13",
+                "quote": "At 11:30 am, if possible.",
+                "kind": "value"
+              },
+              {
+                "id": "m14",
+                "quote": "Please confirm: you want to book a table at Baja Cactus in Milpitas on the March 12th. A table for 2 at 11:30 am.",
+                "kind": "value"
+              },
+              {
+                "id": "m15",
+                "quote": "That works.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "11:30 am",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m13",
+              "m14",
+              "m15"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "partySize": {
+          "gold": [
+            "2"
+          ],
+          "raw": {
+            "value": "2",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m14",
+                "quote": "Please confirm: you want to book a table at Baja Cactus in Milpitas on the March 12th. A table for 2 at 11:30 am.",
+                "kind": "value"
+              },
+              {
+                "id": "m15",
+                "quote": "That works.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "2",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m14",
+              "m15"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        }
+      },
+      "usage": {
+        "inputTokens": 2134,
+        "outputTokens": 787,
+        "model": "gpt-6-luna"
+      },
+      "latencyMs": 5945
+    },
+    {
+      "id": "4_00082",
+      "messages": [
+        {
+          "id": "m1",
+          "speaker": "customer",
+          "text": "Help me please to find a place where I can serve Cambodian food."
+        },
+        {
+          "id": "m2",
+          "speaker": "staff",
+          "text": "Where to be?"
+        },
+        {
+          "id": "m3",
+          "speaker": "customer",
+          "text": "In Oakland I would like to be."
+        },
+        {
+          "id": "m4",
+          "speaker": "staff",
+          "text": "In Oakland i found a nice restaurant named Binh Minh Quan."
+        },
+        {
+          "id": "m5",
+          "speaker": "customer",
+          "text": "Are other good restaurants available?"
+        },
+        {
+          "id": "m6",
+          "speaker": "staff",
+          "text": "A nice restaurant located in Oakland is Holy Basil Pho."
+        },
+        {
+          "id": "m7",
+          "speaker": "customer",
+          "text": "Can you tell me please the phone number?"
+        },
+        {
+          "id": "m8",
+          "speaker": "staff",
+          "text": "you can find them at 510-601-8818."
+        },
+        {
+          "id": "m9",
+          "speaker": "customer",
+          "text": "Yes perfect.Book for me a table at this restaurant please."
+        },
+        {
+          "id": "m10",
+          "speaker": "staff",
+          "text": "At what time you want to be?"
+        },
+        {
+          "id": "m11",
+          "speaker": "customer",
+          "text": "Make it at 12:45 in the afternoon."
+        },
+        {
+          "id": "m12",
+          "speaker": "staff",
+          "text": "Book a table at Holy basil Pho in Oakland at 12:45 pm today for 2 person.I'm right?"
+        },
+        {
+          "id": "m13",
+          "speaker": "customer",
+          "text": "Yes is good for me."
+        },
+        {
+          "id": "m14",
+          "speaker": "staff",
+          "text": "I'm sorry the reservation failed.You want me to try again for 2 people today at 1 pm because Holy Basil Pho is a nice place."
+        },
+        {
+          "id": "m15",
+          "speaker": "customer",
+          "text": "No.Thank you very much."
+        }
+      ],
+      "fields": {
+        "restaurantName": {
+          "gold": [
+            "Holy Basil Pho",
+            "Holy basil Pho"
+          ],
+          "raw": {
+            "value": "Holy Basil Pho",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m6",
+                "quote": "A nice restaurant located in Oakland is Holy Basil Pho.",
+                "kind": "value"
+              },
+              {
+                "id": "m9",
+                "quote": "Yes perfect.Book for me a table at this restaurant please.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "Holy Basil Pho",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m6",
+              "m9"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "city": {
+          "gold": [
+            "Oakland"
+          ],
+          "raw": {
+            "value": "Oakland",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m3",
+                "quote": "In Oakland I would like to be.",
+                "kind": "value"
+              },
+              {
+                "id": "m12",
+                "quote": "Book a table at Holy basil Pho in Oakland at 12:45 pm today for 2 person.I'm right?",
+                "kind": "context"
+              },
+              {
+                "id": "m13",
+                "quote": "Yes is good for me.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "Oakland",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m3",
+              "m12",
+              "m13"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "date": {
+          "gold": [
+            "today"
+          ],
+          "raw": {
+            "value": "today",
+            "status": "needs_clarification",
+            "constraint": "today",
+            "evidence": [
+              {
+                "id": "m12",
+                "quote": "Book a table at Holy basil Pho in Oakland at 12:45 pm today for 2 person.I'm right?",
+                "kind": "value"
+              },
+              {
+                "id": "m13",
+                "quote": "Yes is good for me.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "today",
+            "status": "needs_clarification",
+            "constraint": "today",
+            "evidenceIds": [
+              "m12",
+              "m13"
+            ],
+            "source": "model",
+            "note": "Please confirm the remaining detail."
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "time": {
+          "gold": [
+            "12:45 in the afternoon",
+            "12:45 pm"
+          ],
+          "raw": {
+            "value": "12:45 pm",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m11",
+                "quote": "Make it at 12:45 in the afternoon.",
+                "kind": "value"
+              },
+              {
+                "id": "m12",
+                "quote": "Book a table at Holy basil Pho in Oakland at 12:45 pm today for 2 person.I'm right?",
+                "kind": "context"
+              },
+              {
+                "id": "m13",
+                "quote": "Yes is good for me.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "12:45 pm",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m11",
+              "m12",
+              "m13"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "partySize": {
+          "gold": [
+            "2"
+          ],
+          "raw": {
+            "value": "2",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m12",
+                "quote": "Book a table at Holy basil Pho in Oakland at 12:45 pm today for 2 person.I'm right?",
+                "kind": "value"
+              },
+              {
+                "id": "m13",
+                "quote": "Yes is good for me.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "2",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m12",
+              "m13"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        }
+      },
+      "usage": {
+        "inputTokens": 2098,
+        "outputTokens": 795,
+        "model": "gpt-6-luna"
+      },
+      "latencyMs": 6694
+    },
+    {
+      "id": "4_00106",
+      "messages": [
+        {
+          "id": "m1",
+          "speaker": "customer",
+          "text": "I will be gathering with some friends, what restaurants do you recommend?"
+        },
+        {
+          "id": "m2",
+          "speaker": "staff",
+          "text": "What type of cuisine do you want to eat? And where do you want to look for?"
+        },
+        {
+          "id": "m3",
+          "speaker": "customer",
+          "text": "If possible in Oakland and that they serve Freshwater Fish."
+        },
+        {
+          "id": "m4",
+          "speaker": "staff",
+          "text": "There are 7 restaurants that match your criteria. There is a restaurant in Oakland called Alamar Kitchen & Bar."
+        },
+        {
+          "id": "m5",
+          "speaker": "customer",
+          "text": "Do you know of any other restaurant?"
+        },
+        {
+          "id": "m6",
+          "speaker": "staff",
+          "text": "There is also a restaurant in Oakland called Judoku Sushi."
+        },
+        {
+          "id": "m7",
+          "speaker": "customer",
+          "text": "What is the price range of the restaurant?"
+        },
+        {
+          "id": "m8",
+          "speaker": "staff",
+          "text": "It is a moderate price range restaurant."
+        },
+        {
+          "id": "m9",
+          "speaker": "customer",
+          "text": "Are there other restaurants?"
+        },
+        {
+          "id": "m10",
+          "speaker": "staff",
+          "text": "There is also a restaurant in Oakland called Lake Chalet."
+        },
+        {
+          "id": "m11",
+          "speaker": "customer",
+          "text": "What is their phone number?"
+        },
+        {
+          "id": "m12",
+          "speaker": "staff",
+          "text": "The phone number is 510-208-5253."
+        },
+        {
+          "id": "m13",
+          "speaker": "customer",
+          "text": "That sounds great."
+        },
+        {
+          "id": "m14",
+          "speaker": "staff",
+          "text": "Do you want to make a reservation?"
+        },
+        {
+          "id": "m15",
+          "speaker": "customer",
+          "text": "Yes, please. If possible for next Wednesday for three people."
+        },
+        {
+          "id": "m16",
+          "speaker": "staff",
+          "text": "At what time do you want your reservation?"
+        },
+        {
+          "id": "m17",
+          "speaker": "customer",
+          "text": "Looking to book a table for the 9th of March at afternoon 12."
+        },
+        {
+          "id": "m18",
+          "speaker": "staff",
+          "text": "please confirm: Booking a table for 3 people at 12 pm on March 9th at Lake Chalet in Oakland."
+        },
+        {
+          "id": "m19",
+          "speaker": "customer",
+          "text": "Yes, that is correct. Are there vegetarian options?"
+        },
+        {
+          "id": "m20",
+          "speaker": "staff",
+          "text": "The table has been booked. And they do have vegetarian options."
+        },
+        {
+          "id": "m21",
+          "speaker": "customer",
+          "text": "What is the price range of the restaurant?"
+        },
+        {
+          "id": "m22",
+          "speaker": "staff",
+          "text": "It is a moderate price range."
+        },
+        {
+          "id": "m23",
+          "speaker": "customer",
+          "text": "Thanks a lot."
+        }
+      ],
+      "fields": {
+        "restaurantName": {
+          "gold": [
+            "Lake Chalet"
+          ],
+          "raw": {
+            "value": "Lake Chalet",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m10",
+                "quote": "There is also a restaurant in Oakland called Lake Chalet.",
+                "kind": "value"
+              },
+              {
+                "id": "m19",
+                "quote": "Yes, that is correct.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "Lake Chalet",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m10",
+              "m19"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "city": {
+          "gold": [
+            "Oakland"
+          ],
+          "raw": {
+            "value": "Oakland",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m18",
+                "quote": "at Lake Chalet in Oakland.",
+                "kind": "value"
+              },
+              {
+                "id": "m19",
+                "quote": "Yes, that is correct.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "Oakland",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m18",
+              "m19"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "date": {
+          "gold": [
+            "9th of March",
+            "March 9th"
+          ],
+          "raw": {
+            "value": "March 9th",
+            "status": "needs_clarification",
+            "constraint": "Year not specified",
+            "evidence": [
+              {
+                "id": "m17",
+                "quote": "the 9th of March",
+                "kind": "value"
+              },
+              {
+                "id": "m18",
+                "quote": "on March 9th",
+                "kind": "value"
+              },
+              {
+                "id": "m19",
+                "quote": "Yes, that is correct.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "March 9th",
+            "status": "needs_clarification",
+            "constraint": "Year not specified",
+            "evidenceIds": [
+              "m17",
+              "m18",
+              "m19"
+            ],
+            "source": "model",
+            "note": "Please confirm the remaining detail."
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "time": {
+          "gold": [
+            "12 pm",
+            "afternoon 12"
+          ],
+          "raw": {
+            "value": "12 pm",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m17",
+                "quote": "afternoon 12",
+                "kind": "value"
+              },
+              {
+                "id": "m18",
+                "quote": "at 12 pm",
+                "kind": "value"
+              },
+              {
+                "id": "m19",
+                "quote": "Yes, that is correct.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "12 pm",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m17",
+              "m18",
+              "m19"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "partySize": {
+          "gold": [
+            "3"
+          ],
+          "raw": {
+            "value": "3",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m15",
+                "quote": "for three people",
+                "kind": "value"
+              },
+              {
+                "id": "m18",
+                "quote": "for 3 people",
+                "kind": "value"
+              },
+              {
+                "id": "m19",
+                "quote": "Yes, that is correct.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "3",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m15",
+              "m18",
+              "m19"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        }
+      },
+      "usage": {
+        "inputTokens": 2278,
+        "outputTokens": 351,
+        "model": "gpt-6-luna"
+      },
+      "latencyMs": 4133
+    },
+    {
+      "id": "4_00076",
+      "messages": [
+        {
+          "id": "m1",
+          "speaker": "customer",
+          "text": "I want to eat somewhere."
+        },
+        {
+          "id": "m2",
+          "speaker": "staff",
+          "text": "What kind of food do you want?"
+        },
+        {
+          "id": "m3",
+          "speaker": "customer",
+          "text": "Find some place that serves tacos."
+        },
+        {
+          "id": "m4",
+          "speaker": "staff",
+          "text": "What location do I look in?"
+        },
+        {
+          "id": "m5",
+          "speaker": "customer",
+          "text": "Find restaurants in San Jose."
+        },
+        {
+          "id": "m6",
+          "speaker": "staff",
+          "text": "I have 10 restaurants there that you should like. Chacho's is a nice on in San Jose."
+        },
+        {
+          "id": "m7",
+          "speaker": "customer",
+          "text": "Do you have something else you could recommend?"
+        },
+        {
+          "id": "m8",
+          "speaker": "staff",
+          "text": "Chevys Fresh Mex is a good one in San Jose."
+        },
+        {
+          "id": "m9",
+          "speaker": "customer",
+          "text": "Okay, that is fine."
+        },
+        {
+          "id": "m10",
+          "speaker": "staff",
+          "text": "Do you want to make a reservation?"
+        },
+        {
+          "id": "m11",
+          "speaker": "customer",
+          "text": "Yes, please."
+        },
+        {
+          "id": "m12",
+          "speaker": "staff",
+          "text": "For what time should the reservation be made?"
+        },
+        {
+          "id": "m13",
+          "speaker": "customer",
+          "text": "I want my reservation to be made at quarter past 7 in the evening."
+        },
+        {
+          "id": "m14",
+          "speaker": "staff",
+          "text": "Please confirm that you want to book for 2 people at Chevys Fresh Mex in San Jose at 7:15 pm today."
+        },
+        {
+          "id": "m15",
+          "speaker": "customer",
+          "text": "No, it needs to be for 1."
+        },
+        {
+          "id": "m16",
+          "speaker": "staff",
+          "text": "So you want to make a reservation at 7:15 pm for 1?"
+        },
+        {
+          "id": "m17",
+          "speaker": "customer",
+          "text": "No, make that March 6th at one in the afternoon."
+        },
+        {
+          "id": "m18",
+          "speaker": "staff",
+          "text": "So you would like your reservation to be at 1 pm next Wednesday?"
+        },
+        {
+          "id": "m19",
+          "speaker": "customer",
+          "text": "Okay. Is outdoor seating available?"
+        },
+        {
+          "id": "m20",
+          "speaker": "staff",
+          "text": "Your reservation has been made. There is no outdoor seating."
+        },
+        {
+          "id": "m21",
+          "speaker": "customer",
+          "text": "Thank you, that's it."
+        }
+      ],
+      "fields": {
+        "restaurantName": {
+          "gold": [
+            "Chevys Fresh Mex"
+          ],
+          "raw": {
+            "value": "Chevys Fresh Mex",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m8",
+                "quote": "Chevys Fresh Mex is a good one in San Jose.",
+                "kind": "value"
+              },
+              {
+                "id": "m9",
+                "quote": "Okay, that is fine.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "Chevys Fresh Mex",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m8",
+              "m9"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "city": {
+          "gold": [
+            "San Jose"
+          ],
+          "raw": {
+            "value": "San Jose",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m5",
+                "quote": "Find restaurants in San Jose.",
+                "kind": "value"
+              },
+              {
+                "id": "m8",
+                "quote": "Chevys Fresh Mex is a good one in San Jose.",
+                "kind": "context"
+              },
+              {
+                "id": "m9",
+                "quote": "Okay, that is fine.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "San Jose",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m5",
+              "m8",
+              "m9"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "date": {
+          "gold": [
+            "March 6th",
+            "next Wednesday"
+          ],
+          "raw": {
+            "value": "March 6th",
+            "status": "needs_clarification",
+            "constraint": "Year not specified",
+            "evidence": [
+              {
+                "id": "m17",
+                "quote": "No, make that March 6th at one in the afternoon.",
+                "kind": "value"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "March 6th",
+            "status": "needs_clarification",
+            "constraint": "Year not specified",
+            "evidenceIds": [
+              "m17"
+            ],
+            "source": "model",
+            "note": "Please confirm the remaining detail."
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "time": {
+          "gold": [
+            "1 pm",
+            "one in the afternoon"
+          ],
+          "raw": {
+            "value": "1 pm",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m17",
+                "quote": "No, make that March 6th at one in the afternoon.",
+                "kind": "value"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "1 pm",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m17"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "partySize": {
+          "gold": [
+            "1"
+          ],
+          "raw": {
+            "value": "1",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m15",
+                "quote": "No, it needs to be for 1.",
+                "kind": "value"
+              },
+              {
+                "id": "m16",
+                "quote": "So you want to make a reservation at 7:15 pm for 1?",
+                "kind": "context"
+              },
+              {
+                "id": "m17",
+                "quote": "No, make that March 6th at one in the afternoon.",
+                "kind": "context"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "1",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m15",
+              "m16",
+              "m17"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        }
+      },
+      "usage": {
+        "inputTokens": 2225,
+        "outputTokens": 353,
+        "model": "gpt-6-luna"
+      },
+      "latencyMs": 3496
+    },
+    {
+      "id": "4_00085",
+      "messages": [
+        {
+          "id": "m1",
+          "speaker": "customer",
+          "text": "I need somewhere to eat tonight. Can you help me find a place?"
+        },
+        {
+          "id": "m2",
+          "speaker": "staff",
+          "text": "Sure, where should I search? What kind of cuisine would you like?"
+        },
+        {
+          "id": "m3",
+          "speaker": "customer",
+          "text": "Please find me some Malaysian restaurants in San Jose."
+        },
+        {
+          "id": "m4",
+          "speaker": "staff",
+          "text": "There is a lovely restaurant called Erawan Thai Cuisine in San Jose."
+        },
+        {
+          "id": "m5",
+          "speaker": "customer",
+          "text": "Is there anything else you can recomment? I'd like something that's not very costly."
+        },
+        {
+          "id": "m6",
+          "speaker": "staff",
+          "text": "I think you'll like Krungthai in San Jose."
+        },
+        {
+          "id": "m7",
+          "speaker": "customer",
+          "text": "What is their contact number? And what about their restaurant user rating?"
+        },
+        {
+          "id": "m8",
+          "speaker": "staff",
+          "text": "The restaurant is rated 4.2 stars and you can contact them at 408-260-8224."
+        },
+        {
+          "id": "m9",
+          "speaker": "customer",
+          "text": "That sounds good."
+        },
+        {
+          "id": "m10",
+          "speaker": "staff",
+          "text": "Should I book a table there?"
+        },
+        {
+          "id": "m11",
+          "speaker": "customer",
+          "text": "Yes, please book a table for Sunday this week."
+        },
+        {
+          "id": "m12",
+          "speaker": "staff",
+          "text": "What time should the reservation be for?"
+        },
+        {
+          "id": "m13",
+          "speaker": "customer",
+          "text": "Make it for one in the afternoon for 4 people."
+        },
+        {
+          "id": "m14",
+          "speaker": "staff",
+          "text": "So you'd like a table for 4 people at Krungthai in San Jose for 1 pm the day after tomorrow. Is this correct?"
+        },
+        {
+          "id": "m15",
+          "speaker": "customer",
+          "text": "Yes that's perfect."
+        },
+        {
+          "id": "m16",
+          "speaker": "staff",
+          "text": "The reservation has been made."
+        },
+        {
+          "id": "m17",
+          "speaker": "customer",
+          "text": "Thank you, that'll be all."
+        }
+      ],
+      "fields": {
+        "restaurantName": {
+          "gold": [
+            "Krungthai"
+          ],
+          "raw": {
+            "value": "Krungthai",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m6",
+                "quote": "I think you'll like Krungthai in San Jose.",
+                "kind": "value"
+              },
+              {
+                "id": "m9",
+                "quote": "That sounds good.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "Krungthai",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m6",
+              "m9"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "city": {
+          "gold": [
+            "San Jose"
+          ],
+          "raw": {
+            "value": "San Jose",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m6",
+                "quote": "I think you'll like Krungthai in San Jose.",
+                "kind": "value"
+              },
+              {
+                "id": "m9",
+                "quote": "That sounds good.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "San Jose",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m6",
+              "m9"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "date": {
+          "gold": [
+            "Sunday this week",
+            "day after tomorrow"
+          ],
+          "raw": {
+            "value": "Sunday this week",
+            "status": "needs_clarification",
+            "constraint": "Sunday this week",
+            "evidence": [
+              {
+                "id": "m11",
+                "quote": "Yes, please book a table for Sunday this week.",
+                "kind": "value"
+              },
+              {
+                "id": "m14",
+                "quote": "So you'd like a table for 4 people at Krungthai in San Jose for 1 pm the day after tomorrow. Is this correct?",
+                "kind": "context"
+              },
+              {
+                "id": "m15",
+                "quote": "Yes that's perfect.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "Sunday this week",
+            "status": "needs_clarification",
+            "constraint": "Sunday this week",
+            "evidenceIds": [
+              "m11",
+              "m14",
+              "m15"
+            ],
+            "source": "model",
+            "note": "Please confirm the remaining detail."
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "time": {
+          "gold": [
+            "1 pm",
+            "one in the afternoon"
+          ],
+          "raw": {
+            "value": "1 pm",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m13",
+                "quote": "Make it for one in the afternoon for 4 people.",
+                "kind": "value"
+              },
+              {
+                "id": "m14",
+                "quote": "So you'd like a table for 4 people at Krungthai in San Jose for 1 pm the day after tomorrow. Is this correct?",
+                "kind": "context"
+              },
+              {
+                "id": "m15",
+                "quote": "Yes that's perfect.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "1 pm",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m13",
+              "m14",
+              "m15"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "partySize": {
+          "gold": [
+            "4"
+          ],
+          "raw": {
+            "value": "4",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m13",
+                "quote": "Make it for one in the afternoon for 4 people.",
+                "kind": "value"
+              },
+              {
+                "id": "m14",
+                "quote": "So you'd like a table for 4 people at Krungthai in San Jose for 1 pm the day after tomorrow. Is this correct?",
+                "kind": "context"
+              },
+              {
+                "id": "m15",
+                "quote": "Yes that's perfect.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "4",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m13",
+              "m14",
+              "m15"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        }
+      },
+      "usage": {
+        "inputTokens": 2155,
+        "outputTokens": 940,
+        "model": "gpt-6-luna"
+      },
+      "latencyMs": 8337
+    },
+    {
+      "id": "4_00081",
+      "messages": [
+        {
+          "id": "m1",
+          "speaker": "customer",
+          "text": "I want to eat out in San Fran."
+        },
+        {
+          "id": "m2",
+          "speaker": "staff",
+          "text": "What style food do you want?"
+        },
+        {
+          "id": "m3",
+          "speaker": "customer",
+          "text": "I want Pizza and Pasta."
+        },
+        {
+          "id": "m4",
+          "speaker": "staff",
+          "text": "San Francisco has 54 Mint Ristorante Italiano and it's supposed to be good."
+        },
+        {
+          "id": "m5",
+          "speaker": "customer",
+          "text": "Give me a more moderate priced place please."
+        },
+        {
+          "id": "m6",
+          "speaker": "staff",
+          "text": "Give A16 a try. They are also in San Francisco."
+        },
+        {
+          "id": "m7",
+          "speaker": "customer",
+          "text": "Do they have Al Fresco seating? Where are they?"
+        },
+        {
+          "id": "m8",
+          "speaker": "staff",
+          "text": "No on the Al Fresco but they are on 2355 Chestnut Street."
+        },
+        {
+          "id": "m9",
+          "speaker": "customer",
+          "text": "I'll just have to live with that."
+        },
+        {
+          "id": "m10",
+          "speaker": "staff",
+          "text": "Do you want a table?"
+        },
+        {
+          "id": "m11",
+          "speaker": "customer",
+          "text": "Please set aside a table for me."
+        },
+        {
+          "id": "m12",
+          "speaker": "staff",
+          "text": "What time will you go?"
+        },
+        {
+          "id": "m13",
+          "speaker": "customer",
+          "text": "How about in the evening 6."
+        },
+        {
+          "id": "m14",
+          "speaker": "staff",
+          "text": "Ok, I think I have it: table for 2 at A16 today at 6 pm in San Francisco?"
+        },
+        {
+          "id": "m15",
+          "speaker": "customer",
+          "text": "I confirm it. Give me their number please."
+        },
+        {
+          "id": "m16",
+          "speaker": "staff",
+          "text": "You are hereby reserved. Call them at 415-771-2216 if you wish."
+        },
+        {
+          "id": "m17",
+          "speaker": "customer",
+          "text": "That seems ideal."
+        }
+      ],
+      "fields": {
+        "restaurantName": {
+          "gold": [
+            "A16"
+          ],
+          "raw": {
+            "value": "A16",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m6",
+                "quote": "Give A16 a try.",
+                "kind": "value"
+              },
+              {
+                "id": "m14",
+                "quote": "table for 2 at A16 today at 6 pm in San Francisco?",
+                "kind": "value"
+              },
+              {
+                "id": "m15",
+                "quote": "I confirm it.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "A16",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m6",
+              "m14",
+              "m15"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "city": {
+          "gold": [
+            "San Fran",
+            "San Francisco"
+          ],
+          "raw": {
+            "value": "San Francisco",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m1",
+                "quote": "I want to eat out in San Fran.",
+                "kind": "value"
+              },
+              {
+                "id": "m6",
+                "quote": "They are also in San Francisco.",
+                "kind": "value"
+              },
+              {
+                "id": "m14",
+                "quote": "table for 2 at A16 today at 6 pm in San Francisco?",
+                "kind": "value"
+              },
+              {
+                "id": "m15",
+                "quote": "I confirm it.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "San Francisco",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1",
+              "m6",
+              "m14",
+              "m15"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "date": {
+          "gold": [
+            "today"
+          ],
+          "raw": {
+            "value": "today",
+            "status": "needs_clarification",
+            "constraint": "today",
+            "evidence": [
+              {
+                "id": "m14",
+                "quote": "table for 2 at A16 today at 6 pm in San Francisco?",
+                "kind": "value"
+              },
+              {
+                "id": "m15",
+                "quote": "I confirm it.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "today",
+            "status": "needs_clarification",
+            "constraint": "today",
+            "evidenceIds": [
+              "m14",
+              "m15"
+            ],
+            "source": "model",
+            "note": "Please confirm the remaining detail."
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "time": {
+          "gold": [
+            "6 pm",
+            "evening 6"
+          ],
+          "raw": {
+            "value": "6 pm",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m13",
+                "quote": "How about in the evening 6.",
+                "kind": "value"
+              },
+              {
+                "id": "m14",
+                "quote": "table for 2 at A16 today at 6 pm in San Francisco?",
+                "kind": "value"
+              },
+              {
+                "id": "m15",
+                "quote": "I confirm it.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "6 pm",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m13",
+              "m14",
+              "m15"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "partySize": {
+          "gold": [
+            "2"
+          ],
+          "raw": {
+            "value": "2",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m14",
+                "quote": "table for 2 at A16 today at 6 pm in San Francisco?",
+                "kind": "value"
+              },
+              {
+                "id": "m15",
+                "quote": "I confirm it.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "2",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m14",
+              "m15"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        }
+      },
+      "usage": {
+        "inputTokens": 2129,
+        "outputTokens": 413,
+        "model": "gpt-6-luna"
+      },
+      "latencyMs": 4037
+    },
+    {
+      "id": "1_00022",
+      "messages": [
+        {
+          "id": "m1",
+          "speaker": "customer",
+          "text": "Hi i need a help, One of my friends coming to this city for meet me, I am looking to book a table at a restaurant for him?"
+        },
+        {
+          "id": "m2",
+          "speaker": "staff",
+          "text": "Sure, I will help you, at what time should i try to book for?"
+        },
+        {
+          "id": "m3",
+          "speaker": "customer",
+          "text": "book at 6:45 pm"
+        },
+        {
+          "id": "m4",
+          "speaker": "staff",
+          "text": "Which city should i search in? Which restaurant do you want to book a table at?"
+        },
+        {
+          "id": "m5",
+          "speaker": "customer",
+          "text": "Try to book a table at Sakana Sushi in SF"
+        },
+        {
+          "id": "m6",
+          "speaker": "staff",
+          "text": "please confirm the following details: Booking a table at Sakana Sushi bar & Grill at San francisco on today 6:45 pm, The reservation for 2 people"
+        },
+        {
+          "id": "m7",
+          "speaker": "customer",
+          "text": "no, book for only one people"
+        },
+        {
+          "id": "m8",
+          "speaker": "staff",
+          "text": "please confirm the following details: The reservation is at 6:45 pm and the reservation for 1 people"
+        },
+        {
+          "id": "m9",
+          "speaker": "customer",
+          "text": "Yes, that's right, what is the address of the restaurant?"
+        },
+        {
+          "id": "m10",
+          "speaker": "staff",
+          "text": "Congrats, your reservation is successful, Restaurant address is 605 Post Street"
+        },
+        {
+          "id": "m11",
+          "speaker": "customer",
+          "text": "Ok, Could you give their phone number?"
+        },
+        {
+          "id": "m12",
+          "speaker": "staff",
+          "text": "Sure, Their phone number is 415-775-7644"
+        },
+        {
+          "id": "m13",
+          "speaker": "customer",
+          "text": "thank you very much for your help, That's all i need."
+        }
+      ],
+      "fields": {
+        "restaurantName": {
+          "gold": [
+            "Sakana Sushi",
+            "Sakana Sushi bar & Grill"
+          ],
+          "raw": {
+            "value": "Sakana Sushi",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m5",
+                "quote": "Try to book a table at Sakana Sushi in SF",
+                "kind": "value"
+              },
+              {
+                "id": "m6",
+                "quote": "Booking a table at Sakana Sushi bar & Grill",
+                "kind": "context"
+              },
+              {
+                "id": "m9",
+                "quote": "Yes, that's right",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "Sakana Sushi",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m5",
+              "m6",
+              "m9"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "city": {
+          "gold": [
+            "SF",
+            "San francisco"
+          ],
+          "raw": {
+            "value": "SF",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m5",
+                "quote": "in SF",
+                "kind": "value"
+              },
+              {
+                "id": "m6",
+                "quote": "at San francisco",
+                "kind": "context"
+              },
+              {
+                "id": "m9",
+                "quote": "Yes, that's right",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "SF",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m5",
+              "m6",
+              "m9"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "date": {
+          "gold": [
+            "today"
+          ],
+          "raw": {
+            "value": null,
+            "status": "missing",
+            "constraint": null,
+            "evidence": []
+          },
+          "guarded": {
+            "value": null,
+            "status": "missing",
+            "constraint": null,
+            "evidenceIds": [],
+            "source": null,
+            "note": ""
+          },
+          "rawMatch": false,
+          "guardedMatch": false
+        },
+        "time": {
+          "gold": [
+            "6:45 pm"
+          ],
+          "raw": {
+            "value": "6:45 pm",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m3",
+                "quote": "book at 6:45 pm",
+                "kind": "value"
+              },
+              {
+                "id": "m8",
+                "quote": "The reservation is at 6:45 pm",
+                "kind": "context"
+              },
+              {
+                "id": "m9",
+                "quote": "Yes, that's right",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "6:45 pm",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m3",
+              "m8",
+              "m9"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "partySize": {
+          "gold": [
+            "1"
+          ],
+          "raw": {
+            "value": "1",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m7",
+                "quote": "book for only one people",
+                "kind": "value"
+              },
+              {
+                "id": "m8",
+                "quote": "the reservation for 1 people",
+                "kind": "context"
+              },
+              {
+                "id": "m9",
+                "quote": "Yes, that's right",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "1",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m7",
+              "m8",
+              "m9"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        }
+      },
+      "usage": {
+        "inputTokens": 2108,
+        "outputTokens": 335,
+        "model": "gpt-6-luna"
+      },
+      "latencyMs": 3885
+    },
+    {
+      "id": "1_00017",
+      "messages": [
+        {
+          "id": "m1",
+          "speaker": "customer",
+          "text": "I'd like to book a restaurant table."
+        },
+        {
+          "id": "m2",
+          "speaker": "staff",
+          "text": "Where should I look?"
+        },
+        {
+          "id": "m3",
+          "speaker": "customer",
+          "text": "Look for restaurants in Albany."
+        },
+        {
+          "id": "m4",
+          "speaker": "staff",
+          "text": "Is there a particular restaurant you would like to book at?"
+        },
+        {
+          "id": "m5",
+          "speaker": "customer",
+          "text": "I want to try out Kathmandu Restaurant."
+        },
+        {
+          "id": "m6",
+          "speaker": "staff",
+          "text": "What time do you want the reservation to be?"
+        },
+        {
+          "id": "m7",
+          "speaker": "customer",
+          "text": "Make it at two pm."
+        },
+        {
+          "id": "m8",
+          "speaker": "staff",
+          "text": "Okay, please confirm these details. You would like to book a table at Kathmandu Restaurant in Albany for 2 people. This reservation is for 2 pm today."
+        },
+        {
+          "id": "m9",
+          "speaker": "customer",
+          "text": "No, actually I want a table on the 11th of March. Would you try booking at Rokko?"
+        },
+        {
+          "id": "m10",
+          "speaker": "staff",
+          "text": "Okay, so you would like me to book a table at Rokko for March 11th?"
+        },
+        {
+          "id": "m11",
+          "speaker": "customer",
+          "text": "Yes, that is fine. Is the restaurant pricey?"
+        }
+      ],
+      "fields": {
+        "restaurantName": {
+          "gold": [
+            "Rokko"
+          ],
+          "raw": {
+            "value": "Rokko",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m9",
+                "quote": "Would you try booking at Rokko?",
+                "kind": "value"
+              },
+              {
+                "id": "m10",
+                "quote": "Okay, so you would like me to book a table at Rokko for March 11th?",
+                "kind": "context"
+              },
+              {
+                "id": "m11",
+                "quote": "Yes, that is fine.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "Rokko",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m9",
+              "m10",
+              "m11"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "city": {
+          "gold": [
+            "Albany"
+          ],
+          "raw": {
+            "value": "Albany",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m3",
+                "quote": "Look for restaurants in Albany.",
+                "kind": "value"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "Albany",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m3"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "date": {
+          "gold": [
+            "11th of March",
+            "March 11th"
+          ],
+          "raw": {
+            "value": "March 11th",
+            "status": "needs_clarification",
+            "constraint": "Year not specified",
+            "evidence": [
+              {
+                "id": "m9",
+                "quote": "I want a table on the 11th of March.",
+                "kind": "value"
+              },
+              {
+                "id": "m10",
+                "quote": "March 11th",
+                "kind": "context"
+              },
+              {
+                "id": "m11",
+                "quote": "Yes, that is fine.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "March 11th",
+            "status": "needs_clarification",
+            "constraint": "Year not specified",
+            "evidenceIds": [
+              "m9",
+              "m10",
+              "m11"
+            ],
+            "source": "model",
+            "note": "Please confirm the remaining detail."
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "time": {
+          "gold": [
+            "2 pm",
+            "two pm"
+          ],
+          "raw": {
+            "value": null,
+            "status": "missing",
+            "constraint": null,
+            "evidence": []
+          },
+          "guarded": {
+            "value": null,
+            "status": "missing",
+            "constraint": null,
+            "evidenceIds": [],
+            "source": null,
+            "note": ""
+          },
+          "rawMatch": false,
+          "guardedMatch": false
+        },
+        "partySize": {
+          "gold": [
+            "2"
+          ],
+          "raw": {
+            "value": null,
+            "status": "missing",
+            "constraint": null,
+            "evidence": []
+          },
+          "guarded": {
+            "value": null,
+            "status": "missing",
+            "constraint": null,
+            "evidenceIds": [],
+            "source": null,
+            "note": ""
+          },
+          "rawMatch": false,
+          "guardedMatch": false
+        }
+      },
+      "usage": {
+        "inputTokens": 2017,
+        "outputTokens": 265,
+        "model": "gpt-6-luna"
+      },
+      "latencyMs": 3657
+    },
+    {
+      "id": "1_00006",
+      "messages": [
+        {
+          "id": "m1",
+          "speaker": "customer",
+          "text": "I need to taste good food , i am very much eager to taste different food varieties from my normal routine food. Will you book a table at a restaurant?"
+        },
+        {
+          "id": "m2",
+          "speaker": "staff",
+          "text": "At which location i should search for and at what time i need to book a table ? whether any special restaurant you like to book a table?"
+        },
+        {
+          "id": "m3",
+          "speaker": "customer",
+          "text": "Find restaurants in SFO and at time 13:00 ? Can you try booking a table at Tuba?"
+        },
+        {
+          "id": "m4",
+          "speaker": "staff",
+          "text": "ok please check and review the details for confirmation. Table need to be booked at Tuba Authentic Turkish Restaurant in the city San francisco at time 1 pm and number of people is 2 for the date is today."
+        },
+        {
+          "id": "m5",
+          "speaker": "customer",
+          "text": "No Find restaurants in Livermore and Book a table at simply fondue?"
+        },
+        {
+          "id": "m6",
+          "speaker": "staff",
+          "text": "Ok please once again check and review the following details. Table need to be booked at Simply Fondue at the city Livermore."
+        },
+        {
+          "id": "m7",
+          "speaker": "customer",
+          "text": "Ok That's correct."
+        },
+        {
+          "id": "m8",
+          "speaker": "staff",
+          "text": "Reservation is successful."
+        },
+        {
+          "id": "m9",
+          "speaker": "customer",
+          "text": "Thanks a lot for your help. thats all i need"
+        }
+      ],
+      "fields": {
+        "restaurantName": {
+          "gold": [
+            "Simply Fondue",
+            "simply fondue"
+          ],
+          "raw": {
+            "value": "Simply Fondue",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m5",
+                "quote": "Book a table at simply fondue?",
+                "kind": "value"
+              },
+              {
+                "id": "m6",
+                "quote": "Table need to be booked at Simply Fondue at the city Livermore.",
+                "kind": "value"
+              },
+              {
+                "id": "m7",
+                "quote": "Ok That's correct.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "Simply Fondue",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m5",
+              "m6",
+              "m7"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "city": {
+          "gold": [
+            "Livermore"
+          ],
+          "raw": {
+            "value": "Livermore",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m5",
+                "quote": "Find restaurants in Livermore",
+                "kind": "value"
+              },
+              {
+                "id": "m6",
+                "quote": "Table need to be booked at Simply Fondue at the city Livermore.",
+                "kind": "value"
+              },
+              {
+                "id": "m7",
+                "quote": "Ok That's correct.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "Livermore",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m5",
+              "m6",
+              "m7"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "date": {
+          "gold": [
+            "today"
+          ],
+          "raw": {
+            "value": null,
+            "status": "missing",
+            "constraint": null,
+            "evidence": []
+          },
+          "guarded": {
+            "value": null,
+            "status": "missing",
+            "constraint": null,
+            "evidenceIds": [],
+            "source": null,
+            "note": ""
+          },
+          "rawMatch": false,
+          "guardedMatch": false
+        },
+        "time": {
+          "gold": [
+            "1 pm",
+            "13:00"
+          ],
+          "raw": {
+            "value": "1 pm",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m3",
+                "quote": "at time 13:00",
+                "kind": "value"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "1 pm",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m3"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "partySize": {
+          "gold": [
+            "2"
+          ],
+          "raw": {
+            "value": null,
+            "status": "missing",
+            "constraint": null,
+            "evidence": []
+          },
+          "guarded": {
+            "value": null,
+            "status": "missing",
+            "constraint": null,
+            "evidenceIds": [],
+            "source": null,
+            "note": ""
+          },
+          "rawMatch": false,
+          "guardedMatch": false
+        }
+      },
+      "usage": {
+        "inputTokens": 2042,
+        "outputTokens": 761,
+        "model": "gpt-6-luna"
+      },
+      "latencyMs": 7601
+    },
+    {
+      "id": "4_00073",
+      "messages": [
+        {
+          "id": "m1",
+          "speaker": "customer",
+          "text": "I am hungry!"
+        },
+        {
+          "id": "m2",
+          "speaker": "staff",
+          "text": "Where should I search? What kind of food would you like?"
+        },
+        {
+          "id": "m3",
+          "speaker": "customer",
+          "text": "How about Diner style food. Please search in Lafayette."
+        },
+        {
+          "id": "m4",
+          "speaker": "staff",
+          "text": "American Kitchen is great and located in Lafayette."
+        },
+        {
+          "id": "m5",
+          "speaker": "customer",
+          "text": "Yes, that is great."
+        },
+        {
+          "id": "m6",
+          "speaker": "staff",
+          "text": "Do want to reserve a table?"
+        },
+        {
+          "id": "m7",
+          "speaker": "customer",
+          "text": "Yes, please do."
+        },
+        {
+          "id": "m8",
+          "speaker": "staff",
+          "text": "What time should I book the table for?"
+        },
+        {
+          "id": "m9",
+          "speaker": "customer",
+          "text": "Make it for 8 in the night."
+        },
+        {
+          "id": "m10",
+          "speaker": "staff",
+          "text": "Please confirm the following details: Booking a table for today at American Kitchen in Lafayette. The reservation is for 2 people at 8 pm."
+        },
+        {
+          "id": "m11",
+          "speaker": "customer",
+          "text": "Yes, that is fine. Is it ultra high-end?"
+        },
+        {
+          "id": "m12",
+          "speaker": "staff",
+          "text": "Sorry, I was unable to book a table. Can I assist you with something else."
+        },
+        {
+          "id": "m13",
+          "speaker": "customer",
+          "text": "Try again please. But this time, book it for the evening 5:45."
+        },
+        {
+          "id": "m14",
+          "speaker": "staff",
+          "text": "Please confirm the following details: Booking a table for today at American Kitchen in Lafayette. The reservation is at 5:45 pm and for 2 people."
+        },
+        {
+          "id": "m15",
+          "speaker": "customer",
+          "text": "Yes, that works well."
+        },
+        {
+          "id": "m16",
+          "speaker": "staff",
+          "text": "Your reservation went through."
+        },
+        {
+          "id": "m17",
+          "speaker": "customer",
+          "text": "Thanks."
+        }
+      ],
+      "fields": {
+        "restaurantName": {
+          "gold": [
+            "American Kitchen"
+          ],
+          "raw": {
+            "value": "American Kitchen",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m10",
+                "quote": "Booking a table for today at American Kitchen in Lafayette.",
+                "kind": "value"
+              },
+              {
+                "id": "m11",
+                "quote": "Yes, that is fine.",
+                "kind": "acceptance"
+              },
+              {
+                "id": "m14",
+                "quote": "Booking a table for today at American Kitchen in Lafayette.",
+                "kind": "value"
+              },
+              {
+                "id": "m15",
+                "quote": "Yes, that works well.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "American Kitchen",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m10",
+              "m11",
+              "m14",
+              "m15"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "city": {
+          "gold": [
+            "Lafayette"
+          ],
+          "raw": {
+            "value": "Lafayette",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m3",
+                "quote": "Please search in Lafayette.",
+                "kind": "value"
+              },
+              {
+                "id": "m5",
+                "quote": "Yes, that is great.",
+                "kind": "acceptance"
+              },
+              {
+                "id": "m14",
+                "quote": "Booking a table for today at American Kitchen in Lafayette.",
+                "kind": "value"
+              },
+              {
+                "id": "m15",
+                "quote": "Yes, that works well.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "Lafayette",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m3",
+              "m5",
+              "m14",
+              "m15"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "date": {
+          "gold": [
+            "today"
+          ],
+          "raw": {
+            "value": "today",
+            "status": "needs_clarification",
+            "constraint": "today",
+            "evidence": [
+              {
+                "id": "m10",
+                "quote": "Booking a table for today",
+                "kind": "value"
+              },
+              {
+                "id": "m11",
+                "quote": "Yes, that is fine.",
+                "kind": "acceptance"
+              },
+              {
+                "id": "m14",
+                "quote": "Booking a table for today",
+                "kind": "value"
+              },
+              {
+                "id": "m15",
+                "quote": "Yes, that works well.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "today",
+            "status": "needs_clarification",
+            "constraint": "today",
+            "evidenceIds": [
+              "m10",
+              "m11",
+              "m14",
+              "m15"
+            ],
+            "source": "model",
+            "note": "Please confirm the remaining detail."
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "time": {
+          "gold": [
+            "5:45 pm",
+            "evening 5:45"
+          ],
+          "raw": {
+            "value": "5:45 pm",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m13",
+                "quote": "book it for the evening 5:45.",
+                "kind": "value"
+              },
+              {
+                "id": "m14",
+                "quote": "The reservation is at 5:45 pm",
+                "kind": "value"
+              },
+              {
+                "id": "m15",
+                "quote": "Yes, that works well.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "5:45 pm",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m13",
+              "m14",
+              "m15"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        },
+        "partySize": {
+          "gold": [
+            "2"
+          ],
+          "raw": {
+            "value": "2",
+            "status": "resolved",
+            "constraint": null,
+            "evidence": [
+              {
+                "id": "m14",
+                "quote": "for 2 people.",
+                "kind": "value"
+              },
+              {
+                "id": "m15",
+                "quote": "Yes, that works well.",
+                "kind": "acceptance"
+              }
+            ]
+          },
+          "guarded": {
+            "value": "2",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m14",
+              "m15"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "rawMatch": true,
+          "guardedMatch": true
+        }
+      },
+      "usage": {
+        "inputTokens": 2143,
+        "outputTokens": 877,
+        "model": "gpt-6-luna"
+      },
+      "latencyMs": 7848
+    }
+  ]
+}

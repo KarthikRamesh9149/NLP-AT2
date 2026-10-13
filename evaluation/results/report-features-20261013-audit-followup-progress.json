@@ -1,0 +1,3984 @@
+{
+  "generatedAt": "2026-10-13T05:31:39.372Z",
+  "sourceRevision": "ba2e45154d742097cc7e19e7582dfa97dfde57ad",
+  "extractionVersion": "grounded-state-v18",
+  "sourceFingerprint": "d82f14b6990edb9b6c52d6d3cb9aa229de00cdb980b66d92a5b0f65c8d380214",
+  "configuration": {
+    "primary": "gpt-6-luna",
+    "repair": "gpt-6.1-sol"
+  },
+  "kind": "features",
+  "results": [
+    {
+      "id": "F01",
+      "purpose": "Explicit complete request",
+      "fields": {
+        "restaurantName": {
+          "expected": {
+            "value": "Juniper House",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "Juniper House",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "city": {
+          "expected": {
+            "value": "Sydney",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "Sydney",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "date": {
+          "expected": {
+            "value": "6 November 2026",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "6 November 2026",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "time": {
+          "expected": {
+            "value": "7 pm",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "7 pm",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "partySize": {
+          "expected": {
+            "value": "4",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "4",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        }
+      },
+      "question": null,
+      "questionMatch": true,
+      "canApprove": true,
+      "approvalMatch": true,
+      "passed": true,
+      "usage": {
+        "inputTokens": 1776,
+        "outputTokens": 199,
+        "model": "gpt-6-luna"
+      },
+      "warning": null,
+      "latencyMs": 3736
+    },
+    {
+      "id": "F02",
+      "purpose": "Guest correction changes one field",
+      "fields": {
+        "restaurantName": {
+          "expected": {
+            "value": "Juniper House",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "Juniper House",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "city": {
+          "expected": {
+            "value": "Sydney",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "Sydney",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "date": {
+          "expected": {
+            "value": "6 November 2026",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "6 November 2026",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "time": {
+          "expected": {
+            "value": "7 pm",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "7 pm",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "partySize": {
+          "expected": {
+            "value": "6",
+            "status": "resolved",
+            "support": [
+              [
+                "m2"
+              ]
+            ],
+            "allowed": [
+              "m1",
+              "m2"
+            ]
+          },
+          "actual": {
+            "value": "6",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1",
+              "m2"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            },
+            {
+              "id": "m2",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        }
+      },
+      "question": null,
+      "questionMatch": true,
+      "canApprove": true,
+      "approvalMatch": true,
+      "passed": true,
+      "usage": {
+        "inputTokens": 1794,
+        "outputTokens": 207,
+        "model": "gpt-6-luna"
+      },
+      "warning": null,
+      "latencyMs": 3711
+    },
+    {
+      "id": "F03",
+      "purpose": "Accepted staff time links offer and acceptance",
+      "fields": {
+        "restaurantName": {
+          "expected": {
+            "value": "Juniper House",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "Juniper House",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "city": {
+          "expected": {
+            "value": "Sydney",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "Sydney",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "date": {
+          "expected": {
+            "value": "6 November 2026",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "6 November 2026",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "time": {
+          "expected": {
+            "value": "8:30 pm",
+            "status": "resolved",
+            "support": [
+              [
+                "m2",
+                "m3"
+              ]
+            ],
+            "allowed": [
+              "m1",
+              "m2",
+              "m3"
+            ]
+          },
+          "actual": {
+            "value": "8:30 pm",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1",
+              "m2",
+              "m3"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            },
+            {
+              "id": "m2",
+              "relevant": true,
+              "known": true
+            },
+            {
+              "id": "m3",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "partySize": {
+          "expected": {
+            "value": "4",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "4",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        }
+      },
+      "question": null,
+      "questionMatch": true,
+      "canApprove": true,
+      "approvalMatch": true,
+      "passed": true,
+      "usage": {
+        "inputTokens": 1813,
+        "outputTokens": 240,
+        "model": "gpt-6-luna"
+      },
+      "warning": null,
+      "latencyMs": 2745
+    },
+    {
+      "id": "F04",
+      "purpose": "Unaccepted offer stays uncertain",
+      "fields": {
+        "restaurantName": {
+          "expected": {
+            "value": "Juniper House",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "Juniper House",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "city": {
+          "expected": {
+            "value": "Sydney",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "Sydney",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "date": {
+          "expected": {
+            "value": "6 November 2026",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "6 November 2026",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "time": {
+          "expected": {
+            "value": null,
+            "status": "needs_clarification",
+            "constraint": "after.*7",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1",
+              "m2",
+              "m3"
+            ]
+          },
+          "actual": {
+            "value": null,
+            "status": "needs_clarification",
+            "constraint": "after 7 pm",
+            "evidenceIds": [
+              "m1",
+              "m2"
+            ],
+            "source": "model",
+            "note": "Please confirm the remaining detail."
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            },
+            {
+              "id": "m2",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "partySize": {
+          "expected": {
+            "value": "4",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "4",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        }
+      },
+      "question": "What exact time would you prefer (after 7 pm)?",
+      "questionMatch": true,
+      "canApprove": false,
+      "approvalMatch": true,
+      "passed": true,
+      "usage": {
+        "inputTokens": 1814,
+        "outputTokens": 224,
+        "model": "gpt-6-luna"
+      },
+      "warning": null,
+      "latencyMs": 3331
+    },
+    {
+      "id": "F05",
+      "purpose": "Rejected alternative retains chosen time",
+      "fields": {
+        "restaurantName": {
+          "expected": {
+            "value": "Juniper House",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "Juniper House",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "city": {
+          "expected": {
+            "value": "Sydney",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "Sydney",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "date": {
+          "expected": {
+            "value": "6 November 2026",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "6 November 2026",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "time": {
+          "expected": {
+            "value": "7 pm",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1",
+              "m2",
+              "m3"
+            ]
+          },
+          "actual": {
+            "value": "7 pm",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1",
+              "m3"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            },
+            {
+              "id": "m3",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "partySize": {
+          "expected": {
+            "value": "4",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "4",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        }
+      },
+      "question": null,
+      "questionMatch": true,
+      "canApprove": true,
+      "approvalMatch": true,
+      "passed": true,
+      "usage": {
+        "inputTokens": 1813,
+        "outputTokens": 316,
+        "model": "gpt-6-luna"
+      },
+      "warning": null,
+      "latencyMs": 3801
+    },
+    {
+      "id": "F06",
+      "purpose": "Time range replaces an exact value",
+      "fields": {
+        "restaurantName": {
+          "expected": {
+            "value": "Juniper House",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "Juniper House",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "city": {
+          "expected": {
+            "value": "Sydney",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "Sydney",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "date": {
+          "expected": {
+            "value": "6 November 2026",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "6 November 2026",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "time": {
+          "expected": {
+            "value": null,
+            "status": "needs_clarification",
+            "constraint": "after.*8",
+            "support": [
+              [
+                "m2"
+              ]
+            ],
+            "allowed": [
+              "m1",
+              "m2"
+            ]
+          },
+          "actual": {
+            "value": null,
+            "status": "needs_clarification",
+            "constraint": "sometime after 8 pm",
+            "evidenceIds": [
+              "m2"
+            ],
+            "source": "model",
+            "note": "Please confirm the remaining detail."
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m2",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "partySize": {
+          "expected": {
+            "value": "4",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "4",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        }
+      },
+      "question": "What exact time would you prefer (sometime after 8 pm)?",
+      "questionMatch": true,
+      "canApprove": false,
+      "approvalMatch": true,
+      "passed": true,
+      "usage": {
+        "inputTokens": 1797,
+        "outputTokens": 210,
+        "model": "gpt-6-luna"
+      },
+      "warning": null,
+      "latencyMs": 3516
+    },
+    {
+      "id": "F07",
+      "purpose": "Alternatives require a choice",
+      "fields": {
+        "restaurantName": {
+          "expected": {
+            "value": "Juniper House",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "Juniper House",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "city": {
+          "expected": {
+            "value": "Sydney",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "Sydney",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "date": {
+          "expected": {
+            "value": "6 November 2026",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "6 November 2026",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "time": {
+          "expected": {
+            "value": null,
+            "status": "needs_clarification",
+            "constraint": "7.*8",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": null,
+            "status": "needs_clarification",
+            "constraint": "either 7 pm or 8 pm",
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": "Please confirm the remaining detail."
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "partySize": {
+          "expected": {
+            "value": "4",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "4",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        }
+      },
+      "question": "What exact time would you prefer (either 7 pm or 8 pm)?",
+      "questionMatch": true,
+      "canApprove": false,
+      "approvalMatch": true,
+      "passed": true,
+      "usage": {
+        "inputTokens": 1779,
+        "outputTokens": 273,
+        "model": "gpt-6-luna"
+      },
+      "warning": null,
+      "latencyMs": 3699
+    },
+    {
+      "id": "F08",
+      "purpose": "Clock time without a period stays uncertain",
+      "fields": {
+        "restaurantName": {
+          "expected": {
+            "value": "Juniper House",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "Juniper House",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "city": {
+          "expected": {
+            "value": "Sydney",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "Sydney",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "date": {
+          "expected": {
+            "value": "6 November 2026",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "6 November 2026",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "time": {
+          "expected": {
+            "value": null,
+            "status": "needs_clarification",
+            "constraint": "7",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": null,
+            "status": "needs_clarification",
+            "constraint": "7",
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": "Please confirm the remaining detail."
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "partySize": {
+          "expected": {
+            "value": "4",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "4",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        }
+      },
+      "question": "What exact time would you prefer (7)?",
+      "questionMatch": true,
+      "canApprove": false,
+      "approvalMatch": true,
+      "passed": true,
+      "usage": {
+        "inputTokens": 1773,
+        "outputTokens": 197,
+        "model": "gpt-6-luna"
+      },
+      "warning": null,
+      "latencyMs": 3025
+    },
+    {
+      "id": "F09",
+      "purpose": "Missing year is asked explicitly",
+      "fields": {
+        "restaurantName": {
+          "expected": {
+            "value": "Juniper House",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "Juniper House",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "city": {
+          "expected": {
+            "value": "Sydney",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "Sydney",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "date": {
+          "expected": {
+            "value": "November 6th",
+            "status": "needs_clarification",
+            "constraint": "year",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "November 6th",
+            "status": "needs_clarification",
+            "constraint": "Year not specified",
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": "Please confirm the remaining detail."
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "time": {
+          "expected": {
+            "value": "7 pm",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "7 pm",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "partySize": {
+          "expected": {
+            "value": "4",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "4",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        }
+      },
+      "question": "Which year do you mean for November 6th?",
+      "questionMatch": true,
+      "canApprove": false,
+      "approvalMatch": true,
+      "passed": true,
+      "usage": {
+        "inputTokens": 1772,
+        "outputTokens": 196,
+        "model": "gpt-6-luna"
+      },
+      "warning": null,
+      "latencyMs": 2430
+    },
+    {
+      "id": "F10",
+      "purpose": "Relative date without an anchor stays visible",
+      "fields": {
+        "restaurantName": {
+          "expected": {
+            "value": "Juniper House",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "Juniper House",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "city": {
+          "expected": {
+            "value": "Sydney",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "Sydney",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "date": {
+          "expected": {
+            "value": "tomorrow",
+            "status": "needs_clarification",
+            "constraint": "tomorrow",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "tomorrow",
+            "status": "needs_clarification",
+            "constraint": "tomorrow",
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": "Please confirm the remaining detail."
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "time": {
+          "expected": {
+            "value": "7 pm",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "7 pm",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "partySize": {
+          "expected": {
+            "value": "4",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "4",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        }
+      },
+      "question": "What exact date do you mean by tomorrow?",
+      "questionMatch": true,
+      "canApprove": false,
+      "approvalMatch": true,
+      "passed": true,
+      "usage": {
+        "inputTokens": 1768,
+        "outputTokens": 191,
+        "model": "gpt-6-luna"
+      },
+      "warning": null,
+      "latencyMs": 3014
+    },
+    {
+      "id": "F11",
+      "purpose": "Reference date anchors tomorrow",
+      "fields": {
+        "restaurantName": {
+          "expected": {
+            "value": "Juniper House",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "Juniper House",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "city": {
+          "expected": {
+            "value": "Sydney",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "Sydney",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "date": {
+          "expected": {
+            "value": "6 November 2026",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "6 November 2026",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "time": {
+          "expected": {
+            "value": "7 pm",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "7 pm",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "partySize": {
+          "expected": {
+            "value": "4",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "4",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        }
+      },
+      "question": null,
+      "questionMatch": true,
+      "canApprove": true,
+      "approvalMatch": true,
+      "passed": true,
+      "usage": {
+        "inputTokens": 1773,
+        "outputTokens": 187,
+        "model": "gpt-6-luna"
+      },
+      "warning": null,
+      "latencyMs": 2914
+    },
+    {
+      "id": "F12",
+      "purpose": "A missing guest count is not defaulted",
+      "fields": {
+        "restaurantName": {
+          "expected": {
+            "value": "Juniper House",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "Juniper House",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "city": {
+          "expected": {
+            "value": "Sydney",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "Sydney",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "date": {
+          "expected": {
+            "value": "6 November 2026",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "6 November 2026",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "time": {
+          "expected": {
+            "value": "7 pm",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "7 pm",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "partySize": {
+          "expected": {
+            "value": null,
+            "status": "missing",
+            "support": [],
+            "allowed": []
+          },
+          "actual": {
+            "value": null,
+            "status": "missing",
+            "constraint": null,
+            "evidenceIds": [],
+            "source": null,
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": false,
+          "sourceSupported": false,
+          "links": []
+        }
+      },
+      "question": "How many people are in your party?",
+      "questionMatch": true,
+      "canApprove": false,
+      "approvalMatch": true,
+      "passed": true,
+      "usage": {
+        "inputTokens": 1771,
+        "outputTokens": 177,
+        "model": "gpt-6-luna"
+      },
+      "warning": null,
+      "latencyMs": 2679
+    },
+    {
+      "id": "F13",
+      "purpose": "An unaccepted staff default remains absent",
+      "fields": {
+        "restaurantName": {
+          "expected": {
+            "value": "Juniper House",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "Juniper House",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "city": {
+          "expected": {
+            "value": "Sydney",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "Sydney",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "date": {
+          "expected": {
+            "value": "6 November 2026",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "6 November 2026",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "time": {
+          "expected": {
+            "value": "7 pm",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "7 pm",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "partySize": {
+          "expected": {
+            "value": null,
+            "status": "missing",
+            "support": [],
+            "allowed": []
+          },
+          "actual": {
+            "value": null,
+            "status": "missing",
+            "constraint": null,
+            "evidenceIds": [],
+            "source": null,
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": false,
+          "sourceSupported": false,
+          "links": []
+        }
+      },
+      "question": "How many people are in your party?",
+      "questionMatch": true,
+      "canApprove": false,
+      "approvalMatch": true,
+      "passed": true,
+      "usage": {
+        "inputTokens": 1808,
+        "outputTokens": 177,
+        "model": "gpt-6-luna"
+      },
+      "warning": null,
+      "latencyMs": 2245
+    },
+    {
+      "id": "F14",
+      "purpose": "Negated cancellation retains the request",
+      "fields": {
+        "restaurantName": {
+          "expected": {
+            "value": "Juniper House",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "Juniper House",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "city": {
+          "expected": {
+            "value": "Sydney",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "Sydney",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "date": {
+          "expected": {
+            "value": "6 November 2026",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "6 November 2026",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "time": {
+          "expected": {
+            "value": "7 pm",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "7 pm",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "partySize": {
+          "expected": {
+            "value": "4",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "4",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        }
+      },
+      "question": null,
+      "questionMatch": true,
+      "canApprove": true,
+      "approvalMatch": true,
+      "passed": true,
+      "usage": {
+        "inputTokens": 1794,
+        "outputTokens": 199,
+        "model": "gpt-6-luna"
+      },
+      "warning": null,
+      "latencyMs": 2818
+    },
+    {
+      "id": "F15",
+      "purpose": "Explicit cancellation clears every field",
+      "fields": {
+        "restaurantName": {
+          "expected": {
+            "value": null,
+            "status": "missing",
+            "support": [],
+            "allowed": []
+          },
+          "actual": {
+            "value": null,
+            "status": "missing",
+            "constraint": null,
+            "evidenceIds": [
+              "m2"
+            ],
+            "source": null,
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": false,
+          "sourceSupported": false,
+          "links": [
+            {
+              "id": "m2",
+              "relevant": false,
+              "known": true
+            }
+          ]
+        },
+        "city": {
+          "expected": {
+            "value": null,
+            "status": "missing",
+            "support": [],
+            "allowed": []
+          },
+          "actual": {
+            "value": null,
+            "status": "missing",
+            "constraint": null,
+            "evidenceIds": [
+              "m2"
+            ],
+            "source": null,
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": false,
+          "sourceSupported": false,
+          "links": [
+            {
+              "id": "m2",
+              "relevant": false,
+              "known": true
+            }
+          ]
+        },
+        "date": {
+          "expected": {
+            "value": null,
+            "status": "missing",
+            "support": [],
+            "allowed": []
+          },
+          "actual": {
+            "value": null,
+            "status": "missing",
+            "constraint": null,
+            "evidenceIds": [
+              "m2"
+            ],
+            "source": null,
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": false,
+          "sourceSupported": false,
+          "links": [
+            {
+              "id": "m2",
+              "relevant": false,
+              "known": true
+            }
+          ]
+        },
+        "time": {
+          "expected": {
+            "value": null,
+            "status": "missing",
+            "support": [],
+            "allowed": []
+          },
+          "actual": {
+            "value": null,
+            "status": "missing",
+            "constraint": null,
+            "evidenceIds": [
+              "m2"
+            ],
+            "source": null,
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": false,
+          "sourceSupported": false,
+          "links": [
+            {
+              "id": "m2",
+              "relevant": false,
+              "known": true
+            }
+          ]
+        },
+        "partySize": {
+          "expected": {
+            "value": null,
+            "status": "missing",
+            "support": [],
+            "allowed": []
+          },
+          "actual": {
+            "value": null,
+            "status": "missing",
+            "constraint": null,
+            "evidenceIds": [
+              "m2"
+            ],
+            "source": null,
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": false,
+          "sourceSupported": false,
+          "links": [
+            {
+              "id": "m2",
+              "relevant": false,
+              "known": true
+            }
+          ]
+        }
+      },
+      "question": null,
+      "questionMatch": true,
+      "canApprove": false,
+      "approvalMatch": true,
+      "passed": true,
+      "usage": {
+        "inputTokens": 1794,
+        "outputTokens": 275,
+        "model": "gpt-6-luna"
+      },
+      "warning": null,
+      "latencyMs": 3165
+    },
+    {
+      "id": "F16",
+      "purpose": "Adults and children are counted once",
+      "fields": {
+        "restaurantName": {
+          "expected": {
+            "value": "Juniper House",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "Juniper House",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "city": {
+          "expected": {
+            "value": "Sydney",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "Sydney",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "date": {
+          "expected": {
+            "value": "6 November 2026",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "6 November 2026",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "time": {
+          "expected": {
+            "value": "7 pm",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "7 pm",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "partySize": {
+          "expected": {
+            "value": "5",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "5",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        }
+      },
+      "question": null,
+      "questionMatch": true,
+      "canApprove": true,
+      "approvalMatch": true,
+      "passed": true,
+      "usage": {
+        "inputTokens": 1780,
+        "outputTokens": 202,
+        "model": "gpt-6-luna"
+      },
+      "warning": null,
+      "latencyMs": 2671
+    },
+    {
+      "id": "F17",
+      "purpose": "Subgroup is already included in the total",
+      "fields": {
+        "restaurantName": {
+          "expected": {
+            "value": "Juniper House",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "Juniper House",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "city": {
+          "expected": {
+            "value": "Sydney",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "Sydney",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "date": {
+          "expected": {
+            "value": "6 November 2026",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "6 November 2026",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "time": {
+          "expected": {
+            "value": "7 pm",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "7 pm",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "partySize": {
+          "expected": {
+            "value": "4",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "4",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        }
+      },
+      "question": null,
+      "questionMatch": true,
+      "canApprove": true,
+      "approvalMatch": true,
+      "passed": true,
+      "usage": {
+        "inputTokens": 1780,
+        "outputTokens": 196,
+        "model": "gpt-6-luna"
+      },
+      "warning": null,
+      "latencyMs": 2498
+    },
+    {
+      "id": "F18",
+      "purpose": "A separate year answer combines two sources",
+      "fields": {
+        "restaurantName": {
+          "expected": {
+            "value": "Juniper House",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "Juniper House",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "city": {
+          "expected": {
+            "value": "Sydney",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "Sydney",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "date": {
+          "expected": {
+            "value": "6 November 2026",
+            "status": "resolved",
+            "support": [
+              [
+                "m1",
+                "m3"
+              ]
+            ],
+            "allowed": [
+              "m1",
+              "m2",
+              "m3"
+            ]
+          },
+          "actual": {
+            "value": "6 November 2026",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1",
+              "m2",
+              "m3"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            },
+            {
+              "id": "m2",
+              "relevant": true,
+              "known": true
+            },
+            {
+              "id": "m3",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "time": {
+          "expected": {
+            "value": "7 pm",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "7 pm",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "partySize": {
+          "expected": {
+            "value": "4",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "4",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        }
+      },
+      "question": null,
+      "questionMatch": true,
+      "canApprove": true,
+      "approvalMatch": true,
+      "passed": true,
+      "usage": {
+        "inputTokens": 1806,
+        "outputTokens": 226,
+        "model": "gpt-6-luna"
+      },
+      "warning": null,
+      "latencyMs": 3110
+    },
+    {
+      "id": "F19",
+      "purpose": "Day correction preserves month and year",
+      "fields": {
+        "restaurantName": {
+          "expected": {
+            "value": "Juniper House",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "Juniper House",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "city": {
+          "expected": {
+            "value": "Sydney",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "Sydney",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "date": {
+          "expected": {
+            "value": "7 November 2026",
+            "status": "resolved",
+            "support": [
+              [
+                "m1",
+                "m2"
+              ]
+            ],
+            "allowed": [
+              "m1",
+              "m2"
+            ]
+          },
+          "actual": {
+            "value": "7 November 2026",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1",
+              "m2"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            },
+            {
+              "id": "m2",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "time": {
+          "expected": {
+            "value": "7 pm",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "7 pm",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "partySize": {
+          "expected": {
+            "value": "4",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "4",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        }
+      },
+      "question": null,
+      "questionMatch": true,
+      "canApprove": true,
+      "approvalMatch": true,
+      "passed": true,
+      "usage": {
+        "inputTokens": 1799,
+        "outputTokens": 215,
+        "model": "gpt-6-luna"
+      },
+      "warning": null,
+      "latencyMs": 3207
+    },
+    {
+      "id": "F20",
+      "purpose": "An impossible calendar date blocks approval",
+      "fields": {
+        "restaurantName": {
+          "expected": {
+            "value": "Juniper House",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "Juniper House",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "city": {
+          "expected": {
+            "value": "Sydney",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "Sydney",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "date": {
+          "expected": {
+            "value": null,
+            "status": "needs_clarification",
+            "constraint": "31.*november.*2026",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": null,
+            "status": "needs_clarification",
+            "constraint": "31 November 2026",
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": "Please confirm the remaining detail."
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "time": {
+          "expected": {
+            "value": "7 pm",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "7 pm",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        },
+        "partySize": {
+          "expected": {
+            "value": "4",
+            "status": "resolved",
+            "support": [
+              [
+                "m1"
+              ]
+            ],
+            "allowed": [
+              "m1"
+            ]
+          },
+          "actual": {
+            "value": "4",
+            "status": "resolved",
+            "constraint": null,
+            "evidenceIds": [
+              "m1"
+            ],
+            "source": "model",
+            "note": ""
+          },
+          "valueMatch": true,
+          "statusMatch": true,
+          "constraintMatch": true,
+          "contentPresent": true,
+          "sourceSupported": true,
+          "links": [
+            {
+              "id": "m1",
+              "relevant": true,
+              "known": true
+            }
+          ]
+        }
+      },
+      "question": "What exact date do you mean by 31 November 2026?",
+      "questionMatch": true,
+      "canApprove": false,
+      "approvalMatch": true,
+      "passed": true,
+      "usage": {
+        "inputTokens": 1774,
+        "outputTokens": 204,
+        "model": "gpt-6-luna"
+      },
+      "warning": null,
+      "latencyMs": 2528
+    }
+  ]
+}
