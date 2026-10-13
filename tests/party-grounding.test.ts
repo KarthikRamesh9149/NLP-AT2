@@ -11,6 +11,14 @@ function propose(count: string, quote: string, source = quote) {
 }
 
 describe('guest count evidence in ordinary booking language', () => {
+  it('accepts an exact labelled count returned by a guest review', () => {
+    const source = 'Please update my enquiry. Guests: 6. Message: One more friend can join. Please keep the same time.';
+    expect(propose('6', 'Guests: 6', source).brief.fields.partySize.value).toBe('6');
+    expect(propose('6', '6', source).brief.fields.partySize.value).toBe('6');
+  });
+  it.each(['Guests: 6 or 7.', 'Maybe guests: 6.', 'Guests: 6 pm.', 'Guests: 6:30.'])('does not accept an uncertain or clock-like labelled count: %s', source => {
+    expect(propose('6', '6', source).brief.fields.partySize.value).toBeNull();
+  });
   it('does not accept a labelled adult subgroup as the whole family count', () => {
     const source = 'The party size is two adults and three children.';
     expect(propose('2', 'two adults', source).brief.fields.partySize.value).toBeNull();

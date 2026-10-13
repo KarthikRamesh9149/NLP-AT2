@@ -2,7 +2,7 @@ import { digitWords } from './temporal';
 
 interface GuestGroup { start: number; end: number; total: number; parts: number; exact: boolean }
 const guestQuantity = /\b(\d{1,2})\s+(?:people|persons?|guests?|diners?|adults?|children|child|kids?|toddlers?|infants?|bab(?:y|ies)|of us)\b/g;
-const labelledQuantity = /\b(?:the\s+)?(?:number of (?:people|guests|diners)|party size|guest count)\s*(?:is|will be|:|=)\s*(\d{1,2})\b/g;
+const labelledQuantity = /\b(?:the\s+)?(?:number of (?:people|guests|diners)|party size|guest count|guests?|people|diners?)\s*(?:is|will be|:|=)\s*(\d{1,2})\b(?!\s*(?::\d|am\b|pm\b))/g;
 const additive = /^\s*(?:,\s*(?:and\s+)?|and\s+|plus\s+|\+\s*|with\s+)$/;
 const alternative = /^\s*,?\s*(?:or|to|-)\s*(?:maybe\s*)?$/;
 const uncertainPrefix = /\b(?:not|no|don't|do not|maybe|possibly|perhaps|around|about|approximately|at least|at most|between)\s*(?:(?:for|book|reserve|have|we(?:'re| are| will be|'ll be)|there(?: will be|'ll be| are)|it(?: will be|'ll be)|(?:a|the) table for|a party of|a group of)\s*)*$/;

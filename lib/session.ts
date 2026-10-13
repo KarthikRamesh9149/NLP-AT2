@@ -9,7 +9,7 @@ import {checkedCareSuggestions,type CareSuggestion} from './restaurant-desk';
 
 export const SESSION_KEY = 'formbridge-session-v2';
 export const LEGACY_SESSION_KEY = 'formbridge-session';
-export const CURRENT_ANALYSIS_VERSION = 'grounded-state-v17';
+export const CURRENT_ANALYSIS_VERSION = 'grounded-state-v18';
 
 export interface SavedSession { messages: Message[]; brief: Brief; referenceDate?: string; pendingAnalysis?: boolean; manualMode?: boolean; analysisVersion?: string; caseId?: string; caseTitle?: string; notes?: string; followUp?: FollowUp | null; guestCare?: GuestCare; guestCareEvidence?:CareSuggestion[];composerDraft?:{text:string;speaker:'customer'|'staff'};teamCase?: { id: string; workspaceId: string; version: number } }
 
