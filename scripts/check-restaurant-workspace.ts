@@ -279,7 +279,7 @@ await check("FAQ answers quote only approved restaurant facts", async () => {
     type: "chat",
     slug: desk.slug,
     messages: [
-      { id: "faq", speaker: "customer", text: "What are your opening hours?" },
+      { id: "faq", speaker: "customer", text: "What time is dinner served?" },
     ],
   });
   assert(

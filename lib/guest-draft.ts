@@ -1,8 +1,16 @@
 import { z } from "zod";
 import { briefSchema, messageSchema } from "./contracts";
 import { guestCareSchema } from "./follow-up";
+import { factSchema } from "./restaurant-desk";
 const schema = z.object({
   messages: z.array(messageSchema).max(30),
+  facts: z
+    .record(
+      z.string().max(40),
+      z.array(factSchema.extend({ approved: z.literal(true) })).max(30),
+    )
+    .refine((value) => Object.keys(value).length <= 30)
+    .default({}),
   draft: z.string().max(1000),
   care: guestCareSchema,
   fields: briefSchema.shape.fields.nullable(),

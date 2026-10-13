@@ -1,0 +1,135 @@
+{
+  "sourceCommit": "1ef53db1c1d5f65fca57511942bb8d45e60ed0d8",
+  "checkedAt": "2026-10-13T02:36:47.680Z",
+  "target": "https://formbridge-nlp-at2.vercel.app",
+  "scope": "Isolated synthetic workspace; real Supabase auth, RLS and RPCs; channel and reservation providers are simulated. Email delivery is not exercised.",
+  "passed": 31,
+  "total": 31,
+  "workspaceId": "f6a987c0-6efd-416a-bc47-ee59aa17876b",
+  "results": [
+    {
+      "name": "Anonymous visitors cannot read a private desk",
+      "passed": true
+    },
+    {
+      "name": "Another device cannot read or mutate this workspace",
+      "passed": true
+    },
+    {
+      "name": "Staff cannot publish restaurant information or alter connections",
+      "passed": true
+    },
+    {
+      "name": "Staff cannot promote their own role",
+      "passed": true
+    },
+    {
+      "name": "Staff cannot bypass the application to write an entire desk",
+      "passed": true
+    },
+    {
+      "name": "Owner promotion gives manager rights and retains owner protection",
+      "passed": true
+    },
+    {
+      "name": "Published page includes approved information and excludes drafts",
+      "passed": true
+    },
+    {
+      "name": "FAQ answers quote only approved restaurant facts",
+      "passed": true
+    },
+    {
+      "name": "Invalid contact details are rejected before analysis",
+      "passed": true
+    },
+    {
+      "name": "Stale desk edits cannot overwrite a teammate",
+      "passed": true
+    },
+    {
+      "name": "Assignees must belong to the workspace",
+      "passed": true
+    },
+    {
+      "name": "Assignment, priority and precise reminder survive reload",
+      "passed": true
+    },
+    {
+      "name": "Guest records merge only with explicit consent and retain history",
+      "passed": true
+    },
+    {
+      "name": "Guest reassignment and unlink remove the previous history",
+      "passed": true
+    },
+    {
+      "name": "Private guest review omits staff notes, contact details and transcript",
+      "passed": true
+    },
+    {
+      "name": "Invalid guest token cannot reveal a review",
+      "passed": true
+    },
+    {
+      "name": "Guest corrections are queued and remove staff approval",
+      "passed": true
+    },
+    {
+      "name": "Revoked guest links cannot be reopened",
+      "passed": true
+    },
+    {
+      "name": "Guest review rejects a brief with missing field objects",
+      "passed": true
+    },
+    {
+      "name": "Simulated incoming messages create private pending enquiries",
+      "passed": true
+    },
+    {
+      "name": "Redelivery does not create a duplicate enquiry",
+      "passed": true
+    },
+    {
+      "name": "A follow-up remains in the original enquiry and marks it for review",
+      "passed": true
+    },
+    {
+      "name": "Simulated staff replies join the conversation and retry once",
+      "passed": true
+    },
+    {
+      "name": "Mock reservations require a reviewed exact brief",
+      "passed": true
+    },
+    {
+      "name": "Mock provider returns availability and an explicitly simulated reference",
+      "passed": true
+    },
+    {
+      "name": "Simulated cancellation leaves the real enquiry unchanged",
+      "passed": true
+    },
+    {
+      "name": "Provider failure preserves the approved enquiry",
+      "passed": true
+    },
+    {
+      "name": "Guest links become stale after a new staff save",
+      "passed": true
+    },
+    {
+      "name": "Atomic handoff rejects a case changed after preparation",
+      "passed": true
+    },
+    {
+      "name": "Disabled restaurant pages stop accepting enquiries",
+      "passed": true
+    },
+    {
+      "name": "Verified email credentials can recover the same workspace identity",
+      "passed": true
+    }
+  ]
+}

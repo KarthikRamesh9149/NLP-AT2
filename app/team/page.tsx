@@ -120,11 +120,16 @@ export default function TeamDesk() {
     return () => clearInterval(interval);
   }, []);
   useEffect(() => {
-    const interval = setInterval(() => {
+    const update = () => {
       if (document.visibilityState === "visible" && !desk.busy)
         team.refreshCases().catch(() => {});
-    }, 20_000);
-    return () => clearInterval(interval);
+    };
+    const interval = setInterval(update, 20_000);
+    document.addEventListener("visibilitychange", update);
+    return () => {
+      clearInterval(interval);
+      document.removeEventListener("visibilitychange", update);
+    };
   }, [team.refreshCases, desk.busy]);
   async function run(action: () => Promise<unknown>, message: string) {
     setNotice("");

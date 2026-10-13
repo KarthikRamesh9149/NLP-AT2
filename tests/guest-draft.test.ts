@@ -39,6 +39,27 @@ describe("guest draft recovery", () => {
         }).success,
       ).toBe(true);
   });
+  it("restores the approved quotations shown with an answer", () => {
+    const fact = {
+      id: "hours",
+      category: "hours",
+      title: "Dinner",
+      text: "Dinner starts at 5:30 pm.",
+      approved: true,
+    };
+    const saved = readGuestDraft(
+      JSON.stringify({
+        ...draft,
+        messages: [
+          { id: "s_answer", speaker: "staff", text: "Our dinner hours" },
+        ],
+        facts: { s_answer: [fact] },
+      }),
+      2000,
+    );
+    expect(saved?.facts.s_answer).toEqual([fact]);
+    expect(readGuestDraft(JSON.stringify(draft), 2000)?.facts).toEqual({});
+  });
   it("refuses a guest merge that would silently truncate notes", () => {
     const desk = emptyDesk();
     desk.guests = [

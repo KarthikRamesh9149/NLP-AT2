@@ -82,9 +82,11 @@ export function useRestaurantDesk(team: ReturnType<typeof useTeam>) {
     };
     const interval = window.setInterval(update, 20_000);
     window.addEventListener("focus", update);
+    document.addEventListener("visibilitychange", update);
     return () => {
       clearInterval(interval);
       window.removeEventListener("focus", update);
+      document.removeEventListener("visibilitychange", update);
     };
   }, [refresh, busy]);
   async function perform(

@@ -34,6 +34,7 @@ export function GuestAssistant({ slug }: { slug: string }) {
       );
       if (saved) {
         setMessages(saved.messages);
+        setFacts(saved.facts);
         setDraft(saved.draft);
         setCare(saved.care);
         setFields(saved.fields);
@@ -50,6 +51,7 @@ export function GuestAssistant({ slug }: { slug: string }) {
         `formbridge-guest-${slug}`,
         JSON.stringify({
           messages,
+          facts,
           draft,
           care,
           fields,
@@ -59,7 +61,17 @@ export function GuestAssistant({ slug }: { slug: string }) {
         }),
       );
     } catch {}
-  }, [slug, restored, messages, draft, care, fields, submissionId, received]);
+  }, [
+    slug,
+    restored,
+    messages,
+    facts,
+    draft,
+    care,
+    fields,
+    submissionId,
+    received,
+  ]);
   useEffect(() => {
     let alive = true;
     fetch(`/api/restaurant/guest?slug=${slug}`, {
