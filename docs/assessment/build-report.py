@@ -75,14 +75,14 @@ n=styles['Normal'];n.font.name='Arial';n.font.size=Pt(11);n.font.color.rgb=RGBCo
 n.paragraph_format.line_spacing=1.1;n.paragraph_format.space_before=Pt(0);n.paragraph_format.space_after=Pt(6)
 n.paragraph_format.widow_control=True
 for name,size in [('Heading 1',18),('Heading 2',12)]:
- s=styles[name];s.font.name='Georgia' if name=='Heading 1' else 'Arial';s.font.size=Pt(size);s.font.bold=True;s.font.color.rgb=RGBColor.from_string('111111')
+ s=styles[name];s.font.name='Georgia' if name=='Heading 1' else 'Arial';s.font.size=Pt(size);s.font.bold=True;s.font.color.rgb=RGBColor.from_string('000000')
  s.paragraph_format.space_before=Pt(9 if name=='Heading 2' else 0);s.paragraph_format.space_after=Pt(7)
  s.paragraph_format.line_spacing=1.04;s.paragraph_format.keep_with_next=True
 s=styles['Caption'];s.font.name='Arial';s.font.size=Pt(9.5);s.font.italic=False;s.font.color.rgb=RGBColor.from_string('454545')
 s.paragraph_format.space_after=Pt(7);s.paragraph_format.line_spacing=1.05
 h=sec.header.add_paragraph('FormBridge  |  36118 Applied Natural Language Processing')
 h.paragraph_format.space_after=Pt(0)
-for r in h.runs:r.font.size=Pt(8);r.font.color.rgb=RGBColor.from_string('666666')
+for r in h.runs:r.font.size=Pt(8);r.font.color.rgb=RGBColor.from_string('000000')
 ft=sec.footer.add_paragraph();ft.alignment=WD_ALIGN_PARAGRAPH.RIGHT
 field=OxmlElement('w:fldSimple');field.set(qn('w:instr'),'PAGE');ft._p.append(field)
 for r in ft.runs:r.font.size=Pt(9)
@@ -131,14 +131,22 @@ def table(lines,page):
  widths={2:[2.2,4.5477],3:[1.6,2.45,2.6977],4:[1.95,1.8,1.5,1.4977],5:[1.55,1.3,1.3,1.3,1.2977],6:[2.0,.95,.95,.95,.95,.9477]}[cols]
  if page==2:widths=[5.9477,.8]
  if page==10:widths=[1.28,1.67,3.7977]
- if page==12:widths=[1.3,2.88,2.5677]
+ if page==12 and cols==2:widths=[1.75,4.9977]
+ if page==12 and rows[0][0]=='Check':widths=[1.6,1.42,3.7277]
+ if page==9 and cols==3:widths=[3.9477,1.4,1.4]
  if page==18:widths=[3.55,3.1977]
+ if page==20:widths=[2.7,1.05,.85,.75,1.3977]
+ borders=OxmlElement('w:tblBorders')
+ for edge in ['top','left','bottom','right','insideH','insideV']:
+  e=OxmlElement('w:'+edge);e.set(qn('w:val'),'single');e.set(qn('w:sz'),'4');e.set(qn('w:color'),'D9D9D9');borders.append(e)
+ t._tbl.tblPr.append(borders)
  for i,w in enumerate(widths):t.columns[i].width=Inches(w)
  for ri,row in enumerate(rows):
   cells=t.add_row().cells
   for ci,txt in enumerate(row):
    c=cells[ci];c.width=Inches(widths[ci]);c.vertical_alignment=WD_CELL_VERTICAL_ALIGNMENT.CENTER
    p=c.paragraphs[0];p.paragraph_format.space_before=Pt(3);p.paragraph_format.space_after=Pt(3);p.paragraph_format.line_spacing=1.05
+   if (page in [9,20] and ci>0) or (page==12 and rows[0][0]=='Check' and ci==1):p.alignment=WD_ALIGN_PARAGRAPH.CENTER
    rich(p,txt)
    for r in p.runs:
     r.font.size=Pt(9.5 if cols>4 else 10)
@@ -156,11 +164,16 @@ def table(lines,page):
 def picture(path,page,description):
  p=doc.add_paragraph();p.alignment=WD_ALIGN_PARAGRAPH.CENTER;p.paragraph_format.keep_with_next=True
  p.paragraph_format.space_before=Pt(3);p.paragraph_format.space_after=Pt(3)
- if page==11:
-  # Native Word crop zooms the original panel; the screenshot pixels are unchanged.
-  shape=p.add_run().add_picture(str(ROOT/path),width=Inches(5.8),height=Inches(2.93625))
+ if path.endswith('FormBridge-core-workflow.jpg'):
+  # Native Word crops retain the original screenshot pixels in the package.
+  iw,ih=Image.open(ROOT/path).size
+  x1,y1,x2,y2={4:(32,586,1248,1163),11:(710,1058,1230,1424),21:(32,1414,667,1679)}[page]
+  width=WIDTH if page==4 else 6 if page==21 else 5.3
+  shape=p.add_run().add_picture(str(ROOT/path),width=Inches(width),height=Inches(width*(y2-y1)/(x2-x1)))
   blipfill=shape._inline.graphic.graphicData.pic.blipFill
-  rect=OxmlElement('a:srcRect');rect.set('l','25000');rect.set('r','25000');rect.set('t','20833');rect.set('b','34167');blipfill.insert(1,rect)
+  rect=OxmlElement('a:srcRect')
+  for side,value in [('l',x1/iw),('r',(iw-x2)/iw),('t',y1/ih),('b',(ih-y2)/ih)]:rect.set(side,str(round(value*100000)))
+  blipfill.insert(1,rect)
  else:
   width=6.7477 if page in [4,5] else 5.8
   shape=p.add_run().add_picture(str(ROOT/path),width=Inches(width))
@@ -225,4 +238,4 @@ for style in doc.styles:
   for e in style.element.xpath('.//w:pBdr'):e.getparent().remove(e)
 out=ROOT/'FormBridge-AT2-Report.docx';doc.save(out)
 print(out)
-print(json.dumps({'metrics':values,'main_pages':15,'appendix_pages':4},indent=2))
+print(json.dumps({'metrics':values,'main_pages':15,'appendix_pages':6},indent=2))

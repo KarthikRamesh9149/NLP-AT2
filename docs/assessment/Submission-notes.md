@@ -1,6 +1,6 @@
 # FormBridge report handover
 
-The revised report describes the restaurant workspace released at `b0d389e410af735ba622b41a937adc351162058b`. It contains 15 main pages, including the cover and references, and four appendix pages. The editable Word document and PDF contain the same report.
+The revised report describes the restaurant workspace released at `b0d389e410af735ba622b41a937adc351162058b`. It contains 15 main pages, including the cover and references, and six appendix pages. The editable Word document and PDF contain the same report. Supplementary experiments and the live booking-desk walkthrough were added at `470c81f883065eb0a98dba7bfb7d9e05511043b5` without changing application code.
 
 ## Brief and rubric coverage
 
@@ -18,7 +18,7 @@ The revised report describes the restaurant workspace released at `b0d389e410af7
 | Ethics and limitations | Section 11, page 13 |
 | Phases, contributions, outcomes and recommendations | Section 12, page 14 |
 | APA references | Page 15 |
-| Supporting material | Appendices A–D, pages 16–19 |
+| Supporting material | Appendices A–F, pages 16–21 |
 
 ## Before submission
 
@@ -34,12 +34,16 @@ The current development run reports 35/100 canonical field matches for rules, 89
 
 The current comparison uses the same primary model and additional Sol repair in FormBridge. The report accounts for extra provider attempts, latency and incomplete token records. The earlier equal-model comparison remains separately identified as historical evidence.
 
+The new component experiment compares identical primary-model proposals before and after deterministic validation, with no repair or prior predicted state. Raw proposals matched 88/100 fields and 14/20 complete briefs; validation matched 85/100 and 12/20. One timeout remains a failure in both conditions. The report explains the four lost values and one gained match rather than presenting validation as a universal improvement.
+
+Twenty constructed cases passed values, statuses, uncertainty, clarification and approval checks. Required supporting messages were present for 93/93 populated fields. These measures cover required sources and question targets, not independent ratings of every quotation or subjective helpfulness. The live walkthrough completed eight tasks in one conversation; it is not a participant study.
+
 Functional verification includes 230 automated tests, 31 production backend checks and 22 restaurant browser workflows, with revisions and coverage stated in the report. No participant study or satisfaction measurements have been invented. Real email, WhatsApp and reservation connections remain simulated or unconfigured as described.
 
 ## Report files
 
 - `FormBridge-AT2-Report.docx`: editable report.
-- `FormBridge-AT2-Report.pdf`: matching 19-page review copy.
+- `FormBridge-AT2-Report.pdf`: matching 21-page review copy.
 - `FormBridge-AT2-Report.md`: resolved report source.
 - `report-template.md`: source used by the document builder.
 - `report-base.docx`: clean document style and section reference.
@@ -49,4 +53,4 @@ Functional verification includes 230 automated tests, 31 production backend chec
 
 The builder requires Python with python-docx, Pillow, ReportLab and pdf2image, plus Poppler for PDF rasterisation. Run it from this directory; it reads the retained evaluation JSON files. The PDF requires a DOCX renderer. Recheck page count and screenshots after changing text or fonts.
 
-Earlier error audits, browser records, figures and the unfilled usability-study materials remain available as historical evidence. They are not presented as fresh measurements in the rewritten report.
+Earlier error audits, browser records, figures and the unfilled usability-study materials remain available as historical evidence. They are not presented as fresh measurements in the rewritten report. All 21 revised pages were rendered and visually inspected; main and supplementary result totals were recounted from saved predictions.

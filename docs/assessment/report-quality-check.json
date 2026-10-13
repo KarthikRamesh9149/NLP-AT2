@@ -1,12 +1,12 @@
 {
   "checkedOn": "2026-10-13",
   "application_revision": "b0d389e410af735ba622b41a937adc351162058b",
-  "pages": 19,
+  "pages": 21,
   "main_pages": 15,
-  "appendix_pages": 4,
+  "appendix_pages": 6,
   "references": "APA; hanging indent and double spacing",
-  "embedded_images": 5,
-  "product_screenshots": 3,
+  "embedded_images": 4,
+  "product_screenshots": 2,
   "all_images_have_alt_text": true,
   "comments_tracked_changes_and_hidden_text": false,
   "unresolved_placeholders": false,
@@ -65,7 +65,8 @@
     "ethics_limitations": "13",
     "phases_contribution_recommendations": "14",
     "references": "15",
-    "reproducibility": "16-18"
+    "reproducibility": "16\u201320",
+    "additional_interaction_evidence": "21"
   },
   "missing_required_information": [
     "Confirmed names and individual contributions for all group members"
@@ -73,8 +74,92 @@
   "human_participant_study": false,
   "source_boundary": "Current development and inspected regression samples; historical equal-model results separately identified",
   "file_sha256": {
-    "FormBridge-AT2-Report.md": "34562f29424ee05c491cf2ffbdcc91b2398d78e5b2e1c94c05c31bf17017cc10",
-    "FormBridge-AT2-Report.docx": "fceb6e8433f9a2e8f3352a6bc12e99bd575eea09e989b494b015fbba02600631",
-    "FormBridge-AT2-Report.pdf": "4fc5c70f52a20bed698c0753903c324eb396a6211f951e42c33430abb157a58a"
-  }
+    "FormBridge-AT2-Report.md": "2d9e9d028435d4707b93e28ff61aa27525e37cfa987e950edfcd0a069c8aa01c",
+    "FormBridge-AT2-Report.docx": "5c6e489f05d153d90c2f74d0faae35fd2cff4a8760164cd94641da553e6061a1",
+    "FormBridge-AT2-Report.pdf": "df7f614fde74e8223210bf9f3770ea0efbde111c69be6b76f348fea02a4e57b2"
+  },
+  "figure_views": 5,
+  "product_screenshot_views": 4,
+  "visually_inspected_pages": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21
+  ],
+  "controlled_comparison_recount": {
+    "attemptedDialogues": 20,
+    "failures": 1,
+    "fieldPositions": 100,
+    "rawCorrect": 88,
+    "guardedCorrect": 85,
+    "rawComplete": 14,
+    "guardedComplete": 12,
+    "helped": 1,
+    "harmed": 4,
+    "changed": 5,
+    "providerAttempts": 20
+  },
+  "constructed_feature_recount": {
+    "cases": 20,
+    "failures": 0,
+    "passedCases": 20,
+    "fieldPositions": 100,
+    "correctValues": 100,
+    "correctStatuses": 100,
+    "populatedFields": 93,
+    "supportedFields": 93,
+    "uncertaintyPositions": 7,
+    "uncertaintyCorrect": 7,
+    "clarificationDecisions": 20,
+    "correctClarificationDecisions": 20,
+    "necessaryQuestions": 9,
+    "correctNecessaryQuestions": 9,
+    "approvalDecisions": 20,
+    "correctApprovalDecisions": 20,
+    "providerAttempts": 20,
+    "observedInputTokens": 35778,
+    "observedOutputTokens": 4311
+  },
+  "constructed_feature_scope": "Required supporting-message coverage; not independent precision of every quotation or participant-rated question quality",
+  "live_walkthrough": {
+    "record": "evaluation/results/report-interface-walkthrough-20261013.json",
+    "tasks": 8,
+    "passed": 8,
+    "conversations": 1,
+    "recruited_participants": 0
+  },
+  "supplementary_source_fingerprint": "d82f14b6990edb9b6c52d6d3cb9aa229de00cdb980b66d92a5b0f65c8d380214",
+  "editorial_checks": [
+    "All three factual corrections verified against source",
+    "Plain-language pass completed",
+    "No comments, tracked changes, hidden text or placeholders",
+    "Actual screenshots retained without pixel editing",
+    "Main body remains 15 pages; appendix excluded"
+  ],
+  "references_checked_on": "2026-10-13",
+  "references_checked_against": [
+    "ACL Anthology P19-1078",
+    "AAAI article 6394",
+    "Microsoft Research Guidelines for Human-AI Interaction",
+    "OpenAI Structured Outputs and Data Controls",
+    "Supabase Row Level Security",
+    "Retained SGD repository revision and licence"
+  ]
 }
