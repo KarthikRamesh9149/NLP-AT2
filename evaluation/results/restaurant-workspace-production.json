@@ -1,11 +1,11 @@
 {
-  "sourceCommit": "1ef53db1c1d5f65fca57511942bb8d45e60ed0d8",
-  "checkedAt": "2026-10-13T02:36:47.680Z",
+  "sourceCommit": "0b25ba816fa352606ee0652261c074c9e655901b",
+  "checkedAt": "2026-10-13T02:49:17.173Z",
   "target": "https://formbridge-nlp-at2.vercel.app",
   "scope": "Isolated synthetic workspace; real Supabase auth, RLS and RPCs; channel and reservation providers are simulated. Email delivery is not exercised.",
   "passed": 31,
   "total": 31,
-  "workspaceId": "f6a987c0-6efd-416a-bc47-ee59aa17876b",
+  "workspaceId": "06c82aec-2be6-4a40-926d-8266f858c44a",
   "results": [
     {
       "name": "Anonymous visitors cannot read a private desk",

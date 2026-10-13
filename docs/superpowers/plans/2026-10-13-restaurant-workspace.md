@@ -26,46 +26,52 @@ Cross-team reads and writes; stale or revoked review tokens; guest edits to alre
 
 Files: `lib/restaurant-desk.ts`, `lib/mock-connectors.ts`, `tests/restaurant-desk.test.ts`.
 
-- [ ] Write failing tests for role restrictions, due-time escalation, unsupported care quotations, explicit guest merging, idempotent mock delivery and unreviewed reservation handoffs.
-- [ ] Implement validated operations records, approved knowledge, workflow, guest history, care proposals and deterministic simulated provider results.
-- [ ] Run the targeted tests and full test suite; commit.
+- [x] Write failing tests for role restrictions, due-time escalation, unsupported care quotations, explicit guest merging, idempotent mock delivery and unreviewed reservation handoffs.
+- [x] Implement validated operations records, approved knowledge, workflow, guest history, care proposals and deterministic simulated provider results.
+- [x] Run the targeted tests and full test suite; commit.
 
 ## Task 2: Supabase isolation and guest tokens
 
-Files: new migration; `lib/server/restaurant-db.ts`; `scripts/verify-restaurant-workspace.ts`.
+Files: new migration; `lib/server/restaurant-db.ts`; `scripts/check-restaurant-workspace.ts`.
 
-- [ ] Add owner/manager/staff roles, display names, versioned operations records, private review tokens and atomic guest-intake/change functions.
-- [ ] Apply the migration to the existing Free project.
-- [ ] Verify real database isolation, role enforcement, concurrent writes, expiry/revocation and guest-change review. Commit.
+- [x] Add owner/manager/staff roles, display names, versioned operations records, private review tokens and atomic guest-intake/change functions.
+- [x] Apply the migration to the existing Free project.
+- [x] Verify real database isolation, role enforcement, concurrent writes, expiry/revocation and guest-change review. Commit.
 
 ## Task 3: Staff console and recoverable accounts
 
 Files: `app/team/`, `components/team/`, `hooks/use-restaurant-desk.ts`, existing desk and team dialog.
 
-- [ ] Build overview, inbox, workflow, comments, guest history, restaurant library, people and connections views.
-- [ ] Add precise reminders, in-app notifications and overdue escalation.
-- [ ] Add verified email registration, password recovery and device-account email upgrade; display provider errors accurately.
-- [ ] Wire cases between the console and booking desk without replacing an unsaved draft silently.
-- [ ] Verify browser tasks and responsive layout; commit.
+- [x] Build overview, inbox, workflow, comments, guest history, restaurant library, people and connections views.
+- [x] Add precise reminders, in-app notifications and overdue escalation.
+- [x] Add verified email registration, password recovery and device-account email upgrade; display provider errors accurately.
+- [x] Wire cases between the console and booking desk without replacing an unsaved draft silently.
+- [x] Verify browser tasks and responsive layout; commit.
 
 ## Task 4: Guest assistant, review and care
 
 Files: `app/guest/[slug]/`, `app/review/`, `app/api/restaurant/`, `public/formbridge-widget.js`, care suggestion UI.
 
-- [ ] Publish a branded intake assistant and embeddable widget using approved facts only.
-- [ ] Submit requests to the team inbox; create private, expiring guest review links; return corrections for review.
-- [ ] Extract source-linked guest-care proposals and require staff acceptance.
-- [ ] Verify real OpenAI requests and public browser flows, invalid links and unpublished libraries. Commit.
+- [x] Publish a branded intake assistant and embeddable widget using approved facts only.
+- [x] Submit requests to the team inbox; create private, expiring guest review links; return corrections for review.
+- [x] Extract source-linked guest-care proposals and require staff acceptance.
+- [x] Verify real OpenAI requests and public browser flows, invalid links and unpublished libraries. Commit.
 
 ## Task 5: Final audit and release
 
-- [ ] Run all local gates and real backend/provider checks.
-- [ ] Review the full diff independently; fix material findings with regression tests.
-- [ ] Deploy the exact committed candidate, then exercise at least 20 live workflows and 15 edge cases.
-- [ ] Preserve observed results and describe remaining provider or hardware boundaries honestly.
+- [x] Run all local gates and real backend/provider checks.
+- [x] Review the full diff independently; fix material findings with regression tests.
+- [x] Deploy the exact committed candidate, then exercise at least 20 live workflows and 15 edge cases.
+- [x] Preserve observed results and describe remaining provider or hardware boundaries honestly.
 
 ## Task 6: Product README and films
 
-- [ ] Update product copy and screenshots from the final deployment.
-- [ ] Make fresh launch and walkthrough films showing the updated product and its clearly labelled simulations.
-- [ ] Verify audio/video decoding, native GitHub playback, CI and the final production revision.
+- [x] Update product copy and screenshots from the final deployment.
+- [x] Make fresh launch and walkthrough films showing the updated product and its clearly labelled simulations.
+- [x] Verify audio/video decoding, native GitHub playback, CI and the final production revision.
+
+## Release evidence
+
+Application code is deployed through `ddf8acd`. Local gates pass with 219 tests; the real production API/database runner passed 31/31. Browser checks and remaining boundaries are recorded in `evaluation/results/restaurant-workspace-browser.md`.
+
+The email registration, recovery and upgrade interface is implemented but gated off in production. SMTP delivery is the remaining external setup dependency; no email-delivery completion is claimed. Mock providers remain simulated, as requested.
