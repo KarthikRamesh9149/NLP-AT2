@@ -25,6 +25,7 @@ import { VoiceDialog } from '@/components/workspace/voice-dialog';
 import { emptyGuestCare, type FollowUp, type GuestCare } from '@/lib/follow-up';
 import { applyStaffAction, type StaffAction } from '@/lib/desk-actions';
 import { BookingLinkDialog } from '@/components/workspace/booking-link-dialog';
+import {checkedCareSuggestions,type CareSuggestion} from '@/lib/restaurant-desk';
 
 const today = () => { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; };
 
@@ -50,6 +51,8 @@ export default function Workspace() {
   const [notes, setNotes] = useState('');
   const [followUp, setFollowUp] = useState<FollowUp | null>(null);
   const [guestCare, setGuestCare] = useState<GuestCare>(emptyGuestCare);
+  const [guestCareEvidence,setGuestCareEvidence]=useState<CareSuggestion[]>([]);
+  const queryHandled=useRef(false);
   const [cloudCase, setCloudCase] = useState<SavedSession['teamCase']>(undefined);
   const [caseDestination, setCaseDestination] = useState<'device' | 'team'>('device');
   const [saving, setSaving] = useState(false);
@@ -73,19 +76,19 @@ export default function Workspace() {
   const isApproved = !busy && reviewedSession({ messages, brief, pendingAnalysis });
   const hasContent = messages.length > 0 || FIELD_KEYS.some(key => !!brief.fields[key].value || !!brief.fields[key].constraint) || !!notes || !!followUp || Object.values(guestCare).some(Boolean);
   const bookingLink = bookingLinks.find(link => venueKey(link.restaurantName, link.city) === venueKey(brief.fields.restaurantName.value || '', brief.fields.city.value || '')) ?? null;
-  function snapshot(): SavedSession { return { messages, brief, referenceDate, pendingAnalysis: pendingAnalysis || busy, manualMode, analysisVersion: CURRENT_ANALYSIS_VERSION, ...(activeCaseId ? { caseId: activeCaseId } : {}), caseTitle: caseName, notes, followUp, guestCare, ...(cloudCase ? { teamCase: cloudCase } : {}) }; }
+  function snapshot(): SavedSession { return { messages, brief, referenceDate, pendingAnalysis: pendingAnalysis || busy, manualMode, analysisVersion: CURRENT_ANALYSIS_VERSION, ...(activeCaseId ? { caseId: activeCaseId } : {}), caseTitle: caseName, notes, followUp, guestCare, guestCareEvidence:checkedCareSuggestions(guestCareEvidence,messages).filter(source=>guestCare[source.field]===source.value), ...(cloudCase ? { teamCase: cloudCase } : {}) }; }
 
   useEffect(() => {
     setReferenceDate(today());
     try {
       const session = restoreSession(sessionStorage.getItem(SESSION_KEY), sessionStorage.getItem(LEGACY_SESSION_KEY));
-      if (session) { setMessages(session.messages); setBrief(session.brief); setReferenceDate(session.referenceDate ?? today()); setPendingAnalysis(session.pendingAnalysis ?? false); setManualMode(session.manualMode ?? false); setActiveCaseId(session.caseId ?? null); setCaseName(session.caseTitle ?? ''); setNotes(session.notes ?? ''); setFollowUp(session.followUp ?? null); setGuestCare(session.guestCare ?? emptyGuestCare()); setCloudCase(session.teamCase); }
+      if (session) { setMessages(session.messages); setBrief(session.brief); setReferenceDate(session.referenceDate ?? today()); setPendingAnalysis(session.pendingAnalysis ?? false); setManualMode(session.manualMode ?? false); setActiveCaseId(session.caseId ?? null); setCaseName(session.caseTitle ?? ''); setNotes(session.notes ?? ''); setFollowUp(session.followUp ?? null); setGuestCare(session.guestCare ?? emptyGuestCare()); setGuestCareEvidence(session.guestCareEvidence??[]); setCloudCase(session.teamCase); if(session.composerDraft){setDraft(session.composerDraft.text);setSpeaker(session.composerDraft.speaker);} }
       setDeviceCases(readCases(localStorage.getItem(CASES_KEY))); setBookingLinks(readBookingLinks(localStorage.getItem(BOOKING_LINKS_KEY)));
     } catch { setStorageIssue(true); }
     setHydrated(true);
     return () => requestRef.current.controller?.abort();
   }, []);
-  useEffect(() => { if (hydrated) { try { sessionStorage.setItem(SESSION_KEY, JSON.stringify(snapshot())); setStorageIssue(false); } catch { setStorageIssue(true); } } }, [messages, brief, referenceDate, pendingAnalysis, manualMode, caseName, notes, followUp, guestCare, activeCaseId, cloudCase, hydrated]);
+  useEffect(() => { if (hydrated) { try { sessionStorage.setItem(SESSION_KEY, JSON.stringify({...snapshot(),composerDraft:{text:draft,speaker}})); setStorageIssue(false); } catch { setStorageIssue(true); } } }, [messages, brief, referenceDate, pendingAnalysis, manualMode, caseName, notes, followUp, guestCare, guestCareEvidence, draft, speaker, activeCaseId, cloudCase, hydrated]);
   useEffect(() => { if (conversationRef.current) conversationRef.current.scrollTop = conversationRef.current.scrollHeight; }, [messages.length]);
   useEffect(() => { function keyDown(event: KeyboardEvent) { if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k' && !dialog && !editingField && !editingMessage) { event.preventDefault(); setDialog('cases'); } } window.addEventListener('keydown', keyDown); return () => window.removeEventListener('keydown', keyDown); }, [dialog, editingField, editingMessage]);
 
@@ -124,7 +127,7 @@ export default function Workspace() {
   function reset(example = false) {
     requestRef.current.id++; requestRef.current.controller?.abort(); requestRef.current.controller = null;
     setBusy(false); setMessages(example ? demoMessages : []); setBrief(example ? demoBrief : createEmptyBrief()); setSelectedField(null); setDraft(''); setSpeaker('customer'); setPendingAnalysis(false); setError(null); setNotice(example ? 'Example loaded. Continue the conversation to try it.' : null); setReferenceDate(today()); setDialog(null); setMobileView('conversation');
-    setActiveCaseId(null); setCaseName(''); setNotes(''); setFollowUp(null); setGuestCare(emptyGuestCare()); setCloudCase(undefined); setUndoSnapshot(null); setEditingMessage(null); setManualMode(false);
+    setActiveCaseId(null); setCaseName(''); setNotes(''); setFollowUp(null); setGuestCare(emptyGuestCare()); setGuestCareEvidence([]); setCloudCase(undefined); setUndoSnapshot(null); setEditingMessage(null); setManualMode(false);
     composerRef.current?.focus();
   }
   function startNew(example = false) { if (hasContent || draft || brief.revision > 0) setDialog(example ? 'example' : 'new'); else reset(example); }
@@ -195,10 +198,20 @@ export default function Workspace() {
   }
   function loadCase(record: BookingCase | TeamCase) {
     reset(); const session = prepareStoredSession(record.session);
-    setMessages(session.messages); setBrief(session.brief); setReferenceDate(session.referenceDate || today()); setPendingAnalysis(session.pendingAnalysis ?? false); setManualMode(session.manualMode ?? false); setCaseName(record.title); setNotes(record.notes); setFollowUp(session.followUp ?? null); setGuestCare(session.guestCare ?? emptyGuestCare()); setNotice(`Opened ${record.title}.`);
+    setMessages(session.messages); setBrief(session.brief); setReferenceDate(session.referenceDate || today()); setPendingAnalysis(session.pendingAnalysis ?? false); setManualMode(session.manualMode ?? false); setCaseName(record.title); setNotes(record.notes); setFollowUp(session.followUp ?? null); setGuestCare(session.guestCare ?? emptyGuestCare()); setGuestCareEvidence(session.guestCareEvidence??[]); setNotice(`Opened ${record.title}.`);
     if ('workspaceId' in record) setCloudCase({ id: record.id, workspaceId: record.workspaceId, version: record.version }); else setActiveCaseId(record.id);
     setRequestedCase(null);
   }
+  useEffect(()=>{
+    if(!hydrated||queryHandled.current||!team.user)return;
+    const search=new URLSearchParams(window.location.search),id=search.get('case'),workspace=search.get('workspace');
+    if(!id||!workspace)return;
+    if(team.workspaceId!==workspace){if(team.workspaces.some(item=>item.id===workspace))team.chooseWorkspace(workspace);return;}
+    const record=team.cases.find(item=>item.id===id);
+    if(record){queryHandled.current=true;requestOpen(record);window.history.replaceState(null,'',window.location.pathname);}
+  // Opening a requested case is explicit; existing drafts still receive the review dialog.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[hydrated,team.user?.id,team.workspaceId,team.workspaces,team.cases]);
   function requestOpen(record: BookingCase | TeamCase) { if (hasContent || draft) { setRequestedCase(record); setDialog('open-case'); } else loadCase(record); }
   function saveBeforeOpening() {
     if (!requestedCase) return;
@@ -229,7 +242,7 @@ export default function Workspace() {
     try {
       const imported = importCase(raw); const session = imported.session;
       if (session.messages.some(message => message.speaker === 'customer')) analysisPayload(session.messages, session.brief, session.referenceDate || referenceDate || null);
-      reset(); setCaseName(imported.title); setNotes(imported.notes); setFollowUp(session.followUp ?? null); setGuestCare(session.guestCare ?? emptyGuestCare()); setMessages(session.messages); setBrief(session.brief); setReferenceDate(session.referenceDate || today()); setManualMode(session.manualMode ?? false); setJsonInput('');
+      reset(); setCaseName(imported.title); setNotes(imported.notes); setFollowUp(session.followUp ?? null); setGuestCare(session.guestCare ?? emptyGuestCare()); setGuestCareEvidence(session.guestCareEvidence??[]); setMessages(session.messages); setBrief(session.brief); setReferenceDate(session.referenceDate || today()); setManualMode(session.manualMode ?? false); setJsonInput('');
       if (session.messages.some(message => message.speaker === 'customer') && !session.manualMode) await analyse(session.messages, session.brief, session.referenceDate || today());
       else { setPendingAnalysis(false); setNotice('Brief reopened. Review the saved staff details before approving it.'); }
     } catch (cause) { setError(cause instanceof Error ? cause.message : 'This file could not be reopened.'); }
@@ -264,7 +277,7 @@ export default function Workspace() {
         <div className="heading-copy"><p className="page-overline"><span /> A little care before they arrive</p><h1>A place for <em>every detail.</em></h1><p>Gather the conversation. Prepare the brief. Give your guests a warmer welcome.</p><div className="heading-actions"><button className="button hero-primary" disabled={!hydrated || busy} onClick={focusConversation}>{messages.length ? 'Continue conversation' : 'Start an enquiry'} <ArrowRight size={15} /></button><button className="button hero-secondary" disabled={!hydrated} onClick={() => startNew(true)}>Try an example</button></div></div>
         <TableSetting />
       </section>
-      <nav className="desk-nav" aria-label="Booking desk tools"><div><button className="desk-tool" onClick={() => setDialog('cases')} disabled={!hydrated}><BookOpen size={18} /><span>Enquiry book</span><kbd>⌘ K</kbd></button><button className="desk-tool" onClick={()=>setDialog('planner')} disabled={!hydrated}><CalendarDays size={18}/><span>Service planner</span></button><button className="desk-tool" onClick={() => setDialog('assistant')} disabled={!hydrated || busy}><MessageSquareText size={18} /><span>Desk assistant</span></button><button className="desk-tool" onClick={() => setDialog('team')} disabled={!hydrated}><Users size={18} /><span>{team.workspace?.name || 'Team workspace'}</span>{team.user && <span className="connected-dot" aria-label="Signed in" />}</button></div><button className="button primary" onClick={() => { setError(null); setCaseName(caseName || caseTitle(snapshot())); setCaseDestination(cloudCase && cloudCase.workspaceId === team.workspaceId ? 'team' : 'device'); setDialog('save'); }} disabled={!hydrated || !hasContent || busy}><Save size={15} /> Save enquiry</button></nav>
+      <nav className="desk-nav" aria-label="Booking desk tools"><div><button className="desk-tool" onClick={() => setDialog('cases')} disabled={!hydrated}><BookOpen size={18} /><span>Enquiry book</span><kbd>⌘ K</kbd></button><button className="desk-tool" onClick={()=>setDialog('planner')} disabled={!hydrated}><CalendarDays size={18}/><span>Service planner</span></button><button className="desk-tool" onClick={() => setDialog('assistant')} disabled={!hydrated || busy}><MessageSquareText size={18} /><span>Desk assistant</span></button><a className="desk-tool" href="/team"><Users size={18} /><span>{team.workspace?.name || 'Team workspace'}</span>{team.user && <span className="connected-dot" aria-label="Signed in" />}</a></div><button className="button primary" onClick={() => { setError(null); setCaseName(caseName || caseTitle(snapshot())); setCaseDestination(cloudCase && cloudCase.workspaceId === team.workspaceId ? 'team' : 'device'); setDialog('save'); }} disabled={!hydrated || !hasContent || busy}><Save size={15} /> Save enquiry</button></nav>
       {caseName && <div className="active-case-heading"><BookOpen size={15} /><span>{caseName}</span><small>{cloudCase ? team.workspace?.id === cloudCase.workspaceId ? team.workspace.name : 'Team enquiry' : activeCaseId ? 'Device enquiry' : 'Draft enquiry'}</small></div>}
       <div className={`workspace-status ${isApproved ? 'approved' : ''}`} aria-label="Booking completeness">
         <span className="status-icon"><ShieldCheck size={20} /></span><div><strong>{isCancelled ? 'Booking enquiry cancelled' : isApproved ? 'Reviewed and ready for handoff' : messages.length ? brief.fields.restaurantName.value ?? 'Your booking enquiry' : 'A fresh start for your next enquiry'}</strong><p>{busy ? 'Reading the conversation and checking each detail…' : pendingAnalysis ? 'An update needs to finish before you can approve this brief.' : isCancelled ? 'Extracted details cleared · Start a new brief for another enquiry' : isApproved ? 'All five details reviewed · Download the brief for your team' : `${resolvedCount} of 5 details ready${resolvedCount === 5 ? ' · Review before handoff' : ' · We’ll keep track of what still needs an answer'}`}</p></div>
@@ -305,7 +318,7 @@ export default function Workspace() {
     </main>
     {dialog === 'paste' && <TranscriptImport onClose={() => setDialog(null)} onImport={importMessages} hasDraft={messages.length > 0 || brief.revision > 0} />}
     {dialog === 'voice' && <VoiceDialog speaker={speaker} onClose={()=>setDialog(null)} onUse={text=>{setDraft(text);setDialog(null);focusConversation();setNotice('Voice transcript placed in your composer. Review it before adding it to the conversation.');}}/>}
-    {dialog === 'guest-care' && <GuestCareDialog care={guestCare} followUp={followUp} today={today()} onClose={()=>setDialog(null)} onSave={(care,task)=>{setGuestCare(care);setFollowUp(task);setDialog(null);setNotice('Guest care kept in your draft. Save the enquiry to update your planner.');}}/>}
+    {dialog === 'guest-care' && <GuestCareDialog care={guestCare} messages={messages} evidence={guestCareEvidence} followUp={followUp} today={today()} onClose={()=>setDialog(null)} onSave={(care,task,evidence)=>{setGuestCare(care);setGuestCareEvidence(evidence);setFollowUp(task);setDialog(null);setNotice('Guest care kept in your draft. Save the enquiry to update your planner.');}}/>}
     {dialog === 'planner' && <ServicePlanner deviceCases={deviceCases} teamCases={team.cases} teamName={team.workspace?.name || null} today={today()} loading={team.loading} onOpen={requestOpen} onComplete={completeFollowUp} onClose={()=>setDialog(null)}/> }
     {dialog === 'cases' && <CaseLibrary deviceCases={deviceCases} teamCases={team.cases} teamName={team.workspace?.name || null} loading={team.loading} onOpen={requestOpen} onArchive={archiveCase} onReopen={() => { setError(null); setJsonInput(''); setDialog('reopen'); }} onRefresh={() => { try { setDeviceCases(readCases(localStorage.getItem(CASES_KEY))); } catch { setError('Device cases could not be read.'); } team.refreshCases().catch(cause => setError(cause.message)); }} onClose={() => setDialog(null)} />}
     {dialog === 'save' && <Dialog title="Save this enquiry." description="Give it a useful name so the next shift can pick up where you left off." onClose={() => { if (!saving) setDialog(null); }}><form onSubmit={event => { event.preventDefault(); saveCurrentCase(); }}><label className="input-label" htmlFor="case-name">Enquiry name</label><input className="edit-input" id="case-name" value={caseName} maxLength={80} onChange={event => setCaseName(event.target.value)} placeholder="Juniper · Saturday dinner" required /><label className="input-label" htmlFor="case-location">Save to</label><select className="edit-input" id="case-location" value={caseDestination} onChange={event => setCaseDestination(event.target.value as 'device' | 'team')}><option value="device">This device</option>{team.workspace && <option value="team">{team.workspace.name} · Shared with team</option>}</select>{pendingAnalysis && <p className="dialog-hint">The latest update is unfinished. It will be saved with your draft so you can retry later.</p>}{error && <p className="dialog-error" role="alert">{error}</p>}<div className="dialog-actions"><button className="button subtle" type="button" onClick={() => setDialog(null)} disabled={saving}>Cancel</button><button className="button primary" disabled={saving || !caseName.trim()}>{saving ? <LoaderCircle className="spin" size={15} /> : <Save size={15} />}{saving ? 'Saving enquiry…' : 'Save enquiry'}</button></div></form></Dialog>}

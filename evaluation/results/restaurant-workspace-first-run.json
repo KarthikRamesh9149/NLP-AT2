@@ -1,0 +1,132 @@
+{
+  "checkedAt": "2026-10-13T01:41:10.004Z",
+  "target": "http://localhost:3000",
+  "scope": "Isolated synthetic workspace; real Supabase auth, RLS and RPCs; channel and reservation providers are simulated. Email delivery is not exercised.",
+  "passed": 23,
+  "total": 29,
+  "workspaceId": "74c40dd9-f9ec-4fb0-b79e-3b9c733fcbaf",
+  "results": [
+    {
+      "name": "Anonymous visitors cannot read a private desk",
+      "passed": true
+    },
+    {
+      "name": "Another device cannot read or mutate this workspace",
+      "passed": true
+    },
+    {
+      "name": "Staff cannot publish restaurant information or alter connections",
+      "passed": true
+    },
+    {
+      "name": "Staff cannot promote their own role",
+      "passed": true
+    },
+    {
+      "name": "Staff cannot bypass the application to write an entire desk",
+      "passed": true
+    },
+    {
+      "name": "Owner promotion gives manager rights and retains owner protection",
+      "passed": true
+    },
+    {
+      "name": "Published page includes approved information and excludes drafts",
+      "passed": false,
+      "detail": "guest?slug=e8ca844c411a03fc: expected 200, got 404: This restaurant is not accepting website enquiries right now."
+    },
+    {
+      "name": "FAQ answers quote only approved restaurant facts",
+      "passed": false,
+      "detail": "guest: expected 200, got 404: This restaurant is not accepting website enquiries right now."
+    },
+    {
+      "name": "Invalid contact details are rejected before analysis",
+      "passed": false,
+      "detail": "guest: expected 400, got 404: This restaurant is not accepting website enquiries right now."
+    },
+    {
+      "name": "Stale desk edits cannot overwrite a teammate",
+      "passed": true
+    },
+    {
+      "name": "Assignees must belong to the workspace",
+      "passed": true
+    },
+    {
+      "name": "Assignment, priority and precise reminder survive reload",
+      "passed": true
+    },
+    {
+      "name": "Guest records merge only with explicit consent and retain history",
+      "passed": true
+    },
+    {
+      "name": "Private guest review omits staff notes, contact details and transcript",
+      "passed": true
+    },
+    {
+      "name": "Invalid guest token cannot reveal a review",
+      "passed": true
+    },
+    {
+      "name": "Guest corrections are queued and remove staff approval",
+      "passed": true
+    },
+    {
+      "name": "Revoked guest links cannot be reopened",
+      "passed": false,
+      "detail": "review: expected 200, got 404: This enquiry could not be found in your team."
+    },
+    {
+      "name": "Guest review rejects a brief with missing field objects",
+      "passed": true
+    },
+    {
+      "name": "Simulated incoming messages create private pending enquiries",
+      "passed": true
+    },
+    {
+      "name": "Redelivery does not create a duplicate enquiry",
+      "passed": true
+    },
+    {
+      "name": "A follow-up remains in the original enquiry and marks it for review",
+      "passed": true
+    },
+    {
+      "name": "Simulated staff replies join the conversation and retry once",
+      "passed": false,
+      "detail": "desk: expected 200, got 404: This enquiry could not be found in your team."
+    },
+    {
+      "name": "Mock reservations require a reviewed exact brief",
+      "passed": false,
+      "detail": "desk: expected 400, got 404: This enquiry could not be found in your team."
+    },
+    {
+      "name": "Mock provider returns availability and an explicitly simulated reference",
+      "passed": true
+    },
+    {
+      "name": "Simulated cancellation leaves the real enquiry unchanged",
+      "passed": true
+    },
+    {
+      "name": "Provider failure preserves the approved enquiry",
+      "passed": true
+    },
+    {
+      "name": "Guest links become stale after a new staff save",
+      "passed": true
+    },
+    {
+      "name": "Disabled restaurant pages stop accepting enquiries",
+      "passed": true
+    },
+    {
+      "name": "Verified email credentials can recover the same workspace identity",
+      "passed": true
+    }
+  ]
+}
