@@ -22,7 +22,7 @@ The revised report describes the restaurant workspace released at `b0d389e410af7
 
 ## Before submission
 
-The confirmed group members are Karthik Ramesh, Avanish Rao, Pranav Chhetri, Shivom Karnad and Rishi Mundra. The cover leaves the latter four student ID cells blank for them to complete. Their actual contributions still need confirmation; page 14 records Karthik Ramesh's confirmed technical responsibility. Each member should review and contribute to the report and complete their required individual upload and SPARKPlus evaluation. Neither submission action has been performed by these report updates.
+The confirmed group members are Karthik Ramesh, Avanish Rao, Pranav Chhetri, Shivom Karnad and Rishi Mundra. The cover leaves the latter four student ID cells blank for them to complete. Page 14 records Karthik Ramesh's confirmed technical responsibility and assigns final review tasks to all five members. Table 8 explicitly describes planned responsibilities; it does not establish that those reviews have been completed. Actual contributions still need confirmation before the table can become a record of completed work. Each member should contribute to the report and complete their required individual upload and SPARKPlus evaluation. Neither submission action has been performed by these report updates.
 
 The cover identifies all five group members and lists Karthik Ramesh, student ID 26043455, as the submitting student. Other members need their own submission details. The body uses the group's voice without assigning unconfirmed work to individual members. Check the exact deadline in Canvas because the supplied PDF gives an inconsistent weekday and date.
 

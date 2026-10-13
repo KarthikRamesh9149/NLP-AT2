@@ -349,19 +349,19 @@ Messaging, reservation transfer and email account recovery remain simulations. R
 
 ## Project phases and responsibilities
 
-Our project began with five booking fields and expanded into a shared enquiry workflow. Table 8 summarises the main phases and their outputs.
+We began by defining the restaurant enquiry problem and five booking fields. We then implemented and compared the NLP methods, investigated errors and expanded the interface into a shared enquiry workflow. Deployment checks, setup instructions and product videos completed the delivery phase.
 
-*Table 8. Project phases and outputs.*
+Karthik Ramesh (26043455) took the technical lead, with responsibility for the application, NLP integration, evaluation tooling, deployment and technical verification.
 
-| Phase | Main output |
+*Table 8. Planned responsibilities for the final group review.*
+
+| Group member | Assigned review responsibility |
 | --- | --- |
-| Problem definition | Restaurant enquiry scope, five booking fields and staff review requirements |
-| NLP implementation | Rules, model extraction, source checks, controlled updates and limited repair calls |
-| Evaluation and correction | Dataset preparation, scoring, investigation of errors and regression tests |
-| Product development | Restaurant interface, voice input, saved enquiries, team access and guest review |
-| Release and communication | Deployment checks, setup instructions, product videos and analysis of results |
-
-Within the group, Karthik Ramesh (26043455) took responsibility for technical implementation, including the application, NLP integration, evaluation tooling, deployment and technical verification.
+| Karthik Ramesh | Technical accuracy, reproducibility and deployment details |
+| Avanish Rao | Dataset selection, preparation and experimental comparisons |
+| Pranav Chhetri | Scenario tests, error analysis and interpretation of results |
+| Shivom Karnad | User journeys, interface clarity and product screenshots |
+| Rishi Mundra | Related research, APA references and consistency across report sections |
 
 ## Recommendations in priority order
 

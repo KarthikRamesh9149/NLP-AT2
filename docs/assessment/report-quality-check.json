@@ -74,9 +74,9 @@
   "human_participant_study": false,
   "source_boundary": "Current development and inspected regression samples; historical equal-model results separately identified",
   "file_sha256": {
-    "FormBridge-AT2-Report.md": "b2e69a2468f5a164bccfa0b881fd64e9916c38de3dca51a08a405cee9a4d78f3",
-    "FormBridge-AT2-Report.docx": "5625e06e7a4fc89377470c90bd089c909ac6208c1d07ef521edb116c4b74ac7c",
-    "FormBridge-AT2-Report.pdf": "e0c5f27c8def3af36a777210453135382ae696c95d3712eda1d6d944aa3c5db7"
+    "FormBridge-AT2-Report.md": "849a83a7f46fc3dfda6ead999e8aa238040a30d92b592ce258a8baaaedfb0ff3",
+    "FormBridge-AT2-Report.docx": "ca565c5f658f7a622e489716e063db2d128796688d333c6d57d7dbe190d5670c",
+    "FormBridge-AT2-Report.pdf": "47437c8be16ad91114512afa58d8c82b0b973e835e6c7d3161d57225a5511c4a"
   },
   "figure_views": 5,
   "product_screenshot_views": 4,
@@ -147,13 +147,14 @@
   },
   "supplementary_source_fingerprint": "d82f14b6990edb9b6c52d6d3cb9aa229de00cdb980b66d92a5b0f65c8d380214",
   "editorial_checks": [
-    "All five confirmed group names present in editable native Word table",
-    "Only cover page changed; pages 2-21 render byte-identically to the visually inspected 13 October report",
-    "Cover visually inspected; report remains 15 main pages and 6 appendix pages",
-    "Body text, numerical results, references and screenshots unchanged",
+    "All five confirmed group members assigned a role in a clearly labelled final review plan",
+    "Confirmed technical responsibility retained separately from planned reviews",
+    "Only page 14 changed; all other pages render byte-identically to the inspected group-cover report",
+    "Page 14 visually inspected; report remains 15 main pages and 6 appendix pages",
+    "Numerical results, references and screenshots unchanged",
     "No comments, tracked changes or hidden text in the document body",
-    "Four intentionally blank student ID cells; no unconfirmed contribution claims added",
-    "Application, tests and evaluation source unchanged during cover revision"
+    "Four intentionally blank student ID cells; actual teammate contributions remain unconfirmed",
+    "Application, tests and evaluation source unchanged during report revision"
   ],
   "references_checked_on": "2026-10-13",
   "references_checked_against": [
@@ -164,17 +165,27 @@
     "Supabase Row Level Security",
     "Retained SGD repository revision and licence"
   ],
-  "editorial_revision": "2026-10-14 five-member group cover",
+  "editorial_revision": "2026-10-14 final group review allocation",
   "cover": "All five confirmed group members; Karthik Ramesh identified as the submitting student; four student ID cells intentionally blank",
   "group_voice": true,
   "numerical_score_tables_unchanged": true,
   "intentional_blank_fields": [
     "Cover student IDs for Avanish Rao, Pranav Chhetri, Shivom Karnad and Rishi Mundra, as requested by the user"
   ],
+  "contribution_section": {
+    "confirmed": "Karthik Ramesh: technical implementation responsibility",
+    "assigned_review_roles": "Table 8; explicitly planned, not recorded as completed contributions",
+    "confirmation_pending": [
+      "Avanish Rao",
+      "Pranav Chhetri",
+      "Shivom Karnad",
+      "Rishi Mundra"
+    ]
+  },
   "shared_word_verification": {
     "file_id": "1NVvpg6jjxPryi3oON7xMGUldf0J3kKjA",
-    "modified_time": "2026-10-13T21:38:44.165Z",
-    "sha256": "5625e06e7a4fc89377470c90bd089c909ac6208c1d07ef521edb116c4b74ac7c",
+    "modified_time": "2026-10-13T21:43:41.081Z",
+    "sha256": "ca565c5f658f7a622e489716e063db2d128796688d333c6d57d7dbe190d5670c",
     "byte_identical": true
   }
 }
