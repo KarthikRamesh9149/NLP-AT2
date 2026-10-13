@@ -194,9 +194,29 @@ def cover(body):
   r=p.add_run(s);r.font.name='Liberation Serif';r.font.size=Pt(size);r.bold=True;r.font.color.rgb=RGBColor.from_string('202932')
   return p
  p=line(title,21,10);p.style='Title'
- line(subtitle,16,14);line(meta['Report'],13,14);line(meta['Subject'],14,140)
- line('Submitted by: '+meta['Submitted by'],12,5,False)
- p=line('Student ID: '+meta['Student ID'],12,18,False);p.paragraph_format.keep_with_next=False
+ line(subtitle,16,14);line(meta['Report'],13,14);line(meta['Subject'],14,58)
+ members=[[cell.strip() for cell in row.strip().strip('|').split('|')] for row in lines if row.startswith('|')]
+ members=[row for row in members if not all(re.fullmatch(r':?-+:?',cell) for cell in row)]
+ assert members and all(len(row)==2 for row in members)
+ t=doc.add_table(rows=0,cols=2);t.alignment=WD_TABLE_ALIGNMENT.LEFT;t.autofit=False
+ widths=[3.6,2.0]
+ for col,width in zip(t.columns,widths):col.width=Inches(width)
+ borders=OxmlElement('w:tblBorders')
+ for edge in ['top','left','bottom','right','insideH','insideV']:
+  e=OxmlElement('w:'+edge);e.set(qn('w:val'),'nil');borders.append(e)
+ t._tbl.tblPr.append(borders)
+ for index,member in enumerate(members):
+  cells=t.add_row().cells
+  for cell,value,width in zip(cells,member,widths):
+   cell.width=Inches(width)
+   p=cell.paragraphs[0];p.paragraph_format.line_spacing=1
+   p.paragraph_format.space_before=Pt(3);p.paragraph_format.space_after=Pt(5)
+   p.paragraph_format.keep_with_next=True
+   r=p.add_run(value);r.font.name='Liberation Serif';r.font.size=Pt(12)
+   r.font.color.rgb=RGBColor.from_string('202932');r.bold=index==0
+  cells[0]._tc.getparent().get_or_add_trPr().append(OxmlElement('w:cantSplit'))
+ p=line('Submitted by: '+meta['Submitted by'],12,18,False)
+ p.paragraph_format.space_before=Pt(22);p.paragraph_format.keep_with_next=False
 
 chunks=re.split(r'<!-- PAGE (\d+) -->',source)
 for idx in range(1,len(chunks),2):

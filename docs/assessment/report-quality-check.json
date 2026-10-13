@@ -1,5 +1,5 @@
 {
-  "checkedOn": "2026-10-13",
+  "checkedOn": "2026-10-14",
   "application_revision": "b0d389e410af735ba622b41a937adc351162058b",
   "pages": 21,
   "main_pages": 15,
@@ -69,14 +69,14 @@
     "additional_interaction_evidence": "21"
   },
   "missing_required_information": [
-    "Confirmed names and individual contributions for all group members"
+    "Student IDs and actual contributions for Avanish Rao, Pranav Chhetri, Shivom Karnad and Rishi Mundra"
   ],
   "human_participant_study": false,
   "source_boundary": "Current development and inspected regression samples; historical equal-model results separately identified",
   "file_sha256": {
-    "FormBridge-AT2-Report.md": "62feb65501872eab056b9ad6051f5f13c41c5b88db1509004111e58e40bcfb0e",
-    "FormBridge-AT2-Report.docx": "f5a0edd5479d901d212f277522648a3084f9b1a8f5c4faf6de48fd83a06d23a8",
-    "FormBridge-AT2-Report.pdf": "491341e2d9d9766e2834053fad4ddc491aa15268e43376559056457d80b691d7"
+    "FormBridge-AT2-Report.md": "b2e69a2468f5a164bccfa0b881fd64e9916c38de3dca51a08a405cee9a4d78f3",
+    "FormBridge-AT2-Report.docx": "5625e06e7a4fc89377470c90bd089c909ac6208c1d07ef521edb116c4b74ac7c",
+    "FormBridge-AT2-Report.pdf": "e0c5f27c8def3af36a777210453135382ae696c95d3712eda1d6d944aa3c5db7"
   },
   "figure_views": 5,
   "product_screenshot_views": 4,
@@ -147,14 +147,13 @@
   },
   "supplementary_source_fingerprint": "d82f14b6990edb9b6c52d6d3cb9aa229de00cdb980b66d92a5b0f65c8d380214",
   "editorial_checks": [
-    "Consistent group voice and submitting-student cover label",
-    "Methods and findings rewritten in plain academic English",
-    "No drafting notes, placeholder text, review comments, tracked changes or hidden text",
-    "All numerical score-table entries preserved from the verified evidence",
-    "Important experimental limitations and negative findings retained",
-    "All 21 rendered pages inspected; 15 main pages and 6 appendix pages",
-    "Actual product screenshots preserved without pixel editing",
-    "Application, test and evaluation source unchanged during editorial revision"
+    "All five confirmed group names present in editable native Word table",
+    "Only cover page changed; pages 2-21 render byte-identically to the visually inspected 13 October report",
+    "Cover visually inspected; report remains 15 main pages and 6 appendix pages",
+    "Body text, numerical results, references and screenshots unchanged",
+    "No comments, tracked changes or hidden text in the document body",
+    "Four intentionally blank student ID cells; no unconfirmed contribution claims added",
+    "Application, tests and evaluation source unchanged during cover revision"
   ],
   "references_checked_on": "2026-10-13",
   "references_checked_against": [
@@ -165,14 +164,17 @@
     "Supabase Row Level Security",
     "Retained SGD repository revision and licence"
   ],
-  "editorial_revision": "2026-10-13 group voice and prose audit",
-  "cover": "Group project report; Karthik Ramesh is identified as the submitting student",
+  "editorial_revision": "2026-10-14 five-member group cover",
+  "cover": "All five confirmed group members; Karthik Ramesh identified as the submitting student; four student ID cells intentionally blank",
   "group_voice": true,
   "numerical_score_tables_unchanged": true,
+  "intentional_blank_fields": [
+    "Cover student IDs for Avanish Rao, Pranav Chhetri, Shivom Karnad and Rishi Mundra, as requested by the user"
+  ],
   "shared_word_verification": {
     "file_id": "1NVvpg6jjxPryi3oON7xMGUldf0J3kKjA",
-    "modified_time": "2026-10-13T08:21:37.713Z",
-    "sha256": "f5a0edd5479d901d212f277522648a3084f9b1a8f5c4faf6de48fd83a06d23a8",
+    "modified_time": "2026-10-13T21:38:44.165Z",
+    "sha256": "5625e06e7a4fc89377470c90bd089c909ac6208c1d07ef521edb116c4b74ac7c",
     "byte_identical": true
   }
 }

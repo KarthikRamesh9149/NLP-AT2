@@ -22,9 +22,9 @@ The revised report describes the restaurant workspace released at `b0d389e410af7
 
 ## Before submission
 
-Confirm each group member's full name and actual contribution. Page 14 currently records only Karthik Ramesh's confirmed technical responsibility. Each member should review and contribute to the report and complete their required individual upload and SPARKPlus evaluation. Neither submission action has been performed by these report updates.
+The confirmed group members are Karthik Ramesh, Avanish Rao, Pranav Chhetri, Shivom Karnad and Rishi Mundra. The cover leaves the latter four student ID cells blank for them to complete. Their actual contributions still need confirmation; page 14 records Karthik Ramesh's confirmed technical responsibility. Each member should review and contribute to the report and complete their required individual upload and SPARKPlus evaluation. Neither submission action has been performed by these report updates.
 
-The cover identifies this as a group project report and lists Karthik Ramesh, student ID 26043455, as the submitting student. Other members need their own submission details. The body uses the group's voice without assigning unconfirmed work to individual members. Check the exact deadline in Canvas because the supplied PDF gives an inconsistent weekday and date.
+The cover identifies all five group members and lists Karthik Ramesh, student ID 26043455, as the submitting student. Other members need their own submission details. The body uses the group's voice without assigning unconfirmed work to individual members. Check the exact deadline in Canvas because the supplied PDF gives an inconsistent weekday and date.
 
 The repository is public. Include the code or source archive in the format Canvas requires; exclude secrets, environment files and installed dependencies. The report's structure and evidence address the supplied rubric, but cannot guarantee a mark.
 
