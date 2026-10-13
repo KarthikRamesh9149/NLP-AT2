@@ -45,13 +45,13 @@ def arrow(x1,y1,x2,y2):
  else:points=[(x2,y2),(x2+6,y2-3),(x2+6,y2+3)]
  p=c.beginPath();p.moveTo(*points[0]);p.lineTo(*points[1]);p.lineTo(*points[2]);p.close();c.drawPath(p,fill=1,stroke=0)
 box(4,148,161,62,'Conversation input','Text / reviewed voice / guest page')
-box(184,148,158,62,'Server boundary','Schema / identity / allowance')
+box(184,148,158,62,'Request checks','Input / access / usage limit')
 box(361,148,153,62,'OpenAI extraction','Values and quotations')
-box(533,148,183,62,'Validation and state','Evidence / constraints / revisions')
+box(533,148,183,62,'Booking detail checks','Sources / uncertainty / updates')
 arrow(165,179,184,179);arrow(342,179,361,179);arrow(514,179,533,179)
 box(533,22,183,67,'Staff review','Sources / edits / approval')
 box(312,22,183,67,'Private team records','Supabase / roles / version checks')
-box(14,22,245,67,'Guest and handoff views','Limited review links / simulated providers')
+box(14,22,245,67,'Guest review and handoff','Private review links / simulated providers')
 arrow(624,148,624,89);arrow(533,55,495,55);arrow(312,55,259,55)
 c.setFillColor(HexColor('#555555'));c.setFont('Helvetica',9);c.drawCentredString(360,226,'INPUT  /  LANGUAGE PROCESSING  /  REVIEWED ENQUIRY')
 c.showPage();c.save()
@@ -193,8 +193,9 @@ def cover(body):
   p.paragraph_format.space_after=Pt(after);p.paragraph_format.line_spacing=1;p.paragraph_format.keep_with_next=True
   r=p.add_run(s);r.font.name='Liberation Serif';r.font.size=Pt(size);r.bold=True;r.font.color.rgb=RGBColor.from_string('202932')
   return p
- line(title,21,10);line(subtitle,16,22);line(meta['Subject'],14,140)
- line('Student Name: '+meta['Student Name'],12,5,False)
+ p=line(title,21,10);p.style='Title'
+ line(subtitle,16,14);line(meta['Report'],13,14);line(meta['Subject'],14,140)
+ line('Submitted by: '+meta['Submitted by'],12,5,False)
  p=line('Student ID: '+meta['Student ID'],12,18,False);p.paragraph_format.keep_with_next=False
 
 chunks=re.split(r'<!-- PAGE (\d+) -->',source)

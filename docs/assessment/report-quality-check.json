@@ -74,9 +74,9 @@
   "human_participant_study": false,
   "source_boundary": "Current development and inspected regression samples; historical equal-model results separately identified",
   "file_sha256": {
-    "FormBridge-AT2-Report.md": "2d9e9d028435d4707b93e28ff61aa27525e37cfa987e950edfcd0a069c8aa01c",
-    "FormBridge-AT2-Report.docx": "5c6e489f05d153d90c2f74d0faae35fd2cff4a8760164cd94641da553e6061a1",
-    "FormBridge-AT2-Report.pdf": "df7f614fde74e8223210bf9f3770ea0efbde111c69be6b76f348fea02a4e57b2"
+    "FormBridge-AT2-Report.md": "62feb65501872eab056b9ad6051f5f13c41c5b88db1509004111e58e40bcfb0e",
+    "FormBridge-AT2-Report.docx": "f5a0edd5479d901d212f277522648a3084f9b1a8f5c4faf6de48fd83a06d23a8",
+    "FormBridge-AT2-Report.pdf": "491341e2d9d9766e2834053fad4ddc491aa15268e43376559056457d80b691d7"
   },
   "figure_views": 5,
   "product_screenshot_views": 4,
@@ -147,11 +147,14 @@
   },
   "supplementary_source_fingerprint": "d82f14b6990edb9b6c52d6d3cb9aa229de00cdb980b66d92a5b0f65c8d380214",
   "editorial_checks": [
-    "All three factual corrections verified against source",
-    "Plain-language pass completed",
-    "No comments, tracked changes, hidden text or placeholders",
-    "Actual screenshots retained without pixel editing",
-    "Main body remains 15 pages; appendix excluded"
+    "Consistent group voice and submitting-student cover label",
+    "Methods and findings rewritten in plain academic English",
+    "No drafting notes, placeholder text, review comments, tracked changes or hidden text",
+    "All numerical score-table entries preserved from the verified evidence",
+    "Important experimental limitations and negative findings retained",
+    "All 21 rendered pages inspected; 15 main pages and 6 appendix pages",
+    "Actual product screenshots preserved without pixel editing",
+    "Application, test and evaluation source unchanged during editorial revision"
   ],
   "references_checked_on": "2026-10-13",
   "references_checked_against": [
@@ -161,5 +164,15 @@
     "OpenAI Structured Outputs and Data Controls",
     "Supabase Row Level Security",
     "Retained SGD repository revision and licence"
-  ]
+  ],
+  "editorial_revision": "2026-10-13 group voice and prose audit",
+  "cover": "Group project report; Karthik Ramesh is identified as the submitting student",
+  "group_voice": true,
+  "numerical_score_tables_unchanged": true,
+  "shared_word_verification": {
+    "file_id": "1NVvpg6jjxPryi3oON7xMGUldf0J3kKjA",
+    "modified_time": "2026-10-13T08:21:37.713Z",
+    "sha256": "f5a0edd5479d901d212f277522648a3084f9b1a8f5c4faf6de48fd83a06d23a8",
+    "byte_identical": true
+  }
 }

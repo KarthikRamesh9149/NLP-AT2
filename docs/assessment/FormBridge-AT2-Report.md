@@ -2,20 +2,22 @@
 # Assessment Task 2
 ## FormBridge Restaurant Enquiry Workspace
 
+**Report:** Group project technical report
+
 **Subject:** 36118 Applied Natural Language Processing
 
-**Student Name:** Karthik Ramesh
+**Submitted by:** Karthik Ramesh
 
 **Student ID:** 26043455
 
 <!-- PAGE 2 -->
 # Abstract
 
-FormBridge turns changing restaurant conversations into booking briefs that staff can inspect, correct and share. It tracks five fields, preserves uncertainty and links values to supporting messages. The web application includes guest intake, voice transcription, guest-care suggestions, private review links and a team desk. Staff control approval; messaging and reservation connections are simulated.
+Our group developed FormBridge to help restaurant staff turn changing customer conversations into booking briefs. The application tracks five booking details, links them to their source messages and asks for clarification when a request is incomplete. Staff can review corrections, share an enquiry with teammates and send a private review link to the guest. Voice input and guest-care suggestions extend the workflow. External messaging and reservation connections are simulated.
 
-On 20 inspected development dialogues from the Schema-Guided Dialogue dataset, rules, direct contextual extraction and FormBridge achieved 35/100, 89/100 and 97/100 canonical field matches. FormBridge completed 17/20 briefs and required approximately twice the direct method's mean replay time. Its separate regression run matched 100/100 fields on 20 inspected test dialogues. These results do not estimate unseen performance.
+We compared rules, direct model extraction and FormBridge on 20 previously examined development dialogues from the Schema-Guided Dialogue dataset. Allowing equivalent date and time formats, the methods matched 35/100, 89/100 and 97/100 fields respectively. FormBridge matched all five fields in 17/20 dialogues, taking approximately twice as long as direct extraction to process each conversation. A separate regression check matched 100/100 fields on 20 previously examined test dialogues. Neither sample measures performance on unseen enquiries.
 
-Applying validation to identical proposals reduced matches from 88/100 to 85/100 in a controlled comparison, exposing overly restrictive checks. Twenty constructed cases passed checks for values, uncertainty, clarification and approval, including required sources for 93/93 populated fields. Verification also includes 230 automated tests, production checks and an eight-task live walkthrough. No recruited-user study or restaurant productivity measurement was conducted.
+A controlled comparison exposed a weakness: applying validation to the same model responses reduced correct fields from 88/100 to 85/100. Twenty constructed cases passed the checks for uncertainty, clarification and approval, with the required source messages attached to all 93 populated fields. Automated tests and a live walkthrough confirmed selected workflows. These results establish functional behaviour; a study with restaurant staff is still needed to assess ease of use and time savings.
 
 ## Contents
 
@@ -43,66 +45,66 @@ Applying validation to identical proposals reduced matches from 88/100 to 85/100
 
 A guest asks for four people at seven, then changes the request to five people sometime after eight. The current guest count is clear; the exact time is not. Reading only the first message produces an outdated brief. Reading only the last one loses the restaurant and date. Choosing 8:30 pm would add a decision the guest has not made.
 
-This is a dialogue state tracking problem: maintaining the current values and constraints across a changing conversation. Earlier research, including TRADE, predicts state values from utterances rather than relying entirely on a fixed list of possible values (Wu et al., 2019). The Schema-Guided Dialogue dataset supplies service descriptions, task-oriented conversations and annotated states for this problem (Rastogi et al., 2020).
+This is a dialogue state tracking problem: keeping track of what a customer currently wants as a conversation develops. TRADE, for example, generates state values from the conversation instead of relying entirely on a fixed list of answers (Wu et al., 2019). The Schema-Guided Dialogue dataset provides service descriptions, conversations and annotated states for evaluating this task (Rastogi et al., 2020).
 
-FormBridge applies this task to small restaurant teams. Front-of-house staff need to understand an enquiry, ask for missing details and hand it to the next person without losing a revision or special request. Guests need a clear way to describe their plans and correct them. The project defines these needs through enquiry scenarios; it has not established market demand through restaurant interviews.
+We chose restaurant enquiries because they make the consequences of a missed correction easy to see. Front-of-house staff must understand the current request and pass it to a colleague without losing a change or special requirement. Guests need a way to check that their plans have been understood. Our design is based on these enquiry scenarios; we have not yet interviewed restaurant staff to validate the needs or demand.
 
 ## Objectives and research question
 
-The principal objective was to build a usable web application around accurate, inspectable booking information. Four technical objectives guided implementation:
+We aimed to build a web application that gives staff accurate booking information and lets them check it against the conversation. The project had four objectives:
 
 1. Maintain restaurant, city, date, time and guest count as messages change.
-2. Explain extracted values through source quotations, preserve uncertainty and require staff review.
-3. Compare a traditional rule baseline with contextual extraction under a documented evaluation procedure.
-4. Carry an enquiry through intake, review and team handoff, with protected records and recoverable errors.
+2. Show the messages supporting each value and ask for clarification where details remain uncertain.
+3. Compare rules with contextual extraction using a reproducible evaluation.
+4. Support intake, staff review and team handoff, with private records and recovery from failed updates.
 
-**Research question:** How does contextual extraction with evidence validation and state reconciliation compare with rules and direct extraction, and how can its output support staff review of restaurant enquiries?
+**Research question:** How accurately does FormBridge maintain booking details compared with rules and direct model extraction, and how can those details support staff review?
 
 ## Scope and completion criteria
 
-The implemented product accepts English text and short voice messages, with a maximum of 30 transcript messages of 1,000 characters each. Optional guest-care details sit alongside the five booking fields. Staff can save cases locally or in a private team, assign work, return a review link and prepare a handoff.
+FormBridge accepts English text and short voice messages. A transcript can contain up to 30 messages of 1,000 characters each. Optional guest-care details sit alongside the five booking fields. Staff can save enquiries on their device or in a private team, assign them to a colleague and request a guest review.
 
-A successful workflow produces a brief whose current values, unresolved questions and staff decisions are visible. Approval means that the brief has been reviewed. External email, WhatsApp and reservation actions run through mock connectors; no real booking, payment or availability guarantee is made. The product scope is broader than the five-field benchmark, so workflow verification is reported separately from extraction accuracy.
+A completed workflow leaves staff with a brief that shows the current request, unanswered questions and review decisions. Approval records that the brief has been checked; it does not reserve a table. Email, WhatsApp and reservation connections are simulated. Because these workflows extend beyond the five fields in the dataset, we evaluate them separately from extraction accuracy.
 
 <!-- PAGE 4 -->
 # 2 Product and user journey
 
-FormBridge has two connected entry points. Staff start with an empty booking desk and enter their own transcript, import a saved enquiry or review a voice transcription. Restaurants can publish a branded guest page or embed its assistant on their website. The assistant uses approved restaurant information and gathers the request before the guest consents to share contact details with the team.
+Staff start with an empty booking desk. They can enter a conversation, import a saved enquiry or review a voice transcription. Restaurants can also publish a branded guest page or embed its assistant on their website. The assistant answers questions using approved restaurant information and collects the request. Contact details are shared with the team only after the guest consents.
 
 ![A customer conversation beside its five-field brief, showing six guests and an unresolved after-eight time](assets/FormBridge-core-workflow.jpg)
-*Figure 1. The live booking desk after a customer changes four guests to six and replaces 7 pm with “sometime after 8 pm”. The count is resolved; the exact time still needs an answer. Original product capture, 13 October 2026.*
+*Figure 1. The booking desk after a customer changes four guests to six and replaces 7 pm with “sometime after 8 pm”. The guest count updates while the exact time remains unresolved. Screenshot of the live application, 13 October 2026.*
 
 ## A complete enquiry
 
-In Figure 1, the restaurant, city and date survive the correction. Staff can inspect the supporting messages and change history, then ask for an exact time. A proposed 8:30 pm becomes resolved only after the customer accepts it. Approval then applies to the reviewed brief.
+In Figure 1, the restaurant, city and date remain unchanged. Staff can inspect the source messages and change history before asking for an exact time. If a staff member offers 8:30 pm, that time is recorded as agreed only after the customer accepts it. The completed brief can then be approved.
 
-The shared workflow adds contact details, accepted guest-care requests, an owner and a due time. A private review link lets the guest request a correction. That change becomes a customer message, clears approval and returns the enquiry to **Needs reply**. A simulated reservation connection demonstrates transfer and failure handling without reserving a table.
+When an enquiry is shared with the team, staff can add contact details, accepted guest-care requests, an owner and a due time. The guest can request a correction through a private review link. Their change becomes a new customer message and returns the enquiry to **Needs reply**, removing the previous approval. The simulated reservation connection demonstrates how the reviewed request would be handed over and how a failed transfer would be handled.
 
 ## Work beyond the first reply
 
-The desk supports comments, priority, ownership, returning-guest history and exact reminders. Staff explicitly link or merge guest records; the system does not assume that matching names identify the same person. A service planner organises saved enquiries with resolved dates. The desk assistant can draft replies, suggest a follow-up and prepare a handoff note, all subject to staff acceptance.
+The team desk keeps comments, priorities, assignments and reminders beside each enquiry. Staff decide whether to link or merge returning-guest records, since two people can share a name. A service planner organises enquiries with known dates. The desk assistant drafts replies and handoff notes for staff to review before use.
 
-Device sign-in and private team invitations work in the deployed product. Email signup and password recovery can be explored in a separate, labelled simulation. Real email delivery remains disabled until a sender is configured and tested.
+The deployed application supports device sign-in and private team invitations. A separate simulation demonstrates email signup and password recovery. Real email delivery requires a configured and tested sender.
 
 <!-- PAGE 5 -->
 # 3 Architecture and state
 
-The application uses Next.js 16.3.6, React 19.3.0 and TypeScript 5.9.3 on Vercel. OpenAI SDK 7.23.0 provides language and transcription requests; Zod 4.6.5 validates inputs and structured outputs. Supabase provides authentication, PostgreSQL storage and row-level security. A locked dependency file records the installed versions.
+We used Next.js 16.3.6, React 19.3.0 and TypeScript 5.9.3 to build the application, deployed on Vercel. OpenAI SDK 7.23.0 handles language and transcription requests, while Zod 4.6.5 checks input and response formats. Supabase provides sign-in and PostgreSQL storage, with access rules applied to individual records. The dependency lockfile records the installed versions.
 
 ![The flow from conversation input through extraction and validation to review and shared storage](assets/architecture-current.png)
 *Figure 2. Application architecture. Model output is checked before it changes the brief. Shared workspace reads and changes require membership; the public booking desk works independently. External messaging and reservations use simulations.*
 
-## State ownership
+## Keeping the brief consistent
 
-The model proposes a current value, status, constraint and evidence for each field. Application code decides what enters the brief. A field may be missing, resolved or awaiting clarification, and may originate from the model or a staff edit. Source IDs connect it to transcript messages. Revision history records changes; approval refers to one particular revision. A changed request therefore cannot retain an earlier approval silently.
+The model proposes a value for each field, any remaining uncertainty and the messages that support it. Application code checks these proposals before updating the brief. Each field is marked missing, resolved or awaiting clarification. The brief also records whether a value came from the model or a staff edit. Approval belongs to a particular version, so changing the request removes its earlier approval.
 
-The active draft uses browser session storage. The device library uses local storage and holds up to 50 cases. Shared cases are saved in Supabase with workspace membership checks. Guest preferences, comments and follow-up actions remain distinct from the five extracted booking fields. Reimported JSON and older model-derived drafts require renewed checking before approval.
+The active draft is kept in browser session storage. A local library holds up to 50 saved enquiries, while shared enquiries are stored in Supabase and restricted to team members. Guest preferences and comments are stored separately from the five extracted fields. Imported JSON and older drafts containing model predictions must be checked again before approval.
 
-## Shared edits and request boundaries
+## Handling shared edits and failed requests
 
-Writes carry a saved version. A stale write returns a conflict rather than overwriting a teammate's changes. Where possible, the interface preserves unrelated edits and asks which version to keep when the same field changed. In-flight reply requests are tied to the selected case, preventing a late response from appearing in another enquiry.
+Each save identifies the version being edited. If a teammate has already changed that version, the application reports a conflict. It preserves unrelated edits where possible and asks which value to keep when both people changed the same field. Reply requests remain linked to their original enquiry, so a delayed response cannot appear in a different case.
 
-Server routes validate body size and field schemas before provider calls. A shared database allowance reserves estimated usage, then settles known usage; uncertain failed requests retain their reservation. If the allowance service is unavailable in production, AI requests stop while manual review and saved work remain available. This is an application spending control, not an account-wide billing guarantee.
+Before calling OpenAI, the server checks the input and sets aside an estimated amount from a shared usage allowance. It then records the reported usage. If a failed request returns no usage information, the estimate remains charged against the allowance. AI requests stop if the allowance database is unavailable, while manual review and saved work remain accessible. This controls the application's usage, not all spending on the OpenAI account.
 
 <!-- PAGE 6 -->
 # 4 NLP methods and choices
@@ -114,33 +116,33 @@ Server routes validate body size and field schemas before provider calls. A shar
 | Approach | Method | Purpose |
 | --- | --- | --- |
 | Rules | Regular expressions, number-word conversion and simple correction or acceptance patterns | An interpretable baseline without model calls |
-| Direct extraction | A structured five-field prediction from each visible conversation prefix | Measures contextual extraction with minimal application reconciliation |
-| FormBridge | Contextual candidates with quotations, deterministic validation and revision-aware reconciliation | Produces a state that staff can inspect and review |
+| Direct extraction | The model predicts five values from the conversation so far | Tests contextual extraction with minimal processing after the model response |
+| FormBridge | The model proposes values and quotations; code checks them before updating the brief | Adds sources, uncertainty and controlled updates for staff review |
 
-All approaches receive the same speaker-labelled prefixes. FormBridge reconstructs the request, then checks message IDs, literal quotations, value support, customer acceptance and recency. It checks dates, time constraints, guest counts and cancellation. Manual edits are preserved; later conflicts require review.
+All three approaches receive the same messages with customer and staff labels. FormBridge checks whether quoted messages exist, whether their wording supports the proposed value and whether a later message changes it. It also checks customer acceptance, dates, time constraints, guest counts and cancellation. Manual edits are preserved, with later conflicts referred to staff.
 
-Structured output makes the response shape predictable; it does not make the content correct (OpenAI, n.d.-b). A phrase such as “after 7 pm” must remain a constraint, and a time's numeral must not become a guest count. Validation addresses these task-specific errors. Its pattern-based checks can still reject a valid paraphrase or misunderstand acceptance, so human inspection remains necessary.
+Structured output gives the model response a predictable format, but its content can still be wrong (OpenAI, n.d.-b). For example, “after 7 pm” must remain a time preference, and the numeral in a time must not become a guest count. Validation checks for these errors. The checks can also reject a valid paraphrase or miss an acceptance, which makes their own effect worth evaluating.
 
 ## Model and latency choices
 
-The deployed configuration uses `gpt-6-luna` with one `gpt-6.1-sol` repair or transient-failure recovery. Both use low reasoning effort; SDK retries are disabled. Output limits are 2,400 tokens for extraction with evidence and 900 for direct extraction.
+The deployed configuration uses `gpt-6-luna` for the first extraction. It can make one further call to `gpt-6.1-sol` to repair a response or recover from a temporary failure. Both use low reasoning effort, with automatic SDK retries disabled. Output limits are 2,400 tokens for FormBridge and 900 for direct extraction.
 
-A ten-dialogue development trial with Luna matched 45/50 fields, with no failed dialogues and a mean replay time of 27.78 seconds. A later Sol-primary/Astra-repair trial on the same IDs matched 38/50, failed one dialogue and averaged 52.39 seconds over the nine completed dialogues. Prompts and validation also changed between trials, so this does not isolate model quality. It supports the practical choice of Luna for ordinary requests; Appendix E gives the trial records.
+A ten-dialogue trial with Luna matched 45/50 fields without a failed dialogue, averaging 27.78 seconds per conversation. A later trial using Sol first and Astra for repair matched 38/50 on the same dialogues. One failed, and the nine completed dialogues averaged 52.39 seconds. We retained Luna as the practical starting model. Because the prompts and validation also changed between trials, the results do not establish which model is intrinsically better. Appendix E records both configurations.
 
-Sol is reserved for one further check or recovery when needed. Its benefit was not isolated in a controlled repair-model trial. The 12- and 14-second limits leave time for application work within the 30-second route limit. Hosted models avoid training and serving weights, at the cost of network dependence, external processing and model aliases that may change.
+The first call has a 12-second limit and the additional call has 14 seconds, leaving time for application processing within the 30-second request limit. The separate benefit of Sol repair has not yet been measured. Using hosted models avoids training and hosting model weights, but adds network dependence and external data processing. The model names are aliases, so their behaviour may change over time.
 
 ## Language features around the brief
 
-Voice input uses `gpt-transcribe`; staff review the transcript before adding it. Guest-care suggestions require customer quotations and individual staff acceptance. The desk assistant proposes notes or follow-ups without booking tables or overwriting fields. Restaurant questions retrieve matching categories of approved facts and acknowledge missing answers.
+Voice input uses `gpt-transcribe`, and staff review its transcript before adding it to the conversation. Guest-care suggestions include customer quotations and require individual acceptance. The desk assistant proposes notes and follow-ups for review. Answers to restaurant questions use matching categories of approved information and acknowledge when an answer is unavailable.
 
 <!-- PAGE 7 -->
 # 5 Data and preparation
 
 ## Dataset and mapping
 
-The evaluation uses Google's Schema-Guided Dialogue dataset (Google Research, n.d.). The exact corpus revision is specified in Appendix B. Conversations are retained only when they concern one restaurant service and contain a customer frame with the `ReserveRestaurant` intent. The following subset was identified before applying the maximum-prefix-length filter.
+We evaluated extraction using Google's Schema-Guided Dialogue dataset (Google Research, n.d.). We retained conversations about one restaurant service that included a customer turn labelled `ReserveRestaurant`. Table 2 shows the eligible subset before applying the application's 30-message limit. Appendix B identifies the exact dataset revision.
 
-*Table 2. Audited restaurant subset before prefix-length filtering.*
+*Table 2. Eligible restaurant conversations before applying the message limit.*
 
 | Split | Restaurant service | Eligible dialogues | Reservation customer turns |
 | --- | --- | --- | --- |
@@ -152,51 +154,51 @@ The training schema uses `city` and `party_size`; the development and test schem
 
 ## Preparing each example
 
-Files are read in a stable order. The input ends at the final reservation customer turn and is restricted to at most 30 messages. USER and SYSTEM become customer and staff, with stable message IDs. The final annotated slot values supply acceptable answers for scoring. Each system processes every customer prefix in chronological order, so later messages are unavailable at earlier steps.
+The loader reads files in a fixed order and stops each conversation at its final customer turn about a reservation. It maps USER and SYSTEM to customer and staff and assigns message identifiers. The dataset's final annotated values provide the answers used for scoring. Each method processes the conversation again after every customer message, using only the messages available at that point. We refer to each of these partial conversations as a prefix.
 
-Gold labels, schema defaults and future turns are excluded from model input. Historical conversations have no reference date. Consequently, “tomorrow” is not interpreted using the date of the experiment. A yearless date can remain a recognised value while still requiring clarification before staff approval.
+Expected answers, default values from the service schema and future messages are excluded from model input. Historical conversations are supplied without a reference date, so “tomorrow” is not interpreted using the day we run the experiment. A date without a year can be retained as a value while still requiring clarification before approval.
 
 ## Other inputs and data limitations
 
-Live inputs are user-provided conversations, approved restaurant facts and reviewed voice transcripts. Product screenshots and functional tests use fictional restaurants and guests. These are separate from SGD and are not collected restaurant traffic. Guest-care and workflow features are outside the dataset's five-field labels.
+The live application accepts users' conversations, approved restaurant information and reviewed voice transcripts. Screenshots and functional tests use fictional restaurants and guests, separately from the dataset evaluation. SGD's five-field labels do not cover guest-care or team workflow features.
 
-SGD provides useful task-oriented state labels, but does not fully label evidence quality, clarification wording, staff workload or operational readiness. Its public availability also means absence from a hosted model's pretraining cannot be established. Repeatedly inspected selections support regression testing; they cannot become unseen tests through rerunning.
+SGD supports evaluation of booking values, but does not fully label supporting quotations, clarification wording or staff workload. It is publicly available, so we cannot establish whether it was included in a hosted model's training data. The selected conversations had already been examined during development. Rerunning them checks for regressions but cannot measure performance on unfamiliar data.
 
 The upstream dataset is licensed under Creative Commons Attribution-ShareAlike 4.0. Dataset-derived excerpts and retained outputs require the applicable attribution and licensing. The project keeps the corpus revision and licence with its evaluation materials.
 
 <!-- PAGE 8 -->
 # 6 Evaluation design
 
-## Whole-system comparison
+## Comparing the three systems
 
-The evaluation uses the released extraction code and two previously inspected samples: 20 development dialogues for all three methods and 20 test dialogues for FormBridge regression testing. Dialogue IDs were saved before the calls. Appendices A and B identify the source revision, configuration and selections.
+We ran the released extraction code on two previously examined samples: 20 development dialogues for all three methods and 20 test dialogues for FormBridge regression testing. The dialogue selections were saved before making API calls. Appendices A and B provide the code version, configuration and selected conversations.
 
 All methods see identical ordered conversation prefixes and finish at the same customer turn. Direct extraction and FormBridge use GPT-6 Luna as the primary model. FormBridge also permits a Sol repair or recovery and requests quotations. This compares complete systems, with different prompts, output allowances and call counts.
 
 ## Controlled component and feature checks
 
-A second comparison uses one primary-model proposal for the final visible prefix of each development dialogue. Each proposal is scored before and after deterministic validation. Both conditions therefore share the exact input, prompt, model, output allowance and response. Repair and earlier predicted state are excluded. This isolates postprocessing of these proposals, rather than the complete incremental application. The one timed-out request counts as a failure in both conditions.
+To measure the effect of validation, we requested one model response at the end of each development conversation. We scored that same response before and after applying the checks. The input, prompt, model and output allowance were therefore identical in both conditions. This experiment excludes repair calls and previously predicted states, isolating validation from the rest of the application. One request timed out and counts as a failure in both conditions.
 
-Twenty constructed conversations separately test corrections, customer acceptance, cancellation, dates, guest counts and uncertainty. Expected values, statuses, supporting-message combinations and clarification targets were written before calls and kept out of model inputs. Each complete transcript is analysed from an empty brief. The checks measure source coverage, preservation of constraints, question targets and approval decisions; they do not rate conversational helpfulness.
+We also used 20 constructed conversations to test corrections, customer acceptance, cancellation, dates, guest counts and uncertainty. The expected values, statuses, supporting messages and clarification targets were recorded before the calls and withheld from the model. Each transcript was analysed from an empty brief. These checks test whether the required sources and questions appear and whether approval is allowed at the right point.
 
 ## Metrics
 
 **Field accuracy** is the number of matching final values divided by five times the number of attempted dialogues. For 20 dialogues the denominator is 100. **Complete-brief accuracy** is the number of dialogues with all five matching values divided by the number attempted. A failed dialogue remains in both denominators; staff edits are excluded.
 
-The strict matcher applies basic text normalisation. The canonical matcher also accepts equivalent date and time forms, without supplying missing years or treating a range as an exact time. Both are reported for the whole-system comparison. They measure five-field matching, not full SGD joint goal accuracy or readiness to approve.
+The **strict matcher** applies basic text normalisation. The **canonical matcher** also accepts equivalent date and time formats, while preserving missing years and the distinction between a range and an exact time. We report both. These scores cover our five selected fields; they do not measure the full SGD task or whether a brief is ready for approval.
 
 Resource accounting includes OpenAI requests, observed tokens and whole-dialogue replay time. Replay includes multiple prefixes, so it is not one-message response time. Failed requests may omit usage; token totals are not complete billing records.
 
 ## Reproduction and interpretation
 
-The scripts call application functions with real provider requests; separate browser checks exercise the deployed interface. Saved outputs retain predictions, failures, settings and source checksums. The main runner rechecks the extraction checksum before saving. The component and feature runner rechecks its combined source checksum. Hosted-model variability prevents identical future outputs even with unchanged source. Appendix E documents the supplementary checks.
+The evaluation calls the application's extraction functions with real OpenAI requests. Separate browser checks test the deployed interface. Saved results include predictions, failures and settings, with code checksums to identify the tested version. Appendices B and E explain how to repeat the experiments and which files are checked for changes. Hosted models can return different answers on a later run even when the code is unchanged.
 
 <!-- PAGE 9 -->
 # 7 Results and resource use
 
 ## Development comparison
 
-Table 3 reports the 20 development dialogues evaluated on 13 October 2026. Each method completed all 20; the field denominator is 100. Complete-brief scores require all five values to match within the same dialogue.
+All three methods completed the 20 development dialogues on 13 October 2026. Table 3 reports 100 field checks per method; a complete brief requires all five values to match.
 
 *Table 3. Development accuracy on 20 dialogues.*
 
@@ -206,35 +208,35 @@ Table 3 reports the 20 development dialogues evaluated on 13 October 2026. Each 
 | Direct Luna | 83/100 | 89/100 | 6/20 | 11/20 |
 | FormBridge | 97/100 | 97/100 | 17/20 | 17/20 |
 
-FormBridge exceeded direct extraction by eight canonical field matches and six complete briefs on this selection. This is a difference between the configured systems, including prompts, output representation, reconciliation and additional repair calls. It cannot be attributed to validation alone. Both models found every restaurant and city; dates and guest counts account for most remaining differences.
+FormBridge matched eight more fields and six more complete briefs than direct extraction under canonical scoring. Both found every restaurant and city; dates and guest counts accounted for most differences. The result includes differences in prompts, response formats and additional calls. Validation is examined separately below.
 
 ## Effect of validation on identical proposals
 
-*Table 4. Paired comparison using one proposal per final dialogue prefix.*
+*Table 4. The same model responses scored before and after validation.*
 
 | Condition | Canonical fields | Complete briefs |
 | --- | --- | --- |
 | Original model proposal | 88/100 | 14/20 |
 | Same proposal after validation | 85/100 | 12/20 |
 
-The 20 attempts include one timeout, counted as five wrong fields in each condition. Validation gained one field match but lost four correct values. This result shows that the deterministic checks alone did not improve value accuracy on these proposals. Section 8 examines why; it is not a repeat of the full-system experiment.
+One request timed out, counting as five wrong fields in each condition. Validation gained one match but rejected four correct values, reducing accuracy. Section 8 examines these losses.
 
-## Additional computation
+## Processing time and API usage
 
-In the whole-system comparison, each method processed 166 customer prefixes. Direct extraction made 166 OpenAI requests; FormBridge made 196. Observed input/output tokens were 93,947/21,817 and 381,706/61,309 respectively. Three FormBridge dialogues recovered from failed primary requests without returned usage, so their token totals are lower bounds.
+Each method processed 166 partial conversations. Direct extraction made 166 OpenAI requests, using 93,947 input and 21,817 output tokens. FormBridge made 196 requests and recorded 381,706 input and 61,309 output tokens. Three dialogues recovered after failed requests without usage information, so FormBridge's recorded tokens understate the total.
 
-Mean dialogue replay time was 21.87 seconds for direct extraction and 45.11 seconds for FormBridge. The latter obtained more matching values at approximately twice the replay time. Concurrent evaluation activity limits latency comparisons. Rules required no provider calls.
+Processing a whole dialogue averaged 21.87 seconds for direct extraction and 45.11 seconds for FormBridge, approximately twice as long. These measurements cover all steps, not one message. Concurrent evaluation activity also limits the timing comparison. Rules required no API calls.
 
-## Inspected regression sample
+## Regression results
 
-On the inspected test selection, FormBridge matched 100/100 fields and 20/20 complete briefs under both matchers. It processed 137 prefixes with 149 provider attempts, 289,466 input and 50,732 output tokens. Mean replay time was 32.93 seconds, with no failed dialogues or incomplete usage records. This is regression evidence for the selected cases.
+The previously examined test selection matched 100/100 fields and 20/20 complete briefs under both matchers. FormBridge made 149 calls across 137 partial conversations, recording 289,466 input and 50,732 output tokens. Processing averaged 32.93 seconds per dialogue, with no failures or missing usage records.
 
 <!-- PAGE 10 -->
 # 8 Error analysis and development findings
 
-## What the three remaining field mismatches mean
+## The three remaining field errors
 
-The saved development predictions were compared with their source conversations. Two failures concern how far a short acceptance should extend across earlier staff proposals. The third concerns the matcher rather than a different requested date.
+Comparing the incorrect predictions with their conversations revealed two cases of missed acceptance across earlier messages. The third was a wording difference that the scoring code did not recognise as equivalent.
 
 *Table 5. FormBridge development mismatches.*
 
@@ -244,41 +246,41 @@ The saved development predictions were compared with their source conversations.
 | 1_00017 / guests | Missing; label is 2 | Staff proposed two guests before date and venue changes. The accepted final summary omitted the count; it was not retained. |
 | 4_00069 / date | “the 5th of this month”; label is “5th of this month” | The date is retained as uncertain. The matcher does not remove the leading article from this relative phrase. |
 
-One mismatch is a text-equivalence issue. A broader relative-date normaliser should be developed separately, then applied to all methods alongside the existing metric.
+The last case expresses the expected date. A revised matcher should recognise this equivalence and be applied to every method alongside the existing score.
 
-The first two cases concern acceptance across intervening corrections. They count as errors against the dataset labels. Their full-system traces do not retain the original model proposals, so those runs alone cannot separate extraction from validation errors.
+The first two cases count as errors against the dataset labels. These runs saved final states without the original proposals, so they cannot establish whether extraction omitted the values or validation rejected them.
 
-## What the controlled comparison reveals
+## Why validation rejected correct values
 
-The paired run retains original proposals. In 4_00080, validation rejected San Francisco when the customer quotation said “San Fran”. In 4_00089, two correct values were rejected because their citations omitted earlier customer support. In 1_00005, the proposed date cited a staff summary without the required customer acceptance. These four losses show how strict matching and incomplete citations can discard correct values despite useful information elsewhere in the transcript.
+The controlled experiment retained the original responses. Validation rejected San Francisco in 4_00080 because the customer said “San Fran”. In 4_00089, quotations omitted earlier customer support for two correct values. In 1_00005, the date cited a staff summary without the required acceptance. These account for all four losses: the information was present, but the checks could not establish the necessary link.
 
-Validation gained one match by retaining “Wednesday next week” as a value while keeping its uncertainty. That is a representation change, not newly recovered information. The whole-system result also partly reflects representation: six direct-model date mismatches retained the relative phrase only as a constraint. The constructed-case checks therefore assess uncertainty and approval separately from values.
+The gained match moved “Wednesday next week” from a constraint into the value field while retaining uncertainty. Six date mismatches in the full direct-model comparison similarly kept the phrase only as a constraint. A value score can overlook information preserved elsewhere, which is why we test uncertainty and approval separately.
 
 ## Development lessons
 
-The rule baseline matched no dates because it recognises full calendar dates while this selection contains relative or yearless forms. A broader date parser and trained slot tagger would make stronger baselines. For FormBridge, the next improvement is to recover missing supporting messages and recognise valid aliases without accepting unsupported values.
+The rule baseline matched no dates because its patterns recognise full dates, while this sample uses relative or yearless dates. A broader date parser and trained slot tagger would strengthen the comparison. FormBridge needs to recover missing sources and recognise valid aliases without accepting unsupported values.
 
-Earlier tests exposed negated cancellations, stale approvals after invalid corrections, disappearing retry controls and late replies appearing in another case. Cancellation checks, approval invalidation, persistent recovery controls and request scoping addressed those failures. Targeted tests and deployed retests support these fixes, without establishing a zero-error rate.
+Earlier testing found negated cancellations being misread, rejected corrections leaving old approvals active and dismissed errors removing the retry control. Changes to cancellation, approval and recovery handling addressed these cases. Linking delayed replies to their original enquiry also fixed replies appearing in the wrong case. Targeted tests and deployed checks verified these corrections.
 
 <!-- PAGE 11 -->
 # 9 Interaction design
 
-The main interaction is a conversation beside a booking card. Staff can inspect a field's source, revise a message or speaker, compare a changed value and ask for the unresolved detail. Status text accompanies colour. Approval is a separate action and is removed when the underlying request changes. This approach follows human–AI interaction guidance on explaining behaviour and supporting correction (Amershi et al., 2019).
+We placed the conversation beside the booking card so staff can check a detail without leaving the enquiry. Each field opens its source messages. Staff can edit a message, correct its speaker or inspect a previous value. Unresolved details produce a question, and a changed request removes its earlier approval. These choices follow guidance on explaining system behaviour and supporting correction (Amershi et al., 2019).
 
 ![The six-guest value with the original and corrected customer messages, followed by a request for an exact time](assets/FormBridge-core-workflow.jpg)
 *Figure 3. Enlarged source panel from Figure 1. Staff can read the original request and correction beside the six-guest value. The separate time question preserves the customer's “after 8 pm” preference.*
 
 ## Eight tasks completed on the live application
 
-One structured walkthrough completed eight tasks: open a blank desk, add a complete enquiry, correct guests and time, inspect sources and history, propose a time, accept it, approve the brief, and edit an earlier message. All eight produced the expected visible state. History showed four guests becoming six and 7 pm becoming unresolved. A staff offer of 8:30 pm left approval blocked until the customer accepted. Editing the approved request then removed approval and rebuilt the affected count. Appendix F records the steps and history view.
+A structured walkthrough covered eight tasks, from opening an empty desk to editing an approved enquiry. All eight produced the expected visible result. The history showed four guests changing to six and 7 pm becoming unresolved. An offer of 8:30 pm left approval disabled until the customer accepted. Editing the earlier guest count then updated the brief and removed approval. Appendix F records each step.
 
-Source inspection, visible changes and reversible editing make errors reviewable. Cream surfaces, dark green navigation and serif headings give the restaurant workspace a consistent identity; status text accompanies colour. The walkthrough establishes that these controls and transitions worked. It does not measure a new user's learning time, discoverability, satisfaction or restaurant productivity. No recruited participants were involved.
+Cream backgrounds, dark green navigation and serif headings give the interface a consistent restaurant setting. Status labels communicate meaning alongside colour, and source panels keep corrections close to the detail being checked. The walkthrough confirms that these interactions worked in the tested enquiry. It involved no recruited participants, so it cannot establish how easily new users would find the controls or complete their work.
 
 
 <!-- PAGE 12 -->
 # 10 Functional verification
 
-The released application passed 230 automated tests across 27 files, TypeScript checking and the production build. Separate production and browser records cover shared access, concurrency and complete workflows. Their original revisions are listed in Appendix C.
+The released application passed 230 automated tests across 27 files, TypeScript checking and the production build. Additional checks on the deployed application covered team permissions, simultaneous edits and complete workflows. Appendix C links the results to the code versions tested.
 
 *Table 6. Verification scope and results.*
 
@@ -289,82 +291,82 @@ The released application passed 230 automated tests across 27 files, TypeScript 
 | Restaurant browser workflows | 22 recorded workflows: intake, consent, care, review, team work, widget and simulated handoff |
 | Email preview | Local and deployed account flows completed; no real mail or production account created |
 
-The later email-preview release did not alter the previously checked restaurant extraction or backend paths. Counts are reported separately because the checks overlap.
+The email-preview release left the tested restaurant extraction and shared-workspace code unchanged. The counts above are kept separate because some checks cover the same behaviour.
 
 ## Source, uncertainty and clarification checks
 
-All 20 constructed conversations completed with the expected field values and statuses: 100/100 checks for each. There were 20 OpenAI requests and no final failures. The feature-specific results were:
+All 20 constructed conversations returned the expected field values and statuses, giving 100/100 correct checks for each. They required 20 OpenAI requests, with no final failures. Table 7 examines the features that field accuracy alone does not measure.
 
 *Table 7. Feature checks on constructed conversations.*
 
 | Check | Matched | Meaning |
 | --- | --- | --- |
-| Required source messages | 93/93 populated fields | Correct content included its prelabelled supporting-message combination |
+| Required source messages | 93/93 populated fields | Each correct value included the supporting messages specified before testing |
 | Uncertainty retained | 7/7 uncertain fields | Expected status, value and constraint were preserved |
 | Clarification target | 9/9 required questions | Each question addressed the expected unresolved detail |
 | Ask or remain silent | 20/20 cases | Missing details triggered questions; complete or cancelled requests did not |
 | Approval eligibility | 20/20 cases | Approval matched the expected complete, incomplete or cancelled state |
 
-Source coverage does not score every extra quotation or independently judge wording. Clarification checks identify the requested field, not how helpful a person finds the question. These are constructed functional tests, separate from SGD accuracy and participant research.
+The source check verifies that the required messages are present; it does not independently assess every additional quotation. The clarification check verifies which detail a question asks about. Assessing the usefulness of its wording would require feedback from users.
 
-Production checks also rejected cross-team access and stale edits, protected private review data and preserved enquiries after simulated provider failures. Selected desktop and mobile layouts showed no horizontal overflow. Keyboard checks covered dialog closing and focus return. These observations do not certify every browser or assistive technology.
+Checks on the deployed application rejected access from another team, detected outdated edits and preserved enquiries after simulated provider failures. The selected desktop and mobile layouts fitted their viewports without horizontal scrolling. Keyboard checks covered closing dialogs and returning focus. Broader browser and assistive-technology testing remains necessary.
 
 <!-- PAGE 13 -->
 # 11 Ethics and limitations
 
 ## Guest information and access
 
-Conversations can contain names, contact details and dietary requirements. Public intake asks the guest to consent before sharing contact details with the restaurant. Team membership restricts access to private records. PostgreSQL row-level security protects reads, and authorised mutations check the caller and record version (Supabase, n.d.). Private review links expire after 72 hours and expose only the information needed for guest review; anyone possessing an active link can use it.
+Conversations can contain names, contact details and dietary requirements. The guest page asks for consent before sharing contact details with the restaurant. Private team records use PostgreSQL row-level security to restrict reads; updates also check the staff member's permission and the record version (Supabase, n.d.). Review links expire after 72 hours and expose only the details needed for review. Anyone holding an active link can use it, so it should be treated as private.
 
 OpenAI processes the submitted text or audio needed for a request. Responses API calls use `store: false`, which does not by itself guarantee zero provider retention; applicable abuse-monitoring and account controls still matter (OpenAI, n.d.-a). FormBridge does not retain raw voice recordings. JSON exports contain transcript data and should be handled as guest records.
 
-The current product has no automated retention schedule for all shared enquiries or a complete data-subject request workflow. A restaurant deployment would need an agreed retention policy, deletion procedures and an explanation of external processing. Free-plan service limits and dependency availability also constrain operation.
+Shared enquiries do not yet have an automatic deletion schedule or a complete process for handling requests to access or delete personal information. Before use in a restaurant, these procedures need to be agreed and explained to guests, including how external services process their information. Service-plan limits and outages also affect availability.
 
 ## Human decisions and consequences
 
-An extracted allergy or accessibility request can be incomplete. Staff should confirm practical arrangements with the guest and restaurant; extraction does not establish medical or operational suitability. Returning-guest records are linked deliberately to avoid combining different people with the same name. Staff can reject suggestions, correct fields and inspect their sources.
+An allergy or accessibility request may be incomplete even when extracted correctly. Staff still need to confirm suitable arrangements with the guest and restaurant. The interface lets staff reject suggestions and inspect their sources. It also requires an explicit decision to link returning-guest records, reducing the risk of combining different people with the same name.
 
-Prompts and validation reduce the effect of instructions embedded in a conversation, but do not prove immunity to prompt injection. Rate limits and reserved usage reduce uncontrolled model spending, while failed requests preserve the last valid brief. These controls have bounded test evidence rather than an assurance against every malicious input or outage.
+Prompts and validation help prevent instructions inside a conversation from changing the model's task, although prompt injection remains a risk. Shared usage limits control API consumption, and a failed update preserves the last valid brief. Testing covered selected failures and hostile inputs; it cannot cover every possible attack or outage.
 
 ## Evaluation and deployment limits
 
-The evaluated domain is English restaurant enquiries. Twenty inspected dialogues per selection, one current run and hosted model aliases do not support broad accuracy or statistical superiority claims. Constructed cases measure supporting-message coverage, uncertainty and approval decisions, but provide no independent rating of every quotation or of clarification usefulness. The paired experiment exposes validation losses on realistic dataset conversations. Public-data pretraining contamination is unknown.
+The evaluation is limited to English restaurant enquiries and small samples already examined during development. The model aliases may change, and we cannot rule out the public dataset having appeared in model training. The results therefore support conclusions about the tested cases rather than general accuracy. Independent data, separate judgements of quotation quality and observation of restaurant staff would strengthen the evidence.
 
-The guest endpoint currently uses Australia/Sydney as its reference-date timezone; reminder times follow the staff device. Restaurant-specific timezone configuration is needed before wider geographic deployment. Reminders update while the application is open; background notification delivery is absent. Device identities are tied to their browser and do not offer email recovery.
+Guest requests use the Australia/Sydney timezone to interpret dates, while reminders follow the staff device. Wider use would require a timezone setting for each restaurant. Reminders update only while the application is open. Device sign-in is tied to the browser and currently offers no email recovery.
 
-Messaging and reservation connectors are explicit simulations. Email registration and recovery have a separate simulation, while real delivery awaits a configured sender. There is no live reservation-provider integration, restaurant availability verification or payment processing. The application is a tested enquiry workflow with these stated operating boundaries.
+Messaging, reservation transfer and email account recovery remain simulations. Real email delivery requires a configured sender. FormBridge does not check live restaurant availability, make reservations or process payments.
 
 <!-- PAGE 14 -->
 # 12 Project delivery and next steps
 
-## Project phases and contribution
+## Project phases and responsibilities
 
-The project progressed through five phases, extending the initial booking brief into a shared restaurant enquiry workflow.
+Our project began with five booking fields and expanded into a shared enquiry workflow. Table 8 summarises the main phases and their outputs.
 
 *Table 8. Project phases and outputs.*
 
 | Phase | Main output |
 | --- | --- |
-| Problem definition | Restaurant enquiry scope, current-state fields and a review-first workflow |
-| NLP implementation | Rules, direct extraction, evidence validation, state reconciliation and repair limits |
-| Evaluation and correction | SGD mapping, repeatable selections, strict and canonical scoring, error investigation and regression tests |
-| Product development | Restaurant-styled interface, voice input, saved cases, team access, guest intake, care and review links |
-| Release and communication | Deployed checks, reproducibility instructions, product films and technical findings |
+| Problem definition | Restaurant enquiry scope, five booking fields and staff review requirements |
+| NLP implementation | Rules, model extraction, source checks, controlled updates and limited repair calls |
+| Evaluation and correction | Dataset preparation, scoring, investigation of errors and regression tests |
+| Product development | Restaurant interface, voice input, saved enquiries, team access and guest review |
+| Release and communication | Deployment checks, setup instructions, product videos and analysis of results |
 
-Karthik Ramesh (26043455) is responsible for technical implementation. This includes the application, NLP integration, evaluation tooling, deployment and technical verification.
+Within the group, Karthik Ramesh (26043455) took responsibility for technical implementation, including the application, NLP integration, evaluation tooling, deployment and technical verification.
 
 ## Recommendations in priority order
 
-1. **Test with restaurant staff.** Use paired tasks with and without FormBridge, vary task order and measure errors, completion time and reasons for corrections. Obtain consent and use fictional guest data.
-2. **Improve evidence handling and evaluation.** Address the alias and missing-citation failures from the paired test. Reserve independent data before tuning, use a second annotator for source and clarification judgements, and strengthen the rule baseline. Isolate the contribution of repair in a further controlled comparison.
-3. **Complete operational setup.** Configure and verify real account email delivery, recoverable staff access, restaurant timezones, retention and background reminders. Replace mock connectors only after provider authorisation and sandbox testing.
-4. **Reduce waiting and cost.** Investigate when repair is needed and whether shorter evidence outputs preserve accuracy. Test both quality and latency before release.
+1. **Test with restaurant staff.** Compare similar tasks with and without FormBridge, vary their order and measure completion time, errors and reasons for corrections. Use fictional guest data and obtain consent.
+2. **Improve source checks.** Address the aliases and missing citations found in the controlled experiment. Set aside independent data before further tuning and use a second annotator to assess sources and clarification. Strengthen the rule baseline and measure repair separately.
+3. **Prepare for restaurant use.** Add recoverable staff accounts, restaurant timezones, retention controls and background reminders. Verify email delivery and replace simulated connectors only after provider authorisation and testing.
+4. **Reduce waiting and cost.** Test whether fewer repair calls or shorter evidence responses can preserve accuracy while reducing processing time.
 
 ## Conclusion
 
-FormBridge demonstrates an end-to-end NLP application for a defined user group. It connects contextual extraction to inspectable evidence, revision-aware approval and a shared restaurant enquiry process. On the current development selection it matched 97 of 100 fields and 17 of 20 complete briefs, exceeding the configured direct baseline while using more computation. The inspected regression selection matched all 100 fields.
+We built FormBridge to keep a restaurant enquiry understandable as a customer's plans change. Staff can inspect the messages behind each detail, resolve missing information and pass a reviewed brief to a colleague. In the development comparison, FormBridge matched 97 of 100 fields and all five fields in 17 of 20 dialogues, exceeding direct extraction at the cost of more API usage and processing time.
 
-The paired comparison shows that stricter validation can also discard correct values. Constructed cases and the live walkthrough demonstrate selected review behaviours; independent data and restaurant user studies should now test whether those behaviours improve enquiry handling.
+The controlled comparison showed where the approach still falls short: strict source checks sometimes discard correct values. Improving those checks, evaluating unfamiliar enquiries and observing restaurant staff are the next steps towards establishing whether FormBridge improves everyday enquiry handling.
 
 <!-- PAGE 15 -->
 # References
@@ -384,7 +386,7 @@ Supabase. (n.d.). *Row level security*. Retrieved October 13, 2026, from https:/
 Wu, C.-S., Madotto, A., Hosseini-Asl, E., Xiong, C., Socher, R., & Fung, P. (2019). Transferable multi-domain state generator for task-oriented dialogue systems. In A. Korhonen, D. Traum, & L. Màrquez (Eds.), *Proceedings of the 57th Annual Meeting of the Association for Computational Linguistics* (pp. 808–819). Association for Computational Linguistics. https://doi.org/10.18653/v1/P19-1078
 
 <!-- PAGE 16 -->
-# Appendix A · Run the application
+# Appendix A Run the application
 
 ## Source and environment
 
@@ -392,7 +394,7 @@ Source: https://github.com/KarthikRamesh9149/NLP-AT2
 
 Live application: https://formbridge-nlp-at2.vercel.app/
 
-Use Node.js 24, pnpm 11.24.0 and Git. The commands below select the exact application revision evaluated in this report. The public repository's later documentation commits contain this report and its saved results.
+Use Node.js 24, pnpm 11.24.0 and Git. The commands below select the application version evaluated in this report. The report and saved results are included in later commits on the repository's main branch.
 
 ~~~bash
 git clone https://github.com/KarthikRamesh9149/NLP-AT2.git
@@ -415,14 +417,14 @@ pnpm start
 
 Open `http://localhost:3000`. Keep this terminal running and use a second terminal, in the same directory, for route checks or dataset commands. Stop and restart the server after rebuilding. `pnpm dev` supports development without shared storage; production AI routes deliberately reject requests when the shared allowance database is absent.
 
-## Verification and provider boundaries
+## Testing the application
 
-The repository's `docs/OPERATIONS.md` describes workspace setup, permissions, usage allowances and connector simulations. `scripts/check-restaurant-workspace.ts` creates synthetic accounts and cases against a configured test project. It needs the Supabase variables; use a dedicated project and retain its output to identify test records. Real API runs consume provider usage.
+The repository's `docs/OPERATIONS.md` describes workspace setup, permissions, usage limits and connector simulations. `scripts/check-restaurant-workspace.ts` creates test accounts and enquiries in a configured Supabase project. It requires the Supabase variables above. Use a dedicated test project and retain the output so the test records can be identified. Calls to OpenAI consume API usage.
 
 The `/auth/preview` route requires no mail sender. It accepts sample `.test` addresses, keeps its account and inbox in memory and clears them on refresh. Its verification and recovery links expire after 15 minutes and can be used once. This simulation has no access to real team records.
 
 <!-- PAGE 17 -->
-# Appendix B · Reproduce the evaluation
+# Appendix B Reproduce the evaluation
 
 ## Dataset and configuration
 
@@ -440,7 +442,7 @@ export FORMBRIDGE_MODEL=gpt-6-luna
 export FORMBRIDGE_REPAIR_MODEL=gpt-6.1-sol
 ~~~
 
-The two selection files below already exist at application revision `b0d389e` and contain exactly the IDs used by the refreshed runs. The runner copies them into new selection records before making provider calls. Gold values are only used for scoring.
+The two selection files below exist at application revision `b0d389e` and contain the dialogue IDs used in this report. The script copies them into a new record before making API calls. Expected answers are used only for scoring.
 
 ~~~bash
 EVAL_RESULTS=evaluation/results
@@ -459,18 +461,18 @@ pnpm exec tsx --env-file=.env.local scripts/evaluate.ts ../formbridge-sgd \
 
 ## Saved outputs and scoring
 
-The report uses `sgd-dev-20-report-v18-20261013-development.json` and `sgd-test-20-report-v18-20261013-regression.json`, under `evaluation/results/` on the report revision. Each includes selected IDs, model settings, per-field predictions, final states, per-turn usage and summary metrics. Corresponding `selection-report-v18-...` and `progress-report-v18-...` files preserve selection and progress.
+The main results are saved in `sgd-dev-20-report-v18-20261013-development.json` and `sgd-test-20-report-v18-20261013-regression.json` under `evaluation/results/`. Each includes the selected dialogues, model settings, predictions, final states, usage and summary scores. Corresponding `selection-report-v18-...` and `progress-report-v18-...` files record the selection and progress of each run.
 
-Use a new tag for another run: the runner refuses to overwrite selections or final results. Keep all attempts, including provider failures and lower scores. A rerun of these samples remains development or regression evidence.
+Use a new tag for each run because the script refuses to overwrite a selection or result. Retain all attempts, including failures, to keep an accurate account of the experiment.
 
 The extraction version is `grounded-state-v18`. Its source checksum is `b9c32b2629269567a2fba24edd706bd7fdc102df7210c6721693b28f2a515424`; the runner checksum is `1b89aeedce527eaec164b0530f98d3072709009c57def1162fadedd40a6920ef`. The runner records both but rechecks only the extraction checksum before saving results. Matching uses `lib/evaluation-match.ts`; prefix replay uses `lib/evaluation-replay.ts`. Unchanged files do not guarantee identical hosted-model responses.
 
 <!-- PAGE 18 -->
-# Appendix C · Evidence and comparisons
+# Appendix C Evidence and comparisons
 
 ## Current evidence records
 
-All paths below are relative to the public repository. Saved results identify their original source version and scope. Each record preserves the inputs, observations or instructions needed to audit the reported findings.
+Table C1 lists the files supporting the reported results. Paths are relative to the repository, and each record identifies the code version and behaviour tested.
 
 *Table C1. Retained technical evidence.*
 
@@ -487,16 +489,16 @@ All paths below are relative to the public repository. Saved results identify th
 
 The earlier application at `32af459b6a1cd20ede9b08c2b73c20a0c385301e` compared Luna direct extraction with Luna primary and Luna repair in FormBridge. On 20 development dialogues, both reached 92/100 canonical fields; FormBridge matched 14/20 complete briefs. On a further 13 then-unselected eligible test dialogues, both contextual methods matched 62/65 fields and 12/13 complete briefs.
 
-These results qualify the interpretation of the new comparison. The earlier system did not obtain a canonical field advantage under that equal-model configuration. The current application, prompts and repair model differ, so comparing the two releases cannot attribute improvement to a single component. Even equal-model runs may have different numbers of calls and output budgets.
+In that earlier configuration, FormBridge did not improve canonical field accuracy over direct extraction. The current release changes the application, prompts and repair model, so the difference between releases cannot be assigned to one component. Using the same model also does not guarantee equal numbers of calls or equal output limits.
 
-The historical files and commands remain in `evaluation/REPRODUCIBILITY.md` with their source revision. They are not pooled with the current 20-dialogue results and are not described as current unseen performance.
+The historical files and commands are documented in `evaluation/REPRODUCIBILITY.md`. They are reported separately from the current results.
 
-## Traceability of figures
+## Figure sources
 
 Figures 1 and 3 are different crops of the same unaltered live capture, `docs/assessment/assets/FormBridge-core-workflow.jpg`. It shows the fictional enquiry used in the eight-task walkthrough. Figure 4 is the actual guest review capture retained in that asset directory. Figure 2 is drawn from the implemented request and storage paths.
 
 <!-- PAGE 19 -->
-# Appendix D · Guest review workflow
+# Appendix D Guest review workflow
 
 ![A private guest review showing booking details and a way to request a correction](assets/FormBridge-guest-review.png)
 *Figure 4. The deployed guest review page with a fictional enquiry. A private link presents the booking details for confirmation or correction; it does not expose the staff conversation or reserve a table.*
@@ -516,10 +518,10 @@ Figures 1 and 3 are different crops of the same unaltered live capture, `docs/as
 | A submitted review is reopened | Its receipt remains accessible while the link and case remain valid |
 | Simulated provider fails | The approved enquiry remains available for staff action |
 
-The review flow demonstrates how language input becomes an accountable change to a shared record. It also shows why a correct final value is only one part of the product: the change must reach the right enquiry, invalidate the right approval and remain understandable to staff and guest.
+A guest correction must reach the correct enquiry and remove the earlier approval before staff act on it. The review workflow makes these steps visible to both the guest and the team.
 
 <!-- PAGE 20 -->
-# Appendix E · Supplementary experiments
+# Appendix E Supplementary experiments
 
 ## Model-selection trials
 
@@ -530,7 +532,7 @@ The review flow demonstrates how language input becomes an accountable change to
 | Luna primary, version 2 | 45/50 | 5/10 | 0/10 | 27.78 s |
 | Sol primary, Astra repair, version 3 | 38/50 | 4/10 | 1/10 | 52.39 s |
 
-The second mean covers nine completed dialogues. Its failed request returned HTTP 503. The files are `sgd-dev-10-grounded-luna-pilot.json` and `sgd-dev-10-grounded-v3-development.json` in `evaluation/results/`. Prompt and validation changes prevent a causal comparison of models alone; these trials inform a practical configuration choice.
+The second mean covers nine completed dialogues; the failed request returned HTTP 503. The files are `sgd-dev-10-grounded-luna-pilot.json` and `sgd-dev-10-grounded-v3-development.json` in `evaluation/results/`. Because prompts and validation changed between trials, the difference cannot be attributed solely to the models.
 
 ## Reproduce the paired and feature checks
 
@@ -545,14 +547,14 @@ pnpm exec tsx --env-file=.env.local scripts/report-evidence.ts \
   features --tag=reproduce-features
 ~~~
 
-The paired test reuses the main development selection, makes one primary call for each final prefix and compares that proposal with its validated state. It excludes repair and previous predictions. Failed requests stay in the denominator. The feature test uses the 20 transcripts and expected states in `evaluation/report-feature-cases.ts`. Source coverage requires a correct populated field and one complete prelabelled combination of supporting messages. The question check matches the expected target; approval calls the application's approval function.
+The paired test uses the main development selection and makes one primary call at the end of each conversation. It compares that response before and after validation, without repair or previous predictions. Failed requests remain in the denominator. The feature test uses the 20 transcripts and expected answers in `evaluation/report-feature-cases.ts`. A source check passes when a correct populated field includes a complete set of the supporting messages specified in advance. The question check tests which field is requested, and the approval check uses the application's approval function.
 
-Outputs beginning `report-component-20261013-audit-followup` and `report-features-20261013-audit-followup` contain the saved protocols, progress and final predictions in `evaluation/results/`. Both runs checked the combined source checksum before and after execution. The script records the pre-commit revision; the command above selects the committed script and unchanged application sources.
+Files beginning `report-component-20261013-audit-followup` and `report-features-20261013-audit-followup` contain the procedures, progress and predictions in `evaluation/results/`. Both runs checked the combined source checksum before and after execution.
 
-The live walkthrough is recorded in `evaluation/results/report-interface-walkthrough-20261013.json`. It documents eight observable tasks in one fictional enquiry, with the screenshot used for Figures 1 and 3. It contains no participant ratings or time-saving estimates.
+The eight-task live walkthrough is recorded in `evaluation/results/report-interface-walkthrough-20261013.json`, with the screenshot used for Figures 1 and 3.
 
 <!-- PAGE 21 -->
-# Appendix F · Booking-desk walkthrough
+# Appendix F Booking desk walkthrough
 
 The deployed booking desk was exercised with a fictional enquiry for Juniper House in Sydney on 6 November 2026. Figure 5 shows the correction history from the same capture as Figures 1 and 3.
 
@@ -572,4 +574,4 @@ The deployed booking desk was exercised with a fictional enquiry for Juniper Hou
 | 7. Approve the brief | Approved state and download control shown; no reservation claimed |
 | 8. Edit the earlier guest count | Count rebuilt as five; other details retained and approval removed |
 
-All eight tasks reached the expected state. This is a functional walkthrough of one conversation, not eight participants or a usability study. It demonstrates the correction and review path; a participant study would need separate measures of discoverability, completion time, mistakes and feedback.
+All eight tasks reached the expected state within this one conversation. The walkthrough tested the correction and review controls. A future participant study should measure whether users can find those controls, how long tasks take and where mistakes occur.
