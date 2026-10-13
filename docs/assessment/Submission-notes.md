@@ -1,61 +1,52 @@
 # FormBridge report handover
 
-The report contains **15 main pages, including the cover and references, plus five appendix pages**. The Word document is editable; the PDF is the matching review copy. The Markdown source, build scripts, screenshot assets and error-analysis records are retained alongside them.
+The revised report describes the restaurant workspace released at `b0d389e410af735ba622b41a937adc351162058b`. It contains 15 main pages, including the cover and references, and four appendix pages. The editable Word document and PDF contain the same report.
 
-## Rubric coverage
+## Brief and rubric coverage
 
-| Assessment requirement | Report location |
+| Requirement | Location |
 | --- | --- |
-| Specific problem, user group, objectives and scope | Section 1, page 3 |
+| Problem, user group, objectives and scope | Section 1, page 3 |
 | Web application features and user journey | Section 2, page 4 |
-| System implementation and state design | Section 3, page 5 |
-| NLP approaches and justification | Section 4, pages 6–7 |
-| Data sources, selection and preparation | Section 5, page 8 |
-| Evaluation design and reproducibility | Section 6, page 9; Appendix A, pages 16–17 |
-| Findings and comparison of traditional/newer methods | Sections 7–8, pages 10–11 |
-| User interaction, ease of use and communication | Sections 2 and 9, pages 4 and 12 |
-| Outcomes and value added | Abstract; Sections 7–9; conclusion |
-| Challenges and solutions | Section 8, page 11 |
-| Ethics, limitations, recommendations and next steps | Section 10, page 13 |
-| Phases and individual contributions | Section 11, page 14; only Karthik's technical responsibility is currently confirmed |
-| APA-style references | Page 15 |
-| Supporting evidence | Appendices B–D, pages 18–20 |
+| Architecture and implementation | Section 3, page 5 |
+| NLP methods and justification | Section 4, page 6 |
+| Data sources and preparation | Section 5, page 7 |
+| Evaluation design and reproducibility | Section 6, page 8; Appendices A–C |
+| Findings and traditional/contextual comparison | Sections 7–8, pages 9–10 |
+| Design, ease of use and communication | Sections 2 and 9–10, pages 4 and 11–12 |
+| Challenges and solutions | Section 8, page 10 |
+| Ethics and limitations | Section 11, page 13 |
+| Phases, contributions, outcomes and recommendations | Section 12, page 14 |
+| APA references | Page 15 |
+| Supporting material | Appendices A–D, pages 16–19 |
 
-## Required before submission
+## Before submission
 
-1. The individual cover uses Karthik Ramesh and student ID 26043455 from the supplied cover example. Supply the remaining team members' names and details for the contribution record.
-2. Confirm actual responsibilities and report sections for every team member. Section 11.2 currently includes only the verified technical responsibility; remaining roles cannot be invented.
-3. Have each member review and contribute to the report, including its technical findings and references.
-4. Provide the required code upload or source archive. The repository is private, so a link alone may not give the assessor access. Do not include API keys, environment secrets or local dependency directories in an archive.
-5. Verify the deadline and required upload format in Canvas. The pasted PDF's “Monday, 14 October 2026” is inconsistent: 14 October 2026 is Wednesday.
-6. Each member must complete the required individual submission and SPARKPlus peer evaluation.
+Confirm each group member's full name and actual contribution. Page 14 currently records only Karthik Ramesh's confirmed technical responsibility. Each member should review and contribute to the report and complete their required individual upload and SPARKPlus evaluation. Neither submission action has been performed by these report updates.
 
-## Evidence boundaries
+The cover uses Karthik Ramesh, student ID 26043455, as supplied by the user. Other members need their own cover details. Check the exact deadline in Canvas because the supplied PDF gives an inconsistent weekday and date.
 
-- The inspected regression score is reported separately from the controlled comparison. It is not presented as unseen or universal accuracy.
-- The same-model systems tie under canonical field matching. The report explains their representation, workflow and operating-cost differences without claiming a semantic accuracy win.
-- The 35 browser cases are authored functional checks. They are not a recruited-user study or a customer satisfaction measure.
-- Product images are genuine live-app captures using a fictional restaurant enquiry. No customer information appears.
-- A retrospective source-support review found 61 clearly supported values and one ambiguous carryover among 62 non-empty predictions. Eight of nine clarification questions were appropriate. The review is single-rater, uses known outputs and does not replace a user study. The cancellation question was subsequently corrected and its exact original case passed on replay; the original 8/9 score is retained.
-- `Usability-study.md` and the empty `usability-observations.csv` provide participant tasks and recording instructions. No participant results exist yet.
-- The report does not guarantee a grade. Its structure and evidence target the supplied HD criteria; marking remains with the assessor.
+The repository is public. Include the code or source archive in the format Canvas requires; exclude secrets, environment files and installed dependencies. The report's structure and evidence address the supplied rubric, but cannot guarantee a mark.
 
-## Files
+## Evidence
+
+The current development run reports 35/100 canonical field matches for rules, 89/100 for direct Luna and 97/100 for FormBridge. FormBridge matches all five fields in 17/20 development dialogues. The inspected regression run reports 100/100 fields and 20/20 complete briefs. Both selections were previously inspected. They are not unseen performance estimates.
+
+The current comparison uses the same primary model and additional Sol repair in FormBridge. The report accounts for extra provider attempts, latency and incomplete token records. The earlier equal-model comparison remains separately identified as historical evidence.
+
+Functional verification includes 230 automated tests, 31 production backend checks and 22 restaurant browser workflows, with revisions and coverage stated in the report. No participant study or satisfaction measurements have been invented. Real email, WhatsApp and reservation connections remain simulated or unconfigured as described.
+
+## Report files
 
 - `FormBridge-AT2-Report.docx`: editable report.
-- `FormBridge-AT2-Report.pdf`: matching 20-page report and appendices.
-- `FormBridge-AT2-Report.md`: report source.
-- `build-report.py`: Word generation script.
-- `build-assets.py`: reproducible chart and figure generation.
-- `assets/`: original captures and enlarged detail figures.
-- `browser-task-checks-20261011.json` and `browser-task-retest-20261011.json`: pre-fix task checks and eight verified live post-fix checks, with no human participants.
-- `feature-audit.json`: retained source-support and clarification ratings with original visible messages.
-- `verify-feature-audit.py`: checks annotation inputs and recounts results without API calls.
-- `Usability-study.md` and `usability-observations.csv`: proposed participant protocol and unfilled recording sheet.
-- `error-audit.json` and `error-transcripts.json`: error-analysis records, with upstream dataset attribution in the report.
+- `FormBridge-AT2-Report.pdf`: matching 19-page review copy.
+- `FormBridge-AT2-Report.md`: resolved report source.
+- `report-template.md`: source used by the document builder.
+- `report-base.docx`: clean document style and section reference.
+- `build-report.py`: Word builder and architecture diagram generation.
+- `report-quality-check.json`: current layout, metric recount and file hashes.
+- `assets/`: original product captures, UTS logo and explanatory figures.
 
-The report is a technical draft until the group identity and full contribution statement are provided. Placeholders and completion instructions have been removed from the report; missing details remain listed here. No Canvas submission or SPARKPlus evaluation has been performed.
+The builder requires Python with python-docx, Pillow, ReportLab and pdf2image, plus Poppler for PDF rasterisation. Run it from this directory; it reads the retained evaluation JSON files. The PDF requires a DOCX renderer. Recheck page count and screenshots after changing text or fonts.
 
-## Editorial verification
-
-APA was retained following the user's final referencing instruction and the assignment brief. Report prose was edited for plain academic language; submission instructions, placeholders, peer-assessment administration and report-creation notes were removed. Technical methods, sample history and limitations remain because they are necessary to interpret the results. The figures use actual product screenshots, a conventional architecture diagram and a chart calculated from saved results. No generated photographs or decorative illustrations are included.
+Earlier error audits, browser records, figures and the unfilled usability-study materials remain available as historical evidence. They are not presented as fresh measurements in the rewritten report.

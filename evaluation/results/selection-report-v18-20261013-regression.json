@@ -1,0 +1,41 @@
+{
+  "seed": "formbridge-sgd-evaluation-v1",
+  "split": "test",
+  "selectedIds": [
+    "1_00009",
+    "4_00027",
+    "4_00033",
+    "1_00021",
+    "4_00028",
+    "4_00045",
+    "4_00034",
+    "1_00029",
+    "4_00020",
+    "4_00032",
+    "1_00012",
+    "4_00053",
+    "4_00051",
+    "4_00042",
+    "4_00029",
+    "1_00003",
+    "4_00021",
+    "1_00015",
+    "1_00031",
+    "4_00047"
+  ],
+  "excludedIds": [],
+  "codeFingerprint": "b9c32b2629269567a2fba24edd706bd7fdc102df7210c6721693b28f2a515424",
+  "runnerFingerprint": "1b89aeedce527eaec164b0530f98d3072709009c57def1162fadedd40a6920ef",
+  "extractionVersion": "grounded-state-v18",
+  "configuration": {
+    "baseline": "gpt-4.1-mini-2025-04-14",
+    "formbridge": "gpt-6-luna",
+    "repair": "gpt-6.1-sol"
+  },
+  "transport": "in-process",
+  "replay": "all-user-turns",
+  "selectionPath": "evaluation/results/selection-product-v17-20261013-regression.json",
+  "modes": [
+    "formbridge"
+  ]
+}

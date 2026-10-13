@@ -10,6 +10,8 @@ Enable the authentication options used by your team in Supabase. Device sign-in 
 
 For email registration, recovery and device-account upgrades, configure a verified sending domain in Supabase Auth, keep email confirmation enabled, and allow `https://your-domain/auth` as a redirect. Verify a real signup, recovery email and account upgrade before setting `NEXT_PUBLIC_EMAIL_DELIVERY_ENABLED=true` and rebuilding. Leave it false while delivery is unavailable. Existing verified accounts can still sign in. The checked-in verification runner tests a synthetic account confirmed through the admin API; it does not prove email delivery.
 
+The separate `/auth/preview` route simulates registration and recovery with `.test` addresses and an in-memory inbox. It has no Supabase access and sends no email. Reload clears the preview; verification and recovery links expire after 15 minutes and can be used once. It remains clearly labelled and does not replace real account authentication.
+
 ## Restaurant workspace
 
 The team desk adds a restaurant library, an enquiry inbox, guest records, staff assignments and comments. Owners and managers can change restaurant information and connector settings; only the owner can change teammate roles. Members can work on enquiries. A workspace cannot be joined without its private invitation code.

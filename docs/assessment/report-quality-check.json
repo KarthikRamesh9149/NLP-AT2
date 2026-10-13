@@ -1,163 +1,80 @@
 {
-  "pages": 20,
+  "checkedOn": "2026-10-13",
+  "application_revision": "b0d389e410af735ba622b41a937adc351162058b",
+  "pages": 19,
   "main_pages": 15,
-  "appendix_pages": 5,
-  "referencing": "APA retained",
-  "prediction_rows_verified": [
+  "appendix_pages": 4,
+  "references": "APA; hanging indent and double spacing",
+  "embedded_images": 5,
+  "product_screenshots": 3,
+  "all_images_have_alt_text": true,
+  "comments_tracked_changes_and_hidden_text": false,
+  "unresolved_placeholders": false,
+  "metrics_recounted_from_predictions": [
     {
-      "file": "sgd-test-20-assessment-final-regression.json",
-      "mode": "formbridge",
-      "fields": 100,
-      "strict": 100,
-      "canonical": 100,
-      "complete": 20,
-      "canonical_complete": 20
-    },
-    {
-      "file": "sgd-dev-20-assessment-final-development.json",
-      "mode": "formbridge",
-      "fields": 100,
-      "strict": 96,
-      "canonical": 96,
-      "complete": 17,
-      "canonical_complete": 17
-    },
-    {
-      "file": "sgd-dev-20-assessment-equal-model-development.json",
+      "file": "sgd-dev-20-report-v18-20261013-development.json",
       "mode": "rules",
       "fields": 100,
       "strict": 35,
       "canonical": 35,
       "complete": 0,
-      "canonical_complete": 0
+      "canonical_complete": 0,
+      "provider_attempts": 0
     },
     {
-      "file": "sgd-dev-20-assessment-equal-model-development.json",
+      "file": "sgd-dev-20-report-v18-20261013-development.json",
       "mode": "model",
       "fields": 100,
-      "strict": 86,
-      "canonical": 92,
-      "complete": 9,
-      "canonical_complete": 14
-    },
-    {
-      "file": "sgd-dev-20-assessment-equal-model-development.json",
-      "mode": "formbridge",
-      "fields": 100,
-      "strict": 92,
-      "canonical": 92,
-      "complete": 14,
-      "canonical_complete": 14
-    },
-    {
-      "file": "sgd-test-13-assessment-equal-model-unselected.json",
-      "mode": "rules",
-      "fields": 65,
-      "strict": 25,
-      "canonical": 25,
-      "complete": 0,
-      "canonical_complete": 0
-    },
-    {
-      "file": "sgd-test-13-assessment-equal-model-unselected.json",
-      "mode": "model",
-      "fields": 65,
-      "strict": 56,
-      "canonical": 62,
+      "strict": 83,
+      "canonical": 89,
       "complete": 6,
-      "canonical_complete": 12
+      "canonical_complete": 11,
+      "provider_attempts": 166
     },
     {
-      "file": "sgd-test-13-assessment-equal-model-unselected.json",
+      "file": "sgd-dev-20-report-v18-20261013-development.json",
       "mode": "formbridge",
-      "fields": 65,
-      "strict": 62,
-      "canonical": 62,
-      "complete": 12,
-      "canonical_complete": 12
+      "fields": 100,
+      "strict": 97,
+      "canonical": 97,
+      "complete": 17,
+      "canonical_complete": 17,
+      "provider_attempts": 196
+    },
+    {
+      "file": "sgd-test-20-report-v18-20261013-regression.json",
+      "mode": "formbridge",
+      "fields": 100,
+      "strict": 100,
+      "canonical": 100,
+      "complete": 20,
+      "canonical_complete": 20,
+      "provider_attempts": 149
     }
   ],
-  "raw_field_checks_audited": 695,
-  "table_totals": "match recorded predictions",
-  "token_and_time_totals": "match saved summaries",
-  "unwanted_report_notes": "absent from PDF",
-  "docx_comments_and_tracked_edits": "absent",
-  "out_of_page_text": 0,
-  "embedded_images": 8,
+  "coverage": {
+    "objectives_scope": "3",
+    "features": "4",
+    "architecture": "5",
+    "NLP_choices": "6",
+    "data": "7",
+    "evaluation": "8",
+    "findings": "9-10",
+    "interaction": "11",
+    "verification": "12",
+    "ethics_limitations": "13",
+    "phases_contribution_recommendations": "14",
+    "references": "15",
+    "reproducibility": "16-18"
+  },
   "missing_required_information": [
-    "full group identities and confirmed individual contributions"
+    "Confirmed names and individual contributions for all group members"
   ],
-  "figure_and_cover_instances": 8,
-  "cover": "UTS academic cover matching supplied example; one logo and no product photo",
-  "reference_formatting": "APA entries with hanging indents and double spacing",
-  "layout": "20 pages; no out-of-page text; references page 15; appendices pages 16-20",
-  "cover_identity": "Karthik Ramesh; 26043455; supplied in user example",
-  "body_preservation": "Report revised following audit; unchanged benchmark predictions and original table totals",
-  "feature_audit": {
-    "dialogues": 13,
-    "fieldPositions": 65,
-    "nonemptyValues": 62,
-    "supportedValues": 61,
-    "ambiguousSupport": 1,
-    "omissions": 3,
-    "clearlyUnsupportedValues": 0,
-    "citationReferences": 171,
-    "yearMissingDatesRetainedAsUnresolved": 12,
-    "questionsReviewed": 9,
-    "appropriateQuestions": 8
-  },
-  "feature_audit_method": "Single retrospective inspection, no second rater, no new model requests",
-  "screenshot_display_widths_inches": {
-    "4": [
-      4.3
-    ],
-    "7": [
-      5.7
-    ],
-    "12": [
-      3.15
-    ],
-    "19": [
-      6.4
-    ],
-    "20": [
-      3.5
-    ]
-  },
-  "participant_study": "Protocol and empty observation sheet prepared; no participant outcomes",
-  "reproduction_clarifications": "Own API key and separate terminal explicitly described",
-  "model_justification": "Development evidence and bounded-request settings explained",
-  "checkedOn": "2026-10-11",
-  "live_task_retest": {
-    "checks": 8,
-    "passed": 8,
-    "repeatedBookingTasks": 4,
-    "bookingFieldPositions": 20,
-    "bookingFieldErrors": 0,
-    "timeSourcePanels": 4,
-    "timeCitations": 10,
-    "completeBriefsApproved": 2,
-    "unresolvedBriefsApprovalDisabled": 2,
-    "cancellationChecks": 4,
-    "humanParticipants": 0
-  },
-  "application_correction": "Cancelled enquiries acknowledge cancellation without asking for a new restaurant; exact original E07 replay passed",
-  "current_application_checks": {
-    "tests": 59,
-    "typecheck": "passed",
-    "production_build": "passed",
-    "github_actions_run": 38107452142,
-    "github_actions_conclusion": "success",
-    "source_commit": "b256d49f64abdb97da85f2888993663a65eaa854",
-    "deployment_id": "dpl_2Zv7boiHVA8w8CeCi5mZjMvGen1j",
-    "production_state": "READY"
-  },
-  "extractor_fingerprint_unchanged": true,
+  "human_participant_study": false,
+  "source_boundary": "Current development and inspected regression samples; historical equal-model results separately identified",
   "file_sha256": {
-    "FormBridge-AT2-Report.md": "94e99265fba6f55b5e7c76b6a0dd3e34d0a61a15e07fe61ae87383666b474a39",
-    "FormBridge-AT2-Report.docx": "60620f3bda6f26049601eb81796fcb85682820380900433b74a53a812ae5cfd8",
-    "FormBridge-AT2-Report.pdf": "ce32771e84dc9e6113785423516eb5e70aeb9c4a34548b8f0217cc91e3e533be",
-    "feature-audit.json": "2725ad6d7170af261ed6ba0fa366cc220130d80447d857ad7e8653edfa5a93eb",
-    "browser-task-retest-20261011.json": "5472fefbe01c3b91a90a2019821a33be2a95dd59ce996757023f87a3be275945"
+    "FormBridge-AT2-Report.md": "34562f29424ee05c491cf2ffbdcc91b2398d78e5b2e1c94c05c31bf17017cc10",
+    "FormBridge-AT2-Report.docx": "fceb6e8433f9a2e8f3352a6bc12e99bd575eea09e989b494b015fbba02600631",
+    "FormBridge-AT2-Report.pdf": "4fc5c70f52a20bed698c0753903c324eb396a6211f951e42c33430abb157a58a"
   }
 }

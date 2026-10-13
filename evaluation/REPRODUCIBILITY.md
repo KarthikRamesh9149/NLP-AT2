@@ -1,22 +1,24 @@
 # Assessment reproducibility guide
 
-This guide supports the AT2 technical evidence. It is separate from the product README and does not constitute the group's report. Follow the frozen protocol in `research/assessment-final-protocol.md` before using results in the report.
+This guide supports the AT2 technical evidence. It is separate from the product README. Current report results and historical experiments are identified separately below. `research/assessment-final-protocol.md` records the earlier assessment procedure.
 
 ## 1. Obtain the application
 
-The repository is private. An assessor needs repository access or an exported source archive; the public webapp does not grant source access.
+The repository is public. The following revision is the application release used by the refreshed report evaluation.
 
 ```bash
 git clone https://github.com/KarthikRamesh9149/NLP-AT2.git
 cd NLP-AT2
-git checkout 32af459b6a1cd20ede9b08c2b73c20a0c385301e
+git checkout b0d389e410af735ba622b41a937adc351162058b
 pnpm install --frozen-lockfile
 cp .env.example .env.local
 ```
 
 Prerequisites: Node.js 24, pnpm 11.24.0, Git, an OpenAI API project with access to the configured models, and network access. Add your own `OPENAI_API_KEY` in `.env.local`. Never include a real key in a submission archive. The example works without a key; new analysis and model evaluation require one.
 
-The pinned commit contains the extractor and runner used for the saved assessment experiments, including the equal-model comparison. Later product releases change that implementation and do not inherit those benchmark scores. Use the pinned commit to reproduce those historical runs; use `main` for the current application and its separate release checks. API model aliases can change at the provider; saved predictions, model names, timestamps and fingerprints support auditing, but a rerun is not guaranteed to be identical.
+The pinned commit contains extraction version `grounded-state-v18`. Set `OPENAI_MODEL=gpt-6-luna` to reproduce the report's direct baseline; the template retains an older direct-model default. The refreshed report files are `sgd-dev-20-report-v18-20261013-development.json` and `sgd-test-20-report-v18-20261013-regression.json`. API model aliases can change at the provider; saved predictions, model names, timestamps and fingerprints support auditing, but a rerun is not guaranteed to be identical.
+
+Historical equal-model experiments used `32af459b6a1cd20ede9b08c2b73c20a0c385301e`. Select that revision only when following section 4; do not present those measurements as current-code results.
 
 ```bash
 pnpm test
@@ -25,7 +27,7 @@ pnpm build
 pnpm start
 ```
 
-Open `http://localhost:3000`. For development use `pnpm dev`. An already-running `pnpm start` process does not load a newly built server automatically: stop and restart it after rebuilding.
+Open `http://localhost:3000`. Keep this terminal running and use a second terminal in the project directory for checks and evaluation. For development use `pnpm dev`. An already-running `pnpm start` process does not load a newly built server automatically: stop and restart it after rebuilding.
 
 ### Current product release
 
@@ -62,7 +64,7 @@ FORMBRIDGE_REPAIR_MODEL=gpt-6.1-sol \
 node --env-file=.env.local --import tsx scripts/evaluate.ts ../formbridge-sgd \
   --transport=in-process --replay=all-user-turns \
   --split=test --sample=20 --modes=formbridge \
-  --selection=evaluation/results/selection-grounded-v6-release-regression.json \
+  --selection=evaluation/results/selection-product-v17-20261013-regression.json \
   --tag=reproduce-final-regression
 ```
 
@@ -77,7 +79,7 @@ FORMBRIDGE_REPAIR_MODEL=gpt-6.1-sol \
 node --env-file=.env.local --import tsx scripts/evaluate.ts ../formbridge-sgd \
   --transport=in-process --replay=all-user-turns \
   --split=dev --sample=20 --modes=formbridge \
-  --selection=evaluation/results/selection-grounded-v6-release-heldout-development.json \
+  --selection=evaluation/results/selection-product-v17-20261013-same-primary-development.json \
   --tag=reproduce-final-development
 ```
 
@@ -92,13 +94,17 @@ FORMBRIDGE_REPAIR_MODEL=gpt-6.1-sol \
 node --env-file=.env.local --import tsx scripts/evaluate.ts ../formbridge-sgd \
   --transport=in-process --replay=all-user-turns \
   --split=dev --sample=20 --modes=rules,model,formbridge \
-  --selection=evaluation/results/selection-grounded-v6-release-heldout-development.json \
+  --selection=evaluation/results/selection-product-v17-20261013-same-primary-development.json \
   --tag=reproduce-product-primary-comparison
 ```
 
-Use `main` for the current product configuration. Both contextual systems use Luna for their primary call; FormBridge additionally permits a Sol repair or recovery. This compares complete pipelines and must account for that extra model, its requests and usage. It is not an equal-model or guard-only experiment. The equal-model commands below serve that distinct purpose. Keep failed or lower-scoring attempts alongside later revisions, and do not replace their files or claim an inspected development selection is unseen.
+Use `b0d389e` for the reported product configuration. Both contextual systems use Luna for their primary call; FormBridge additionally permits a Sol repair or recovery. This compares complete pipelines and must account for that extra model, its requests and usage. It is not an equal-model or guard-only experiment. The equal-model commands below serve that distinct purpose. Keep failed or lower-scoring attempts alongside later revisions, and do not replace their files or claim an inspected development selection is unseen.
+
+The refreshed development run recorded canonical field scores of 35/100 (rules), 89/100 (direct) and 97/100 (FormBridge), with 0/20, 11/20 and 17/20 complete forms respectively. FormBridge's inspected regression run recorded 100/100 and 20/20. Three development dialogues have incomplete usage after primary-request recovery; saved token totals exclude unavailable usage. These are one-run development and regression measurements, not unseen accuracy estimates.
 
 ## 4. Reproduce the equal-model comparison
+
+Check out `32af459b6a1cd20ede9b08c2b73c20a0c385301e` before running this historical comparison. Restore the current report revision for section 3. Do not mix source versions across the two procedures.
 
 Rules, direct extraction and FormBridge receive identical visible customer prefixes in identical order. Each method's final state is scored against the same five fields. The rules use no model. Both model systems use GPT-6 Luna with low reasoning; FormBridge's one permitted repair also uses Luna for these comparison runs. Production uses Sol for repair, so these controlled comparisons are deliberately separate from the production-configuration checks above.
 
