@@ -5,7 +5,11 @@ import {
   restaurantSchema,
   inboxSchema,
 } from "@/lib/restaurant-desk";
-import { approvedAnswers, isRestaurantQuestion } from "@/lib/guest-portal";
+import {
+  approvedAnswers,
+  isRestaurantQuestion,
+  isBookingRequest,
+} from "@/lib/guest-portal";
 import {
   serviceDatabase,
   DeskError,
@@ -107,12 +111,14 @@ export async function POST(request: Request) {
       month: "2-digit",
       day: "2-digit",
     }).format(new Date());
+    const question = [...input.messages]
+      .reverse()
+      .find((message) => message.speaker === "customer")!.text;
+    const facts = isRestaurantQuestion(question)
+      ? approvedAnswers(restaurant, question)
+      : [];
     if (input.type === "chat") {
-      const question = [...input.messages]
-        .reverse()
-        .find((message) => message.speaker === "customer")!.text;
-      const facts = approvedAnswers(restaurant, question);
-      if (facts.length || isRestaurantQuestion(question)) {
+      if (isRestaurantQuestion(question) && !isBookingRequest(question)) {
         const id = await reserveUsage(request, {}, "rules");
         await settleUsage(id, null);
         return Response.json(
@@ -150,7 +156,7 @@ export async function POST(request: Request) {
           answer:
             clarificationFor(current) ||
             "Your request is ready to send to our team. Add your contact details below so we can get back to you. No table is reserved yet.",
-          facts: [],
+          facts,
           fields: current.fields,
         },
         { headers: privateHeaders },

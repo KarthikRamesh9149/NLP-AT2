@@ -71,7 +71,11 @@ export function approvedAnswers(restaurant: Restaurant, question: string) {
     /menu|dish|food|vegetarian|vegan|gluten|dairy|allerg|diet/i.test(question)
   )
     categories.add("menu");
-  if (/open|clos|hours|lunch|dinner service/i.test(question))
+  if (
+    /open|clos|hours|breakfast|brunch|lunch|dinner|kitchen|serving|served/i.test(
+      question,
+    )
+  )
     categories.add("hours");
   if (/access|wheelchair|step.free|stairs/i.test(question))
     categories.add("accessibility");
@@ -91,8 +95,13 @@ export function approvedAnswers(restaurant: Restaurant, question: string) {
 export function isRestaurantQuestion(question: string) {
   return (
     /\?|^(?:what|when|where|how|can|do|does|is|are)\b/i.test(question.trim()) &&
-    /hours?|open|clos|menu|food|diet|allerg|access|wheelchair|policy|policies|deposit|cancel|dogs?|pets?|children|dress|corkage|parking|service|package/i.test(
+    /hours?|open|clos|breakfast|brunch|lunch|dinner|kitchen|serving|served|menu|food|vegan|vegetarian|diet|allerg|access|wheelchair|policy|policies|deposit|cancel|dogs?|pets?|children|dress|corkage|parking|service|package/i.test(
       question,
     )
+  );
+}
+export function isBookingRequest(message: string) {
+  return /\b(?:book|reserve|reservation|table for|party of|people|guests|today|tomorrow|tonight|monday|tuesday|wednesday|thursday|friday|saturday|sunday|january|february|march|april|may|june|july|august|september|october|november|december)\b|\b\d{1,2}(?::\d{2}|\s*(?:am|pm))\b|\b\d{4}-\d{2}-\d{2}\b/i.test(
+    message,
   );
 }
