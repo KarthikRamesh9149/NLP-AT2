@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { ArrowRight, Copy, KeyRound, LoaderCircle, LogOut, ShieldCheck, Users } from 'lucide-react';
+import { ArrowRight, Copy, KeyRound, LoaderCircle, LogOut, Mail, ShieldCheck, Users } from 'lucide-react';
 import type { useTeam } from '@/hooks/use-team';
 import { Dialog } from './dialog';
 import { AccountAccess } from '@/components/team/account-access';
@@ -25,6 +25,7 @@ export function TeamDialog({ team, onClose, onSignedOut }: { team: ReturnType<ty
       {team.workspace?.owner_id === team.user.id && <div className="invite-panel"><h3>Invite your team</h3><p>Codes last seven days. Creating a new code replaces the previous one.</p><button className="button subtle" disabled={busy} onClick={() => run(async () => { setInvite(await team.createInvite()); })}>Create invitation code <KeyRound size={15} /></button>{invite && <div className="invite-code"><code>{invite}</code><button className="icon-button" aria-label="Copy invitation code" onClick={() => run(async () => { try { await navigator.clipboard.writeText(invite); } catch { throw new Error('Copy is unavailable. Select the invitation code and copy it manually.'); } }, 'Invitation code copied. Share it privately with your teammates.')}><Copy size={16} /></button></div>}</div>}
       <div className="team-signout">{confirmSignOut ? <><p>Sign out and clear the active desk? Download or save your current draft first.{team.user.is_anonymous && ' You will need an invitation code to rejoin this team.'}</p><button className="button subtle" onClick={() => setConfirmSignOut(false)}>Stay signed in</button><button className="button subtle" disabled={busy} onClick={() => run(async () => { await team.database!.auth.signOut(); onSignedOut(); })}>Sign out and clear desk</button></> : <button className="text-button" onClick={() => setConfirmSignOut(true)}><LogOut size={15} /> Sign out</button>}</div>
     </>}
+    {process.env.NEXT_PUBLIC_EMAIL_DELIVERY_ENABLED !== 'true' && <section className="account-access"><h3><Mail size={17}/> Try email access.</h3><p>Explore signup, verification and password recovery with a sample inbox. Your team sign-in stays unchanged.</p><a className="button subtle" href="/auth/preview">Open email preview <span className="simulation-pill">Simulated</span><ArrowRight size={15}/></a></section>}
     {(error || team.error) && <p className="dialog-error" role="alert">{error || team.error}</p>}{notice && <p className="dialog-success" role="status">{notice}</p>}
   </Dialog>;
 }

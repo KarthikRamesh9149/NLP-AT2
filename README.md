@@ -113,7 +113,7 @@ Open [localhost:3000](http://localhost:3000). Without an API key, the prepared e
 
 For teams, apply `supabase/migrations/` in filename order and configure the Supabase variables in `.env.example`. Enable anonymous sign-ins and set `NEXT_PUBLIC_DEVICE_SIGN_IN_ENABLED=true` for device accounts. The Supabase secret and OpenAI key stay on the server.
 
-Verified email registration and recovery require a working SMTP sender, the correct authentication redirect URL and `NEXT_PUBLIC_EMAIL_DELIVERY_ENABLED=true`. The hosted app currently offers device sign-in; email registration stays off until delivery is configured and tested.
+Verified email registration and recovery require a working SMTP sender, the correct authentication redirect URL and `NEXT_PUBLIC_EMAIL_DELIVERY_ENABLED=true`. The hosted app offers device sign-in. You can also [try email access](https://formbridge-nlp-at2.vercel.app/auth/preview) with a sample inbox: create a sample account, verify it, sign in and reset its password. This clearly labelled simulation stays on the page, clears on reload and never sends email or changes real accounts. Live email registration stays off until delivery is configured and tested.
 
 On Vercel, configure the environment variables before building. Production uses Supabase for a shared allowance across analysis, guest intake, assistant and voice requests. Manual review and saved cases remain available when the AI allowance is reached. See the [operations guide](docs/OPERATIONS.md) for deployment and maintenance.
 
