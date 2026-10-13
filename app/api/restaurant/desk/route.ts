@@ -17,6 +17,7 @@ import {
   deskSchema,
   canManage,
   updateWorkflow,
+  saveGuest,
   mergeGuests,
   inboxSchema,
 } from "@/lib/restaurant-desk";
@@ -163,13 +164,7 @@ export async function POST(request: Request) {
         next.guests.length >= 200
       )
         throw new DeskError("This workspace has reached its guest limit.");
-      next = {
-        ...next,
-        guests: [
-          { ...op.guest, updatedAt: now },
-          ...next.guests.filter((guest) => guest.id !== op.guest.id),
-        ],
-      };
+      next = saveGuest(next, { ...op.guest, updatedAt: now });
     }
     if (op.type === "merge")
       next = mergeGuests(next, op.targetId, op.sourceId, op.confirmed);

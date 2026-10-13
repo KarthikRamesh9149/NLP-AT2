@@ -1,5 +1,6 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { RequestScope } from "@/lib/request-scope";
 import {
   ArrowLeft,
   ArrowUpRight,
@@ -82,6 +83,17 @@ export default function TeamDesk() {
     [clock, setClock] = useState(() => new Date().toISOString()),
     [replyBusy, setReplyBusy] = useState(false),
     [replyKey, setReplyKey] = useState(() => crypto.randomUUID());
+  const replyScope = useRef(new RequestScope()),
+    draftAbort = useRef<AbortController | null>(null);
+  const replyContext = `${team.user?.id || ""}:${team.workspaceId}:${selectedId}`;
+  replyScope.current.select(replyContext);
+  useEffect(() => {
+    setReplyBusy(false);
+    setNotice("");
+    return () => {
+      draftAbort.current?.abort();
+    };
+  }, [replyContext]);
   const data = desk.data,
     selected = team.cases.find((record) => record.id === selectedId),
     memberName = (id: string | null) =>
@@ -124,6 +136,9 @@ export default function TeamDesk() {
     }
   }
   function open(record: TeamCase) {
+    replyScope.current.begin();
+    draftAbort.current?.abort();
+    setReplyBusy(false);
     setSelectedId(record.id);
     setReply("");
     setReplyKey(crypto.randomUUID());
@@ -146,9 +161,17 @@ export default function TeamDesk() {
     data?.desk.inbox.filter((item) => item.caseId === selectedId) || [];
   async function draftReply() {
     if (!selected) return;
+    draftAbort.current?.abort();
+    const controller = new AbortController();
+    draftAbort.current = controller;
+    const ticket = replyScope.current.begin();
     setReplyBusy(true);
     try {
       const response = await fetch("/api/assistant", {
+        signal: AbortSignal.any([
+          controller.signal,
+          AbortSignal.timeout(65_000),
+        ]),
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -165,12 +188,37 @@ export default function TeamDesk() {
       const result = await response.json();
       if (!response.ok)
         throw new Error(result.error || "The reply could not be drafted.");
+      if (!replyScope.current.current(ticket)) return;
       setReply((result.replyDraft || result.answer || "").slice(0, 1000));
       setNotice("Reply drafted. Review it before sending a simulated reply.");
     } catch (cause) {
-      setNotice(cause instanceof Error ? cause.message : "Please retry.");
+      if (replyScope.current.current(ticket) && !controller.signal.aborted)
+        setNotice(cause instanceof Error ? cause.message : "Please retry.");
     } finally {
-      setReplyBusy(false);
+      if (replyScope.current.current(ticket)) setReplyBusy(false);
+    }
+  }
+  async function sendReply() {
+    const item = selectedInbox.find(
+      (item) => item.simulation && ["email", "whatsapp"].includes(item.channel),
+    );
+    if (!item) return;
+    const ticket = replyScope.current.begin();
+    setNotice("");
+    try {
+      await desk.perform({
+        type: "reply",
+        id: item.id,
+        text: reply,
+        key: replyKey,
+      });
+      if (!replyScope.current.current(ticket)) return;
+      setReply("");
+      setReplyKey(crypto.randomUUID());
+      setNotice("Simulated reply sent. No guest has been contacted.");
+    } catch (cause) {
+      if (replyScope.current.current(ticket))
+        setNotice(cause instanceof Error ? cause.message : "Please retry.");
     }
   }
   return (
@@ -848,23 +896,7 @@ export default function TeamDesk() {
                                     className="inbox-reply-form"
                                     onSubmit={(e) => {
                                       e.preventDefault();
-                                      const item = selectedInbox.find(
-                                        (item) =>
-                                          item.simulation &&
-                                          ["email", "whatsapp"].includes(
-                                            item.channel,
-                                          ),
-                                      )!;
-                                      run(async () => {
-                                        await desk.perform({
-                                          type: "reply",
-                                          id: item.id,
-                                          text: reply,
-                                          key: replyKey,
-                                        });
-                                        setReply("");
-                                        setReplyKey(crypto.randomUUID());
-                                      }, "Simulated reply sent. No guest has been contacted.");
+                                      void sendReply();
                                     }}
                                   >
                                     <div className="team-inline-heading">
@@ -872,7 +904,7 @@ export default function TeamDesk() {
                                       <button
                                         type="button"
                                         className="text-button"
-                                        disabled={replyBusy}
+                                        disabled={replyBusy || desk.busy}
                                         onClick={draftReply}
                                       >
                                         {replyBusy
@@ -893,7 +925,12 @@ export default function TeamDesk() {
                                       rows={3}
                                       value={reply}
                                       maxLength={1000}
-                                      onChange={(e) => setReply(e.target.value)}
+                                      onChange={(e) => {
+                                        replyScope.current.begin();
+                                        draftAbort.current?.abort();
+                                        setReplyBusy(false);
+                                        setReply(e.target.value);
+                                      }}
                                       placeholder="Review your reply before testing the send…"
                                     />
                                     <button

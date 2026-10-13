@@ -13,6 +13,8 @@ import { emptyWorkflow } from "@/lib/restaurant-desk";
 import type { TeamCase } from "@/hooks/use-team";
 import type { useRestaurantDesk } from "@/hooks/use-restaurant-desk";
 import { reviewedSession } from "@/lib/exports";
+import { useConcurrentDraft } from "@/hooks/use-concurrent-draft";
+import { EditConflict } from "./edit-conflict";
 
 export function WorkflowDialog({
   record,
@@ -26,11 +28,13 @@ export function WorkflowDialog({
   onClose: () => void;
 }) {
   const data = desk.data!;
-  const [baseVersion, setBaseVersion] = useState(data.version),
-    [flow, setFlow] = useState(
-      data.desk.workflows[record.id] || emptyWorkflow(),
-    ),
-    [comment, setComment] = useState(""),
+  const {
+    draft: flow,
+    setDraft: setFlow,
+    conflicts,
+    resolve,
+  } = useConcurrentDraft(data.desk.workflows[record.id] || emptyWorkflow());
+  const [comment, setComment] = useState(""),
     [link, setLink] = useState(""),
     [expires, setExpires] = useState(""),
     [error, setError] = useState(""),
@@ -66,13 +70,29 @@ export function WorkflowDialog({
       description="Give this enquiry an owner, a next step and a clear handoff."
       onClose={onClose}
     >
+      <EditConflict
+        fields={conflicts.map(
+          (key) =>
+            ({
+              stage: "Stage",
+              priority: "Priority",
+              assigneeId: "Owner",
+              guestId: "Guest record",
+              task: "Next step",
+              dueAt: "Due date and time",
+              escalationMinutes: "Escalation",
+            })[key],
+        )}
+        resolve={resolve}
+      />
       <form
         onSubmit={(event) => {
           event.preventDefault();
+          if (conflicts.length) return;
           run(async () => {
             await desk.perform(
               { type: "workflow", caseId: record.id, workflow: flow },
-              baseVersion,
+              data.version,
             );
             onClose();
           }, "Workflow saved.");
@@ -160,11 +180,11 @@ export function WorkflowDialog({
               className="edit-input"
               type="datetime-local"
               value={localTime(flow.dueAt)}
-              onChange={(e) =>
+              onInput={(e) =>
                 setFlow({
                   ...flow,
-                  dueAt: e.target.value
-                    ? new Date(e.target.value).toISOString()
+                  dueAt: e.currentTarget.value
+                    ? new Date(e.currentTarget.value).toISOString()
                     : null,
                 })
               }
@@ -181,7 +201,11 @@ export function WorkflowDialog({
             >
               {[15, 30, 60, 120, 240, 1440].map((value) => (
                 <option key={value} value={value}>
-                  {value < 60 ? `${value} minutes` : `${value / 60} hours`}
+                  {value < 60
+                    ? `${value} minutes`
+                    : value === 60
+                      ? "1 hour"
+                      : `${value / 60} hours`}
                 </option>
               ))}
             </select>
@@ -196,7 +220,7 @@ export function WorkflowDialog({
           <button
             type="submit"
             className="button primary"
-            disabled={working || desk.busy}
+            disabled={working || desk.busy || !!conflicts.length}
           >
             <Check size={15} /> Save workflow
           </button>
@@ -221,11 +245,10 @@ export function WorkflowDialog({
           onSubmit={(e) => {
             e.preventDefault();
             run(async () => {
-              const result = await desk.perform(
+              await desk.perform(
                 { type: "comment", caseId: record.id, text: comment },
-                baseVersion,
+                data.version,
               );
-              setBaseVersion(result.version);
               setComment("");
             }, "Comment added.");
           }}

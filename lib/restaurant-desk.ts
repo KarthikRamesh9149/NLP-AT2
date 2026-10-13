@@ -158,8 +158,37 @@ export function updateWorkflow(
     guests: desk.guests.map((guest) =>
       guest.id === workflow.guestId
         ? { ...guest, caseIds: [...new Set([...guest.caseIds, id])] }
-        : guest,
+        : {
+            ...guest,
+            caseIds: guest.caseIds.filter((caseId) => caseId !== id),
+          },
     ),
+  };
+}
+export function saveGuest(desk: RestaurantDesk, guest: Guest): RestaurantDesk {
+  const linked = new Set(guest.caseIds);
+  const workflows = { ...desk.workflows };
+  for (const [caseId, workflow] of Object.entries(workflows)) {
+    if (workflow.guestId === guest.id && !linked.has(caseId))
+      workflows[caseId] = { ...workflow, guestId: null };
+  }
+  for (const caseId of linked)
+    workflows[caseId] = {
+      ...(workflows[caseId] || emptyWorkflow()),
+      guestId: guest.id,
+    };
+  return {
+    ...desk,
+    workflows,
+    guests: [
+      { ...guest, caseIds: [...linked] },
+      ...desk.guests
+        .filter((other) => other.id !== guest.id)
+        .map((other) => ({
+          ...other,
+          caseIds: other.caseIds.filter((caseId) => !linked.has(caseId)),
+        })),
+    ],
   };
 }
 export function reminderAlerts(

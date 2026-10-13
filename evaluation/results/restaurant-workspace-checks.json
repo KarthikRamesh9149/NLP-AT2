@@ -1,10 +1,10 @@
 {
-  "checkedAt": "2026-10-13T01:42:30.389Z",
+  "checkedAt": "2026-10-13T02:17:38.876Z",
   "target": "http://localhost:3000",
   "scope": "Isolated synthetic workspace; real Supabase auth, RLS and RPCs; channel and reservation providers are simulated. Email delivery is not exercised.",
-  "passed": 29,
-  "total": 29,
-  "workspaceId": "be0cc72d-b8b8-4bc2-9da4-e0dcc2851250",
+  "passed": 31,
+  "total": 31,
+  "workspaceId": "86ead8f2-322e-46c1-9f17-196d19c8e3ad",
   "results": [
     {
       "name": "Anonymous visitors cannot read a private desk",
@@ -56,6 +56,10 @@
     },
     {
       "name": "Guest records merge only with explicit consent and retain history",
+      "passed": true
+    },
+    {
+      "name": "Guest reassignment and unlink remove the previous history",
       "passed": true
     },
     {
@@ -112,6 +116,10 @@
     },
     {
       "name": "Guest links become stale after a new staff save",
+      "passed": true
+    },
+    {
+      "name": "Atomic handoff rejects a case changed after preparation",
       "passed": true
     },
     {

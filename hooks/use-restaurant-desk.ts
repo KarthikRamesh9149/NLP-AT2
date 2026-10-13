@@ -34,8 +34,11 @@ export function useRestaurantDesk(team: ReturnType<typeof useTeam>) {
       });
       const result = await response.json();
       if (!response.ok)
-        throw new Error(
-          result.error || "This action could not be completed. Please retry.",
+        throw Object.assign(
+          new Error(
+            result.error || "This action could not be completed. Please retry.",
+          ),
+          { status: response.status },
         );
       return result;
     },
@@ -122,6 +125,13 @@ export function useRestaurantDesk(team: ReturnType<typeof useTeam>) {
       }
       return result;
     } catch (cause) {
+      if (
+        key === identity.current &&
+        cause instanceof Error &&
+        "status" in cause &&
+        cause.status === 409
+      )
+        await refresh().catch(() => {});
       if (key === identity.current)
         setError(cause instanceof Error ? cause.message : "Please retry.");
       throw cause;

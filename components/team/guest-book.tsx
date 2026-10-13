@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { Heart, Plus, Search, GitMerge, ArrowUpRight } from "lucide-react";
+import { GuestEditor } from "./guest-editor";
 import { Dialog } from "@/components/workspace/dialog";
 import type { Guest } from "@/lib/restaurant-desk";
 import type { TeamCase } from "@/hooks/use-team";
@@ -22,7 +23,7 @@ export function GuestBook({
     [source, setSource] = useState(""),
     [confirmed, setConfirmed] = useState(false),
     [merging, setMerging] = useState(false),
-    [baseVersion, setBaseVersion] = useState(data.version),
+    [mergeBase, setMergeBase] = useState(data.desk.guests),
     [error, setError] = useState("");
   const guests = data.desk.guests.filter((guest) =>
     `${guest.name} ${guest.contact}`
@@ -34,7 +35,6 @@ export function GuestBook({
     : null;
   function edit(guest?: Guest) {
     setError("");
-    setBaseVersion(data.version);
     setEditing(
       guest || {
         id: crypto.randomUUID(),
@@ -46,14 +46,15 @@ export function GuestBook({
       },
     );
   }
-  async function save() {
-    try {
-      await desk.perform({ type: "guest", guest: editing }, baseVersion);
-      setEditing(null);
-    } catch (cause) {
-      setError(cause instanceof Error ? cause.message : "Please retry.");
-    }
-  }
+  const mergeChanged =
+    !!current &&
+    [current.id, source]
+      .filter(Boolean)
+      .some(
+        (id) =>
+          JSON.stringify(mergeBase.find((guest) => guest.id === id)) !==
+          JSON.stringify(data.desk.guests.find((guest) => guest.id === id)),
+      );
   return (
     <section>
       <div className="team-section-heading">
@@ -125,7 +126,7 @@ export function GuestBook({
                   setSource("");
                   setConfirmed(false);
                   setMerging(true);
-                  setBaseVersion(data.version);
+                  setMergeBase(data.desk.guests);
                   setError("");
                 }}
               >
@@ -169,92 +170,13 @@ export function GuestBook({
         </div>
       )}
       {editing && (
-        <Dialog
-          title={
-            data.desk.guests.some((guest) => guest.id === editing.id)
-              ? "Edit guest record"
-              : "A guest to remember."
-          }
+        <GuestEditor
+          key={editing.id}
+          initial={editing}
+          cases={cases}
+          desk={desk}
           onClose={() => setEditing(null)}
-        >
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              save();
-            }}
-          >
-            <label>
-              Guest name
-              <input
-                className="edit-input"
-                required
-                maxLength={100}
-                value={editing.name}
-                onChange={(e) =>
-                  setEditing({ ...editing, name: e.target.value })
-                }
-              />
-            </label>
-            <label>
-              Contact details
-              <input
-                className="edit-input"
-                maxLength={120}
-                value={editing.contact}
-                onChange={(e) =>
-                  setEditing({ ...editing, contact: e.target.value })
-                }
-              />
-            </label>
-            <label>
-              Notes
-              <textarea
-                className="import-input"
-                maxLength={2000}
-                rows={3}
-                value={editing.notes}
-                onChange={(e) =>
-                  setEditing({ ...editing, notes: e.target.value })
-                }
-              />
-            </label>
-            <label>
-              Link reviewed enquiries
-              <select
-                className="edit-input"
-                multiple
-                value={editing.caseIds}
-                onChange={(e) =>
-                  setEditing({
-                    ...editing,
-                    caseIds: [...e.target.selectedOptions].map(
-                      (option) => option.value,
-                    ),
-                  })
-                }
-              >
-                {cases.map((record) => (
-                  <option key={record.id} value={record.id}>
-                    {record.title}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <p className="dialog-hint">
-              Choose only enquiries you know belong to this guest.
-            </p>
-            {error && (
-              <p className="dialog-error" role="alert">
-                {error}
-              </p>
-            )}
-            <div className="dialog-actions">
-              <button className="button primary" disabled={desk.busy}>
-                Save guest
-              </button>
-            </div>
-          </form>
-        </Dialog>
+        />
       )}
       {merging && current && (
         <Dialog
@@ -287,6 +209,27 @@ export function GuestBook({
                 ))}
             </select>
           </label>
+          {mergeChanged && (
+            <div className="alert notice" role="status">
+              <div>
+                <p>
+                  One of these records has changed. Review the updated details
+                  before combining them.
+                </p>
+                <button
+                  type="button"
+                  className="button compact subtle"
+                  onClick={() => {
+                    setMergeBase(data.desk.guests);
+                    setConfirmed(false);
+                    setError("");
+                  }}
+                >
+                  Review updated records
+                </button>
+              </div>
+            </div>
+          )}
           <label className="team-check">
             <input
               type="checkbox"
@@ -303,7 +246,7 @@ export function GuestBook({
           <div className="dialog-actions">
             <button
               className="button primary"
-              disabled={!confirmed || !source || desk.busy}
+              disabled={!confirmed || !source || desk.busy || mergeChanged}
               onClick={async () => {
                 try {
                   await desk.perform(
@@ -313,7 +256,7 @@ export function GuestBook({
                       sourceId: source,
                       confirmed,
                     },
-                    baseVersion,
+                    data.version,
                   );
                   setMerging(false);
                 } catch (cause) {

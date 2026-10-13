@@ -1,5 +1,6 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { randomUUID } from "node:crypto";
+import { execFileSync } from "node:child_process";
 import { mkdirSync, writeFileSync } from "node:fs";
 import { createEmptyBrief, applyManualEdit, approveBrief } from "../lib/state";
 import { CURRENT_ANALYSIS_VERSION } from "../lib/session";
@@ -10,6 +11,11 @@ const url = process.env.NEXT_PUBLIC_SUPABASE_URL!,
   key = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!;
 const admin = createClient(url, process.env.SUPABASE_SECRET_KEY!, {
   auth: { persistSession: false, autoRefreshToken: false },
+  db: { retry: false },
+  global: {
+    fetch: (input, init) =>
+      fetch(input, { ...init, signal: AbortSignal.timeout(15_000) }),
+  },
 });
 const results: { name: string; passed: boolean; detail?: string }[] = [];
 const users: { id: string; token: string; database: SupabaseClient }[] = [];
@@ -386,10 +392,44 @@ await check(
     );
   },
 );
+await check(
+  "Guest reassignment and unlink remove the previous history",
+  async () => {
+    const original = desk.desk.guests[0];
+    const other = {
+      ...original,
+      id: randomUUID(),
+      name: "Different guest",
+      caseIds: [],
+    };
+    await mutate({ type: "guest", guest: other });
+    await mutate({
+      type: "workflow",
+      caseId,
+      workflow: { ...desk.desk.workflows[caseId], guestId: other.id },
+    });
+    assert(
+      !desk.desk.guests
+        .find((guest: any) => guest.id === original.id)
+        .caseIds.includes(caseId),
+      "Previous guest retained the enquiry",
+    );
+    await mutate({ type: "guest", guest: { ...other, caseIds: [] } });
+    assert(
+      desk.desk.workflows[caseId].guestId === null,
+      "Unlink retained the workflow association",
+    );
+  },
+);
 let review: any;
 await check(
   "Private guest review omits staff notes, contact details and transcript",
   async () => {
+    await mutate({
+      type: "workflow",
+      caseId,
+      workflow: { ...desk.desk.workflows[caseId], stage: "handed_off" },
+    });
     review = await call("review", {
       type: "create",
       workspaceId,
@@ -443,6 +483,11 @@ await check(
     assert(
       record.data.payload.session.messages.length === 2,
       "Retry duplicated guest change",
+    );
+    await refresh();
+    assert(
+      desk.desk.workflows[caseId].stage === "needs_reply",
+      "Guest correction left the enquiry handed off",
     );
   },
 );
@@ -625,6 +670,27 @@ await check("Guest links become stale after a new staff save", async () => {
   });
   await call("review", { type: "view", token: link.token }, owner, 409);
 });
+await check(
+  "Atomic handoff rejects a case changed after preparation",
+  async () => {
+    await refresh();
+    const before = desk.version;
+    const result = await admin.rpc("fb_save_desk_for_case", {
+      p_workspace: workspaceId,
+      p_payload: desk.desk,
+      p_version: before,
+      p_actor: owner.id,
+      p_case: exactCase,
+      p_case_version: 1,
+    });
+    assert(
+      !!result.error && result.error.code === "PT409",
+      `Expected an immediate edit conflict; received ${result.error?.code || result.error?.message || "a success response"}`,
+    );
+    await refresh();
+    assert(desk.version === before, "Rejected handoff changed the desk");
+  },
+);
 await check("Disabled restaurant pages stop accepting enquiries", async () => {
   await mutate({
     type: "restaurant",
@@ -663,6 +729,9 @@ await check(
 );
 mkdirSync("evaluation/results", { recursive: true });
 const report = {
+  sourceCommit: execFileSync("git", ["rev-parse", "HEAD"], {
+    encoding: "utf8",
+  }).trim(),
   checkedAt: new Date().toISOString(),
   target: base,
   scope:
@@ -673,7 +742,8 @@ const report = {
   results,
 };
 writeFileSync(
-  "evaluation/results/restaurant-workspace-checks.json",
+  process.env.FORMBRIDGE_TEST_OUTPUT ||
+    "evaluation/results/restaurant-workspace-checks.json",
   JSON.stringify(report, null, 2) + "\n",
 );
 console.log(

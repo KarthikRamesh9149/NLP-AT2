@@ -4,6 +4,8 @@ import { Mail, ShieldCheck } from "lucide-react";
 import type { useTeam } from "@/hooks/use-team";
 
 export function AccountAccess({ team }: { team: ReturnType<typeof useTeam> }) {
+  const emailDelivery =
+    process.env.NEXT_PUBLIC_EMAIL_DELIVERY_ENABLED === "true";
   const [mode, setMode] = useState<"signin" | "signup" | "reset">("signin"),
     [email, setEmail] = useState(""),
     [password, setPassword] = useState(""),
@@ -11,6 +13,19 @@ export function AccountAccess({ team }: { team: ReturnType<typeof useTeam> }) {
     [error, setError] = useState(""),
     [notice, setNotice] = useState("");
   if (!team.database) return null;
+  if (team.user?.is_anonymous && !emailDelivery)
+    return (
+      <section className="account-access">
+        <h3>
+          <ShieldCheck size={17} /> Keep access to your team.
+        </h3>
+        <p>
+          This device account stays in this browser. Keep a private team
+          invitation code or download important enquiries before clearing
+          browser data.
+        </p>
+      </section>
+    );
   async function submit() {
     setBusy(true);
     setError("");
@@ -59,7 +74,7 @@ export function AccountAccess({ team }: { team: ReturnType<typeof useTeam> }) {
           ? "Too many email requests. Wait a few minutes and retry."
           : mode === "signin" && !team.user
             ? "Check your email and password, and verify your email if you have just registered."
-            : "Email verification is unavailable for this address right now. The email provider may require the team owner to configure mail delivery. You can continue on this device.",
+            : "Email verification is unavailable right now. You can continue on this device and try again later.",
       );
     } finally {
       setBusy(false);
@@ -80,7 +95,10 @@ export function AccountAccess({ team }: { team: ReturnType<typeof useTeam> }) {
       </p>
       {!team.user && (
         <div className="account-tabs">
-          {(["signin", "signup", "reset"] as const).map((value) => (
+          {(emailDelivery
+            ? (["signin", "signup", "reset"] as const)
+            : (["signin"] as const)
+          ).map((value) => (
             <button
               className={mode === value ? "selected" : ""}
               onClick={() => {
@@ -98,6 +116,13 @@ export function AccountAccess({ team }: { team: ReturnType<typeof useTeam> }) {
             </button>
           ))}
         </div>
+      )}
+      {!emailDelivery && !team.user && (
+        <p className="dialog-hint">
+          Sign in here if you already have an account. New email accounts and
+          email recovery are not available yet; device sign-in remains available
+          above.
+        </p>
       )}
       <form
         onSubmit={(e) => {
