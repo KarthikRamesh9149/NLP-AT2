@@ -21,8 +21,8 @@ export function Dialog({ title, description, onClose, children, wide = false }: 
     if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
     else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
   }
-  return <dialog ref={ref} tabIndex={-1} className={`workspace-dialog ${wide ? 'wide' : ''}`} onKeyDown={keepFocusInDialog} onCancel={(e) => { e.preventDefault(); onClose(); }} onClick={(e) => { if (e.target === e.currentTarget) { const r = e.currentTarget.getBoundingClientRect(); if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) onClose(); } }} aria-labelledby="dialog-title">
+  return <dialog ref={ref} tabIndex={-1} className={`workspace-dialog ${wide ? 'wide' : ''}`} onKeyDown={keepFocusInDialog} onCancel={(e) => { e.preventDefault(); onClose(); }} onClick={(e) => { if (e.target === e.currentTarget) { const r = e.currentTarget.getBoundingClientRect(); if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) onClose(); } }} aria-labelledby="dialog-title" aria-describedby={description ? 'dialog-description' : undefined}>
     <div className="dialog-heading"><h2 id="dialog-title">{title}</h2><button className="icon-button" type="button" onClick={onClose} aria-label="Close dialog"><X size={20} /></button></div>
-    {description && <p className="dialog-description">{description}</p>}{children}
+    {description && <p id="dialog-description" className="dialog-description">{description}</p>}{children}
   </dialog>;
 }
