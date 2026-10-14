@@ -146,6 +146,7 @@ def table(lines,page):
   for ci,txt in enumerate(row):
    c=cells[ci];c.width=Inches(widths[ci]);c.vertical_alignment=WD_CELL_VERTICAL_ALIGNMENT.CENTER
    p=c.paragraphs[0];p.paragraph_format.space_before=Pt(3);p.paragraph_format.space_after=Pt(3);p.paragraph_format.line_spacing=1.05
+   if page==2:p.paragraph_format.space_before=Pt(1);p.paragraph_format.space_after=Pt(1)
    if (page in [9,20] and ci>0) or (page==12 and rows[0][0]=='Check' and ci==1):p.alignment=WD_ALIGN_PARAGRAPH.CENTER
    rich(p,txt)
    for r in p.runs:

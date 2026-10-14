@@ -15,17 +15,15 @@
 | Karthik Ramesh | 26043455 |
 | Avanish Rao | |
 | Pranav Chhetri | |
-| Shivom Karnad | |
+| Shivom Karnad | 25977543 |
 | Rishi Mundra | |
 
 <!-- PAGE 2 -->
 # Abstract
 
-Our group developed FormBridge to help restaurant staff turn changing customer conversations into booking briefs. The application tracks five booking details, links them to their source messages and asks for clarification when a request is incomplete. Staff can review corrections, share an enquiry with teammates and send a private review link to the guest. Voice input and guest-care suggestions extend the workflow. External messaging and reservation connections are simulated.
+Our team has developed a conversational agent we call FormBridge to solve the problem of converting dynamic customer conversations with restaurant staff into booking briefs. The application tracks five booking fields, linking them to their originating messages and asking the user to provide clarification where a request is lacking. The staff reviews the amendments, sends an enquiry to their colleagues and shares a private review link with the guest. The voice input and suggestions for guest care support the process. The external messaging and reservation connections were simulated. We performed a comparison of rules, extracted the direct model and applied FormBridge to 20 previously examined development dialogues from the Schema-Guided Dialogue dataset to evaluate the accuracy of our application. Allowing for equivalent date and time formats, the methods matched 35/100, 89/100 and 97/100 fields respectively. FormBridge achieved full five-field matches in 17/20 dialogues, taking approximately double the time of direct extraction to process each conversation. An independent regression check then matched 100/100 fields on 20 previously examined test dialogues. Neither our measure nor the direct extraction is representative of the performance of approaches on unexamined enquiries.
 
-We compared rules, direct model extraction and FormBridge on 20 previously examined development dialogues from the Schema-Guided Dialogue dataset. Allowing equivalent date and time formats, the methods matched 35/100, 89/100 and 97/100 fields respectively. FormBridge matched all five fields in 17/20 dialogues, taking approximately twice as long as direct extraction to process each conversation. A separate regression check matched 100/100 fields on 20 previously examined test dialogues. Neither sample measures performance on unseen enquiries.
-
-A controlled comparison exposed a weakness: applying validation to the same model responses reduced correct fields from 88/100 to 85/100. Twenty constructed cases passed the checks for uncertainty, clarification and approval, with the required source messages attached to all 93 populated fields. Automated tests and a live walkthrough confirmed selected workflows. These results establish functional behaviour; a study with restaurant staff is still needed to assess ease of use and time savings.
+A controlled comparison highlighted an issue with the current approach: reducing correct fields by three from 88/100 to 85/100 by applying validation to the same model responses. Twenty constructed cases passed the checks for uncertainty, clarification and approval, and the required source messages are attached to all 93 populated fields. The automated tests and one walkthrough revealed selected procedures to be functioning. Further investigations, including a study with restaurant staff, would be necessary to confirm usability and time-saving potential.
 
 ## Contents
 
@@ -51,11 +49,11 @@ A controlled comparison exposed a weakness: applying validation to the same mode
 
 ## The restaurant enquiry problem
 
-A guest asks for four people at seven, then changes the request to five people sometime after eight. The current guest count is clear; the exact time is not. Reading only the first message produces an outdated brief. Reading only the last one loses the restaurant and date. Choosing 8:30 pm would add a decision the guest has not made.
+A customer requests for four people at seven but later amends the request to five people at sometime after eight. We know that the current guest count is known but not the exact time. Reading only the first message gives an out-dated summary and reading only the last provides no information regarding the restaurant and date. The choice to 8:30 pm would add a decision not made by the guest.
 
-This is a dialogue state tracking problem: keeping track of what a customer currently wants as a conversation develops. TRADE, for example, generates state values from the conversation instead of relying entirely on a fixed list of answers (Wu et al., 2019). The Schema-Guided Dialogue dataset provides service descriptions, conversations and annotated states for evaluating this task (Rastogi et al., 2020).
+This is a dialogue state tracking problem: maintaining what a customer currently wants as a conversation progresses. TRADE, for instance, derives state values from the conversation rather than a fixed list of answers (Wu et al., 2019). The Schema-Guided Dialogue dataset provides service descriptions, conversations and annotated states to evaluate this task (Rastogi et al., 2020).
 
-We chose restaurant enquiries because they make the consequences of a missed correction easy to see. Front-of-house staff must understand the current request and pass it to a colleague without losing a change or special requirement. Guests need a way to check that their plans have been understood. Our design is based on these enquiry scenarios; we have not yet interviewed restaurant staff to validate the needs or demand.
+We have selected restaurant enquiries, as the consequences of a missed correction is easy to see. Front-of-house staff must understand what the current request is and relay it to a colleague without losing a change or special requirement. Guests will need a means of checking that their plans have been understood. Our design is based on these enquiry scenarios, we have not yet interviewed restaurant staff to validate the needs or demand.
 
 ## Objectives and research question
 
@@ -70,29 +68,29 @@ We aimed to build a web application that gives staff accurate booking informatio
 
 ## Scope and completion criteria
 
-FormBridge accepts English text and short voice messages. A transcript can contain up to 30 messages of 1,000 characters each. Optional guest-care details sit alongside the five booking fields. Staff can save enquiries on their device or in a private team, assign them to a colleague and request a guest review.
+FormBridge receives English text and short voice messages. A transcript can be up to 30, 1,000-character messages long. Optional guest-care information appear next to the five booking fields. Staff saves enquiries in their device or in a team, private, and assigns them to a colleague and requests of guest review.
 
-A completed workflow leaves staff with a brief that shows the current request, unanswered questions and review decisions. Approval records that the brief has been checked; it does not reserve a table. Email, WhatsApp and reservation connections are simulated. Because these workflows extend beyond the five fields in the dataset, we evaluate them separately from extraction accuracy.
+A completed workflow results in staff having a brief describing the current request, unanswered questions, and review decisions. Approval indicates that the brief was reviewed; it does not reserve a table. Emails, WhatsApp, and reservation connections are simulated. Since these workflows go beyond the five fields in the dataset, we assess them separately from extraction accuracy.
 
 <!-- PAGE 4 -->
 # 2 Product and user journey
 
-Staff start with an empty booking desk. They can enter a conversation, import a saved enquiry or review a voice transcription. Restaurants can also publish a branded guest page or embed its assistant on their website. The assistant answers questions using approved restaurant information and collects the request. Contact details are shared with the team only after the guest consents.
+The staff begins their working session by opening an empty booking desk. It is possible to type a conversation, import a saved enquiry or review a voice transcription. Moreover, a restaurant can publish a branded guest page or embed the assistant’s interface on their website. The assistant then uses information about the restaurant and answers the request by collecting all the necessary details. The contact information is only shared with the team when a guest confirms their request.
 
 ![A customer conversation beside its five-field brief, showing six guests and an unresolved after-eight time](assets/FormBridge-core-workflow.jpg)
 *Figure 1. The booking desk after a customer changes four guests to six and replaces 7 pm with “sometime after 8 pm”. The guest count updates while the exact time remains unresolved. Screenshot of the live application, 13 October 2026.*
 
 ## A complete enquiry
 
-In Figure 1, the restaurant, city and date remain unchanged. Staff can inspect the source messages and change history before asking for an exact time. If a staff member offers 8:30 pm, that time is recorded as agreed only after the customer accepts it. The completed brief can then be approved.
+In figure 1, the restaurant, city, and date are the same. The staff member went through the conversation and history and asked about the time specifically. If the staff member specifies 8.30 pm, it will be accepted as an agreed time only after the customers confirm. The completed brief can be approved.
 
-When an enquiry is shared with the team, staff can add contact details, accepted guest-care requests, an owner and a due time. The guest can request a correction through a private review link. Their change becomes a new customer message and returns the enquiry to **Needs reply**, removing the previous approval. The simulated reservation connection demonstrates how the reviewed request would be handed over and how a failed transfer would be handled.
+When the enquiry is assigned to the team, additional fields with contact details, accepted guest-care requests, an owner and due time can be added. The guest can change their enquiry by using the private review link. Their replied message is saved as a new message with the status of Needs reply, canceling any previous approvals. The simulated reservation connection lets see how the revised request is escalated to the team and how the failed attempt is returned.
 
 ## Work beyond the first reply
 
-The team desk keeps comments, priorities, assignments and reminders beside each enquiry. Staff decide whether to link or merge returning-guest records, since two people can share a name. A service planner organises enquiries with known dates. The desk assistant drafts replies and handoff notes for staff to review before use.
+The team desk illustrates comments, priorities, assignments, and reminders along with each enquiry. The staff members manages the returning-guest records where the merging or linking options are available to avoid duplicates, the guests may have the same names. The service planner manages the enquiries with set dates while the desk assistant prepares their responses and handoff notes for the staff’s approval.
 
-The deployed application supports device sign-in and private team invitations. A separate simulation demonstrates email signup and password recovery. Real email delivery requires a configured and tested sender.
+The application uses to let its team members access it through their physical devices and private team invites to facilitate collaborations. A separate simulation shows the email registration and password-recovery processes. Note that actual emails require one to configure the sender’s platforms and test them.
 
 <!-- PAGE 5 -->
 # 3 Architecture and state
@@ -104,15 +102,15 @@ We used Next.js 16.3.6, React 19.3.0 and TypeScript 5.9.3 to build the applicati
 
 ## Keeping the brief consistent
 
-The model proposes a value for each field, any remaining uncertainty and the messages that support it. Application code checks these proposals before updating the brief. Each field is marked missing, resolved or awaiting clarification. The brief also records whether a value came from the model or a staff edit. Approval belongs to a particular version, so changing the request removes its earlier approval.
+The model proposed a value for each field plus, the uncertainty and the messages justifying this proposal. It was checked by the application code against proposals before updating the brief. Each field is marked missing, resolved or waiting for clarification. The brief records if a value was taken from the model or staff edit. The approval belongs to a specific version, thus, changing the request invalidates its subsequent approval.
 
-The active draft is kept in browser session storage. A local library holds up to 50 saved enquiries, while shared enquiries are stored in Supabase and restricted to team members. Guest preferences and comments are stored separately from the five extracted fields. Imported JSON and older drafts containing model predictions must be checked again before approval.
+The active draft is stored in the browser session storage. The local library stores up to 50 saved enquiries whilst shared enquiries are stored in Supabase and are limited to team members. The guest's preferences and comments are stored separately from the five extracted fields. Imported JSON and old drafts containing model predictions should be rechecked before approval.
 
 ## Handling shared edits and failed requests
 
-Each save identifies the version being edited. If a teammate has already changed that version, the application reports a conflict. It preserves unrelated edits where possible and asks which value to keep when both people changed the same field. Reply requests remain linked to their original enquiry, so a delayed response cannot appear in a different case.
+Every save specifies the version being worked on. If another teammate has made changes to the version, the application warns of a conflict. It is possible to retain unrelated changes, and the application asks the user to specify which value should be preferred in the fields changed by both users. Whenever reply requests are received, they are always associated with the original enquiry, hence any delayed reply cannot appear in a different case.
 
-Before calling OpenAI, the server checks the input and sets aside an estimated amount from a shared usage allowance. It then records the reported usage. If a failed request returns no usage information, the estimate remains charged against the allowance. AI requests stop if the allowance database is unavailable, while manual review and saved work remain accessible. This controls the application's usage, not all spending on the OpenAI account.
+Before sending any request to the OpenAI API, the server evaluates the input and subtracts an estimated amount from the shared allowance. The server then saves the reported usage. If the request failed, and no usage was reported, the estimated amount is subtracted in the allowance. If the allowance database is unavailable, AI requests will be stopped, but manual review and saved work will still be available. The application usage is limited by this allowance, which does not control all spending on the OpenAI account.
 
 <!-- PAGE 6 -->
 # 4 NLP methods and choices
@@ -133,11 +131,11 @@ Structured output gives the model response a predictable format, but its content
 
 ## Model and latency choices
 
-The deployed configuration uses `gpt-6-luna` for the first extraction. It can make one further call to `gpt-6.1-sol` to repair a response or recover from a temporary failure. Both use low reasoning effort, with automatic SDK retries disabled. Output limits are 2,400 tokens for FormBridge and 900 for direct extraction.
+The deployed configuration uses gpt-6-luna for the initial extraction. It permits a second call to gpt-6.1-sol to repair the response or recover from a temporary failure. Both are employing low reasoning effort, automatic retries of the SDK are disabled, and the output limits for FormBridge are 2,400 tokens and 900 for direct extraction.
 
-A ten-dialogue trial with Luna matched 45/50 fields without a failed dialogue, averaging 27.78 seconds per conversation. A later trial using Sol first and Astra for repair matched 38/50 on the same dialogues. One failed, and the nine completed dialogues averaged 52.39 seconds. We retained Luna as the practical starting model. Because the prompts and validation also changed between trials, the results do not establish which model is intrinsically better. Appendix E records both configurations.
+A ten dialogues trial using Luna yielded a match of 45/50 fields and no failed dialogue, averaging 27.78 seconds per conversation, and a subsequent trial using Sol first and Astra for repair matched 38/50 on the same dialogues. Furthermore, there was also one failed dialogue and the nine successfully completed dialogues averaged 52.39 seconds. We have retained Luna as the practical starting model, although the prompts and validation also changed between trials, and cannot tell which model is intrinsically better. Appendix E records both configurations.
 
-The first call has a 12-second limit and the additional call has 14 seconds, leaving time for application processing within the 30-second request limit. The separate benefit of Sol repair has not yet been measured. Using hosted models avoids training and hosting model weights, but adds network dependence and external data processing. The model names are aliases, so their behaviour may change over time.
+The first call has a limit of 12 seconds and the additional call has a limit of 14 seconds, leaving room for application processing within the 30-second request limit. However, the separate benefit of Sol repair has yet to be measured. Using a hosted model avoids the need for training and hosting model weights, but introduces network dependence and external data processing. The model names are aliases, and their behaviour may change over time.
 
 ## Language features around the brief
 
@@ -162,17 +160,15 @@ The training schema uses `city` and `party_size`; the development and test schem
 
 ## Preparing each example
 
-The loader reads files in a fixed order and stops each conversation at its final customer turn about a reservation. It maps USER and SYSTEM to customer and staff and assigns message identifiers. The dataset's final annotated values provide the answers used for scoring. Each method processes the conversation again after every customer message, using only the messages available at that point. We refer to each of these partial conversations as a prefix.
+The loader reads in files in the order specified and terminates the conversations at a customer turn about a reservation. Then it matches USER and SYSTEM to customer and agent respectively and labels the messages with identifiers. The final annotated values of this dataset are the answers that powered this scoring. Each approach processes the conversation again at every customer message, using only those messages that were available at the given step in the conversation. These are also called “prefixes.”
 
-Expected answers, default values from the service schema and future messages are excluded from model input. Historical conversations are supplied without a reference date, so “tomorrow” is not interpreted using the day we run the experiment. A date without a year can be retained as a value while still requiring clarification before approval.
+Expected answers, defaults according to the service schema, and future messages are excluded as inputs to the model. The history is given without a reference date, and therefore “tomorrow” should not be considered as the day of the experiment. A date without a year is a valid value but should be flagged for clarification before approval.
 
 ## Other inputs and data limitations
 
-The live application accepts users' conversations, approved restaurant information and reviewed voice transcripts. Screenshots and functional tests use fictional restaurants and guests, separately from the dataset evaluation. SGD's five-field labels do not cover guest-care or team workflow features.
+The evaluated application processes the real-time dialogues, taking the user’s conversations and the approved information on restaurants, including transcripts of dialogues, as inputs. The screenshots and tests were made using the fictional restaurants and guests, separately from the dataset. The labels of the SGD’s 5 fields contain no information on the guest-care or staff organization. SGD allows for the evaluation of booking values. However, the assistant labels the quotes supporting the booking, clarifying questions, and staff workload. The tool is open-sourced; thus, we cannot confirm whether it was trained on the hosted model. The conversations were tested and reviewed for development; by allowing retesting, we can catch regression. However, we cannot assess the performance on the unseen data.
 
-SGD supports evaluation of booking values, but does not fully label supporting quotations, clarification wording or staff workload. It is publicly available, so we cannot establish whether it was included in a hosted model's training data. The selected conversations had already been examined during development. Rerunning them checks for regressions but cannot measure performance on unfamiliar data.
-
-The upstream dataset is licensed under Creative Commons Attribution-ShareAlike 4.0. Dataset-derived excerpts and retained outputs require the applicable attribution and licensing. The project keeps the corpus revision and licence with its evaluation materials.
+The upstream dataset is distributed under the Creative Commons Attribution-ShareAlike 4.0 International License. All excerpts and redacted versions of the dataset should include the proper licensing and attribution for the copyright holders. The project has the corpus version and license for the evaluation materials.
 
 <!-- PAGE 8 -->
 # 6 Evaluation design
@@ -185,17 +181,17 @@ All methods see identical ordered conversation prefixes and finish at the same c
 
 ## Controlled component and feature checks
 
-To measure the effect of validation, we requested one model response at the end of each development conversation. We scored that same response before and after applying the checks. The input, prompt, model and output allowance were therefore identical in both conditions. This experiment excludes repair calls and previously predicted states, isolating validation from the rest of the application. One request timed out and counts as a failure in both conditions.
+To evaluate the influence of the validation process, an additional model response was requested by the end of each development conversation. The same response was scored both before and after our checks. The prompt, model, allowance for the output and input all remained the same in the two cases. This means that the only differing factor is the presence of the validation checks, which is isolated from the other elements of the application. One of the requests has timed out and thus counts as a failure both times.
 
-We also used 20 constructed conversations to test corrections, customer acceptance, cancellation, dates, guest counts and uncertainty. The expected values, statuses, supporting messages and clarification targets were recorded before the calls and withheld from the model. Each transcript was analysed from an empty brief. These checks test whether the required sources and questions appear and whether approval is allowed at the right point.
+We also applied 20 constructed conversations to test repair calls, customer acceptance, cancellations, dates, the number of guests as well as expressions of uncertainty. The expected values, statuses, supporting information and clarification targets were recorded in the calls, but hidden from the model at the time of processing. Each transcript was evaluated from an empty brief. The tests ensure that the required sources and clarifications are present, as well as that the approval has been reached at the right point.
 
 ## Metrics
 
-**Field accuracy** is the number of matching final values divided by five times the number of attempted dialogues. For 20 dialogues the denominator is 100. **Complete-brief accuracy** is the number of dialogues with all five matching values divided by the number attempted. A failed dialogue remains in both denominators; staff edits are excluded.
+Field accuracy is the ratio of the number of correct final values to the 5× number of attempted dialogues, giving 20 dialogues the denominator of 100. Complete-brief accuracy is the ratio of dialogues that had all 5 fields matched to attempted dialogues, counting failed dialogues in the denominator. Staff edits are excluded.
 
-The **strict matcher** applies basic text normalisation. The **canonical matcher** also accepts equivalent date and time formats, while preserving missing years and the distinction between a range and an exact time. We report both. These scores cover our five selected fields; they do not measure the full SGD task or whether a brief is ready for approval.
+The strict matcher is using the text normalization and the canonical matcher additionally accepts equivalent date/time formats while preserving the missing year and distinction of range and specific time, both are reported. The numbers reflect the degree of match across the 5 fields that we selected and do not comment on the success of the overall SGD task, or readiness of the brief for approval.
 
-Resource accounting includes OpenAI requests, observed tokens and whole-dialogue replay time. Replay includes multiple prefixes, so it is not one-message response time. Failed requests may omit usage; token totals are not complete billing records.
+Resource accounting encompasses OpenAI’s requests, observed tokens, and whole-dialogue replay time (replays have multiple prefixes so it’s not per message latency) and failed requests may not be billed, and token counts may not be directly reported.
 
 ## Reproduction and interpretation
 
@@ -266,23 +262,23 @@ The gained match moved “Wednesday next week” from a constraint into the valu
 
 ## Development lessons
 
-The rule baseline matched no dates because its patterns recognise full dates, while this sample uses relative or yearless dates. A broader date parser and trained slot tagger would strengthen the comparison. FormBridge needs to recover missing sources and recognise valid aliases without accepting unsupported values.
+The baseline rule did not match against any dates as its patterns recognise full dates, where as this sample uses relative or yearless dates. A more comprehensive date parser and a trained slot tagger would be required in order to make the comparison for FormBridge to be able to recover the missing sources and recognise valid aliases without accepting unsupported values.
 
-Earlier testing found negated cancellations being misread, rejected corrections leaving old approvals active and dismissed errors removing the retry control. Changes to cancellation, approval and recovery handling addressed these cases. Linking delayed replies to their original enquiry also fixed replies appearing in the wrong case. Targeted tests and deployed checks verified these corrections.
+In previous testing negated cancelations were being misread, rejected corrections left old approvals active and dismissed errors removed the retry control. Improvements to cancellation, approval and recovery handling dealt with these cases, and linking of delayed replies to their original enquiry fixed replies being displayed in the wrong case. Targeted tests and deployed checks have verified these corrections.
 
 <!-- PAGE 11 -->
 # 9 Interaction design
 
-We placed the conversation beside the booking card so staff can check a detail without leaving the enquiry. Each field opens its source messages. Staff can edit a message, correct its speaker or inspect a previous value. Unresolved details produce a question, and a changed request removes its earlier approval. These choices follow guidance on explaining system behaviour and supporting correction (Amershi et al., 2019).
+We attached the conversation to the booking card as a way for staff who need to review the detail along with the conversation to open it without moving between the two. Each field is opened to show the source messages on demand. We enabled the staff to edit the message, change the speaker, or view the previous value. We attached unresolved detail to questions and cancelled approvals when the request was changed. We followed the guidance of explaining the changes and enabling corrections. (Amershi et al., 2019).
 
 ![The six-guest value with the original and corrected customer messages, followed by a request for an exact time](assets/FormBridge-core-workflow.jpg)
 *Figure 3. Enlarged source panel from Figure 1. Staff can read the original request and correction beside the six-guest value. The separate time question preserves the customer's “after 8 pm” preference.*
 
 ## Eight tasks completed on the live application
 
-A structured walkthrough covered eight tasks, from opening an empty desk to editing an approved enquiry. All eight produced the expected visible result. The history showed four guests changing to six and 7 pm becoming unresolved. An offer of 8:30 pm left approval disabled until the customer accepted. Editing the earlier guest count then updated the brief and removed approval. Appendix F records each step.
+We performed a walkthrough of the process that involved eight items from desks opening to an empty desk through to editing the approve enquiry. In each of the eight items, the expected outcome occurred. The history showed the four guests turned to six and left the time at 7 pm unresolved. The offer for 8:30 left the approval button inactive until the customer had accepted the change. The edit to the number of guests changed the summary and cancelled the approval. Appendix F records our walkthrough.
 
-Cream backgrounds, dark green navigation and serif headings give the interface a consistent restaurant setting. Status labels communicate meaning alongside colour, and source panels keep corrections close to the detail being checked. The walkthrough confirms that these interactions worked in the tested enquiry. It involved no recruited participants, so it cannot establish how easily new users would find the controls or complete their work.
+The cream background, the dark green panels for the navigation, and the serif font heading produce the illusion of a restaurant. The labels explain what the status means and provide additional information beyond the colour coding. The source panels are placed so that the staff can review and edit the information close to where it appears. Our walkthrough makes visible results that show the intended interaction occurs within the context of the scenario. However, the test does not involve real users in the walkthrough, and we cannot evaluate the learning curves or if they could perform the discovered actions.
 
 
 <!-- PAGE 12 -->
@@ -315,34 +311,32 @@ All 20 constructed conversations returned the expected field values and statuses
 | Ask or remain silent | 20/20 cases | Missing details triggered questions; complete or cancelled requests did not |
 | Approval eligibility | 20/20 cases | Approval matched the expected complete, incomplete or cancelled state |
 
-The source check verifies that the required messages are present; it does not independently assess every additional quotation. The clarification check verifies which detail a question asks about. Assessing the usefulness of its wording would require feedback from users.
-
-Checks on the deployed application rejected access from another team, detected outdated edits and preserved enquiries after simulated provider failures. The selected desktop and mobile layouts fitted their viewports without horizontal scrolling. Keyboard checks covered closing dialogs and returning focus. Broader browser and assistive-technology testing remains necessary.
+The source check ensured that the expected messages are in place; it does not evaluate each of the other quote individually. The clarification check discovers what level of detail the question is concerning. The valuation of its phrasing would require the users’ feedback. The checks of the deployed application denied another team’s access, identified obsolete edits and retained inquiries after simulating provider failures. The chosen desktop and mobile layouts matched their viewports without necessitating a horizontal scroll. The keyboard checks comprised of closing the dialogues and bringing back the focus. The broader browser and assistive-technology testing remains to be done.
 
 <!-- PAGE 13 -->
 # 11 Ethics and limitations
 
 ## Guest information and access
 
-Conversations can contain names, contact details and dietary requirements. The guest page asks for consent before sharing contact details with the restaurant. Private team records use PostgreSQL row-level security to restrict reads; updates also check the staff member's permission and the record version (Supabase, n.d.). Review links expire after 72 hours and expose only the details needed for review. Anyone holding an active link can use it, so it should be treated as private.
+Consider that conversations may contain names, contact details, and dietary requirements. The guest page asks that you agree to share your contact details with the restaurant. Records kept by private team members are forbidden by PostgreSQL row level security (prevent reads) and checks to the staff member's permission and record version (Supabase, n.d.). Links to reviews expire after 72 hours and only expose the details required for a review. Anyone that has a link has access to it; you should treat any links shared as private.
 
-OpenAI processes the submitted text or audio needed for a request. Responses API calls use `store: false`, which does not by itself guarantee zero provider retention; applicable abuse-monitoring and account controls still matter (OpenAI, n.d.-a). FormBridge does not retain raw voice recordings. JSON exports contain transcript data and should be handled as guest records.
+OpenAI takes the submitted text or audio required to fulfill a request. Responses API calls have store: false, which does not guarantee that by default no provider stores the information; applicable abuse-monitoring and account controls still matter (OpenAI, n.d.-a). FormBridge does not retain raw voice recordings. JSON exports include transcript data and should be treated as guest records.
 
-Shared enquiries do not yet have an automatic deletion schedule or a complete process for handling requests to access or delete personal information. Before use in a restaurant, these procedures need to be agreed and explained to guests, including how external services process their information. Service-plan limits and outages also affect availability.
+Enquiries that are shared do not currently have an automatic deletion schedule or complete procedure for handling their requests to access or delete personal information. Before using them in a restaurant, you should set up procedures and explain them to guests, including how their external services process their information and how service-plan limits and outages can impact the availability of services.
 
 ## Human decisions and consequences
 
-An allergy or accessibility request may be incomplete even when extracted correctly. Staff still need to confirm suitable arrangements with the guest and restaurant. The interface lets staff reject suggestions and inspect their sources. It also requires an explicit decision to link returning-guest records, reducing the risk of combining different people with the same name.
+An allergy or accessibility request could be mistakenly extracted. The staff would still have to ask the guest and the restaurant to make sure that appropriate arrangements were made. The interface lets staff reject suggestions and check their sources. Also, there needs to be an explicit decision to link returning-guest records, thus reducing the chance of different people with the same name getting accidentally merged.
 
-Prompts and validation help prevent instructions inside a conversation from changing the model's task, although prompt injection remains a risk. Shared usage limits control API consumption, and a failed update preserves the last valid brief. Testing covered selected failures and hostile inputs; it cannot cover every possible attack or outage.
+Prompts and validation should prevent the model from being steered into different work by instructions built into a conversation, but prompt injection could still happen. Shared usage limits the amount of usage on the API, and a failed update will hold the last valid brief. Testing can only address the failures and malevolent inputs that were considered.
 
 ## Evaluation and deployment limits
 
-The evaluation is limited to English restaurant enquiries and small samples already examined during development. The model aliases may change, and we cannot rule out the public dataset having appeared in model training. The results therefore support conclusions about the tested cases rather than general accuracy. Independent data, separate judgements of quotation quality and observation of restaurant staff would strengthen the evidence.
+The evaluation includes English restaurant inquiries and small samples already tested during development. The model's aliases may vary, and we cannot exclude the possibility that the public dataset was part of the model's training. As a result, these results support the claims about the cases tested, rather than overall accuracy. Independent data and independent assessments of the quality of quotation and observation of restaurant staff would improve the evidence.
 
-Guest requests use the Australia/Sydney timezone to interpret dates, while reminders follow the staff device. Wider use would require a timezone setting for each restaurant. Reminders update only while the application is open. Device sign-in is tied to the browser and currently offers no email recovery.
+Guest requests use the Australia/Sydney timezone to interpret dates, while the reminders follow the staff device. Wider usage would require a timezone setting for each restaurant. Reminders update only when the application is open. The device sign-in is tied to the browser and currently offers no email recovery.
 
-Messaging, reservation transfer and email account recovery remain simulations. Real email delivery requires a configured sender. FormBridge does not check live restaurant availability, make reservations or process payments.
+Messaging, reservation transfer and email account recovery are still simulations. Real email delivery requires a configured sender. FormBridge does not check live restaurant availability, make reservations or process payments.
 
 <!-- PAGE 14 -->
 # 12 Project delivery and next steps
@@ -351,17 +345,17 @@ Messaging, reservation transfer and email account recovery remain simulations. R
 
 We began by defining the restaurant enquiry problem and five booking fields. We then implemented and compared the NLP methods, investigated errors and expanded the interface into a shared enquiry workflow. Deployment checks, setup instructions and product videos completed the delivery phase.
 
-Karthik Ramesh (26043455) took the technical lead, with responsibility for the application, NLP integration, evaluation tooling, deployment and technical verification.
+All five group members contributed to building FormBridge. Karthik Ramesh (26043455) took the technical lead, while application development was shared across the group.
 
-*Table 8. Planned responsibilities for the final group review.*
+*Table 8. Group contributions to the application.*
 
-| Group member | Assigned review responsibility |
+| Group member | Contribution |
 | --- | --- |
-| Karthik Ramesh | Technical accuracy, reproducibility and deployment details |
-| Avanish Rao | Dataset selection, preparation and experimental comparisons |
-| Pranav Chhetri | Scenario tests, error analysis and interpretation of results |
-| Shivom Karnad | User journeys, interface clarity and product screenshots |
-| Rishi Mundra | Related research, APA references and consistency across report sections |
+| Karthik Ramesh | Technical lead: application development, NLP integration, evaluation tooling, deployment and technical verification |
+| Avanish Rao | Shared application development |
+| Pranav Chhetri | Shared application development |
+| Shivom Karnad | Shared application development |
+| Rishi Mundra | Shared application development |
 
 ## Recommendations in priority order
 
@@ -372,9 +366,9 @@ Karthik Ramesh (26043455) took the technical lead, with responsibility for the a
 
 ## Conclusion
 
-We built FormBridge to keep a restaurant enquiry understandable as a customer's plans change. Staff can inspect the messages behind each detail, resolve missing information and pass a reviewed brief to a colleague. In the development comparison, FormBridge matched 97 of 100 fields and all five fields in 17 of 20 dialogues, exceeding direct extraction at the cost of more API usage and processing time.
+We have developed FromBridge to keep up a restaurant inquiry comprehensible to the evolving ideas of a customer. It enables staff to inspect the messages that make up every piece, resolve missing information and pass on a revised brief to a colleague. From the development comparison, FormBridge matched 97 of every 100 fields and all five fields in 17 of 20 dialogues, outperforming direct extraction at the expense of more API usage and processing time.
 
-The controlled comparison showed where the approach still falls short: strict source checks sometimes discard correct values. Improving those checks, evaluating unfamiliar enquiries and observing restaurant staff are the next steps towards establishing whether FormBridge improves everyday enquiry handling.
+The controlled comparison unveiled the areas where the approach falls short: strict testing of sources can inadvertently deprive correct values. Improving source checks, evaluating unfamiliar inquiries and observing restaurant staff are the next steps towards establishing whether FormBridge improves a routine inquiry handling.
 
 <!-- PAGE 15 -->
 # References

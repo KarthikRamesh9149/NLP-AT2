@@ -69,16 +69,16 @@
     "additional_interaction_evidence": "21"
   },
   "missing_required_information": [
-    "Student IDs and actual contributions for Avanish Rao, Pranav Chhetri, Shivom Karnad and Rishi Mundra"
+    "Student IDs for Avanish Rao, Pranav Chhetri and Rishi Mundra"
   ],
   "human_participant_study": false,
   "source_boundary": "Current development and inspected regression samples; historical equal-model results separately identified",
   "file_sha256": {
-    "FormBridge-AT2-Report.md": "849a83a7f46fc3dfda6ead999e8aa238040a30d92b592ce258a8baaaedfb0ff3",
-    "FormBridge-AT2-Report.docx": "ca565c5f658f7a622e489716e063db2d128796688d333c6d57d7dbe190d5670c",
-    "FormBridge-AT2-Report.pdf": "47437c8be16ad91114512afa58d8c82b0b973e835e6c7d3161d57225a5511c4a"
+    "FormBridge-AT2-Report.md": "bfa93f6084955ceb6abc368909feb14092db21bd903c9c36d7f4161be0b3a1b6",
+    "FormBridge-AT2-Report.docx": "bdb28ea2f3528fb8b4e2c29e5b4f4a21575e0f7115c56ce4c0c592f83c50226e",
+    "FormBridge-AT2-Report.pdf": "714e9c42e264ab9927784a75fbf5a991b3e82f51fb9907979b24dfa921294d8e"
   },
-  "figure_views": 5,
+  "figure_views": 6,
   "product_screenshot_views": 4,
   "visually_inspected_pages": [
     1,
@@ -147,14 +147,14 @@
   },
   "supplementary_source_fingerprint": "d82f14b6990edb9b6c52d6d3cb9aa229de00cdb980b66d92a5b0f65c8d380214",
   "editorial_checks": [
-    "All five confirmed group members assigned a role in a clearly labelled final review plan",
-    "Confirmed technical responsibility retained separately from planned reviews",
-    "Only page 14 changed; all other pages render byte-identically to the inspected group-cover report",
-    "Page 14 visually inspected; report remains 15 main pages and 6 appendix pages",
-    "Numerical results, references and screenshots unchanged",
-    "No comments, tracked changes or hidden text in the document body",
-    "Four intentionally blank student ID cells; actual teammate contributions remain unconfirmed",
-    "Application, tests and evaluation source unchanged during report revision"
+    "All five members credited for application development based on user confirmation",
+    "Planned-review allocation replaced with shared-development contributions",
+    "Latest shared Word edits merged into source; only eight contribution blocks changed from the downloaded document",
+    "Shivom Karnad student ID 25977543 preserved from the shared report",
+    "Cover border residue removed and contents table spacing reduced to prevent a one-row overflow page",
+    "All 21 rendered pages visually inspected; 15 main pages and 6 appendix pages",
+    "No comments, tracked changes or hidden text in document body",
+    "No application, tests, evaluations or numerical result tables changed by this contribution edit"
   ],
   "references_checked_on": "2026-10-13",
   "references_checked_against": [
@@ -165,27 +165,28 @@
     "Supabase Row Level Security",
     "Retained SGD repository revision and licence"
   ],
-  "editorial_revision": "2026-10-14 final group review allocation",
-  "cover": "All five confirmed group members; Karthik Ramesh identified as the submitting student; four student ID cells intentionally blank",
+  "editorial_revision": "2026-10-14 confirmed shared development; preserve collaborative Word edits",
+  "cover": "Five members; Karthik Ramesh is submitting student; Shivom Karnad ID retained from shared Word; three ID fields intentionally blank",
   "group_voice": true,
   "numerical_score_tables_unchanged": true,
   "intentional_blank_fields": [
-    "Cover student IDs for Avanish Rao, Pranav Chhetri, Shivom Karnad and Rishi Mundra, as requested by the user"
+    "Cover student IDs for Avanish Rao, Pranav Chhetri and Rishi Mundra"
   ],
   "contribution_section": {
-    "confirmed": "Karthik Ramesh: technical implementation responsibility",
-    "assigned_review_roles": "Table 8; explicitly planned, not recorded as completed contributions",
-    "confirmation_pending": [
-      "Avanish Rao",
-      "Pranav Chhetri",
-      "Shivom Karnad",
-      "Rishi Mundra"
-    ]
+    "basis": "User confirmed all five members contributed to building the application",
+    "technical_lead": "Karthik Ramesh",
+    "other_members": "Shared application development; no individual module, hours or percentage attribution"
+  },
+  "collaborative_edit_merge": {
+    "downloaded_modified_time": "2026-10-14T02:06:49.579Z",
+    "change_groups_retained": 22,
+    "other_shared_text_preserved": true,
+    "full_content_reaudit_performed": false
   },
   "shared_word_verification": {
     "file_id": "1NVvpg6jjxPryi3oON7xMGUldf0J3kKjA",
-    "modified_time": "2026-10-13T21:43:41.081Z",
-    "sha256": "ca565c5f658f7a622e489716e063db2d128796688d333c6d57d7dbe190d5670c",
+    "modified_time": "2026-10-14T07:45:52.652Z",
+    "sha256": "bdb28ea2f3528fb8b4e2c29e5b4f4a21575e0f7115c56ce4c0c592f83c50226e",
     "byte_identical": true
   }
 }
