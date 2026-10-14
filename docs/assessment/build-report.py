@@ -136,6 +136,7 @@ def table(lines,page):
  if page==9 and cols==3:widths=[3.9477,1.4,1.4]
  if page==18:widths=[3.55,3.1977]
  if page==20:widths=[2.7,1.05,.85,.75,1.3977]
+ if page==21:widths=[1.55,5.1977]
  borders=OxmlElement('w:tblBorders')
  for edge in ['top','left','bottom','right','insideH','insideV']:
   e=OxmlElement('w:'+edge);e.set(qn('w:val'),'single');e.set(qn('w:sz'),'4');e.set(qn('w:color'),'D9D9D9');borders.append(e)
@@ -147,6 +148,7 @@ def table(lines,page):
    c=cells[ci];c.width=Inches(widths[ci]);c.vertical_alignment=WD_CELL_VERTICAL_ALIGNMENT.CENTER
    p=c.paragraphs[0];p.paragraph_format.space_before=Pt(3);p.paragraph_format.space_after=Pt(3);p.paragraph_format.line_spacing=1.05
    if page==2:p.paragraph_format.space_before=Pt(1);p.paragraph_format.space_after=Pt(1)
+   if page==21:p.paragraph_format.space_before=Pt(2);p.paragraph_format.space_after=Pt(2)
    if (page in [9,20] and ci>0) or (page==12 and rows[0][0]=='Check' and ci==1):p.alignment=WD_ALIGN_PARAGRAPH.CENTER
    rich(p,txt)
    for r in p.runs:
@@ -155,7 +157,7 @@ def table(lines,page):
    pr=c._tc.get_or_add_tcPr();sh=OxmlElement('w:shd');sh.set(qn('w:fill'),'333333' if ri==0 else 'F3F3F1' if ri%2 else 'FFFFFF');pr.append(sh)
    margins=OxmlElement('w:tcMar')
    for side in ['top','bottom','left','right']:
-    m=OxmlElement('w:'+side);m.set(qn('w:w'),'65');m.set(qn('w:type'),'dxa');margins.append(m)
+    m=OxmlElement('w:'+side);m.set(qn('w:w'),'45' if page==21 else '65');m.set(qn('w:type'),'dxa');margins.append(m)
    pr.append(margins)
   rp=cells[0]._tc.getparent().get_or_add_trPr();rp.append(OxmlElement('w:cantSplit'))
   if ri==0:rp.append(OxmlElement('w:tblHeader'))
@@ -170,6 +172,15 @@ def picture(path,page,description):
   iw,ih=Image.open(ROOT/path).size
   x1,y1,x2,y2={4:(32,586,1248,1163),11:(710,1058,1230,1424),21:(32,1414,667,1679)}[page]
   width=WIDTH if page==4 else 6 if page==21 else 5.3
+  shape=p.add_run().add_picture(str(ROOT/path),width=Inches(width),height=Inches(width*(y2-y1)/(x2-x1)))
+  blipfill=shape._inline.graphic.graphicData.pic.blipFill
+  rect=OxmlElement('a:srcRect')
+  for side,value in [('l',x1/iw),('r',(iw-x2)/iw),('t',y1/ih),('b',(ih-y2)/ih)]:rect.set(side,str(round(value*100000)))
+  blipfill.insert(1,rect)
+ elif path.endswith('FormBridge-inspection-conflict.jpg'):
+  iw,ih=Image.open(ROOT/path).size
+  x1,y1,x2,y2=709,1005,1230,1372
+  width=5.3
   shape=p.add_run().add_picture(str(ROOT/path),width=Inches(width),height=Inches(width*(y2-y1)/(x2-x1)))
   blipfill=shape._inline.graphic.graphicData.pic.blipFill
   rect=OxmlElement('a:srcRect')
@@ -260,4 +271,4 @@ for style in doc.styles:
   for e in style.element.xpath('.//w:pBdr'):e.getparent().remove(e)
 out=ROOT/'FormBridge-AT2-Report.docx';doc.save(out)
 print(out)
-print(json.dumps({'metrics':values,'main_pages':15,'appendix_pages':6},indent=2))
+print(json.dumps({'metrics':values,'main_pages':15,'appendix_pages':7},indent=2))

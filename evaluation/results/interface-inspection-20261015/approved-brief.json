@@ -1,0 +1,184 @@
+{
+  "format": "formbridge-case",
+  "version": 1,
+  "title": "Harbour Table · 6 November 2026",
+  "notes": "",
+  "status": "approved_brief",
+  "messages": [
+    {
+      "id": "m_d76a0849-050b-4218-8763-bf4d6127de0e",
+      "speaker": "customer",
+      "text": "Please book Harbour Table in Sydney on 6 November 2026 at 7 pm for four people."
+    },
+    {
+      "id": "m_4d71d1cc-3027-4774-8b0d-3370b891b4f0",
+      "speaker": "customer",
+      "text": "Actually make that six people, and sometime after 8 pm instead of 7 pm."
+    },
+    {
+      "id": "m_9d76c46e-b9de-4708-9467-1d5b053dcf8f",
+      "speaker": "staff",
+      "text": "We can offer 8:30 pm. Would that suit you?"
+    },
+    {
+      "id": "m_12c142a2-78fd-43d7-b112-29b40f199e82",
+      "speaker": "customer",
+      "text": "Yes, 8:30 pm works for us."
+    }
+  ],
+  "brief": {
+    "fields": {
+      "restaurantName": {
+        "value": "Harbour Table",
+        "status": "resolved",
+        "constraint": null,
+        "evidenceIds": [
+          "m_d76a0849-050b-4218-8763-bf4d6127de0e"
+        ],
+        "source": "model",
+        "note": ""
+      },
+      "city": {
+        "value": "Sydney",
+        "status": "resolved",
+        "constraint": null,
+        "evidenceIds": [
+          "m_d76a0849-050b-4218-8763-bf4d6127de0e"
+        ],
+        "source": "model",
+        "note": ""
+      },
+      "date": {
+        "value": "6 November 2026",
+        "status": "resolved",
+        "constraint": null,
+        "evidenceIds": [
+          "m_d76a0849-050b-4218-8763-bf4d6127de0e"
+        ],
+        "source": "model",
+        "note": ""
+      },
+      "time": {
+        "value": "8:30 pm",
+        "status": "resolved",
+        "constraint": null,
+        "evidenceIds": [
+          "m_9d76c46e-b9de-4708-9467-1d5b053dcf8f",
+          "m_12c142a2-78fd-43d7-b112-29b40f199e82"
+        ],
+        "source": "model",
+        "note": ""
+      },
+      "partySize": {
+        "value": "6",
+        "status": "resolved",
+        "constraint": null,
+        "evidenceIds": [
+          "m_4d71d1cc-3027-4774-8b0d-3370b891b4f0"
+        ],
+        "source": "model",
+        "note": ""
+      }
+    },
+    "history": [
+      {
+        "field": "restaurantName",
+        "previousValue": null,
+        "nextValue": "Harbour Table",
+        "operation": "set",
+        "evidenceIds": [
+          "m_d76a0849-050b-4218-8763-bf4d6127de0e"
+        ],
+        "revision": 1
+      },
+      {
+        "field": "city",
+        "previousValue": null,
+        "nextValue": "Sydney",
+        "operation": "set",
+        "evidenceIds": [
+          "m_d76a0849-050b-4218-8763-bf4d6127de0e"
+        ],
+        "revision": 2
+      },
+      {
+        "field": "date",
+        "previousValue": null,
+        "nextValue": "6 November 2026",
+        "operation": "set",
+        "evidenceIds": [
+          "m_d76a0849-050b-4218-8763-bf4d6127de0e"
+        ],
+        "revision": 3
+      },
+      {
+        "field": "time",
+        "previousValue": null,
+        "nextValue": "7 pm",
+        "operation": "set",
+        "evidenceIds": [
+          "m_d76a0849-050b-4218-8763-bf4d6127de0e"
+        ],
+        "revision": 4
+      },
+      {
+        "field": "partySize",
+        "previousValue": null,
+        "nextValue": "4",
+        "operation": "set",
+        "evidenceIds": [
+          "m_d76a0849-050b-4218-8763-bf4d6127de0e"
+        ],
+        "revision": 5
+      },
+      {
+        "field": "time",
+        "previousValue": "7 pm",
+        "nextValue": null,
+        "operation": "constrain",
+        "evidenceIds": [
+          "m_4d71d1cc-3027-4774-8b0d-3370b891b4f0"
+        ],
+        "revision": 6
+      },
+      {
+        "field": "partySize",
+        "previousValue": "4",
+        "nextValue": "6",
+        "operation": "replace",
+        "evidenceIds": [
+          "m_4d71d1cc-3027-4774-8b0d-3370b891b4f0"
+        ],
+        "revision": 7
+      },
+      {
+        "field": "time",
+        "previousValue": null,
+        "nextValue": "8:30 pm",
+        "operation": "set",
+        "evidenceIds": [
+          "m_9d76c46e-b9de-4708-9467-1d5b053dcf8f",
+          "m_12c142a2-78fd-43d7-b112-29b40f199e82"
+        ],
+        "revision": 8
+      }
+    ],
+    "revision": 8,
+    "approvedRevision": 8
+  },
+  "referenceDate": "2026-10-15",
+  "pendingAnalysis": false,
+  "manualMode": false,
+  "analysisVersion": "grounded-state-v18",
+  "caseTitle": "",
+  "followUp": null,
+  "guestCare": {
+    "name": "",
+    "contact": "",
+    "dietary": "",
+    "seating": "",
+    "occasion": ""
+  },
+  "guestCareEvidence": [],
+  "exportedAt": "2026-10-14T22:29:44.620Z"
+}

@@ -1,6 +1,6 @@
 # FormBridge report handover
 
-The revised report describes the restaurant workspace released at `b0d389e410af735ba622b41a937adc351162058b`. It contains 15 main pages, including the cover and references, and six appendix pages. The editable Word document and PDF contain the same report. Supplementary experiments and the live booking-desk walkthrough were added at `470c81f883065eb0a98dba7bfb7d9e05511043b5` without changing application code.
+The revised report describes the restaurant workspace and the interface fixes released at `170ec1cfc8110f7c1332ea5c0a315504ad40ec3d`. It contains 15 main pages, including the cover and references, and seven appendix pages. The editable Word document and PDF contain the same report. Extraction and evaluation files are unchanged from the dataset-evaluated revision `b0d389e410af735ba622b41a937adc351162058b`.
 
 ## Brief and rubric coverage
 
@@ -18,7 +18,7 @@ The revised report describes the restaurant workspace released at `b0d389e410af7
 | Ethics and limitations | Section 11, page 13 |
 | Phases, contributions, outcomes and recommendations | Section 12, page 14 |
 | APA references | Page 15 |
-| Supporting material | Appendices A–F, pages 16–21 |
+| Supporting material | Appendices A–F, pages 16–22 |
 
 ## Before submission
 
@@ -36,7 +36,7 @@ The current comparison uses the same primary model and additional Sol repair in 
 
 The new component experiment compares identical primary-model proposals before and after deterministic validation, with no repair or prior predicted state. Raw proposals matched 88/100 fields and 14/20 complete briefs; validation matched 85/100 and 12/20. One timeout remains a failure in both conditions. The report explains the four lost values and one gained match rather than presenting validation as a universal improvement.
 
-Twenty constructed cases passed values, statuses, uncertainty, clarification and approval checks. Required supporting messages were present for 93/93 populated fields. These measures cover required sources and question targets, not independent ratings of every quotation or subjective helpfulness. The live walkthrough completed eight tasks in one conversation; it is not a participant study.
+Twenty constructed cases passed values, statuses, uncertainty, clarification and approval checks. Required supporting messages were present for 93/93 populated fields. These measures cover required sources and question targets, not independent ratings of every quotation or subjective helpfulness. An earlier live walkthrough completed eight tasks in one conversation. The later inspection covers 20 specified interface checks, using a fictional enquiry and a controlled local failure. Two presentation findings were fixed and retested; Appendix F records their scope and remaining limitations. Neither exercise is a participant study.
 
 Functional verification includes 230 automated tests, 31 production backend checks and 22 restaurant browser workflows, with revisions and coverage stated in the report. No participant study or satisfaction measurements have been invented. Real email, WhatsApp and reservation connections remain simulated or unconfigured as described.
 

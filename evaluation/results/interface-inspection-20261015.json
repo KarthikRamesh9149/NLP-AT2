@@ -1,0 +1,217 @@
+{
+  "inspectedOn": "2026-10-15",
+  "method": "Task-based development inspection using browser interaction, rendered screens, accessible markup and downloaded files",
+  "execution": "Tool-operated development inspection; not observations from recruited participants or a record of individual teammates operating the app",
+  "protocol": "interface-inspection-20261015/protocol.md",
+  "recruitedParticipants": 0,
+  "humanTaskTimesCollected": false,
+  "questionnaireScoresCollected": false,
+  "productionURL": "https://formbridge-nlp-at2.vercel.app/",
+  "initialRevision": "8b778848e4329b9e370a187f355f0a09b3463216",
+  "fixRevision": "170ec1cfc8110f7c1332ea5c0a315504ad40ec3d",
+  "verifiedProductionDeployment": "dpl_3BU9ByYeNvuvtPNZDY94gsbCCZsC",
+  "checks": [
+    {
+      "id": 1,
+      "task": "Empty entry",
+      "environment": "Public production",
+      "outcome": "verified as described",
+      "observation": "Fresh draft showed zero ready fields, an invitation to enter an enquiry, and disabled approval.",
+      "evidence": "interface-inspection-20261015/01-empty-desktop.jpg"
+    },
+    {
+      "id": 2,
+      "task": "Help",
+      "environment": "Public production",
+      "outcome": "verified as described",
+      "observation": "Keyboard opened help; initial focus and Tab containment worked; Escape closed the dialog and returned focus to its opener."
+    },
+    {
+      "id": 3,
+      "task": "Own enquiry",
+      "environment": "Public production",
+      "outcome": "verified as described",
+      "observation": "A newly typed Harbour Table request produced restaurant, Sydney, 6 November 2026, 7 pm and four guests."
+    },
+    {
+      "id": 4,
+      "task": "Source",
+      "environment": "Public production",
+      "outcome": "verified as described",
+      "observation": "Opening Guests revealed the original customer message."
+    },
+    {
+      "id": 5,
+      "task": "Correction",
+      "environment": "Public production",
+      "outcome": "verified as described",
+      "observation": "The correction changed four guests to six and retained restaurant, city and date. History showed the superseded value.",
+      "evidence": "interface-inspection-20261015/03-correction-uncertainty.jpg"
+    },
+    {
+      "id": 6,
+      "task": "Uncertain time",
+      "environment": "Public production",
+      "outcome": "verified as described",
+      "observation": "After 8 pm remained unresolved, approval was disabled, and the next question requested an exact time.",
+      "evidence": "interface-inspection-20261015/03-correction-uncertainty.jpg"
+    },
+    {
+      "id": 7,
+      "task": "Staff suggestion",
+      "environment": "Public production",
+      "outcome": "verified as described",
+      "observation": "The staff offer of 8:30 pm did not resolve time before customer agreement."
+    },
+    {
+      "id": 8,
+      "task": "Acceptance",
+      "environment": "Public production",
+      "outcome": "verified as described",
+      "observation": "Customer agreement resolved 8:30 pm and linked the offer and acceptance messages."
+    },
+    {
+      "id": 9,
+      "task": "Message editing",
+      "environment": "Public production",
+      "outcome": "verified as described",
+      "observation": "Editing the correction from six guests to five recalculated the count, retained 8:30 pm and removed approval."
+    },
+    {
+      "id": 10,
+      "task": "Manual review",
+      "environment": "Public production and local retest",
+      "outcome": "verified as described",
+      "observation": "A staff edit to seven stayed intact. A later thank-you exposed the existing five-versus-seven difference; revised text explains older support. Choosing Keep 7 restored approval eligibility.",
+      "evidence": "interface-inspection-20261015/12-conflict-production-after.jpg"
+    },
+    {
+      "id": 11,
+      "task": "Approval and export",
+      "environment": "Public production plus delivered files",
+      "outcome": "verified as described",
+      "observation": "Approval completed before editing. Native downloads delivered valid JSON and text containing six guests, 8:30 pm and reviewed status. Both state that no table is reserved.",
+      "evidence": "interface-inspection-20261015/approved-brief.json"
+    },
+    {
+      "id": 12,
+      "task": "Save and restore",
+      "environment": "Public production",
+      "outcome": "verified as described",
+      "observation": "The named device enquiry restored after refresh and reopened from the local library after starting a fresh draft."
+    },
+    {
+      "id": 13,
+      "task": "Incomplete export",
+      "environment": "Public production",
+      "outcome": "verified as described",
+      "observation": "An unresolved time triggered the draft warning; cancelling retained the draft.",
+      "evidence": "interface-inspection-20261015/04-incomplete-export-warning.jpg"
+    },
+    {
+      "id": 14,
+      "task": "Error recovery",
+      "environment": "Controlled local configuration fault",
+      "outcome": "verified as described",
+      "observation": "A server started without OPENAI_API_KEY returned 503. The last valid brief and pending message remained. Retry was still reachable after dismissing the error and refreshing. Restoring normal configuration and choosing Retry completed the update.",
+      "evidence": "interface-inspection-20261015/09-local-error-recovery.jpg"
+    },
+    {
+      "id": 15,
+      "task": "Keyboard",
+      "environment": "Public production",
+      "outcome": "verified as described",
+      "observation": "Shortcut submission, help focus containment, Escape and focus return were observed. After the fix, Tab reached the import Cancel button with a visible 3px outline and Escape returned to Paste conversation.",
+      "evidence": "interface-inspection-20261015/13-production-keyboard-focus.jpg"
+    },
+    {
+      "id": 16,
+      "task": "Mobile layout",
+      "environment": "Public production before presentation fix",
+      "outcome": "verified as described",
+      "observation": "At 390x844, conversation and brief switches, field editing and the core controls remained reachable. Document width was 390; no horizontal overflow was observed.",
+      "evidence": "interface-inspection-20261015/06-mobile-brief.jpg"
+    },
+    {
+      "id": 17,
+      "task": "Narrow layout",
+      "environment": "Public production before presentation fix",
+      "outcome": "verified as described",
+      "observation": "At 640x900, the inspected controls reflowed and document width was 640. This is not a native browser zoom test.",
+      "evidence": "interface-inspection-20261015/07-reflow-640.jpg"
+    },
+    {
+      "id": 18,
+      "task": "Labels and selected contrast",
+      "environment": "Production DOM inspection and computed styles",
+      "outcome": "verified as described",
+      "observation": "Selected controls had names and the page had a main landmark. Import aria-invalid, error/instruction references and dialog aria-describedby were added and verified in production. Selected opaque text/background pairs exceeded 4.5:1; screen-reader output was not tested.",
+      "evidence": "interface-inspection-20261015/contrast-calculations.json"
+    },
+    {
+      "id": 19,
+      "task": "Input validation",
+      "environment": "Public production",
+      "outcome": "verified as described",
+      "observation": "Empty submission was disabled. An unlabelled 1001-character import displayed the speaker-label instruction and disabled Create booking brief. Cancel retained the existing draft.",
+      "evidence": "interface-inspection-20261015/13-production-keyboard-focus.jpg"
+    },
+    {
+      "id": 20,
+      "task": "Page health",
+      "environment": "Public production",
+      "outcome": "verified as described",
+      "observation": "Correct page title and meaningful content were observed; the captured production console log contained no warnings or errors in these states."
+    }
+  ],
+  "findings": [
+    {
+      "id": "UI-01",
+      "severity": "minor",
+      "finding": "Existing disagreement with a staff edit was presented as a new change after an unrelated thank-you.",
+      "fix": "Show both values, explain older conversation support, and label the link View supporting message.",
+      "verification": "Local and deployed views showed revised copy; Keep 7 removed the review block.",
+      "remainingLimit": "A conversation that still differs from a staff edit may require another review after analysis."
+    },
+    {
+      "id": "UI-02",
+      "severity": "minor",
+      "finding": "Visible dialog instructions and import errors were not explicitly associated with their controls in accessibility markup.",
+      "fix": "Add aria-describedby, aria-invalid and labelled error/instruction references.",
+      "verification": "Production DOM linked dialog-description and import-feedback/import-replace-hint; invalid was true; import disabled.",
+      "remainingLimit": "No screen-reader session was performed."
+    }
+  ],
+  "finalCodeChecks": {
+    "automatedTestsPassed": 230,
+    "testFiles": 27,
+    "typecheck": "passed",
+    "productionBuild": "passed",
+    "diffWhitespace": "passed"
+  },
+  "extractionFingerprint": "b9c32b2629269567a2fba24edd706bd7fdc102df7210c6721693b28f2a515424",
+  "evaluationRunnerFingerprint": "1b89aeedce527eaec164b0530f98d3072709009c57def1162fadedd40a6920ef",
+  "limits": [
+    "No evidence of satisfaction, learnability, workload or human time savings.",
+    "Checks cover the described tasks, not all product routes or all combinations.",
+    "Mobile and narrow-layout observations preceded the wording and accessibility-markup fixes; desktop retests verified those fixes.",
+    "Native zoom, screen-reader output and broader browser coverage were not tested.",
+    "Contrast calculations cover selected opaque text/background pairs, not full WCAG conformance.",
+    "Recovery fault was deliberately introduced locally; it is not a production outage statistic."
+  ],
+  "evidenceSHA256": {
+    "protocol.md": "992cd735b2111f492e28ac6e85516e82e7e3a0dceccc82f1e3f4e4ee2a30d5c1",
+    "01-empty-desktop.jpg": "006d0f8ebf3d4e7e2cfa841dc4f0e135c055640da1e104f8fbd714e41c5edf6f",
+    "03-correction-uncertainty.jpg": "b2d45f6f67478be5e12b0e032c3f2caca95d7609bdf49856a434e538c6791771",
+    "04-incomplete-export-warning.jpg": "4f045ae3fdcb25192cd0fd53ad7b0a1369791fd9197f65e8a428be197711c4df",
+    "06-mobile-brief.jpg": "d1a5262523446feb6527f2038001e528b84e33d13a0fd96d48942f1f873a200c",
+    "07-reflow-640.jpg": "6a7d73fd88f8813c0c52792c5ce1756dada209a089497872016fd1adf78b0fd6",
+    "09-local-error-recovery.jpg": "c6764205626463e0d2f400fd469262c7c4c26060eb8b51a95878baeef604d328",
+    "10-conflict-before.jpg": "e04dc384b54e462f4524185567280631f05d5a1c6f335f370fc12a406eb52a36",
+    "12-conflict-production-after.jpg": "fe78ccfe9168ea393ecdac64c77ea5eec07b14de46cce0d4c000d2d7b0a6c1af",
+    "13-production-keyboard-focus.jpg": "eefad6d843b6052330d5a7d64712b9b090f2299f69d82e3e74464d180346ad85",
+    "approved-brief.json": "bdb4f75add353dbe55b1a4ff4dc69ad2359f78db919597d06583c3ddbf0e8d7b",
+    "approved-brief.txt": "a2514ef41a91b96053089cecc59f0a917eb100b5b0ca6d32029a167fc4b095c2",
+    "contrast-calculations.json": "95cc2e0ebea73e92e32c0c170dabc2d2c4e88d2f9396dcd3f44c45a59166f5b6"
+  }
+}

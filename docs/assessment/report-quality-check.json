@@ -1,12 +1,12 @@
 {
-  "checkedOn": "2026-10-14",
-  "application_revision": "b0d389e410af735ba622b41a937adc351162058b",
-  "pages": 21,
+  "checkedOn": "2026-10-15",
+  "application_revision": "170ec1cfc8110f7c1332ea5c0a315504ad40ec3d",
+  "pages": 22,
   "main_pages": 15,
-  "appendix_pages": 6,
+  "appendix_pages": 7,
   "references": "APA; hanging indent and double spacing",
-  "embedded_images": 4,
-  "product_screenshots": 2,
+  "embedded_images": 5,
+  "product_screenshots": 3,
   "all_images_have_alt_text": true,
   "comments_tracked_changes_and_hidden_text": false,
   "unresolved_placeholders": false,
@@ -66,7 +66,7 @@
     "phases_contribution_recommendations": "14",
     "references": "15",
     "reproducibility": "16\u201320",
-    "additional_interaction_evidence": "21"
+    "additional_interaction_evidence": "21\u201322"
   },
   "missing_required_information": [
     "Student IDs for Avanish Rao, Pranav Chhetri and Rishi Mundra"
@@ -74,9 +74,9 @@
   "human_participant_study": false,
   "source_boundary": "Current development and inspected regression samples; historical equal-model results separately identified",
   "file_sha256": {
-    "FormBridge-AT2-Report.md": "bfa93f6084955ceb6abc368909feb14092db21bd903c9c36d7f4161be0b3a1b6",
-    "FormBridge-AT2-Report.docx": "bdb28ea2f3528fb8b4e2c29e5b4f4a21575e0f7115c56ce4c0c592f83c50226e",
-    "FormBridge-AT2-Report.pdf": "714e9c42e264ab9927784a75fbf5a991b3e82f51fb9907979b24dfa921294d8e"
+    "FormBridge-AT2-Report.md": "6e8e6cb8264c6e164dd1cc19da162859c1f150e15e3edf1c31b964f3d6932e68",
+    "FormBridge-AT2-Report.docx": "4f2b83834c9c0ea5f5c56add88ef7eba9b1605f88f4ca858dfd378a7120d1b53",
+    "FormBridge-AT2-Report.pdf": "b70896a2fe178644387a6353509be9f441a4b1a68bc52e705d5f44aadaf3151d"
   },
   "figure_views": 6,
   "product_screenshot_views": 4,
@@ -101,7 +101,8 @@
     18,
     19,
     20,
-    21
+    21,
+    22
   ],
   "controlled_comparison_recount": {
     "attemptedDialogues": 20,
@@ -147,14 +148,13 @@
   },
   "supplementary_source_fingerprint": "d82f14b6990edb9b6c52d6d3cb9aa229de00cdb980b66d92a5b0f65c8d380214",
   "editorial_checks": [
-    "All five members credited for application development based on user confirmation",
-    "Planned-review allocation replaced with shared-development contributions",
-    "Latest shared Word edits merged into source; only eight contribution blocks changed from the downloaded document",
-    "Shivom Karnad student ID 25977543 preserved from the shared report",
-    "Cover border residue removed and contents table spacing reduced to prevent a one-row overflow page",
-    "All 21 rendered pages visually inspected; 15 main pages and 6 appendix pages",
-    "No comments, tracked changes or hidden text in document body",
-    "No application, tests, evaluations or numerical result tables changed by this contribution edit"
+    "Twelve factual wording issues from the 15 October audit corrected against code and saved outputs",
+    "Added 20-check development inspection with two findings and observed retests",
+    "All numerical result tables retained; no unseen-accuracy, participant-satisfaction or time-saving claims",
+    "All 22 rendered pages inspected; 15 main pages and 7 appendix pages",
+    "Three group student-ID cells remain intentionally blank",
+    "No comments, tracked changes, hidden text or title-border residue found in delivered Word package",
+    "Latest four shared content edits preserved in meaning: separate regression, approval after review, staff role mapping and independently specified feature expectations"
   ],
   "references_checked_on": "2026-10-13",
   "references_checked_against": [
@@ -165,7 +165,7 @@
     "Supabase Row Level Security",
     "Retained SGD repository revision and licence"
   ],
-  "editorial_revision": "2026-10-14 confirmed shared development; preserve collaborative Word edits",
+  "editorial_revision": "2026-10-15 development inspection, factual corrections and collaborative edit merge",
   "cover": "Five members; Karthik Ramesh is submitting student; Shivom Karnad ID retained from shared Word; three ID fields intentionally blank",
   "group_voice": true,
   "numerical_score_tables_unchanged": true,
@@ -178,15 +178,32 @@
     "other_members": "Shared application development; no individual module, hours or percentage attribution"
   },
   "collaborative_edit_merge": {
-    "downloaded_modified_time": "2026-10-14T02:06:49.579Z",
-    "change_groups_retained": 22,
-    "other_shared_text_preserved": true,
-    "full_content_reaudit_performed": false
+    "downloaded_modified_time": "2026-10-14T22:44:04.515Z",
+    "downloaded_sha256": "ddf0aaa2155aa85dcee844290b0ddefcd5fc880a313a092d1126dbb29e9b6634",
+    "new_change_groups": 4,
+    "changes_preserved_in_meaning": true,
+    "names_and_student_ids_preserved": true
+  },
+  "interface_inspection": {
+    "record": "evaluation/results/interface-inspection-20261015.json",
+    "checks": 20,
+    "findings_fixed_and_retested": 2,
+    "recruited_participants": 0,
+    "scope": "Tool-operated development inspection; not individual teammate or participant observations",
+    "fault_injection": "Missing API key on local server; recovery after restoring configuration",
+    "retained_screenshot": "docs/assessment/assets/FormBridge-inspection-conflict.jpg"
+  },
+  "references_checked_additionally": {
+    "date": "2026-10-15",
+    "sources": [
+      "Nielsen Norman Group: 10 usability heuristics",
+      "W3C WAI: Easy Checks"
+    ]
   },
   "shared_word_verification": {
     "file_id": "1NVvpg6jjxPryi3oON7xMGUldf0J3kKjA",
-    "modified_time": "2026-10-14T07:45:52.652Z",
-    "sha256": "bdb28ea2f3528fb8b4e2c29e5b4f4a21575e0f7115c56ce4c0c592f83c50226e",
+    "modified_time": "2026-10-14T22:46:05.132Z",
+    "sha256": "4f2b83834c9c0ea5f5c56add88ef7eba9b1605f88f4ca858dfd378a7120d1b53",
     "byte_identical": true
   }
 }

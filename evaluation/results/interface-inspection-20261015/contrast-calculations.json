@@ -1,0 +1,551 @@
+[
+  {
+    "bg": "rgb(238, 242, 239)",
+    "fg": "rgb(88, 109, 97)",
+    "font": "12px",
+    "opacity": "1",
+    "text": "Your active draft stays in this tab. Save enquiries to this device or your private team. T",
+    "weight": "400",
+    "ratio": 4.92
+  },
+  {
+    "bg": "rgb(255, 254, 248)",
+    "fg": "rgb(97, 116, 91)",
+    "font": "12px",
+    "opacity": "1",
+    "text": "The details behind a warm welcome",
+    "weight": "400",
+    "ratio": 5.0
+  },
+  {
+    "bg": "rgb(232, 238, 225)",
+    "fg": "rgb(78, 104, 98)",
+    "font": "12px",
+    "opacity": "1",
+    "text": "Staff",
+    "weight": "600",
+    "ratio": 5.1
+  },
+  {
+    "bg": "rgb(248, 250, 245)",
+    "fg": "rgb(88, 109, 97)",
+    "font": "11px",
+    "opacity": "1",
+    "text": "0/1,000",
+    "weight": "400",
+    "ratio": 5.29
+  },
+  {
+    "bg": "rgb(248, 250, 245)",
+    "fg": "rgb(88, 109, 97)",
+    "font": "11px",
+    "opacity": "1",
+    "text": "\u2318 / Ctrl + Enter",
+    "weight": "400",
+    "ratio": 5.29
+  },
+  {
+    "bg": "rgb(238, 242, 239)",
+    "fg": "rgb(78, 104, 98)",
+    "font": "12px",
+    "opacity": "1",
+    "text": "Harbour Table \u00b7 interface inspection",
+    "weight": "700",
+    "ratio": 5.34
+  },
+  {
+    "bg": "rgb(238, 242, 239)",
+    "fg": "rgb(78, 104, 98)",
+    "font": "10px",
+    "opacity": "1",
+    "text": "Device enquiry",
+    "weight": "400",
+    "ratio": 5.34
+  },
+  {
+    "bg": "rgb(238, 242, 239)",
+    "fg": "rgb(78, 104, 98)",
+    "font": "12px",
+    "opacity": "1",
+    "text": "4 of 5 details ready \u00b7 We\u2019ll keep track of what still needs an answer",
+    "weight": "400",
+    "ratio": 5.34
+  },
+  {
+    "bg": "rgb(249, 251, 247)",
+    "fg": "rgb(88, 109, 97)",
+    "font": "12px",
+    "opacity": "1",
+    "text": "14 updates",
+    "weight": "400",
+    "ratio": 5.34
+  },
+  {
+    "bg": "rgb(249, 251, 247)",
+    "fg": "rgb(88, 109, 97)",
+    "font": "11px",
+    "opacity": "1",
+    "text": "#15",
+    "weight": "400",
+    "ratio": 5.34
+  },
+  {
+    "bg": "rgb(249, 251, 247)",
+    "fg": "rgb(88, 109, 97)",
+    "font": "11px",
+    "opacity": "1",
+    "text": "#14",
+    "weight": "400",
+    "ratio": 5.34
+  },
+  {
+    "bg": "rgb(249, 251, 247)",
+    "fg": "rgb(88, 109, 97)",
+    "font": "11px",
+    "opacity": "1",
+    "text": "#13",
+    "weight": "400",
+    "ratio": 5.34
+  },
+  {
+    "bg": "rgb(249, 251, 247)",
+    "fg": "rgb(88, 109, 97)",
+    "font": "11px",
+    "opacity": "1",
+    "text": "#12",
+    "weight": "400",
+    "ratio": 5.34
+  },
+  {
+    "bg": "rgb(249, 251, 247)",
+    "fg": "rgb(88, 109, 97)",
+    "font": "11px",
+    "opacity": "1",
+    "text": "#11",
+    "weight": "400",
+    "ratio": 5.34
+  },
+  {
+    "bg": "rgb(255, 254, 248)",
+    "fg": "rgb(88, 109, 97)",
+    "font": "11px",
+    "opacity": "1",
+    "text": "A booking brief for staff review. No table is reserved.",
+    "weight": "400",
+    "ratio": 5.51
+  },
+  {
+    "bg": "rgb(255, 254, 248)",
+    "fg": "rgb(88, 109, 97)",
+    "font": "11px",
+    "opacity": "1",
+    "text": "For the next step",
+    "weight": "400",
+    "ratio": 5.51
+  },
+  {
+    "bg": "rgb(243, 246, 238)",
+    "fg": "rgb(78, 104, 98)",
+    "font": "12px",
+    "opacity": "1",
+    "text": "5 messages \u00b7 Customer and staff",
+    "weight": "400",
+    "ratio": 5.52
+  },
+  {
+    "bg": "rgb(255, 254, 251)",
+    "fg": "rgb(88, 109, 97)",
+    "font": "11px",
+    "opacity": "1",
+    "text": "01",
+    "weight": "400",
+    "ratio": 5.52
+  },
+  {
+    "bg": "rgb(255, 254, 251)",
+    "fg": "rgb(88, 109, 97)",
+    "font": "11px",
+    "opacity": "1",
+    "text": "02",
+    "weight": "400",
+    "ratio": 5.52
+  },
+  {
+    "bg": "rgb(255, 254, 251)",
+    "fg": "rgb(88, 109, 97)",
+    "font": "11px",
+    "opacity": "1",
+    "text": "03",
+    "weight": "400",
+    "ratio": 5.52
+  },
+  {
+    "bg": "rgb(255, 254, 251)",
+    "fg": "rgb(88, 109, 97)",
+    "font": "11px",
+    "opacity": "1",
+    "text": "04",
+    "weight": "400",
+    "ratio": 5.52
+  },
+  {
+    "bg": "rgb(255, 254, 251)",
+    "fg": "rgb(88, 109, 97)",
+    "font": "11px",
+    "opacity": "1",
+    "text": "05",
+    "weight": "400",
+    "ratio": 5.52
+  },
+  {
+    "bg": "rgb(255, 254, 251)",
+    "fg": "rgb(88, 109, 97)",
+    "font": "11px",
+    "opacity": "1",
+    "text": "Guest details, preferences and the next step.",
+    "weight": "400",
+    "ratio": 5.52
+  },
+  {
+    "bg": "rgb(255, 254, 251)",
+    "fg": "rgb(88, 109, 97)",
+    "font": "11px",
+    "opacity": "1",
+    "text": "Optional",
+    "weight": "400",
+    "ratio": 5.52
+  },
+  {
+    "bg": "rgb(255, 254, 251)",
+    "fg": "rgb(88, 109, 97)",
+    "font": "11px",
+    "opacity": "1",
+    "text": "Included when you save or download the enquiry.",
+    "weight": "400",
+    "ratio": 5.52
+  },
+  {
+    "bg": "rgb(243, 247, 235)",
+    "fg": "rgb(78, 104, 98)",
+    "font": "13px",
+    "opacity": "1",
+    "text": "Guests",
+    "weight": "600",
+    "ratio": 5.55
+  },
+  {
+    "bg": "rgb(248, 250, 245)",
+    "fg": "rgb(78, 104, 98)",
+    "font": "12px",
+    "opacity": "1",
+    "text": "For \u201ctoday\u201d and \u201ctomorrow\u201d",
+    "weight": "400",
+    "ratio": 5.74
+  },
+  {
+    "bg": "rgb(250, 243, 225)",
+    "fg": "rgb(128, 87, 33)",
+    "font": "12px",
+    "opacity": "1",
+    "text": "Review the change",
+    "weight": "700",
+    "ratio": 5.74
+  },
+  {
+    "bg": "rgb(249, 251, 247)",
+    "fg": "rgb(78, 104, 98)",
+    "font": "12px",
+    "opacity": "1",
+    "text": "What changed",
+    "weight": "600",
+    "ratio": 5.8
+  },
+  {
+    "bg": "rgb(249, 251, 247)",
+    "fg": "rgb(78, 104, 98)",
+    "font": "12px",
+    "opacity": "1",
+    "text": "5",
+    "weight": "400",
+    "ratio": 5.8
+  },
+  {
+    "bg": "rgb(249, 251, 247)",
+    "fg": "rgb(78, 104, 98)",
+    "font": "12px",
+    "opacity": "1",
+    "text": "8:30 pm",
+    "weight": "400",
+    "ratio": 5.8
+  },
+  {
+    "bg": "rgb(249, 251, 247)",
+    "fg": "rgb(78, 104, 98)",
+    "font": "12px",
+    "opacity": "1",
+    "text": "6 November 2026",
+    "weight": "400",
+    "ratio": 5.8
+  },
+  {
+    "bg": "rgb(249, 251, 247)",
+    "fg": "rgb(78, 104, 98)",
+    "font": "12px",
+    "opacity": "1",
+    "text": "Sydney",
+    "weight": "400",
+    "ratio": 5.8
+  },
+  {
+    "bg": "rgb(255, 254, 248)",
+    "fg": "rgb(78, 104, 98)",
+    "font": "13px",
+    "opacity": "1",
+    "text": "Restaurant",
+    "weight": "600",
+    "ratio": 5.97
+  },
+  {
+    "bg": "rgb(255, 254, 248)",
+    "fg": "rgb(78, 104, 98)",
+    "font": "13px",
+    "opacity": "1",
+    "text": "City",
+    "weight": "600",
+    "ratio": 5.97
+  },
+  {
+    "bg": "rgb(255, 254, 248)",
+    "fg": "rgb(78, 104, 98)",
+    "font": "13px",
+    "opacity": "1",
+    "text": "Date",
+    "weight": "600",
+    "ratio": 5.97
+  },
+  {
+    "bg": "rgb(255, 254, 248)",
+    "fg": "rgb(78, 104, 98)",
+    "font": "13px",
+    "opacity": "1",
+    "text": "Time",
+    "weight": "600",
+    "ratio": 5.97
+  },
+  {
+    "bg": "rgb(255, 254, 248)",
+    "fg": "rgb(78, 104, 98)",
+    "font": "11px",
+    "opacity": "1",
+    "text": "JSON",
+    "weight": "400",
+    "ratio": 5.97
+  },
+  {
+    "bg": "rgb(255, 254, 251)",
+    "fg": "rgb(78, 104, 98)",
+    "font": "12px",
+    "opacity": "1",
+    "text": "Keep 7",
+    "weight": "700",
+    "ratio": 5.98
+  },
+  {
+    "bg": "rgb(250, 243, 225)",
+    "fg": "rgb(117, 81, 41)",
+    "font": "13px",
+    "opacity": "1",
+    "text": "Review the guest count change before approving the brief.",
+    "weight": "400",
+    "ratio": 6.4
+  },
+  {
+    "bg": "rgb(37, 106, 87)",
+    "fg": "rgb(255, 255, 255)",
+    "font": "12px",
+    "opacity": "1",
+    "text": "Use conversation detail",
+    "weight": "700",
+    "ratio": 6.41
+  },
+  {
+    "bg": "rgb(246, 250, 244)",
+    "fg": "rgb(54, 99, 66)",
+    "font": "12px",
+    "opacity": "1",
+    "text": "1 detail updated. Your brief is ready to review.",
+    "weight": "400",
+    "ratio": 6.59
+  },
+  {
+    "bg": "rgb(243, 246, 238)",
+    "fg": "rgb(60, 87, 74)",
+    "font": "14px",
+    "opacity": "1",
+    "text": "Please book Harbour Table in Sydney on 6 November 2026 at 7 pm for four people.",
+    "weight": "400",
+    "ratio": 7.24
+  },
+  {
+    "bg": "rgb(243, 246, 238)",
+    "fg": "rgb(60, 87, 74)",
+    "font": "14px",
+    "opacity": "1",
+    "text": "Actually make that five people, and sometime after 8 pm instead of 7 pm.",
+    "weight": "400",
+    "ratio": 7.24
+  },
+  {
+    "bg": "rgb(243, 246, 238)",
+    "fg": "rgb(60, 87, 74)",
+    "font": "14px",
+    "opacity": "1",
+    "text": "Yes, 8:30 pm works for us.",
+    "weight": "400",
+    "ratio": 7.24
+  },
+  {
+    "bg": "rgb(243, 246, 238)",
+    "fg": "rgb(60, 87, 74)",
+    "font": "14px",
+    "opacity": "1",
+    "text": "Thank you. We are looking forward to dinner.",
+    "weight": "400",
+    "ratio": 7.24
+  },
+  {
+    "bg": "rgb(247, 247, 241)",
+    "fg": "rgb(60, 87, 74)",
+    "font": "14px",
+    "opacity": "1",
+    "text": "We can offer 8:30 pm. Would that suit you?",
+    "weight": "400",
+    "ratio": 7.36
+  },
+  {
+    "bg": "rgb(23, 62, 59)",
+    "fg": "rgb(194, 213, 193)",
+    "font": "13px",
+    "opacity": "1",
+    "text": "Thoughtful from the first hello.",
+    "weight": "400",
+    "ratio": 7.59
+  },
+  {
+    "bg": "rgb(23, 62, 59)",
+    "fg": "rgb(208, 222, 213)",
+    "font": "14px",
+    "opacity": "1",
+    "text": "Gather the conversation. Prepare the brief. Give your guests a warmer welcome.",
+    "weight": "400",
+    "ratio": 8.44
+  },
+  {
+    "bg": "rgb(23, 62, 59)",
+    "fg": "rgb(224, 233, 218)",
+    "font": "12px",
+    "opacity": "1",
+    "text": "Try an example",
+    "weight": "700",
+    "ratio": 9.41
+  },
+  {
+    "bg": "rgb(247, 238, 219)",
+    "fg": "rgb(22, 62, 59)",
+    "font": "14px",
+    "opacity": "1",
+    "text": "Your edit: 7. Conversation: 5. Choose which to keep.",
+    "weight": "400",
+    "ratio": 10.19
+  },
+  {
+    "bg": "rgb(243, 247, 235)",
+    "fg": "rgb(22, 62, 59)",
+    "font": "16px",
+    "opacity": "1",
+    "text": "7 guests",
+    "weight": "600",
+    "ratio": 10.81
+  },
+  {
+    "bg": "rgb(255, 254, 248)",
+    "fg": "rgb(22, 62, 59)",
+    "font": "24px",
+    "opacity": "1",
+    "text": "Harbour Table",
+    "weight": "400",
+    "ratio": 11.64
+  },
+  {
+    "bg": "rgb(255, 254, 248)",
+    "fg": "rgb(22, 62, 59)",
+    "font": "16px",
+    "opacity": "1",
+    "text": "Sydney",
+    "weight": "600",
+    "ratio": 11.64
+  },
+  {
+    "bg": "rgb(255, 254, 248)",
+    "fg": "rgb(22, 62, 59)",
+    "font": "16px",
+    "opacity": "1",
+    "text": "6 November 2026",
+    "weight": "600",
+    "ratio": 11.64
+  },
+  {
+    "bg": "rgb(255, 254, 248)",
+    "fg": "rgb(22, 62, 59)",
+    "font": "16px",
+    "opacity": "1",
+    "text": "8:30 pm",
+    "weight": "600",
+    "ratio": 11.64
+  },
+  {
+    "bg": "rgb(255, 254, 251)",
+    "fg": "rgb(22, 62, 59)",
+    "font": "12px",
+    "opacity": "1",
+    "text": "Enquiry book",
+    "weight": "700",
+    "ratio": 11.66
+  },
+  {
+    "bg": "rgb(255, 254, 251)",
+    "fg": "rgb(22, 62, 59)",
+    "font": "12px",
+    "opacity": "1",
+    "text": "Service planner",
+    "weight": "700",
+    "ratio": 11.66
+  },
+  {
+    "bg": "rgb(255, 254, 251)",
+    "fg": "rgb(22, 62, 59)",
+    "font": "12px",
+    "opacity": "1",
+    "text": "Desk assistant",
+    "weight": "700",
+    "ratio": 11.66
+  },
+  {
+    "bg": "rgb(255, 254, 251)",
+    "fg": "rgb(22, 62, 59)",
+    "font": "12px",
+    "opacity": "1",
+    "text": "Juniper House",
+    "weight": "700",
+    "ratio": 11.66
+  },
+  {
+    "bg": "rgb(255, 254, 251)",
+    "fg": "rgb(22, 62, 59)",
+    "font": "12px",
+    "opacity": "1",
+    "text": "Customer",
+    "weight": "600",
+    "ratio": 11.66
+  }
+]
