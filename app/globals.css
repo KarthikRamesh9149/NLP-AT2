@@ -535,3 +535,136 @@ h1, h2, h3, p { margin-top: 0; }
 .team-shell .team-back { color:#d6e2d8; }.team-page-heading .page-overline { color:var(--teal); }.team-page-heading .page-overline>span { background:var(--teal); }.team-sidebar>button { font-family:inherit; font-size:12px; font-weight:500; line-height:1.5; }
 @media(max-width:580px) { .team-sidebar>button { font-size:10px; }.team-shell .team-back { font-size:0; } }
 .care-suggestions { padding:18px; background:var(--teal-soft); border:1px solid var(--line); border-radius:6px; }.care-suggestions .team-inline-heading { flex-wrap:wrap; margin-bottom:12px; }.care-suggestions h3 { font-size:14px; }.care-proposal { border-top:1px solid var(--line); padding-top:16px; margin-top:16px; }.care-proposal>span { display:block; color:var(--muted); font-size:10px; margin-bottom:8px; }.care-proposal>strong { font-size:13px; }.care-proposal blockquote { border-left:2px solid var(--teal); padding-left:12px; margin:12px 0; color:var(--ink-soft); font-size:13px; line-height:1.8; }.care-proposal>div { display:flex; justify-content:space-between; gap:12px; align-items:center; }
+
+/* Keep the main booking workflow in view while preserving FormBridge's dining-room palette. */
+.content-wrap { width:min(1400px,100%); padding:24px 28px 40px; }
+.page-heading { min-height:204px; margin-bottom:16px; padding:26px 36px; }
+.page-heading.working { min-height:154px; padding-block:20px; }
+.table-setting { flex-basis:270px; }
+.desk-nav { margin-bottom:12px; padding:8px; box-shadow:0 2px 10px #163b2c05; }
+.desk-tool { font-weight:600; }
+.workspace-status { gap:14px; padding:12px 14px; margin-bottom:16px; border:1px solid var(--line); border-radius:10px; background:#f8faf6; }
+.status-icon { background:#eef4eb; }
+.detail-steps { gap:6px; }
+.detail-steps span { background:#fffefa; }
+.workspace-grid { grid-template-columns:minmax(0,1.08fr) minmax(0,1fr); gap:20px; }
+.panel { box-shadow:0 5px 18px #163b2c08,0 1px 2px #163b2c05; }
+.conversation-panel > .panel-heading { background:#f6f7f0; }
+.brief-panel { box-shadow:0 7px 22px #163b2c0b,0 1px 3px #163b2c06; }
+.button, .desk-tool, .text-button, .icon-button { transition-duration:.18s; }
+.button:focus-visible, .desk-tool:focus-visible, .text-button:focus-visible, .icon-button:focus-visible { outline-offset:3px; }
+@media(max-width:1100px) {
+  .content-wrap { padding-inline:24px; }
+  .page-heading { padding-inline:30px; }
+  .workspace-grid { gap:16px; }
+}
+@media(max-width:800px) {
+  .content-wrap { padding:20px 20px 32px; }
+  .page-heading { min-height:212px; }
+  .page-heading.working { min-height:158px; }
+}
+@media(max-width:580px) {
+  .content-wrap { padding:14px 14px 28px; }
+  .page-heading { min-height:248px; padding:24px 22px; }
+  .page-heading.working { min-height:210px; padding-block:22px; }
+  .workspace-status { padding:12px; }
+  .detail-steps { flex-basis:calc(100% - 42px); margin-left:42px; }
+  .detail-steps span { font-size:10px; padding:5px 7px; }
+}
+
+/* FormBridge visual language, drawn from the project poster. */
+:root {
+  --ink:#25221f;
+  --ink-soft:#514b44;
+  --muted:#766f65;
+  --teal:#197d73;
+  --teal-deep:#12645c;
+  --teal-soft:#e7f1ed;
+  --canvas:#f3efe5;
+  --paper:#fffdf8;
+  --line:#ddd5c8;
+  --amber:#84551b;
+  --amber-soft:#f8eedb;
+  --butter:#f1bb4c;
+  --red:#c8412d;
+  --red-deep:#a93223;
+  --red-soft:#f8e8e1;
+  --blue:#3158a5;
+  --purple:#7a3e90;
+  --shadow:0 4px 16px #33271b0a,0 16px 38px #33271b0a;
+}
+body { background:var(--canvas); }
+.topbar { position:relative; height:68px; background:#fffdf8; color:var(--ink); border-bottom:1px solid var(--line); }
+.topbar::before { content:''; position:absolute; inset:0 0 auto; height:4px; background:linear-gradient(90deg,#edb03d 0 20%,#147b70 20% 40%,#7a3e90 40% 60%,#3158a5 60% 80%,#c8412d 80%); }
+.brand { gap:10px; font-size:21px; color:var(--ink); }
+.brand-mark { border-color:#ddd5c8; background:#f7f1e7; }
+.brand-mark span { background:var(--red); }
+.brand-mark span:nth-child(2) { background:var(--teal); }
+.brand-mark span:nth-child(3) { background:var(--blue); }
+.brand-accent { color:var(--red); }
+.topbar-label { border-color:var(--line); color:var(--ink-soft); }
+.session-badge { color:var(--ink-soft); }
+.session-badge > span { background:var(--teal); box-shadow:0 0 0 3px #197d7315; }
+.topbar .icon-button:hover { background:#25221f0a; }
+.page-heading { min-height:210px; margin-bottom:16px; padding:30px 36px; color:var(--ink); background-color:var(--paper); background-image:radial-gradient(#c8412d12 .8px,transparent .8px); background-size:10px 10px; border:1px solid var(--line); border-radius:10px; box-shadow:var(--shadow); }
+.page-heading::before { content:''; position:absolute; inset:0 0 auto; height:5px; background:linear-gradient(90deg,#edb03d 0 20%,#147b70 20% 40%,#7a3e90 40% 60%,#3158a5 60% 80%,#c8412d 80%); }
+.page-heading::after { inset:10px; border-color:#82766720; }
+.heading-copy { max-width:700px; }
+.page-overline { color:var(--teal-deep); font-size:10px; letter-spacing:1.35px; }
+.page-overline > span { background:var(--red); }
+.page-heading h1 { max-width:660px; font:700 clamp(31px,3.1vw,43px)/1.12 Sora,Manrope,sans-serif; letter-spacing:-1.8px; }
+.page-heading h1 em { color:var(--red); font-style:normal; }
+.heading-copy > p:last-of-type { max-width:560px; color:var(--ink-soft); }
+.table-setting { opacity:.92; }
+.button.primary { background:var(--red); }
+.button.primary:not(:disabled):hover { background:var(--red-deep); box-shadow:0 3px 8px #a9322325; }
+.button.hero-primary { color:white; background:var(--red); border-color:var(--red); }
+.button.hero-primary:not(:disabled):hover { background:var(--red-deep); }
+.button.hero-secondary { color:var(--ink); border-color:#c9c0b4; background:#fffdf8c9; }
+.button.hero-secondary:hover { background:#fffdf8; }
+.desk-nav { background:#fffdf8; border-radius:8px; }
+.desk-tool:hover { background:var(--teal-soft); }
+.connected-dot { background:var(--teal); }
+.workspace-status { background:#fffdf8; border-radius:8px; }
+.status-icon { color:var(--teal); background:var(--teal-soft); }
+.detail-steps span.done { color:var(--teal-deep); background:var(--teal-soft); }
+.panel { border-radius:9px; }
+.conversation-panel > .panel-heading { background:#f8f4ec; }
+.message-avatar.customer { background:var(--blue); }
+.message-avatar.staff { color:var(--teal-deep); background:var(--teal-soft); }
+.message-meta em { color:var(--blue); }
+.message-text { color:#3e3933; background:#faf6ee; border-color:#e9e1d5; }
+.message-row.staff .message-text { background:#eef5f1; border-color:#dce9e3; }
+.message-row.evidence-active .message-text { background:#edf2fb; border-color:#a9b9db; box-shadow:inset 3px 0 var(--blue); }
+.composer { border-color:#ded5c8; background:#fffdf8; }
+.speaker-switch { background:#f0ebe1; }
+.speaker-switch button.selected { color:var(--red-deep); }
+.brief-panel { background:#fffdf8; border-color:#d8cfc2; }
+.brief-panel::before { background:linear-gradient(90deg,var(--red),#edb03d,var(--teal),var(--blue),var(--purple)); }
+.brief-panel.updating::before { background:linear-gradient(90deg,var(--red) 20%,#f1bb4c 40%,var(--teal) 60%,var(--red) 80%); background-size:200% 100%; }
+.brief-panel .panel-heading { border-color:var(--line); }
+.brief-panel .panel-title-group p { color:var(--muted); }
+.field-status.resolved { color:var(--teal-deep); background:var(--teal-soft); }
+.field-status.needs_clarification { color:#82571d; background:var(--amber-soft); }
+.field-status.missing { color:var(--red-deep); background:var(--red-soft); }
+.field-evidence { border-color:var(--line); }
+.evidence-link { border-color:#cbd5e9; }
+.evidence-speaker { color:var(--blue); }
+.clarification-box { border-color:#ead9b8; background:#faf2e3; }
+.clarification-box.complete { background:#eaf3ef; border-color:#c9ddd5; }
+.brief-actions { border-color:#d7cec1; }
+.button.export { border-color:var(--line); }
+.button.export:hover { background:var(--teal-soft); }
+.mobile-tabs { background:#eee8dc; border-color:#ded5c8; }
+.mobile-tabs > button[aria-pressed='true'] { color:var(--red-deep); }
+.mobile-tabs span { background:#f8f4ec; }
+@media(max-width:800px) {
+  .topbar { height:64px; }
+  .page-heading { min-height:224px; }
+}
+@media(max-width:580px) {
+  .page-heading { min-height:264px; }
+  .page-heading h1 { max-width:285px; font-size:34px; }
+  .page-heading h1 em { display:block; }
+  .heading-copy > p:last-of-type { max-width:260px; }
+}
