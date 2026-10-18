@@ -3,6 +3,7 @@
   <p><strong>The restaurant enquiry desk, from the first hello to the next shift.</strong></p>
   <p>
     <a href="https://formbridge-nlp-at2.vercel.app/">Open FormBridge</a>
+    · <a href="https://formbridge-nlp-at2.vercel.app/demo">Take the guided demo</a>
     · <a href="#see-it-in-action">Watch the films</a>
     · <a href="#make-it-your-restaurants-desk">Get started</a>
     · <a href="#run-locally">Run locally</a>
@@ -16,6 +17,10 @@ A birthday dinner. One more guest. A later arrival. A quiet table worth remember
 FormBridge brings restaurant enquiries into a shared desk. Guests can ask questions and send a request through your restaurant’s own assistant. Staff can check the conversation, prepare a booking brief, look after special requests and leave the next shift a clear next step.
 
 **Bring your own conversations.** Type, paste or use a voice message. Start with an empty desk, or try an example to get a feel for it.
+
+## Take the guided demo
+
+[Follow a birthday enquiry from first hello to handoff](https://formbridge-nlp-at2.vercel.app/demo). Suggested messages appear on screen; press **Tab** to fill them, then send. Eight short chapters cover a guest enquiry, changed plans, source checks, guest care, staff approval, guest review and a simulated reservation handoff. Progress is kept in the tab, in a separate demo workspace.
 
 ## See it in action
 
