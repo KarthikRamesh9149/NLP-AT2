@@ -4,6 +4,7 @@ import {
   DEMO_RUN_KEY,
   DEMO_STEPS,
   demoDates,
+  demoChanges,
   demoSuggestion,
   newDemoRun,
   readDemoRun,
@@ -23,6 +24,43 @@ const tab = {
 };
 
 describe("guided demo", () => {
+  it("shows a resolved time in history after a flexible request", () => {
+    const run = newDemoRun(user, workspace, slug);
+    const messages = [
+      { id: "first", speaker: "customer" as const, text: "7 pm" },
+      { id: "accepted", speaker: "customer" as const, text: "Yes, 8:30 pm" },
+    ];
+    run.session.brief.history = [
+      {
+        field: "time",
+        previousValue: null,
+        nextValue: "7 pm",
+        operation: "set",
+        evidenceIds: ["first"],
+        revision: 1,
+      },
+      {
+        field: "time",
+        previousValue: "7 pm",
+        nextValue: null,
+        operation: "constrain",
+        evidenceIds: ["accepted"],
+        revision: 2,
+      },
+      {
+        field: "time",
+        previousValue: null,
+        nextValue: "8:30 pm",
+        operation: "set",
+        evidenceIds: ["accepted"],
+        revision: 3,
+      },
+    ];
+    const changes = demoChanges(run.session.brief, messages);
+    expect(changes).toHaveLength(2);
+    expect(changes[0].nextValue).toBe("8:30 pm");
+    expect(run.session.brief.history).toHaveLength(3);
+  });
   it("keeps demonstration storage separate from the normal draft and authentication", () => {
     expect(DEMO_RUN_KEY).not.toBe(SESSION_KEY);
     expect(DEMO_AUTH_KEY).toBe("formbridge-guided-demo-auth-v1");

@@ -1,11 +1,23 @@
 import { z } from "zod";
 import { parseSession, type SavedSession } from "./session";
-import { createEmptyBrief } from "./state";
+import { createEmptyBrief, type Brief, type Message } from "./state";
 import { validIsoDate } from "./temporal";
 
 export const DEMO_AUTH_KEY = "formbridge-guided-demo-auth-v1";
 export const DEMO_RUN_KEY = "formbridge-guided-demo-run-v1";
 export const DEMO_WORKSPACE = "Juniper House · Guided demo";
+
+export function demoChanges(brief: Brief, messages: Message[]) {
+  return brief.history
+    .filter(
+      (change) =>
+        change.previousValue !== null ||
+        change.operation === "constrain" ||
+        change.evidenceIds.some((id) => id !== messages[0]?.id),
+    )
+    .slice(-4)
+    .reverse();
+}
 export const DEMO_STEPS = [
   {
     title: "A birthday begins",

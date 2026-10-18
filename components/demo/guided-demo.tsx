@@ -19,6 +19,7 @@ import {
   DEMO_RUN_KEY,
   DEMO_STEPS,
   demoSuggestion,
+  demoChanges,
   newDemoRun,
   readDemoRun,
   shouldFillSuggestion,
@@ -158,6 +159,9 @@ export function GuidedDemo() {
     }
   }, [run?.step, Boolean(busy)]);
 
+  const changes = run
+    ? demoChanges(run.session.brief, run.session.messages)
+    : [];
   const step = run ? DEMO_STEPS[run.step] : undefined;
   const suggestion = run ? demoSuggestion(run) : "";
   const complete = run?.step === DEMO_STEPS.length;
@@ -1084,35 +1088,23 @@ export function GuidedDemo() {
                     </span>
                   </div>
                 </section>
-                {run.session.brief.history.some(
-                  (change) =>
-                    change.previousValue !== null ||
-                    change.operation === "constrain",
-                ) && (
+                {changes.length > 0 && (
                   <section className={`${styles.card} ${styles.history}`}>
                     <h3>What changed</h3>
-                    {run.session.brief.history
-                      .filter(
-                        (change) =>
-                          change.previousValue !== null ||
-                          change.operation === "constrain",
-                      )
-                      .slice(-4)
-                      .reverse()
-                      .map((change, i) => (
-                        <div key={`${change.revision}-${change.field}-${i}`}>
-                          <span>{fieldLabels[change.field]}</span>
-                          <p>
-                            {change.previousValue && (
-                              <del>{change.previousValue}</del>
-                            )}{" "}
-                            <ArrowRight size={12} />{" "}
-                            <strong>
-                              {change.nextValue || "Needs clarification"}
-                            </strong>
-                          </p>
-                        </div>
-                      ))}
+                    {changes.map((change, i) => (
+                      <div key={`${change.revision}-${change.field}-${i}`}>
+                        <span>{fieldLabels[change.field]}</span>
+                        <p>
+                          {change.previousValue && (
+                            <del>{change.previousValue}</del>
+                          )}{" "}
+                          <ArrowRight size={12} />{" "}
+                          <strong>
+                            {change.nextValue || "Needs clarification"}
+                          </strong>
+                        </p>
+                      </div>
+                    ))}
                   </section>
                 )}
               </aside>
