@@ -54,6 +54,8 @@ import { reviewSnapshotSchema, type ReviewSnapshot } from "@/lib/guest-portal";
 import { downloadFile, textExport } from "@/lib/exports";
 import { fieldLabels } from "@/components/workspace/booking-card";
 import { Dialog } from "@/components/workspace/dialog";
+import { demoGuidance } from "@/lib/demo-guidance";
+import { DemoNavigation } from "./demo-navigation";
 import styles from "./guided-demo.module.css";
 
 const careLabels = {
@@ -85,6 +87,10 @@ export function GuidedDemo() {
   const [boot, setBoot] = useState(0);
   const input = useRef<HTMLTextAreaElement>(null);
   const heading = useRef<HTMLHeadingElement>(null);
+  const stage = useRef<HTMLElement>(null);
+  const errorPanel = useRef<HTMLDivElement>(null);
+  const reviewConsent = useRef<HTMLInputElement>(null);
+  const shownPhase = useRef("");
   const lock = useRef(false);
   const mounted = useRef(false);
 
@@ -151,14 +157,6 @@ export function GuidedDemo() {
     };
   }, [boot]); // Reconnect explicitly after an opening error.
 
-  useEffect(() => {
-    if (run && !busy) {
-      if ([0, 1, 2, 3, 5].includes(run.step))
-        input.current?.focus({ preventScroll: true });
-      else heading.current?.focus({ preventScroll: true });
-    }
-  }, [run?.step, Boolean(busy)]);
-
   const changes = run
     ? demoChanges(run.session.brief, run.session.messages)
     : [];
@@ -172,11 +170,67 @@ export function GuidedDemo() {
           brief.fields[key].status === "resolved" && !brief.fields[key].review,
       ).length
     : 0;
+  const guidance = run
+    ? demoGuidance({
+        step: run.step,
+        draft: run.draft,
+        careReady: care !== null,
+        keptCount: kept.length,
+        reviewReady: Boolean(review && run.reviewToken),
+        consent,
+        availabilityReady: slots !== null,
+        hasAvailability: Boolean(slots?.length),
+      })
+    : null;
+  const phase = run ? `${run.id}:${guidance?.phase ?? "complete"}` : "";
+
+  function scrollToStage() {
+    stage.current?.scrollIntoView({
+      block: "start",
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ? "instant"
+        : "smooth",
+    });
+  }
+
+  function showStep() {
+    heading.current?.focus({ preventScroll: true });
+    scrollToStage();
+  }
+
+  useEffect(() => {
+    // Advance only when a chapter or its review phase changes. Typing,
+    // selecting requests and closing an edit must not move the presenter.
+    if (
+      !phase ||
+      busy ||
+      error ||
+      editing ||
+      restart ||
+      shownPhase.current === phase
+    )
+      return;
+    const frame = requestAnimationFrame(() => {
+      shownPhase.current = phase;
+      if (input.current && window.matchMedia("(pointer: fine)").matches)
+        input.current.focus({ preventScroll: true });
+      else heading.current?.focus({ preventScroll: true });
+      scrollToStage();
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [phase, busy, error, editing, restart]);
+
+  useEffect(() => {
+    if (!error) return;
+    errorPanel.current?.focus({ preventScroll: true });
+    errorPanel.current?.scrollIntoView({ block: "start", behavior: "instant" });
+  }, [error]);
 
   function fill() {
     if (!run || busy) return;
     keep({ ...run, draft: suggestion });
-    input.current?.focus();
+    input.current?.focus({ preventScroll: true });
+    scrollToStage();
   }
 
   async function perform() {
@@ -371,7 +425,7 @@ export function GuidedDemo() {
           "Alex’s review has returned to the team inbox. The request is ready for a reservation handoff.",
         );
       } else if (next.step === 7) {
-        if (slots === null) {
+        if (slots === null || slots.length === 0) {
           const result = await demoOperation<{
             availability: { slots: { time: string; available: boolean }[] };
           }>(next.workspaceId, { type: "availability", caseId: next.caseId });
@@ -468,22 +522,10 @@ export function GuidedDemo() {
     setRestart(false);
   }
 
-  const actionLabel =
-    run?.step === 4 && care !== null
-      ? `Save ${kept.length ? `${kept.length} selected request${kept.length > 1 ? "s" : ""}` : "without extra requests"}`
-      : run?.step === 6 && review && run.reviewToken
-        ? "Confirm as Alex"
-        : run?.step === 7 && slots !== null
-          ? "Complete simulated handoff"
-          : step?.action;
-  const actionDisabled =
-    Boolean(busy) ||
-    Boolean(suggestion && !run?.draft.trim()) ||
-    (run?.step === 6 && Boolean(review) && !consent) ||
-    (run?.step === 7 && slots?.length === 0);
-
   return (
-    <div className={styles.page}>
+    <div
+      className={`${styles.page} ${run && !complete ? styles.withNavigation : ""}`}
+    >
       <a href="#demo-heading" className="skip-link">
         Skip to guided demo
       </a>
@@ -546,7 +588,12 @@ export function GuidedDemo() {
           </p>
         )}
         {error && (
-          <div className={styles.error} role="alert">
+          <div
+            ref={errorPanel}
+            className={styles.error}
+            role="alert"
+            tabIndex={-1}
+          >
             <strong>This step needs another try.</strong>
             <p>{error}</p>
             <button
@@ -581,7 +628,10 @@ export function GuidedDemo() {
             <div className={styles.grid}>
               <div className={styles.story}>
                 {complete ? (
-                  <section className={`${styles.card} ${styles.finish}`}>
+                  <section
+                    ref={stage}
+                    className={`${styles.card} ${styles.finish} ${styles.activeStage}`}
+                  >
                     <span className={styles.finishIcon}>
                       <Check size={30} />
                     </span>
@@ -646,25 +696,48 @@ export function GuidedDemo() {
                     </a>
                   </section>
                 ) : (
-                  <section className={styles.card} aria-busy={Boolean(busy)}>
+                  <section
+                    ref={stage}
+                    className={`${styles.card} ${styles.activeStage}`}
+                    aria-busy={Boolean(busy)}
+                  >
                     <div className={styles.stepMeta}>
                       <span>
-                        CHAPTER {String(run.step + 1).padStart(2, "0")} / 08
+                        STEP {String(run.step + 1).padStart(2, "0")} OF 08 ·{" "}
+                        {step!.short}
                       </span>
-                      <span className={styles.role}>
-                        {step!.role === "Guest"
-                          ? "You’re Alex · Guest"
-                          : "You’re the host · Staff"}
+                    </div>
+                    <div
+                      className={styles.turnBanner}
+                      data-role={guidance!.role}
+                    >
+                      <span className={styles.turnAvatar} aria-hidden="true">
+                        {guidance!.role === "Guest" ? "AM" : "JH"}
                       </span>
+                      <div>
+                        <strong>{guidance!.role}’s turn</strong>
+                        <span>You’re {guidance!.person}</span>
+                      </div>
                     </div>
                     <h2 ref={heading} tabIndex={-1} id="demo-heading">
                       {step!.title}
                     </h2>
                     <p className={styles.description}>{step!.detail}</p>
+                    <p
+                      className={styles.stepInstruction}
+                      id="demo-step-instruction"
+                    >
+                      <ArrowRight size={17} aria-hidden="true" />
+                      <span>{guidance!.instruction}</span>
+                    </p>
                     {suggestion && (
                       <div className={styles.composer}>
                         <label htmlFor="demo-message">
-                          {run.step === 5 ? "Handoff note" : "Your message"}
+                          {run.step === 5
+                            ? "Handoff note"
+                            : guidance!.role === "Staff"
+                              ? "Staff reply"
+                              : "Alex’s message"}
                         </label>
                         <textarea
                           ref={input}
@@ -674,7 +747,7 @@ export function GuidedDemo() {
                           value={run.draft}
                           disabled={Boolean(busy)}
                           placeholder={suggestion}
-                          aria-describedby="demo-fill-hint"
+                          aria-describedby="demo-step-instruction demo-fill-hint"
                           onChange={(event) =>
                             keep({ ...run, draft: event.target.value })
                           }
@@ -805,6 +878,7 @@ export function GuidedDemo() {
                         </a>
                         <label className={styles.consent}>
                           <input
+                            ref={reviewConsent}
                             type="checkbox"
                             checked={consent}
                             onChange={(event) =>
@@ -844,29 +918,13 @@ export function GuidedDemo() {
                         )}
                       </div>
                     )}
-                    <div className={styles.actionRow}>
-                      <button
-                        className="button primary"
-                        disabled={actionDisabled}
-                        onClick={() => void perform()}
-                      >
-                        {busy ? (
-                          <LoaderCircle className="spin" size={16} />
-                        ) : (
-                          <ArrowRight size={16} />
-                        )}
-                        {busy ? "Working on it…" : actionLabel}
-                      </button>
-                      <span>
-                        {run.step === 7
-                          ? "No real reservation is made"
-                          : "Your progress is saved"}
-                      </span>
-                    </div>
                     <div className={styles.presenter}>
                       <span>WHAT TO SHOW</span>
                       <p>{step!.point}</p>
                     </div>
+                    <p className={styles.upNext}>
+                      Next: <strong>{guidance!.next}</strong>
+                    </p>
                     {busy && (
                       <p className={styles.busy} role="status">
                         {busy}…
@@ -1121,6 +1179,25 @@ export function GuidedDemo() {
           </>
         )}
       </main>
+      {run && guidance && !editing && !restart && (
+        <DemoNavigation
+          step={run.step}
+          guidance={guidance}
+          busy={busy}
+          error={Boolean(error)}
+          onShowStep={showStep}
+          onAction={() => {
+            if (guidance.action === "fill") fill();
+            else if (guidance.action === "review") {
+              reviewConsent.current?.focus({ preventScroll: true });
+              reviewConsent.current?.scrollIntoView({
+                block: "center",
+                behavior: "instant",
+              });
+            } else void perform();
+          }}
+        />
+      )}
       {editing && (
         <Dialog
           title={`Review ${fieldLabels[editing.field].toLowerCase()}`}
