@@ -1,28 +1,114 @@
 {
   "launch": [
-    {"image":"live-team.png","title":"A LITTLE CARE BEFORE THEY ARRIVE","caption":"FormBridge · The restaurant enquiry desk","voice":"Good hospitality starts before the guest arrives. FormBridge gives your restaurant one place to look after every enquiry."},
-    {"image":"live-guest-chat.png","title":"WELCOME THE CONVERSATION","caption":"A guest assistant with your restaurant’s approved information","voice":"Let guests ask questions and share their plans through your own restaurant assistant."},
-    {"image":"live-inbox.png","title":"BRING THE TEAM TOGETHER","caption":"Every request. A clear next step.","voice":"Requests arrive in a private team inbox, with the conversation and booking details together."},
-    {"image":"live-care.png","title":"NOTICE THE PERSONAL DETAILS","caption":"Guest requests, with the words that support them","voice":"Spot the birthday, the quiet table and the dietary request. Check the guest's words before keeping each detail."},
-    {"image":"live-workflow.png","title":"FOLLOW THROUGH","caption":"Owners, reminders and notes for the next shift","voice":"Give the enquiry an owner, a reminder and a useful handoff. Keep the next shift in the picture."},
-    {"image":"live-review.png","title":"GIVE GUESTS A CHANCE TO CHECK","caption":"Private review links. Changes return to the team.","voice":"Share a private review link. When plans change, the request comes back for another staff review."},
-    {"image":"live-simulation.png","title":"TRY THE COMPLETE HANDOFF","caption":"Booking connections · Clearly labelled simulations","voice":"Test channel messages and reservation handoffs with clearly labelled simulations. No real messages or reservations are sent."},
-    {"image":"live-team.png","title":"FORMBRIDGE","caption":"A warmer welcome starts with clearer details.","voice":"FormBridge. Clear details, thoughtful service. Bring your own restaurant enquiry and make the next step easier."}
+    {
+      "image": "02-guest-filled.png",
+      "title": "A birthday, beautifully handled",
+      "caption": "FormBridge · The restaurant enquiry workspace",
+      "voice": "One birthday dinner. A few changed plans. FormBridge helps the restaurant keep every detail clear."
+    },
+    {
+      "image": "05-staff-turn.png",
+      "title": "Plans change. Details follow.",
+      "caption": "Six guests. After eight. An exact time still to agree.",
+      "voice": "When four guests become six, the brief follows. After eight stays a preference until the guest chooses a time."
+    },
+    {
+      "image": "09-accepted-sources.png",
+      "title": "An answer, with its source",
+      "caption": "A staff offer becomes agreed only after the guest accepts",
+      "voice": "A staff offer, a guest's yes, and the messages that support the answer. Every detail is there to check."
+    },
+    {
+      "image": "11-care-selected.png",
+      "title": "Care before they arrive",
+      "caption": "Review the birthday, seating and dietary requests",
+      "voice": "Review the little things. Keep the guest's words beside the requests your team accepts."
+    },
+    {
+      "image": "15-review-confirmed.png",
+      "title": "A thoughtful handoff",
+      "caption": "Staff review. Guest review. One clear next step.",
+      "voice": "Approve the brief, let the guest check, and leave the next shift a clear next step."
+    },
+    {
+      "image": "17-complete.png",
+      "title": "Try the complete guided demo",
+      "caption": "formbridge-nlp-at2.vercel.app/demo · Reservation handoff is simulated",
+      "voice": "Try FormBridge's guided enquiry yourself. The final reservation handoff is simulated. No real table is reserved."
+    }
   ],
   "walkthrough": [
-    {"image":"live-home.png","title":"MEET FORMBRIDGE","caption":"From the first message to a thoughtful handoff","voice":"FormBridge helps restaurant teams turn changing conversations into booking briefs. Let's follow a birthday enquiry through the guest assistant and into the staff desk."},
-    {"image":"live-library.png","title":"01 · GIVE THE ASSISTANT YOUR RESTAURANT","caption":"Publish only the information your team has approved","voice":"Start in the restaurant library. Add the name, city and information your team has checked. Only approved facts are published to the guest assistant. You can share its page or embed it on your website."},
-    {"image":"live-guest.png","title":"02 · ANSWER WITH APPROVED INFORMATION","caption":"Opening hours and policies, grounded in your library","voice":"Guests can ask about the restaurant before making a request. Here, the answer uses the opening hours the team approved. Missing information is left for staff to answer."},
-    {"image":"live-guest-chat.png","title":"03 · GATHER THE REQUEST","caption":"A birthday dinner, a quieter table and a dietary request","voice":"Alex asks for a birthday dinner for five. The assistant gathers the date, time and party size. Alex adds contact details and agrees to send the request. A reservation has not been made."},
-    {"image":"live-inbox.png","title":"04 · PICK UP THE CONVERSATION","caption":"The request arrives in a private team inbox","voice":"The enquiry now appears in the team's inbox. Staff can see the requested booking details, open the full conversation and decide what needs attention."},
-    {"image":"live-care.png","title":"05 · REVIEW THE LITTLE DETAILS","caption":"A source quotation for each guest-care suggestion","voice":"Ask FormBridge to find guest requests. It suggests the dietary requirement, seating preference and occasion, each with the customer's own words. Staff chooses which suggestions to keep."},
-    {"image":"live-brief.png","title":"06 · CHECK THE BOOKING BRIEF","caption":"Five booking details, linked to the conversation","voice":"Review the restaurant, city, date, time and guest count. Open a detail to inspect its source, correct anything that needs attention, then approve and save the brief to the team."},
-    {"image":"live-workflow.png","title":"07 · MAKE THE NEXT STEP CLEAR","caption":"Assignment, priority, due time and staff comments","voice":"Give the enquiry an owner, set its priority and add an exact due time. Leave a note for the team. Reminders appear while the desk is open, with overdue escalation for managers."},
-    {"image":"live-review.png","title":"08 · LET THE GUEST CHECK","caption":"A private review page with no staff notes or transcript","voice":"Create a private review link from the saved, approved enquiry. The guest can check the booking details and preferences. Staff notes, contact details and the full conversation stay private."},
-    {"image":"live-returned-review.png","title":"09 · HANDLE A CHANGE OF PLANS","caption":"Corrections reopen the enquiry for staff review","voice":"Alex changes the party size to six. The correction returns to the inbox, removes the previous approval and puts the enquiry back in needs reply. Staff reviews the updated request before the next handoff."},
-    {"image":"live-guests.png","title":"10 · REMEMBER A RETURNING GUEST","caption":"Reviewed guest records with enquiry history","voice":"Link the enquiry to a guest record when you know it belongs to that person. Keep useful preferences and history together. Combining duplicate records requires a separate confirmation."},
-    {"image":"live-channels.png","title":"11 · TRY THE CHANNEL WORKFLOW","caption":"Email and WhatsApp simulations with threaded follow-ups","voice":"The connections screen lets you test email and WhatsApp enquiries. Add a new message or a follow-up to an existing conversation. Draft a reply, check it, then send it within the simulation."},
-    {"image":"live-simulation.png","title":"12 · TEST A RESERVATION HANDOFF","caption":"Simulated availability, confirmation and cancellation","voice":"For a complete, approved brief, try a booking handoff. Choose a mock provider, check simulated availability and create a simulated reference. These connections do not contact a real booking platform."},
-    {"image":"live-team.png","title":"READY FOR THE NEXT SHIFT","caption":"The guest, the details and the next step in one place","voice":"The team desk brings the work together: requests needing a reply, decisions under review, due reminders and returning guests. FormBridge keeps the information clear while your team makes the decisions."}
+    {
+      "image": "01-guest-empty.png",
+      "title": "A birthday, beautifully handled",
+      "caption": "Eight chapters · Real product screens · A fictional guest",
+      "voice": "Let's follow Alex's birthday enquiry through the latest FormBridge guided demo. The page shows whose turn it is, brings the current step into view, and keeps the next action at the bottom."
+    },
+    {
+      "image": "02-guest-filled.png",
+      "title": "01 · Send the guest enquiry",
+      "caption": "Press Tab in the message box, then send the enquiry",
+      "voice": "Start as Alex. Press Tab in the empty message box, or select Fill guest message. The suggestion includes the restaurant, date, time, guest count and special requests. Send the enquiry to the team."
+    },
+    {
+      "image": "03-enquiry-ready.png",
+      "title": "The conversation becomes a brief",
+      "caption": "Five booking details, saved with the conversation",
+      "voice": "FormBridge extracts the five booking details and saves the enquiry in the separate demo inbox. The original message stays with the brief."
+    },
+    {
+      "image": "04-change-filled.png",
+      "title": "02 · Change the plans",
+      "caption": "Four guests become six. Seven becomes sometime after eight.",
+      "voice": "Now Alex changes the plans. Fill the correction and update the enquiry. The restaurant and date stay in place, while the guest count and time preference change."
+    },
+    {
+      "image": "06-staff-offer-filled.png",
+      "title": "03 · Reply as the host",
+      "caption": "The exact time is still unresolved",
+      "voice": "The demo switches to the host and shows Staff's turn. Suggest eight-thirty and add the staff reply. An offer still needs the guest's acceptance."
+    },
+    {
+      "image": "08-guest-accepts.png",
+      "title": "04 · Let the guest accept",
+      "caption": "Alex accepts 8:30 pm",
+      "voice": "Switch back to Alex. Fill and send the acceptance. Only now can eight-thirty become the agreed time."
+    },
+    {
+      "image": "09-accepted-sources.png",
+      "title": "Check the answer against its source",
+      "caption": "Open Time to inspect the supporting messages",
+      "voice": "Open Time in the brief. Staff can inspect the offer and the acceptance, alongside earlier messages. The change history keeps the previous request visible."
+    },
+    {
+      "image": "11-care-selected.png",
+      "title": "05 · Review the guest requests",
+      "caption": "Choose which requests to keep",
+      "voice": "Find guest requests. Read the quotations, then select the birthday, quiet table and dietary request. Staff still need to confirm dietary requirements with the guest and kitchen."
+    },
+    {
+      "image": "12-handoff-filled.png",
+      "title": "06 · Approve and save the handoff",
+      "caption": "A reviewed brief, an owner and a follow-up time",
+      "voice": "Check the brief and fill the handoff note. Approve and save. The enquiry now has a reviewed request, an owner and a follow-up time for the team."
+    },
+    {
+      "image": "14-guest-review.png",
+      "title": "07 · Let Alex check the details",
+      "caption": "Private review. Staff notes stay private.",
+      "voice": "Create the guest review link. Check the details as Alex, tick the confirmation box and send the review back. The guest view keeps staff notes and the full conversation private."
+    },
+    {
+      "image": "16-simulated-availability.png",
+      "title": "08 · Prepare the provider handoff",
+      "caption": "Clearly labelled simulated availability",
+      "voice": "Return to the host. Check the simulated availability, review the returned times, then complete the simulated handoff. This demonstration does not contact a real reservation platform."
+    },
+    {
+      "image": "17-complete.png",
+      "title": "The complete enquiry, ready for handoff",
+      "caption": "Try it: formbridge-nlp-at2.vercel.app/demo",
+      "voice": "The tour is complete. The guest's changing plans, their reviewed requests and the next step are together in one enquiry. Open the guided demo to try the same workflow yourself."
+    }
   ]
 }

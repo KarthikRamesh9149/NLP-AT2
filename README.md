@@ -26,15 +26,15 @@ FormBridge brings restaurant enquiries into a shared desk. Guests can ask questi
 
 ### Meet FormBridge
 
-A guest enquiry, a thoughtful review and a team ready to follow through. **1 minute 7 seconds.**
+A birthday enquiry, changed plans and a thoughtful handoff. **52 seconds.**
 
-https://github.com/user-attachments/assets/cba0b3a3-7966-4ead-8b79-64c8f1f0d9ba
+https://github.com/user-attachments/assets/65fff498-b276-4919-a373-08c716141f41
 
-### A birthday dinner, from first hello to handoff
+### The guided birthday enquiry, step by step
 
-Follow Alex’s enquiry through the restaurant assistant, guest-care review, staff assignment, a change of plans and a simulated reservation handoff. **3 minutes 13 seconds.**
+Follow all eight chapters of the live guided demo: the guest’s enquiry, changed plans, a staff reply, an accepted time, guest care, approval, private guest review and a simulated handoff. Tab suggestions and clear Guest/Staff turns show what to do next. **2 minutes 31 seconds.**
 
-https://github.com/user-attachments/assets/f464b7b4-87c2-4af8-8038-b24d6838e7b6
+https://github.com/user-attachments/assets/c02a53df-f58d-401b-abb2-928663336aa9
 
 [Launch film](docs/media/FormBridge-launch.mp4) · [Product walkthrough](docs/media/FormBridge-walkthrough.mp4) · [Launch captions](docs/media/FormBridge-launch.vtt) · [Walkthrough captions](docs/media/FormBridge-walkthrough.vtt)
 
