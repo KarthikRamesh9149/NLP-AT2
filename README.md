@@ -26,19 +26,19 @@ FormBridge brings restaurant enquiries into a shared desk. Guests can ask questi
 
 ### Meet FormBridge
 
-A birthday enquiry, changed plans and a thoughtful handoff. **59 seconds.**
+A birthday enquiry, changed plans and a thoughtful handoff. **55 seconds.**
 
-https://github.com/user-attachments/assets/c66322d4-4447-474c-85c2-3ff052721745
+https://github.com/user-attachments/assets/db2548c3-9a89-43a8-a619-d8ea45fb04a4
 
 ### One birthday. The whole restaurant desk.
 
-Follow Alex’s birthday enquiry in the main app: a voice correction, a reply prepared with the desk assistant, source checks, guest care, service planning, team ownership and guest review. The website assistant and simulated connections complete the tour. **1 minute 37 seconds.**
+Watch the live main app as Alex’s birthday enquiry takes shape: typing, voice transcription, a reply from the desk assistant, source checks, guest care, approval, saved enquiries, the service planner and follow-ups. The restaurant’s website assistant answers a question from approved information. **1 minute 25 seconds.**
 
-https://github.com/user-attachments/assets/08e809c5-a380-42cf-a6ef-1eb88ebc1c84
+https://github.com/user-attachments/assets/8456f06b-e26b-4d8b-8d20-f96c9dec7cda
 
-[Launch film](docs/media/FormBridge-launch.mp4) · [Quick walkthrough](docs/media/FormBridge-quick-walkthrough.mp4) · [Full product tour · 6 min 17 sec](docs/media/FormBridge-walkthrough.mp4)
+[Launch film](docs/media/FormBridge-launch.mp4) · [Live walkthrough](docs/media/FormBridge-quick-walkthrough.mp4)
 
-[Launch captions](docs/media/FormBridge-launch.vtt) · [Quick walkthrough captions](docs/media/FormBridge-quick-walkthrough.vtt) · [Full tour captions](docs/media/FormBridge-walkthrough.vtt)
+[Launch captions](docs/media/FormBridge-launch.vtt) · [Walkthrough captions](docs/media/FormBridge-quick-walkthrough.vtt)
 
 ## One desk for the whole enquiry
 

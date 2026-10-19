@@ -1,272 +1,155 @@
 {
-  "launch": [
+  "live-walkthrough": [
     {
-      "image": "01-main-desk.png",
+      "clips": [
+        {
+          "name": "01-enquiry",
+          "from": 1.2
+        }
+      ],
+      "title": "A birthday dinner, from first hello",
+      "caption": "Live app recording · Fictional enquiry · Waiting time shortened",
+      "voice": "Alex asks for a birthday dinner at Juniper House. Type the enquiry at the main desk. FormBridge gathers five booking details for staff to review."
+    },
+    {
+      "clips": [
+        "02-voice"
+      ],
+      "title": "Plans change. The brief follows.",
+      "caption": "Voice message → Reviewed transcript → Updated brief",
+      "voice": "Alex changes the plans by voice: six guests, sometime after eight. Review the transcript before adding it. The exact time still needs an answer."
+    },
+    {
+      "clips": [
+        "03-assistant",
+        "04-reply",
+        {
+          "name": "05-agreement",
+          "to": 1.35
+        }
+      ],
+      "title": "A little help at the desk",
+      "caption": "Desk assistant → Reply draft → Staff composer",
+      "voice": "Ask the desk assistant for a warm reply suggesting eight-thirty. Read its draft, use it in the staff composer, then add the message. Staff stays in control."
+    },
+    {
+      "clips": [
+        "06-accepted",
+        {
+          "name": "13-source-and-finish",
+          "to": 3.2
+        }
+      ],
+      "title": "The guest’s yes makes the difference",
+      "caption": "An accepted time, with the supporting messages",
+      "voice": "Alex accepts eight-thirty. The time becomes ready, with the staff offer and guest acceptance linked as its sources. The earlier correction stays in the conversation."
+    },
+    {
+      "clips": [
+        "07-care",
+        "08-keep-care",
+        "09-approve-save",
+        "10-planner"
+      ],
+      "title": "Care beyond the booking",
+      "caption": "Review requests → Approve the brief → Save the enquiry",
+      "voice": "Review the birthday, quiet table and peanut allergy against the guest’s words. Keep the requests, approve the brief and save the enquiry. Approval does not reserve a table."
+    },
+    {
+      "clips": [
+        "11-service-followups"
+      ],
+      "title": "A calmer service starts here",
+      "caption": "Service planner · Follow-ups · Enquiry book",
+      "voice": "Open Service planner. The dinner appears at eight-thirty with six guests. Check the follow-up for the next shift, then find the saved conversation in the enquiry book."
+    },
+    {
+      "clips": [
+        "12-guest-assistant"
+      ],
+      "title": "A welcome on your website",
+      "caption": "Answers from the restaurant’s approved information",
+      "voice": "Guests can ask questions through the restaurant assistant. Here, it answers the kitchen-closing question using Juniper House’s approved information and shows the source."
+    },
+    {
+      "clips": [
+        "14-finish"
+      ],
+      "title": "Your conversations. Your restaurant desk.",
+      "caption": "Try it · formbridge-nlp-at2.vercel.app",
+      "voice": "From the first message to the next shift. Open FormBridge and bring your own enquiry."
+    }
+  ],
+  "live-launch": [
+    {
+      "clips": [
+        {
+          "name": "01-enquiry",
+          "from": 1.2
+        }
+      ],
       "title": "A place for every detail",
       "caption": "FormBridge · The restaurant enquiry desk",
       "voice": "A birthday dinner starts with a conversation. FormBridge helps your restaurant look after everything that follows."
     },
     {
-      "image": "04-voice-transcript.png",
+      "clips": [
+        "02-voice",
+        {
+          "name": "03-assistant",
+          "to": 1.3
+        }
+      ],
       "title": "Plans change. The brief follows.",
-      "caption": "Type, paste or use a voice message",
+      "caption": "Voice input · Corrections · A question when details are missing",
       "voice": "Four guests become six. A voice message moves dinner to after eight. The brief keeps the change, and asks for the exact time."
     },
     {
-      "image": "07-assistant-reply.png",
+      "clips": [
+        "03-assistant",
+        "04-reply",
+        {
+          "name": "05-agreement",
+          "to": 1.35
+        }
+      ],
       "title": "A little help at the desk",
-      "caption": "Review a reply before adding it to the conversation",
+      "caption": "A reply for staff to review",
       "voice": "Ask the desk assistant for a warm reply, a follow-up and a note for the next shift. You choose what to keep."
     },
     {
-      "image": "08-guest-care-suggestions.png",
+      "clips": [
+        "07-care",
+        "08-keep-care"
+      ],
       "title": "Remember what matters",
-      "caption": "The guest’s words, beside each request",
+      "caption": "The guest’s words beside each request",
       "voice": "A birthday, a quiet table, a dietary request. Review the guest's words before keeping each detail."
     },
     {
-      "image": "11-service-planner.png",
+      "clips": [
+        "10-planner",
+        "11-service-followups"
+      ],
       "title": "A calmer service starts here",
-      "caption": "One enquiry · Six guests · A clear next step",
-      "voice": "Save the enquiry to your team. Plan the service, find the follow-up and give every request an owner."
+      "caption": "Saved enquiries · Service planning · Follow-ups",
+      "voice": "Save the enquiry. Plan the service, find the follow-up, and pick up the conversation when you need it."
     },
     {
-      "image": "22-guest-assistant.png",
+      "clips": [
+        "12-guest-assistant"
+      ],
       "title": "A welcome on your website",
-      "caption": "Answers from your restaurant’s approved information",
-      "voice": "Let guests ask questions, then check their details through a private review page."
+      "caption": "Answers from the restaurant’s approved information",
+      "voice": "Let guests ask questions on your website, with answers from the restaurant’s approved information."
     },
     {
-      "image": "25-simulated-handoff.png",
-      "title": "From first hello to handoff",
-      "caption": "Reservation and channel connections shown here are simulated",
-      "voice": "Explore the connected handoff in simulation. No real table is reserved. Bring your own enquiries to FormBridge."
-    }
-  ],
-  "walkthrough": [
-    {
-      "image": "01-main-desk.png",
-      "title": "One birthday. The whole restaurant desk.",
-      "caption": "The main FormBridge workspace · A fictional guest enquiry",
-      "voice": "Let's follow Alex's birthday dinner through the main FormBridge workspace. This is the normal booking desk, with the enquiry book, service planner and desk assistant available throughout."
-    },
-    {
-      "image": "02-message-filled.png",
-      "title": "01 · Start with the guest’s own words",
-      "caption": "Juniper House · Sydney · 13 November · Four guests",
-      "voice": "Alex asks for four people at Juniper House in Sydney, on the thirteenth of November at seven. The message also mentions a birthday, a peanut allergy and a quiet table. Add it to the brief."
-    },
-    {
-      "image": "27-transcript-import.png",
-      "title": "Bring an existing conversation",
-      "caption": "Paste a single enquiry, or label Customer and Staff messages",
-      "voice": "For an existing enquiry, Paste conversation accepts a single message or a labelled customer and staff transcript. It starts a new brief, so keep your current enquiry first."
-    },
-    {
-      "image": "03-voice-upload.png",
-      "title": "02 · Hear the change of plans",
-      "caption": "Upload or record a short voice message",
-      "voice": "Alex changes the plans by voice. In this example, we upload a short recording asking for six guests and sometime after eight. FormBridge transcribes it for review."
-    },
-    {
-      "image": "04-voice-transcript.png",
-      "title": "Check the transcript before using it",
-      "caption": "Review the words, then use them in the composer",
-      "voice": "Read the transcript before putting it into the conversation. Voice input follows the same review and extraction flow as a typed message."
-    },
-    {
-      "image": "05-correction-and-sources.png",
-      "title": "03 · Keep uncertainty visible",
-      "caption": "Six guests. After eight. An exact time still to agree.",
-      "voice": "The guest count changes to six. After eight stays an unresolved preference. The brief asks for an exact time, and the change history keeps the earlier details visible."
-    },
-    {
-      "image": "07-assistant-reply.png",
-      "title": "04 · Ask the desk assistant for a reply",
-      "caption": "A suggested reply stays under staff control",
-      "voice": "Open Desk assistant and ask for a warm reply suggesting eight-thirty. The assistant prepares wording for staff to review. Use in composer places it in a staff message, ready to check and send."
-    },
-    {
-      "image": "06-assistant-actions.png",
-      "title": "Turn the next step into something useful",
-      "caption": "Review proposed follow-ups and next-shift notes",
-      "voice": "The assistant can also suggest a follow-up and a shift note. Here, staff keeps a reminder about the quiet table and a note to check the allergy with the guest and kitchen. Save the enquiry to retain these changes."
-    },
-    {
-      "image": "09-accepted-time.png",
-      "title": "05 · Let the guest agree",
-      "caption": "The staff suggestion and guest acceptance support 8:30 pm",
-      "voice": "Add the staff suggestion, then Alex's acceptance. Eight-thirty is now the agreed time in the brief. Open Time to read the messages supporting it, including the offer and the guest's yes."
-    },
-    {
-      "image": "26-message-editing.png",
-      "title": "Correct the conversation when needed",
-      "caption": "Edit a message or correct its speaker, then review the rebuilt brief",
-      "voice": "If a message or speaker was entered incorrectly, edit it directly. FormBridge rebuilds the brief from the corrected conversation and asks staff to review the result again."
-    },
-    {
-      "image": "08-guest-care-suggestions.png",
-      "title": "06 · Keep the details that need extra care",
-      "caption": "Read each quotation before keeping the request",
-      "voice": "Find guest requests in Guest care. Each suggestion comes with the customer's words. Keep Alex's name, birthday, quiet table and peanut allergy after reviewing them. Dietary arrangements still need checking with the guest and kitchen."
-    },
-    {
-      "image": "14-approved-brief.png",
-      "title": "07 · Approve the brief for handoff",
-      "caption": "Review all five details · Brief, JSON and calendar options",
-      "voice": "With all five booking details ready, staff approves the brief. The desk offers a downloadable brief, JSON and a calendar reminder. Approval prepares the request for handoff; it does not reserve a table."
-    },
-    {
-      "image": "10-save-to-team.png",
-      "title": "08 · Save where your team can find it",
-      "caption": "A clear enquiry name · This device or a private team",
-      "voice": "Give the enquiry a useful name. Save it on this device, or choose the private Juniper House team. We save Alex's birthday dinner to the shared desk."
-    },
-    {
-      "image": "13-enquiry-book.png",
-      "title": "Pick up the same enquiry later",
-      "caption": "Search saved enquiries · Reopen JSON · Archive when finished",
-      "voice": "The enquiry book brings saved cases back into view. Search by a useful name, reopen the conversation, or bring back a JSON export. This device and team enquiries have separate locations."
-    },
-    {
-      "image": "11-service-planner.png",
-      "title": "09 · Plan the evening",
-      "caption": "13 November · 8:30 pm · Six guests",
-      "voice": "Open Service planner and choose the thirteenth of November. Alex's enquiry appears at eight-thirty with six guests, the birthday and dietary request. Staff can copy or download a handoff for the shift."
-    },
-    {
-      "image": "12-follow-ups.png",
-      "title": "Make the next step easy to find",
-      "caption": "Due today · Confirm the quiet table and check the allergy",
-      "voice": "Switch to Follow-ups. The reminder is due today and says exactly what needs doing. Open the enquiry to continue, or mark the task done once the real work is complete."
-    },
-    {
-      "image": "15-workflow.png",
-      "title": "10 · Give the enquiry an owner",
-      "caption": "Stage · Priority · Owner · Exact due time",
-      "voice": "The team desk holds the same saved enquiry. Set Under review, a high priority and an owner. Give the next step an exact due time, with an escalation interval if it becomes overdue."
-    },
-    {
-      "image": "16-team-comments.png",
-      "title": "Leave the next shift a clear handoff",
-      "caption": "Team comments stay with the enquiry",
-      "voice": "Add a team comment so the next shift knows what to check. Staff notes and comments stay in the team workspace, separate from the guest's review page."
-    },
-    {
-      "image": "17-guest-review.png",
-      "title": "11 · Let Alex check the request",
-      "caption": "A private review page with booking details and preferences",
-      "voice": "Create a private guest review link. Alex sees the date, time, guest count and preferences, and can send a correction or confirm the request. The page explains that a restaurant reservation still needs confirmation."
-    },
-    {
-      "image": "18-review-received.png",
-      "title": "The review reaches the team",
-      "caption": "The guest’s response comes back to the enquiry desk",
-      "voice": "Alex submits the review and receives a receipt. The team can pick up the response in its inbox before taking the next step."
-    },
-    {
-      "image": "19-guest-history.png",
-      "title": "Remember a returning guest",
-      "caption": "Reviewed guest records and previous enquiries",
-      "voice": "The guest book keeps reviewed guest records and enquiry history together. Staff should check that a record belongs to the right person, and confirm past preferences before using them again."
-    },
-    {
-      "image": "20-restaurant-library.png",
-      "title": "12 · Give the restaurant assistant reliable information",
-      "caption": "Restaurant library · Reviewed and approved for guests",
-      "voice": "In Restaurant library, the team maintains the facts guests can ask about. Here, approved dinner hours include the kitchen closing time. Publish only information your restaurant has checked."
-    },
-    {
-      "image": "21-website-widget.png",
-      "title": "Put the welcome on your own website",
-      "caption": "A branded guest page and an embeddable assistant",
-      "voice": "Open the branded guest page or copy the website widget code. Guests can ask questions and prepare an enquiry, with contact details and consent before sending it to the team."
-    },
-    {
-      "image": "22-guest-assistant.png",
-      "title": "Answers from the restaurant’s approved facts",
-      "caption": "Dinner hours and kitchen closing time, with the source shown",
-      "voice": "Ask when dinner is served. The guest assistant shows Juniper House's approved hours and their source. Particular requests are passed to the team for checking."
-    },
-    {
-      "image": "30-channel-reply.png",
-      "title": "13 · Keep channel replies reviewable",
-      "caption": "Email and WhatsApp connectors are simulated",
-      "voice": "The email and WhatsApp connections are simulated. Here, a follow-up email reaches Alex's existing enquiry. Staff asks for a reply draft, checks the wording and sends a simulated response. No real guest is contacted."
-    },
-    {
-      "image": "24-simulated-availability.png",
-      "title": "14 · Explore the reservation handoff",
-      "caption": "OpenTable, SevenRooms, Resy and TheFork simulations",
-      "voice": "Connections also offers reservation handoff simulations. Select an approved, saved enquiry and check the simulated availability. This lets the team explore the workflow without contacting a booking platform."
-    },
-    {
-      "image": "25-simulated-handoff.png",
-      "title": "A clear finish, with the status visible",
-      "caption": "Simulated confirmation · No real table has been reserved",
-      "voice": "The simulated handoff returns a reference and a cancellation control. Its status stays clearly labelled. In real service, the restaurant must still make and confirm the actual reservation."
-    },
-    {
-      "image": "01-main-desk.png",
-      "title": "Your conversations. Your restaurant desk.",
-      "caption": "Try FormBridge · formbridge-nlp-at2.vercel.app",
-      "voice": "From the first message to the next shift: a conversation, a reviewable brief, useful assistance and a team that knows the next step. Open FormBridge and bring your own enquiry."
-    }
-  ],
-  "quick-walkthrough": [
-    {
-      "image": "02-message-filled.png",
-      "title": "One birthday. One restaurant desk.",
-      "caption": "A complete example in the main FormBridge workspace",
-      "voice": "Alex is planning a birthday at Juniper House. Add the enquiry at the main desk. The conversation becomes five booking details, ready for staff to check."
-    },
-    {
-      "image": "04-voice-transcript.png",
-      "title": "01 · Plans change",
-      "caption": "Voice input · Check the transcript before adding it",
-      "voice": "Alex sends a voice message: six guests, sometime after eight. Review the transcript, then add it. The guest count changes; the exact time stays unresolved."
-    },
-    {
-      "image": "07-assistant-reply.png",
-      "title": "02 · Get help with the reply",
-      "caption": "Desk assistant · Review, use in composer, then send",
-      "voice": "Ask the desk assistant for a warm reply suggesting eight-thirty. Review the draft and place it in the staff composer. The assistant can also propose follow-ups and shift notes."
-    },
-    {
-      "image": "09-accepted-time.png",
-      "title": "03 · Check the accepted time",
-      "caption": "8:30 pm · The staff offer and guest acceptance stay linked",
-      "voice": "Alex accepts eight-thirty. Open Time to check the offer and acceptance. The brief keeps its supporting messages and change history."
-    },
-    {
-      "image": "08-guest-care-suggestions.png",
-      "title": "04 · Keep the extra care",
-      "caption": "Birthday · Quiet table · Peanut allergy",
-      "voice": "Review the birthday, quiet table and peanut allergy against Alex’s words. Keep the requests, approve the brief, and save the enquiry to the team."
-    },
-    {
-      "image": "11-service-planner.png",
-      "title": "05 · Plan the service",
-      "caption": "Service planner · Six guests at 8:30 pm",
-      "voice": "In Service planner, the dinner appears at eight-thirty with six guests and their requests. Follow-ups give the next shift a clear task."
-    },
-    {
-      "image": "15-workflow.png",
-      "title": "06 · Give the next step an owner",
-      "caption": "Team desk · Priority, owner, due time and comments",
-      "voice": "Assign an owner, priority and due time. Team comments keep the handoff together, and the enquiry book makes the saved conversation easy to reopen."
-    },
-    {
-      "image": "22-guest-assistant.png",
-      "title": "07 · Welcome guests on your website",
-      "caption": "Restaurant-approved answers · Private guest review",
-      "voice": "The website assistant answers from approved restaurant information. A private review page lets Alex check the request and return corrections to the team."
-    },
-    {
-      "image": "25-simulated-handoff.png",
-      "title": "From first hello to handoff",
-      "caption": "Booking and channel connections are simulated · No table is reserved",
-      "voice": "Finally, explore email, WhatsApp and reservation handoffs in simulation. No real table is reserved. Bring your own conversations to FormBridge."
+      "clips": [
+        "14-finish"
+      ],
+      "title": "From first hello to the next shift",
+      "caption": "formbridge-nlp-at2.vercel.app",
+      "voice": "From first hello to the next shift. Bring your own enquiries to FormBridge."
     }
   ]
 }
