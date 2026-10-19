@@ -1,97 +1,250 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:04.387
-Let's follow Alex's birthday enquiry through the latest FormBridge guided demo. The
+00:00:00.000 --> 00:00:05.644
+Let's follow Alex's birthday dinner through the main FormBridge workspace. This is
 
-00:00:04.387 --> 00:00:08.775
-page shows whose turn it is, brings the current step into view,
+00:00:05.644 --> 00:00:11.289
+the normal booking desk, with the enquiry book, service planner and desk
 
-00:00:08.775 --> 00:00:11.700
-and keeps the next action at the bottom.
+00:00:11.289 --> 00:00:12.700
+assistant available throughout.
 
-00:00:12.350 --> 00:00:17.659
-Start as Alex. Press Tab in the empty message box, or select
+00:00:13.350 --> 00:00:18.201
+Alex asks for four people at Juniper House in Sydney, on the
 
-00:00:17.659 --> 00:00:22.968
-Fill guest message. The suggestion includes the restaurant, date, time, guest count
+00:00:18.201 --> 00:00:23.053
+thirteenth of November at seven. The message also mentions a birthday, a
 
-00:00:22.968 --> 00:00:26.950
-and special requests. Send the enquiry to the team.
+00:00:23.053 --> 00:00:27.500
+peanut allergy and a quiet table. Add it to the brief.
 
-00:00:27.600 --> 00:00:32.891
-FormBridge extracts the five booking details and saves the enquiry in the
+00:00:28.150 --> 00:00:33.507
+For an existing enquiry, Paste conversation accepts a single message or a
 
-00:00:32.891 --> 00:00:37.300
-separate demo inbox. The original message stays with the brief.
+00:00:33.507 --> 00:00:38.864
+labelled customer and staff transcript. It starts a new brief, so keep
 
-00:00:37.950 --> 00:00:43.461
-Now Alex changes the plans. Fill the correction and update the enquiry.
+00:00:38.864 --> 00:00:40.650
+your current enquiry first.
 
-00:00:43.461 --> 00:00:48.972
-The restaurant and date stay in place, while the guest count and
+00:00:41.300 --> 00:00:46.411
+Alex changes the plans by voice. In this example, we upload a
 
-00:00:48.972 --> 00:00:50.350
-time preference change.
+00:00:46.411 --> 00:00:51.522
+short recording asking for six guests and sometime after eight. FormBridge transcribes
 
-00:00:51.000 --> 00:00:56.725
-The demo switches to the host and shows Staff's turn. Suggest eight-thirty
+00:00:51.522 --> 00:00:52.800
+it for review.
 
-00:00:56.725 --> 00:01:02.450
-and add the staff reply. An offer still needs the guest's acceptance.
+00:00:53.450 --> 00:00:58.686
+Read the transcript before putting it into the conversation. Voice input follows
 
-00:01:03.100 --> 00:01:08.676
-Switch back to Alex. Fill and send the acceptance. Only now can
+00:00:58.686 --> 00:01:03.050
+the same review and extraction flow as a typed message.
 
-00:01:08.676 --> 00:01:11.000
-eight-thirty become the agreed time.
+00:01:03.700 --> 00:01:08.521
+The guest count changes to six. After eight stays an unresolved preference.
 
-00:01:11.650 --> 00:01:17.650
-Open Time in the brief. Staff can inspect the offer and the
+00:01:08.521 --> 00:01:13.343
+The brief asks for an exact time, and the change history keeps
 
-00:01:17.650 --> 00:01:23.650
-acceptance, alongside earlier messages. The change history keeps the previous request visible.
+00:01:13.343 --> 00:01:14.950
+the earlier details visible.
 
-00:01:24.300 --> 00:01:29.944
-Find guest requests. Read the quotations, then select the birthday, quiet table
+00:01:15.600 --> 00:01:20.727
+Open Desk assistant and ask for a warm reply suggesting eight-thirty. The
 
-00:01:29.944 --> 00:01:35.589
-and dietary request. Staff still need to confirm dietary requirements with the
+00:01:20.727 --> 00:01:25.855
+assistant prepares wording for staff to review. Use in composer places it
 
-00:01:35.589 --> 00:01:37.000
-guest and kitchen.
+00:01:25.855 --> 00:01:29.700
+in a staff message, ready to check and send.
 
-00:01:37.650 --> 00:01:42.294
-Check the brief and fill the handoff note. Approve and save. The
+00:01:30.350 --> 00:01:34.858
+The assistant can also suggest a follow-up and a shift note. Here,
 
-00:01:42.294 --> 00:01:46.939
-enquiry now has a reviewed request, an owner and a follow-up time
+00:01:34.858 --> 00:01:39.365
+staff keeps a reminder about the quiet table and a note to
 
-00:01:46.939 --> 00:01:48.100
-for the team.
+00:01:39.365 --> 00:01:43.873
+check the allergy with the guest and kitchen. Save the enquiry to
 
-00:01:48.750 --> 00:01:54.490
-Create the guest review link. Check the details as Alex, tick the
+00:01:43.873 --> 00:01:45.000
+retain these changes.
 
-00:01:54.490 --> 00:02:00.230
-confirmation box and send the review back. The guest view keeps staff
+00:01:45.650 --> 00:01:50.702
+Add the staff suggestion, then Alex's acceptance. Eight-thirty is now the agreed
 
-00:02:00.230 --> 00:02:03.100
-notes and the full conversation private.
+00:01:50.702 --> 00:01:55.753
+time in the brief. Open Time to read the messages supporting it,
 
-00:02:03.750 --> 00:02:09.958
-Return to the host. Check the simulated availability, review the returned times,
+00:01:55.753 --> 00:01:58.700
+including the offer and the guest's yes.
 
-00:02:09.958 --> 00:02:16.165
-then complete the simulated handoff. This demonstration does not contact a real
+00:01:59.350 --> 00:02:04.661
+If a message or speaker was entered incorrectly, edit it directly. FormBridge
 
-00:02:16.165 --> 00:02:17.200
-reservation platform.
+00:02:04.661 --> 00:02:09.972
+rebuilds the brief from the corrected conversation and asks staff to review
 
-00:02:17.850 --> 00:02:23.010
-The tour is complete. The guest's changing plans, their reviewed requests and
+00:02:09.972 --> 00:02:11.300
+the result again.
 
-00:02:23.010 --> 00:02:28.170
-the next step are together in one enquiry. Open the guided demo
+00:02:11.950 --> 00:02:17.573
+Find guest requests in Guest care. Each suggestion comes with the customer's
 
-00:02:28.170 --> 00:02:30.750
-to try the same workflow yourself.
+00:02:17.573 --> 00:02:23.196
+words. Keep Alex's name, birthday, quiet table and peanut allergy after reviewing
+
+00:02:23.196 --> 00:02:28.350
+them. Dietary arrangements still need checking with the guest and kitchen.
+
+00:02:29.000 --> 00:02:34.418
+With all five booking details ready, staff approves the brief. The desk
+
+00:02:34.418 --> 00:02:39.836
+offers a downloadable brief, JSON and a calendar reminder. Approval prepares the
+
+00:02:39.836 --> 00:02:43.900
+request for handoff; it does not reserve a table.
+
+00:02:44.550 --> 00:02:48.817
+Give the enquiry a useful name. Save it on this device, or
+
+00:02:48.817 --> 00:02:53.083
+choose the private Juniper House team. We save Alex's birthday dinner to
+
+00:02:53.083 --> 00:02:54.150
+the shared desk.
+
+00:02:54.800 --> 00:03:00.065
+The enquiry book brings saved cases back into view. Search by a
+
+00:03:00.065 --> 00:03:05.329
+useful name, reopen the conversation, or bring back a JSON export. This
+
+00:03:05.329 --> 00:03:08.400
+device and team enquiries have separate locations.
+
+00:03:09.050 --> 00:03:14.000
+Open Service planner and choose the thirteenth of November. Alex's enquiry appears
+
+00:03:14.000 --> 00:03:18.950
+at eight-thirty with six guests, the birthday and dietary request. Staff can
+
+00:03:18.950 --> 00:03:22.250
+copy or download a handoff for the shift.
+
+00:03:22.900 --> 00:03:27.480
+Switch to Follow-ups. The reminder is due today and says exactly what
+
+00:03:27.480 --> 00:03:32.060
+needs doing. Open the enquiry to continue, or mark the task done
+
+00:03:32.060 --> 00:03:34.350
+once the real work is complete.
+
+00:03:35.000 --> 00:03:39.855
+The team desk holds the same saved enquiry. Set Under review, a
+
+00:03:39.855 --> 00:03:44.709
+high priority and an owner. Give the next step an exact due
+
+00:03:44.709 --> 00:03:48.350
+time, with an escalation interval if it becomes overdue.
+
+00:03:49.000 --> 00:03:53.533
+Add a team comment so the next shift knows what to check.
+
+00:03:53.533 --> 00:03:58.067
+Staff notes and comments stay in the team workspace, separate from the
+
+00:03:58.067 --> 00:03:59.200
+guest's review page.
+
+00:03:59.850 --> 00:04:05.479
+Create a private guest review link. Alex sees the date, time, guest
+
+00:04:05.479 --> 00:04:11.109
+count and preferences, and can send a correction or confirm the request.
+
+00:04:11.109 --> 00:04:15.800
+The page explains that a restaurant reservation still needs confirmation.
+
+00:04:16.450 --> 00:04:20.572
+Alex submits the review and receives a receipt. The team can pick
+
+00:04:20.572 --> 00:04:24.350
+up the response in its inbox before taking the next step.
+
+00:04:25.000 --> 00:04:29.880
+The guest book keeps reviewed guest records and enquiry history together. Staff
+
+00:04:29.880 --> 00:04:34.760
+should check that a record belongs to the right person, and confirm
+
+00:04:34.760 --> 00:04:37.200
+past preferences before using them again.
+
+00:04:37.850 --> 00:04:43.229
+In Restaurant library, the team maintains the facts guests can ask about.
+
+00:04:43.229 --> 00:04:48.607
+Here, approved dinner hours include the kitchen closing time. Publish only information
+
+00:04:48.607 --> 00:04:50.400
+your restaurant has checked.
+
+00:04:51.050 --> 00:04:55.990
+Open the branded guest page or copy the website widget code. Guests
+
+00:04:55.990 --> 00:05:00.930
+can ask questions and prepare an enquiry, with contact details and consent
+
+00:05:00.930 --> 00:05:03.400
+before sending it to the team.
+
+00:05:04.050 --> 00:05:09.498
+Ask when dinner is served. The guest assistant shows Juniper House's approved
+
+00:05:09.498 --> 00:05:14.946
+hours and their source. Particular requests are passed to the team for
+
+00:05:14.946 --> 00:05:15.400
+checking.
+
+00:05:16.050 --> 00:05:21.485
+The email and WhatsApp connections are simulated. Here, a follow-up email reaches
+
+00:05:21.485 --> 00:05:26.921
+Alex's existing enquiry. Staff asks for a reply draft, checks the wording
+
+00:05:26.921 --> 00:05:31.450
+and sends a simulated response. No real guest is contacted.
+
+00:05:32.100 --> 00:05:38.529
+Connections also offers reservation handoff simulations. Select an approved, saved enquiry and
+
+00:05:38.529 --> 00:05:44.957
+check the simulated availability. This lets the team explore the workflow without
+
+00:05:44.957 --> 00:05:47.100
+contacting a booking platform.
+
+00:05:47.750 --> 00:05:53.729
+The simulated handoff returns a reference and a cancellation control. Its status
+
+00:05:53.729 --> 00:05:59.707
+stays clearly labelled. In real service, the restaurant must still make and
+
+00:05:59.707 --> 00:06:01.700
+confirm the actual reservation.
+
+00:06:02.350 --> 00:06:07.750
+From the first message to the next shift: a conversation, a reviewable
+
+00:06:07.750 --> 00:06:13.150
+brief, useful assistance and a team that knows the next step. Open
+
+00:06:13.150 --> 00:06:15.850
+FormBridge and bring your own enquiry.
